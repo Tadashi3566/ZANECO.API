@@ -9,7 +9,9 @@ public class AreaConfig : IEntityTypeConfiguration<Area>
 {
     public void Configure(EntityTypeBuilder<Area> builder)
     {
-        _ = builder.IsMultiTenant();
+        _ = builder.ToTable("Areas", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.Number)
             .HasColumnType("int");
         _ = builder.Property(b => b.Code)

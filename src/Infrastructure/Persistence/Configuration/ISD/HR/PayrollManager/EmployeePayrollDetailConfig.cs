@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
@@ -8,6 +9,9 @@ internal class EmployeePayrollDetailConfig : IEntityTypeConfiguration<EmployeePa
 {
     public void Configure(EntityTypeBuilder<EmployeePayrollDetail> builder)
     {
+        _ = builder.ToTable("EmployeePayrollDetails", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.StartDate)
             .HasColumnType("date");
         _ = builder.Property(b => b.EndDate)

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
@@ -8,6 +9,9 @@ internal class DocumentConfig : IEntityTypeConfiguration<Document>
 {
     public void Configure(EntityTypeBuilder<Document> builder)
     {
+        _ = builder.ToTable("Documents", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.DocumentDate)
             .HasColumnType("datetime(6)");
         _ = builder.Property(b => b.DocumentType)

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ZANECO.API.Domain.SMS;
 
@@ -8,6 +9,9 @@ public class MessageTemplateConfig : IEntityTypeConfiguration<MessageTemplate>
 {
     public void Configure(EntityTypeBuilder<MessageTemplate> builder)
     {
+        _ = builder.ToTable("MessageTemplates", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.TemplateType)
             .HasMaxLength(32);
         _ = builder.Property(b => b.MessageType)

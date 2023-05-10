@@ -9,7 +9,9 @@ public class RaffleConfig : IEntityTypeConfiguration<Raffle>
 {
     public void Configure(EntityTypeBuilder<Raffle> builder)
     {
-        _ = builder.IsMultiTenant();
+        _ = builder.ToTable("Raffles", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.Name)
             .HasMaxLength(128);
         _ = builder.Property(b => b.RaffleDate)

@@ -8,6 +8,7 @@
         <ContainerImageName>dotnet-webapi</ContainerImageName>
         <ContainerImageTags>1.0.0;latest</ContainerImageTags>
         <PublishProfile>DefaultContainer</PublishProfile>
+        <UserSecretsId>86a78f97-42d1-4066-9f04-4b4798abbb76</UserSecretsId>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />

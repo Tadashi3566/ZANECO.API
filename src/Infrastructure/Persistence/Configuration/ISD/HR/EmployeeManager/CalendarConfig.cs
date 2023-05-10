@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
@@ -8,6 +9,9 @@ internal class CalendarConfig : IEntityTypeConfiguration<Calendar>
 {
     public void Configure(EntityTypeBuilder<Calendar> builder)
     {
+        _ = builder.ToTable("Calendars", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.CalendarType)
             .IsRequired()
             .HasMaxLength(32);

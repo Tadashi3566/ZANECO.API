@@ -87,7 +87,7 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
                     break;
 
                 case EntityState.Modified:
-                    entry.Entity.LastModifiedOn = DateTime.UtcNow;
+                    entry.Entity.LastModifiedOn = DateTime.Now;
                     entry.Entity.LastModifiedBy = userId;
                     break;
 
@@ -95,7 +95,7 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
                     if (entry.Entity is ISoftDelete softDelete)
                     {
                         softDelete.DeletedBy = userId;
-                        softDelete.DeletedOn = DateTime.UtcNow;
+                        softDelete.DeletedOn = DateTime.Now;
                         entry.State = EntityState.Modified;
                     }
 

@@ -29,8 +29,8 @@ internal class DatabaseInitializer : IDatabaseInitializer
             await InitializeApplicationDbForTenantAsync(tenant, cancellationToken);
         }
 
-        _logger.LogInformation("For documentations and guides, visit https://www.fullstackhero.net");
-        _logger.LogInformation("To Sponsor this project, visit https://opencollective.com/fullstackhero");
+        _logger.LogInformation("Developed by: Lowell Carl B. Sumile");
+        //_logger.LogInformation("To Sponsor this project, visit https://opencollective.com/fullstackhero");
     }
 
     public async Task InitializeApplicationDbForTenantAsync(FSHTenantInfo tenant, CancellationToken cancellationToken)
@@ -71,7 +71,7 @@ internal class DatabaseInitializer : IDatabaseInitializer
                 string.Empty,
                 MultitenancyConstants.Root.EmailAddress);
 
-            rootTenant.SetValidity(DateTime.UtcNow.AddYears(1));
+            rootTenant.SetValidity(DateTime.Now.AddYears(1));
 
             _tenantDbContext.TenantInfo.Add(rootTenant);
 

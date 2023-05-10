@@ -9,7 +9,9 @@ public class PowerConsumptionConfig : IEntityTypeConfiguration<PowerConsumption>
 {
     public void Configure(EntityTypeBuilder<PowerConsumption> builder)
     {
-        _ = builder.IsMultiTenant();
+        _ = builder.ToTable("PowerConsumptions", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.GroupId)
             .HasMaxLength(36);
         _ = builder.Property(b => b.GroupCode)

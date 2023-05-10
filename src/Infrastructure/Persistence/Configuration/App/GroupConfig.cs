@@ -9,7 +9,9 @@ public class GroupConfig : IEntityTypeConfiguration<Group>
 {
     public void Configure(EntityTypeBuilder<Group> builder)
     {
-        _ = builder.IsMultiTenant();
+        _ = builder.ToTable("Groups", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.Application)
             .HasMaxLength(64);
         _ = builder.Property(b => b.Parent)

@@ -9,7 +9,9 @@ public class PowerRateConfig : IEntityTypeConfiguration<PowerRate>
 {
     public void Configure(EntityTypeBuilder<PowerRate> builder)
     {
-        _ = builder.IsMultiTenant();
+        _ = builder.ToTable("PowerRates", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.Code)
             .HasMaxLength(16);
         _ = builder.Property(b => b.Name)

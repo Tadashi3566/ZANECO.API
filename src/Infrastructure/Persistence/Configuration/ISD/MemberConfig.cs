@@ -9,7 +9,9 @@ public class MemberConfig : IEntityTypeConfiguration<Member>
 {
     public void Configure(EntityTypeBuilder<Member> builder)
     {
-        _ = builder.IsMultiTenant();
+        _ = builder.ToTable("Members", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.Name)
             .HasMaxLength(2024);
         _ = builder.Property(b => b.Address)

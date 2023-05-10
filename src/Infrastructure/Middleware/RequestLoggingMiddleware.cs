@@ -9,7 +9,7 @@ public class RequestLoggingMiddleware : IMiddleware
 {
     public async Task InvokeAsync(HttpContext httpContext, RequestDelegate next)
     {
-        LogContext.PushProperty("RequestTimeUTC", DateTime.UtcNow);
+        LogContext.PushProperty("RequestTimeUTC", DateTime.Now);
         string requestBody = string.Empty;
         if (httpContext.Request.Path.ToString().Contains("tokens"))
         {

@@ -27,31 +27,19 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Ticket> Tickets => Set<Ticket>();
     public DbSet<TicketProgress> TicketProgress => Set<TicketProgress>();
 
-    #region Messages
-
     public DbSet<Contact> Contacts => Set<Contact>();
     public DbSet<MessageTemplate> MessageTemplates => Set<MessageTemplate>();
     public DbSet<MessageIn> MessageIn => Set<MessageIn>();
     public DbSet<MessageOut> MessageOut => Set<MessageOut>();
     public DbSet<MessageLog> MessageLog => Set<MessageLog>();
 
-    #endregion Messages
-
-    #region Raffle
-
     public DbSet<Raffle> Raffles => Set<Raffle>();
     public DbSet<Prize> Prizes => Set<Prize>();
     public DbSet<Winner> Winners => Set<Winner>();
 
-    #endregion Raffle
-
-    #region Survey
-
     public DbSet<Rate> Rates => Set<Rate>();
     public DbSet<RatingTemplate> RatingTemplates => Set<RatingTemplate>();
     public DbSet<Rating> Ratings => Set<Rating>();
-
-    #endregion Survey
 
     public DbSet<Salary> Salaries => Set<Salary>();
     public DbSet<Adjustment> Adjustments => Set<Adjustment>();
@@ -88,7 +76,6 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Account> Accounts => Set<Account>();
     public DbSet<Ledger> Ledgers => Set<Ledger>();
 
-    #region Sanduurot
     public DbSet<Barcode> Barcodes => Set<Barcode>();
     public DbSet<Brand> Brands => Set<Brand>();
     public DbSet<Customer> Customers => Set<Customer>();
@@ -97,12 +84,11 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Sale> Sales => Set<Sale>();
     public DbSet<SaleItem> SaleItems => Set<SaleItem>();
     public DbSet<Supplier> Suppliers => Set<Supplier>();
-    #endregion
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.HasDefaultSchema(SchemaNames.Catalog);
+        modelBuilder.HasDefaultSchema(SchemaNames.ZANECO);
     }
 }

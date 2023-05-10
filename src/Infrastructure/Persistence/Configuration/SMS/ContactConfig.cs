@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ZANECO.API.Domain.SMS;
 
@@ -8,6 +9,9 @@ public class ContactConfig : IEntityTypeConfiguration<Contact>
 {
     public void Configure(EntityTypeBuilder<Contact> builder)
     {
+        _ = builder.ToTable("Contacts", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.ContactType)
             .HasMaxLength(16);
         _ = builder.Property(b => b.Reference)

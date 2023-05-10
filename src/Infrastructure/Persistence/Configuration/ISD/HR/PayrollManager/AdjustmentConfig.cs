@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
@@ -8,6 +9,9 @@ internal class AdjustmentConfig : IEntityTypeConfiguration<Adjustment>
 {
     public void Configure(EntityTypeBuilder<Adjustment> builder)
     {
+        _ = builder.ToTable("Adjustments", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.AdjustmentType)
             .IsRequired()
             .HasMaxLength(16);

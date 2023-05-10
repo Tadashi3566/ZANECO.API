@@ -20,7 +20,7 @@ public class FSHTenantInfo : ITenantInfo
         Issuer = issuer;
 
         // Add Default 1 Month Validity for all new tenants. Something like a DEMO period for tenants.
-        ValidUpto = DateTime.UtcNow.AddMonths(1);
+        ValidUpto = DateTime.Now.AddMonths(1);
     }
 
     /// <summary>

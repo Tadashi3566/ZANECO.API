@@ -9,7 +9,9 @@ public class LedgerConfig : IEntityTypeConfiguration<Ledger>
 {
     public void Configure(EntityTypeBuilder<Ledger> builder)
     {
-        _ = builder.IsMultiTenant();
+        _ = builder.ToTable("Ledgers", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.IdCode)
             .HasColumnType("int")
             .HasDefaultValue(0);

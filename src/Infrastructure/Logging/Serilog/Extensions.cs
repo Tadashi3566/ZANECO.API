@@ -75,7 +75,7 @@ public static class Extensions
         if (!string.IsNullOrEmpty(elasticSearchUrl))
         {
             string? formattedAppName = appName?.ToLower().Replace(".", "-").Replace(" ", "-");
-            string indexFormat = $"{formattedAppName}-logs-{builder.Environment.EnvironmentName?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}";
+            string indexFormat = $"{formattedAppName}-logs-{builder.Environment.EnvironmentName?.ToLower().Replace(".", "-")}-{DateTime.Now:yyyy-MM}";
             serilogConfig.WriteTo.Async(writeTo =>
             writeTo.Elasticsearch(new(new Uri(elasticSearchUrl))
             {

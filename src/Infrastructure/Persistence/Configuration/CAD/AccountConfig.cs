@@ -9,7 +9,9 @@ public class AccountConfig : IEntityTypeConfiguration<Account>
 {
     public void Configure(EntityTypeBuilder<Account> builder)
     {
-        _ = builder.IsMultiTenant();
+        _ = builder.ToTable("Accounts", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.IdCode)
             .HasColumnType("int")
             .HasDefaultValue(0);

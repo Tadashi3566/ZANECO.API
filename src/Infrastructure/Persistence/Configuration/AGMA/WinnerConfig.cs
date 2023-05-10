@@ -9,7 +9,9 @@ public class WinnerConfig : IEntityTypeConfiguration<Winner>
 {
     public void Configure(EntityTypeBuilder<Winner> builder)
     {
-        _ = builder.IsMultiTenant();
+        _ = builder.ToTable("Winners", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.Name)
             .HasMaxLength(1024);
     }

@@ -9,7 +9,9 @@ public class TicketConfig : IEntityTypeConfiguration<Ticket>
 {
     public void Configure(EntityTypeBuilder<Ticket> builder)
     {
-        _ = builder.IsMultiTenant();
+        _ = builder.ToTable("Tickets", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.Name)
             .HasMaxLength(1024);
         _ = builder.Property(b => b.Impact)

@@ -9,7 +9,9 @@ public class RouteConfig : IEntityTypeConfiguration<Route>
 {
     public void Configure(EntityTypeBuilder<Route> builder)
     {
-        _ = builder.IsMultiTenant();
+        _ = builder.ToTable("Routes", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.AreaId)
             .HasMaxLength(36);
         _ = builder.Property(b => b.AreaName)

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
@@ -8,6 +9,9 @@ internal class EmployerConfig : IEntityTypeConfiguration<Employer>
 {
     public void Configure(EntityTypeBuilder<Employer> builder)
     {
+        _ = builder.ToTable("Employers", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.Designation)
             .IsRequired()
             .HasMaxLength(64);

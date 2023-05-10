@@ -30,7 +30,7 @@ public class AuditTrail
             UserId = UserId,
             Type = TrailType.ToString(),
             TableName = TableName,
-            DateTime = DateTime.UtcNow,
+            DateTime = DateTime.Now,
             PrimaryKey = _serializer.Serialize(KeyValues),
             OldValues = OldValues.Count == 0 ? null : _serializer.Serialize(OldValues),
             NewValues = NewValues.Count == 0 ? null : _serializer.Serialize(NewValues),

@@ -9,7 +9,8 @@ public class RemoteCollectionConfig : IEntityTypeConfiguration<RemoteCollection>
 {
     public void Configure(EntityTypeBuilder<RemoteCollection> builder)
     {
-        _ = builder.IsMultiTenant();
+        _ = builder.ToTable("RemoteCollections", SchemaNames.ZANECO)
+            .IsMultiTenant();
 
         _ = builder.Property(b => b.Collector)
             .IsRequired()

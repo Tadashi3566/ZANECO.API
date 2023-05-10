@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Finbuckle.MultiTenant.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
@@ -8,6 +9,9 @@ internal class ScheduleDetailConfig : IEntityTypeConfiguration<ScheduleDetail>
 {
     public void Configure(EntityTypeBuilder<ScheduleDetail> builder)
     {
+        _ = builder.ToTable("ScheduleDetails", SchemaNames.ZANECO)
+            .IsMultiTenant();
+
         _ = builder.Property(b => b.Day)
             .IsRequired()
             .HasMaxLength(16);
