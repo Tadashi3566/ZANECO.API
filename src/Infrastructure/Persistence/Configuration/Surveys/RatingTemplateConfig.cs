@@ -9,7 +9,7 @@ public class RatingTemplateConfig : IEntityTypeConfiguration<RatingTemplate>
 {
     public void Configure(EntityTypeBuilder<RatingTemplate> builder)
     {
-        _ = builder.ToTable("RatingTemplates", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.Comment)

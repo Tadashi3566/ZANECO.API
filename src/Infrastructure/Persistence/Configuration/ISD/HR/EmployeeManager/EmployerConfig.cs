@@ -9,7 +9,7 @@ internal class EmployerConfig : IEntityTypeConfiguration<Employer>
 {
     public void Configure(EntityTypeBuilder<Employer> builder)
     {
-        _ = builder.ToTable("Employers", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.Designation)

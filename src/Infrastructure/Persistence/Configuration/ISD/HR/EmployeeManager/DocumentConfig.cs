@@ -9,7 +9,7 @@ internal class DocumentConfig : IEntityTypeConfiguration<Document>
 {
     public void Configure(EntityTypeBuilder<Document> builder)
     {
-        _ = builder.ToTable("Documents", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.DocumentDate)

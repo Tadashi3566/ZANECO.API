@@ -9,7 +9,7 @@ internal class CalendarConfig : IEntityTypeConfiguration<Calendar>
 {
     public void Configure(EntityTypeBuilder<Calendar> builder)
     {
-        _ = builder.ToTable("Calendars", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.CalendarType)

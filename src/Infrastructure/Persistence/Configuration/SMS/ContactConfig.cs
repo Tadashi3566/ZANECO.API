@@ -9,7 +9,7 @@ public class ContactConfig : IEntityTypeConfiguration<Contact>
 {
     public void Configure(EntityTypeBuilder<Contact> builder)
     {
-        _ = builder.ToTable("Contacts", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.ContactType)

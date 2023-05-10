@@ -9,7 +9,7 @@ internal class LoanConfig : IEntityTypeConfiguration<Loan>
 {
     public void Configure(EntityTypeBuilder<Loan> builder)
     {
-        _ = builder.ToTable("Loans", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.Amount)

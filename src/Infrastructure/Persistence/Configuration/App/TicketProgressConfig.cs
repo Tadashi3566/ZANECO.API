@@ -9,7 +9,7 @@ public class TicketProgressConfig : IEntityTypeConfiguration<TicketProgress>
 {
     public void Configure(EntityTypeBuilder<TicketProgress> builder)
     {
-        _ = builder.ToTable("TicketProgress", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.ProgressType)

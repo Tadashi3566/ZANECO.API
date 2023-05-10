@@ -9,7 +9,7 @@ internal class AdjustmentConfig : IEntityTypeConfiguration<Adjustment>
 {
     public void Configure(EntityTypeBuilder<Adjustment> builder)
     {
-        _ = builder.ToTable("Adjustments", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.AdjustmentType)

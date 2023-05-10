@@ -9,7 +9,7 @@ internal class SalaryConfig : IEntityTypeConfiguration<Salary>
 {
     public void Configure(EntityTypeBuilder<Salary> builder)
     {
-        _ = builder.ToTable("Salaries", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.StartDate)

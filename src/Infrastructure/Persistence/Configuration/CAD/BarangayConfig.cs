@@ -5,17 +5,15 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Infrastructure.Persistence.Configuration.CAD;
 
-public class AreaConfig : IEntityTypeConfiguration<Area>
+public class BarangayConfig : IEntityTypeConfiguration<Barangay>
 {
-    public void Configure(EntityTypeBuilder<Area> builder)
+    public void Configure(EntityTypeBuilder<Barangay> builder)
     {
         _ = builder
             .IsMultiTenant();
 
-        _ = builder.Property(b => b.Number)
-            .HasColumnType("int");
-        _ = builder.Property(b => b.Code)
-            .HasMaxLength(32);
+        _ = builder.Property(b => b.AreaName)
+            .HasMaxLength(64);
         _ = builder.Property(b => b.Name)
             .HasMaxLength(64);
     }

@@ -9,7 +9,7 @@ internal class PayrollConfig : IEntityTypeConfiguration<Payroll>
 {
     public void Configure(EntityTypeBuilder<Payroll> builder)
     {
-        _ = builder.ToTable("Payrolls", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.Name)

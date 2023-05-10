@@ -9,9 +9,6 @@ public class MessageLogConfig : IEntityTypeConfiguration<MessageLog>
 {
     public void Configure(EntityTypeBuilder<MessageLog> builder)
     {
-        _ = builder.ToTable("MessageLog", SchemaNames.ZANECO)
-            .IsMultiTenant();
-
         _ = builder.Property(b => b.MessageFrom)
             .HasMaxLength(16);
         _ = builder.Property(b => b.MessageTo)

@@ -9,8 +9,8 @@ public class PrizeConfig : IEntityTypeConfiguration<Prize>
 {
     public void Configure(EntityTypeBuilder<Prize> builder)
     {
-        _ = builder.ToTable("Prizes", SchemaNames.ZANECO)
-            .IsMultiTenant();
+        //_ = builder.ToTable("Prizes", SchemaNames.ZANECO)
+        _ = builder.IsMultiTenant();
 
         _ = builder.Property(b => b.PrizeType)
             .HasMaxLength(16);

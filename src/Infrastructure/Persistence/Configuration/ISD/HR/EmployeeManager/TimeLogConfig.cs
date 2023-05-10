@@ -9,7 +9,7 @@ internal class TimeLogConfig : IEntityTypeConfiguration<TimeLog>
 {
     public void Configure(EntityTypeBuilder<TimeLog> builder)
     {
-        _ = builder.ToTable("TimeLogs", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.LogType)

@@ -9,7 +9,7 @@ internal class ContributionConfig : IEntityTypeConfiguration<Contribution>
 {
     public void Configure(EntityTypeBuilder<Contribution> builder)
     {
-        _ = builder.ToTable("Contributions", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.StartDate)

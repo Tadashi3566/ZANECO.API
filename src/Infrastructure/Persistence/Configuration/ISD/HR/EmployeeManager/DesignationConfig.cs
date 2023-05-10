@@ -9,7 +9,7 @@ internal class DesignationConfig : IEntityTypeConfiguration<Designation>
 {
     public void Configure(EntityTypeBuilder<Designation> builder)
     {
-        _ = builder.ToTable("Designations", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.StartDate)

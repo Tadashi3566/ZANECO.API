@@ -9,7 +9,7 @@ internal class AppointmentConfig : IEntityTypeConfiguration<Appointment>
 {
     public void Configure(EntityTypeBuilder<Appointment> builder)
     {
-        _ = builder.ToTable("Appointments", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.AppointmentType)

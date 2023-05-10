@@ -9,7 +9,7 @@ internal class AttendanceConfig : IEntityTypeConfiguration<Attendance>
 {
     public void Configure(EntityTypeBuilder<Attendance> builder)
     {
-        _ = builder.ToTable("Attendance", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.EmployeeName)

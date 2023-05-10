@@ -9,7 +9,7 @@ internal class ScheduleDetailConfig : IEntityTypeConfiguration<ScheduleDetail>
 {
     public void Configure(EntityTypeBuilder<ScheduleDetail> builder)
     {
-        _ = builder.ToTable("ScheduleDetails", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.Day)

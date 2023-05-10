@@ -9,7 +9,7 @@ internal class DependentConfig : IEntityTypeConfiguration<Dependent>
 {
     public void Configure(EntityTypeBuilder<Dependent> builder)
     {
-        _ = builder.ToTable("Dependents", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.Name)

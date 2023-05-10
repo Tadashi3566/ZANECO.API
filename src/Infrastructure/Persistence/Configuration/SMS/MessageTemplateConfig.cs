@@ -9,7 +9,7 @@ public class MessageTemplateConfig : IEntityTypeConfiguration<MessageTemplate>
 {
     public void Configure(EntityTypeBuilder<MessageTemplate> builder)
     {
-        _ = builder.ToTable("MessageTemplates", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.TemplateType)

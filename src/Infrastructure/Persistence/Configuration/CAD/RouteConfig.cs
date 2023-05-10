@@ -9,7 +9,7 @@ public class RouteConfig : IEntityTypeConfiguration<Route>
 {
     public void Configure(EntityTypeBuilder<Route> builder)
     {
-        _ = builder.ToTable("Routes", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.AreaId)

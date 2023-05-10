@@ -9,7 +9,7 @@ public class RateConfig : IEntityTypeConfiguration<Rate>
 {
     public void Configure(EntityTypeBuilder<Rate> builder)
     {
-        _ = builder.ToTable("Rates", SchemaNames.ZANECO)
+        _ = builder
             .IsMultiTenant();
 
         _ = builder.Property(b => b.Number)
