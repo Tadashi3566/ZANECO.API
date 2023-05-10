@@ -1,10 +1,10 @@
 {
   "MailSettings": {
-    "DisplayName": "Mukesh Murugan",
-    "From": "mukesh@fullstackhero.net",
-    "Host": "smtp.ethereal.email",
-    "Password": "AdEqEKB4QwWX9Xey82",
+    "DisplayName": "ZANECO Web App",
+    "From": "noreply@zaneco.net",
+    "Host": "mail.zaneco.net",
+    "Password": "12Nescafe34!",
     "Port": 587,
-    "UserName": "nestor91@ethereal.email"
+    "UserName": "noreply@zaneco.net"
   }
 }
