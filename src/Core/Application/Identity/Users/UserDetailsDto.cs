@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Application.Identity.Users;
+namespace ZANECO.API.Application.Identity.Users;
 
 public class UserDetailsDto
 {

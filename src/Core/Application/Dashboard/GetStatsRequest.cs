@@ -1,7 +1,7 @@
-﻿using FSH.WebApi.Application.Identity.Roles;
-using FSH.WebApi.Application.Identity.Users;
+﻿using ZANECO.API.Application.Identity.Roles;
+using ZANECO.API.Application.Identity.Users;
 
-namespace FSH.WebApi.Application.Dashboard;
+namespace ZANECO.API.Application.Dashboard;
 
 public class GetStatsRequest : IRequest<StatsDto>
 {

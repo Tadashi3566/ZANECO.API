@@ -1,6 +1,6 @@
-using FSH.WebApi.Infrastructure.Auth.AzureAd;
+using System.Security.Claims;
 
-namespace System.Security.Claims;
+namespace ZANECO.API.Infrastructure.Auth.AzureAd;
 
 public static class GetIssuerExtension
 {

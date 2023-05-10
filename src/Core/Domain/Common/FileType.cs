@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace FSH.WebApi.Domain.Common;
+namespace ZANECO.API.Domain.Common;
 
 public enum FileType
 {

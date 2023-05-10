@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Application.Dashboard;
+namespace ZANECO.API.Application.Dashboard;
 
 public class StatsDto
 {

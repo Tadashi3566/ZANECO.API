@@ -1,9 +1,9 @@
-using FSH.WebApi.Application.Common.Events;
-using FSH.WebApi.Shared.Events;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using ZANECO.API.Application.Common.Events;
+using ZANECO.API.Shared.Events;
 
-namespace FSH.WebApi.Infrastructure.Common.Services;
+namespace ZANECO.API.Infrastructure.Common.Services;
 
 public class EventPublisher : IEventPublisher
 {

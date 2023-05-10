@@ -1,13 +1,12 @@
-﻿using FSH.WebApi.Application.Common.Persistence;
-using FSH.WebApi.Infrastructure.Common;
-using Microsoft.Data.Sqlite;
+﻿using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MySqlConnector;
 using Npgsql;
-using System.Data.SqlClient;
+using ZANECO.API.Application.Common.Persistence;
+using ZANECO.API.Infrastructure.Common;
 
-namespace FSH.WebApi.Infrastructure.Persistence.ConnectionString;
+namespace ZANECO.API.Infrastructure.Persistence.ConnectionString;
 
 internal class ConnectionStringValidator : IConnectionStringValidator
 {
@@ -39,9 +38,9 @@ internal class ConnectionStringValidator : IConnectionStringValidator
                     var mysqlcs = new MySqlConnectionStringBuilder(connectionString);
                     break;
 
-                case DbProviderKeys.SqlServer:
-                    var mssqlcs = new SqlConnectionStringBuilder(connectionString);
-                    break;
+                //case DbProviderKeys.SqlServer:
+                //    var mssqlcs = new SqlConnectionStringBuilder(connectionString);
+                //    break;
 
                 case DbProviderKeys.SqLite:
                     var sqlite = new SqliteConnection(connectionString);

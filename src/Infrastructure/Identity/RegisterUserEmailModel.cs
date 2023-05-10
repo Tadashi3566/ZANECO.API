@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Infrastructure.Identity;
+﻿namespace ZANECO.API.Infrastructure.Identity;
 
 public class RegisterUserEmailModel
 {

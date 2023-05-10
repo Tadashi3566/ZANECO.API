@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace FSH.WebApi.Infrastructure.Persistence;
+namespace ZANECO.API.Infrastructure.Persistence;
 
 public class DatabaseSettings : IValidatableObject
 {

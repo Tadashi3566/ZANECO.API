@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace FSH.WebApi.Infrastructure.Auth.Jwt;
+namespace ZANECO.API.Infrastructure.Auth.Jwt;
 
 internal static class Startup
 {

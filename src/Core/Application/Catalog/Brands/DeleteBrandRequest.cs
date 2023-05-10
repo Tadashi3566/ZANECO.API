@@ -1,6 +1,6 @@
-﻿using FSH.WebApi.Application.Catalog.Products;
+﻿using ZANECO.API.Application.Catalog.Products;
 
-namespace FSH.WebApi.Application.Catalog.Brands;
+namespace ZANECO.API.Application.Catalog.Brands;
 
 public class DeleteBrandRequest : IRequest<Guid>
 {
@@ -13,6 +13,7 @@ public class DeleteBrandRequestHandler : IRequestHandler<DeleteBrandRequest, Gui
 {
     // Add Domain Events automatically by using IRepositoryWithEvents
     private readonly IRepositoryWithEvents<Brand> _brandRepo;
+
     private readonly IReadRepository<Product> _productRepo;
     private readonly IStringLocalizer _t;
 

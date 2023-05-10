@@ -1,14 +1,14 @@
-using FSH.WebApi.Application.Common.Interfaces;
-using FSH.WebApi.Infrastructure.Auth.AzureAd;
-using FSH.WebApi.Infrastructure.Auth.Jwt;
-using FSH.WebApi.Infrastructure.Auth.Permissions;
-using FSH.WebApi.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ZANECO.API.Application.Common.Interfaces;
+using ZANECO.API.Infrastructure.Auth.AzureAd;
+using ZANECO.API.Infrastructure.Auth.Jwt;
+using ZANECO.API.Infrastructure.Auth.Permissions;
+using ZANECO.API.Infrastructure.Identity;
 
-namespace FSH.WebApi.Infrastructure.Auth;
+namespace ZANECO.API.Infrastructure.Auth;
 
 internal static class Startup
 {

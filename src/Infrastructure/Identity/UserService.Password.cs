@@ -1,9 +1,9 @@
-﻿using FSH.WebApi.Application.Common.Exceptions;
-using FSH.WebApi.Application.Common.Mailing;
-using FSH.WebApi.Application.Identity.Users.Password;
-using Microsoft.AspNetCore.WebUtilities;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using ZANECO.API.Application.Common.Exceptions;
+using ZANECO.API.Application.Common.Mailing;
+using ZANECO.API.Application.Identity.Users.Password;
 
-namespace FSH.WebApi.Infrastructure.Identity;
+namespace ZANECO.API.Infrastructure.Identity;
 
 internal partial class UserService
 {

@@ -1,11 +1,11 @@
-using FSH.WebApi.Application.Common.Mailing;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
+using ZANECO.API.Application.Common.Mailing;
 
-namespace FSH.WebApi.Infrastructure.Mailing;
+namespace ZANECO.API.Infrastructure.Mailing;
 
 public class SmtpMailService : IMailService
 {

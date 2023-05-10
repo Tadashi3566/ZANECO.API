@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
-namespace FSH.WebApi.Infrastructure.SecurityHeaders;
+namespace ZANECO.API.Infrastructure.SecurityHeaders;
 
 internal static class Startup
 {

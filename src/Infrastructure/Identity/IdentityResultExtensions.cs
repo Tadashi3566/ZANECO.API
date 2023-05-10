@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 
-namespace FSH.WebApi.Infrastructure.Identity;
+namespace ZANECO.API.Infrastructure.Identity;
 
 internal static class IdentityResultExtensions
 {

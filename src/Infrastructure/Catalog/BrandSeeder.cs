@@ -1,11 +1,11 @@
-using System.Reflection;
-using FSH.WebApi.Application.Common.Interfaces;
-using FSH.WebApi.Domain.Catalog;
-using FSH.WebApi.Infrastructure.Persistence.Context;
-using FSH.WebApi.Infrastructure.Persistence.Initialization;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
+using ZANECO.API.Application.Common.Interfaces;
+using ZANECO.API.Domain.Catalog;
+using ZANECO.API.Infrastructure.Persistence.Context;
+using ZANECO.API.Infrastructure.Persistence.Initialization;
 
-namespace FSH.WebApi.Infrastructure.Catalog;
+namespace ZANECO.API.Infrastructure.Catalog;
 
 public class BrandSeeder : ICustomSeeder
 {

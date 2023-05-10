@@ -1,7 +1,7 @@
-using System.Text;
 using Microsoft.Extensions.Primitives;
+using System.Text;
 
-namespace FSH.WebApi.Infrastructure.Common.Extensions;
+namespace ZANECO.API.Infrastructure.Common.Extensions;
 
 public class PathExtensions
 {

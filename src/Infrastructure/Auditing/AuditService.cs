@@ -1,9 +1,9 @@
-using FSH.WebApi.Application.Auditing;
-using FSH.WebApi.Infrastructure.Persistence.Context;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using ZANECO.API.Application.Auditing;
+using ZANECO.API.Infrastructure.Persistence.Context;
 
-namespace FSH.WebApi.Infrastructure.Auditing;
+namespace ZANECO.API.Infrastructure.Auditing;
 
 public class AuditService : IAuditService
 {

@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Infrastructure.Auth;
+namespace ZANECO.API.Infrastructure.Auth;
 
 public class SecuritySettings
 {

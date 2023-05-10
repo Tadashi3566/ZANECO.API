@@ -1,1 +1,1 @@
-﻿global using FSH.WebApi.Domain.Common.Contracts;
+﻿global using ZANECO.API.Domain.Common.Contracts;

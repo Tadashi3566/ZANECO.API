@@ -1,38 +1,43 @@
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using FSH.WebApi.Infrastructure.Auth;
-using FSH.WebApi.Infrastructure.BackgroundJobs;
-using FSH.WebApi.Infrastructure.Caching;
-using FSH.WebApi.Infrastructure.Common;
-using FSH.WebApi.Infrastructure.Cors;
-using FSH.WebApi.Infrastructure.FileStorage;
-using FSH.WebApi.Infrastructure.Localization;
-using FSH.WebApi.Infrastructure.Mailing;
-using FSH.WebApi.Infrastructure.Mapping;
-using FSH.WebApi.Infrastructure.Middleware;
-using FSH.WebApi.Infrastructure.Multitenancy;
-using FSH.WebApi.Infrastructure.Notifications;
-using FSH.WebApi.Infrastructure.OpenApi;
-using FSH.WebApi.Infrastructure.Persistence;
-using FSH.WebApi.Infrastructure.Persistence.Initialization;
-using FSH.WebApi.Infrastructure.SecurityHeaders;
-using FSH.WebApi.Infrastructure.Validations;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Polly;
+using System.Net.Http.Headers;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using ZANECO.API.Application.Common.Interfaces;
+using ZANECO.API.Application.SMS;
+using ZANECO.API.Infrastructure.Auth;
+using ZANECO.API.Infrastructure.BackgroundJobs;
+using ZANECO.API.Infrastructure.Caching;
+using ZANECO.API.Infrastructure.Common;
+using ZANECO.API.Infrastructure.Cors;
+using ZANECO.API.Infrastructure.FileStorage;
+using ZANECO.API.Infrastructure.Localization;
+using ZANECO.API.Infrastructure.Mailing;
+using ZANECO.API.Infrastructure.Mapping;
+using ZANECO.API.Infrastructure.Middleware;
+using ZANECO.API.Infrastructure.Multitenancy;
+using ZANECO.API.Infrastructure.Notifications;
+using ZANECO.API.Infrastructure.OpenApi;
+using ZANECO.API.Infrastructure.Persistence;
+using ZANECO.API.Infrastructure.Persistence.Initialization;
+using ZANECO.API.Infrastructure.SecurityHeaders;
+using ZANECO.API.Infrastructure.Services.PaddleOCR;
+using ZANECO.API.Infrastructure.SMS;
 
 [assembly: InternalsVisibleTo("Infrastructure.Test")]
 
-namespace FSH.WebApi.Infrastructure;
+namespace ZANECO.API.Infrastructure;
 
 public static class Startup
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
-        var applicationAssembly = typeof(FSH.WebApi.Application.Startup).GetTypeInfo().Assembly;
+        var applicationAssembly = typeof(ZANECO.API.Application.Startup).GetTypeInfo().Assembly;
         MapsterSettings.Configure();
         return services
             .AddApiVersioning()
@@ -41,7 +46,6 @@ public static class Startup
             .AddCaching(config)
             .AddCorsPolicy(config)
             .AddExceptionMiddleware()
-            .AddBehaviours(applicationAssembly)
             .AddHealthCheck()
             .AddPOLocalization(config)
             .AddMailing(config)
@@ -52,8 +56,29 @@ public static class Startup
             .AddPersistence()
             .AddRequestLogging(config)
             .AddRouting(options => options.LowercaseUrls = true)
+            .AddHttpClientService()
+            .AddAppServices()
             .AddServices();
     }
+
+    public static IServiceCollection AddHttpClientService(this IServiceCollection services)
+    {
+        services.AddHttpClient("ocr", c =>
+        {
+            c.BaseAddress = new Uri("https://paddleocr.i247365.net/predict/ocr_system");
+            c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        })
+        .AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(3, _ => TimeSpan.FromSeconds(30)));
+
+        return services;
+    }
+
+    private static IServiceCollection AddAppServices(this IServiceCollection services) =>
+        services
+            //.AddScoped<IAttendanceService, AttendanceService>()
+            .AddScoped<IDateTimeFunctions, DateTimeFunctions>()
+            .AddScoped<IDocumentOcrJob, DocumentOcrJob>()
+            .AddScoped<ISmsService, SmsService>();
 
     private static IServiceCollection AddApiVersioning(this IServiceCollection services) =>
         services.AddApiVersioning(config =>

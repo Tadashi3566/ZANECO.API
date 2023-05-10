@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 
-namespace FSH.WebApi.Infrastructure.Auth.Permissions;
+namespace ZANECO.API.Infrastructure.Auth.Permissions;
 
 internal class PermissionRequirement : IAuthorizationRequirement
 {

@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Validators;
 
-namespace FSH.WebApi.Application.Common.Validation;
+namespace ZANECO.API.Application.Common.Validation;
 
 // SetValidator doesn't work when dealing with a nullable reference type
 // Use this SetNonNullableValidator extension method instead
@@ -23,7 +23,9 @@ public static class SetNonNullableValidatorExtension
             : base(validator, validatorType)
         {
         }
+
 #pragma warning disable RCS1132
+
         public override bool IsValid(ValidationContext<T> context, TProperty? value)
         {
             return base.IsValid(context, value!);
@@ -33,6 +35,7 @@ public static class SetNonNullableValidatorExtension
         {
             return base.IsValidAsync(context, value!, cancellation);
         }
+
 #pragma warning restore RCS1132
     }
 }

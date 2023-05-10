@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FSH.WebApi.Infrastructure.Middleware;
+namespace ZANECO.API.Infrastructure.Middleware;
 
 internal static class Startup
 {

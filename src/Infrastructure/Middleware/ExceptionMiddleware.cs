@@ -1,12 +1,12 @@
-using System.Net;
-using FSH.WebApi.Application.Common.Exceptions;
-using FSH.WebApi.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using Serilog;
 using Serilog.Context;
+using System.Net;
+using ZANECO.API.Application.Common.Exceptions;
+using ZANECO.API.Application.Common.Interfaces;
 
-namespace FSH.WebApi.Infrastructure.Middleware;
+namespace ZANECO.API.Infrastructure.Middleware;
 
 internal class ExceptionMiddleware : IMiddleware
 {

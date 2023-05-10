@@ -1,6 +1,6 @@
 {
   "LoggerSettings": {
-    "AppName": "FSH.WebApi",
+    "AppName": "ZANECO.API",
     "WriteToFile": false,
     "StructuredConsoleLogging": true
   }

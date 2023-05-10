@@ -1,7 +1,7 @@
-using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
-namespace FSH.WebApi.Application;
+namespace ZANECO.API.Application;
 
 public static class Startup
 {

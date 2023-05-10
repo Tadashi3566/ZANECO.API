@@ -1,13 +1,13 @@
-﻿using System.Security.Claims;
-using Finbuckle.MultiTenant;
-using FSH.WebApi.Infrastructure.Common;
-using FSH.WebApi.Shared.Multitenancy;
+﻿using Finbuckle.MultiTenant;
 using Hangfire.Client;
 using Hangfire.Logging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using ZANECO.API.Infrastructure.Common;
+using ZANECO.API.Shared.Authorization;
+using ZANECO.API.Shared.Multitenancy;
 
-namespace FSH.WebApi.Infrastructure.BackgroundJobs;
+namespace ZANECO.API.Infrastructure.BackgroundJobs;
 
 public class FSHJobFilter : IClientFilter
 {

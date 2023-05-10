@@ -1,6 +1,6 @@
-using FSH.WebApi.Domain.Common.Contracts;
+using ZANECO.API.Domain.Common.Contracts;
 
-namespace FSH.WebApi.Infrastructure.Auditing;
+namespace ZANECO.API.Infrastructure.Auditing;
 
 public class Trail : BaseEntity
 {

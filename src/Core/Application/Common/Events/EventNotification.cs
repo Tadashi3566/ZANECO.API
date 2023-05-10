@@ -1,6 +1,6 @@
-using FSH.WebApi.Shared.Events;
+using ZANECO.API.Shared.Events;
 
-namespace FSH.WebApi.Application.Common.Events;
+namespace ZANECO.API.Application.Common.Events;
 
 public class EventNotification<TEvent> : INotification
     where TEvent : IEvent

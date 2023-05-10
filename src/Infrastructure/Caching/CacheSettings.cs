@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Infrastructure.Caching;
+namespace ZANECO.API.Infrastructure.Caching;
 
 public class CacheSettings
 {

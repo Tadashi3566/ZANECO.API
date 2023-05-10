@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Application.Common.Exporters;
+﻿namespace ZANECO.API.Application.Common.Exporters;
 
 public interface IExcelWriter : ITransientService
 {

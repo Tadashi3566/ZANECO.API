@@ -1,8 +1,8 @@
-using FSH.WebApi.Application.Common.Caching;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
+using ZANECO.API.Application.Common.Caching;
 
-namespace FSH.WebApi.Infrastructure.Caching;
+namespace ZANECO.API.Infrastructure.Caching;
 
 public class LocalCacheService : ICacheService
 {

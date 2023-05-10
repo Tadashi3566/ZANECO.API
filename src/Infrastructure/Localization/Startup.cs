@@ -1,11 +1,11 @@
-﻿using System.Globalization;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.Localization;
+using System.Globalization;
 
-namespace FSH.WebApi.Infrastructure.Localization;
+namespace ZANECO.API.Infrastructure.Localization;
 
 internal static class Startup
 {

@@ -1,7 +1,8 @@
 using System.Security.Claims;
-using FSH.WebApi.Application.Common.Interfaces;
+using ZANECO.API.Application.Common.Interfaces;
+using ZANECO.API.Shared.Authorization;
 
-namespace FSH.WebApi.Infrastructure.Auth;
+namespace ZANECO.API.Infrastructure.Auth;
 
 public class CurrentUser : ICurrentUser, ICurrentUserInitializer
 {

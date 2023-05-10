@@ -1,11 +1,11 @@
 ﻿using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
-using FSH.WebApi.Application.Common.Persistence;
-using FSH.WebApi.Domain.Common.Contracts;
-using FSH.WebApi.Infrastructure.Persistence.Context;
 using Mapster;
+using ZANECO.API.Application.Common.Persistence;
+using ZANECO.API.Domain.Common.Contracts;
+using ZANECO.API.Infrastructure.Persistence.Context;
 
-namespace FSH.WebApi.Infrastructure.Persistence.Repository;
+namespace ZANECO.API.Infrastructure.Persistence.Repository;
 
 // Inherited from Ardalis.Specification's RepositoryBase<T>
 public class ApplicationDbRepository<T> : RepositoryBase<T>, IReadRepository<T>, IRepository<T>

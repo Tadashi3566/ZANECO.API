@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Infrastructure.Common;
+﻿namespace ZANECO.API.Infrastructure.Common;
 
 internal class DbProviderKeys
 {

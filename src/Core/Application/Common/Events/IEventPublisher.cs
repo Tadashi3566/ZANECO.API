@@ -1,6 +1,6 @@
-using FSH.WebApi.Shared.Events;
+using ZANECO.API.Shared.Events;
 
-namespace FSH.WebApi.Application.Common.Events;
+namespace ZANECO.API.Application.Common.Events;
 
 public interface IEventPublisher : ITransientService
 {

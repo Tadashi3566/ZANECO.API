@@ -1,9 +1,9 @@
-using FSH.WebApi.Application.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Serilog;
 using Serilog.Context;
+using ZANECO.API.Application.Common.Interfaces;
 
-namespace FSH.WebApi.Infrastructure.Middleware;
+namespace ZANECO.API.Infrastructure.Middleware;
 
 public class ResponseLoggingMiddleware : IMiddleware
 {
@@ -13,7 +13,6 @@ public class ResponseLoggingMiddleware : IMiddleware
 
     public async Task InvokeAsync(HttpContext httpContext, RequestDelegate next)
     {
-      
         var originalBody = httpContext.Response.Body;
         using var newBody = new MemoryStream();
         httpContext.Response.Body = newBody;

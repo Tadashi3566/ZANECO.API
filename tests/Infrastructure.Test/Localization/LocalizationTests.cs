@@ -1,5 +1,5 @@
-﻿using System.Globalization;
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.Localization;
+using System.Globalization;
 using Xunit;
 
 namespace Infrastructure.Test.Localization;

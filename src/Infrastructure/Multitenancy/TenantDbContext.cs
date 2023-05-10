@@ -1,8 +1,8 @@
 ﻿using Finbuckle.MultiTenant.Stores;
-using FSH.WebApi.Infrastructure.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
+using ZANECO.API.Infrastructure.Persistence.Configuration;
 
-namespace FSH.WebApi.Infrastructure.Multitenancy;
+namespace ZANECO.API.Infrastructure.Multitenancy;
 
 public class TenantDbContext : EFCoreStoreDbContext<FSHTenantInfo>
 {

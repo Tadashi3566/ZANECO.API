@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Application.Auditing;
+namespace ZANECO.API.Application.Auditing;
 
 public interface IAuditService : ITransientService
 {

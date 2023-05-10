@@ -1,13 +1,13 @@
 ﻿using Finbuckle.MultiTenant;
-using FSH.WebApi.Infrastructure.Auth;
-using FSH.WebApi.Infrastructure.Common;
-using FSH.WebApi.Infrastructure.Multitenancy;
-using FSH.WebApi.Shared.Multitenancy;
 using Hangfire;
 using Hangfire.Server;
 using Microsoft.Extensions.DependencyInjection;
+using ZANECO.API.Infrastructure.Auth;
+using ZANECO.API.Infrastructure.Common;
+using ZANECO.API.Infrastructure.Multitenancy;
+using ZANECO.API.Shared.Multitenancy;
 
-namespace FSH.WebApi.Infrastructure.BackgroundJobs;
+namespace ZANECO.API.Infrastructure.BackgroundJobs;
 
 public class FSHJobActivator : JobActivator
 {

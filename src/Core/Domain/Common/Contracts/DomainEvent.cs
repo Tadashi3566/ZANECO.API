@@ -1,6 +1,6 @@
-using FSH.WebApi.Shared.Events;
+using ZANECO.API.Shared.Events;
 
-namespace FSH.WebApi.Domain.Common.Contracts;
+namespace ZANECO.API.Domain.Common.Contracts;
 
 public abstract class DomainEvent : IEvent
 {

@@ -1,14 +1,12 @@
-using FSH.WebApi.Application;
-using FSH.WebApi.Host.Configurations;
-using FSH.WebApi.Host.Controllers;
-using FSH.WebApi.Infrastructure;
-using FSH.WebApi.Infrastructure.Common;
-using FSH.WebApi.Infrastructure.Logging.Serilog;
 using Serilog;
-using Serilog.Formatting.Compact;
+using ZANECO.API.Application;
+using ZANECO.API.Host.Configurations;
+using ZANECO.API.Host.Controllers;
+using ZANECO.API.Infrastructure;
+using ZANECO.API.Infrastructure.Common;
+using ZANECO.API.Infrastructure.Logging.Serilog;
 
 [assembly: ApiConventionType(typeof(FSHApiConventions))]
-
 StaticLogger.EnsureInitialized();
 Log.Information("Server Booting Up...");
 try

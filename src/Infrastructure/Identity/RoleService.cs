@@ -1,18 +1,18 @@
 using Finbuckle.MultiTenant;
-using FSH.WebApi.Application.Common.Events;
-using FSH.WebApi.Application.Common.Exceptions;
-using FSH.WebApi.Application.Common.Interfaces;
-using FSH.WebApi.Application.Identity.Roles;
-using FSH.WebApi.Domain.Identity;
-using FSH.WebApi.Infrastructure.Persistence.Context;
-using FSH.WebApi.Shared.Authorization;
-using FSH.WebApi.Shared.Multitenancy;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+using ZANECO.API.Application.Common.Events;
+using ZANECO.API.Application.Common.Exceptions;
+using ZANECO.API.Application.Common.Interfaces;
+using ZANECO.API.Application.Identity.Roles;
+using ZANECO.API.Domain.Identity;
+using ZANECO.API.Infrastructure.Persistence.Context;
+using ZANECO.API.Shared.Authorization;
+using ZANECO.API.Shared.Multitenancy;
 
-namespace FSH.WebApi.Infrastructure.Identity;
+namespace ZANECO.API.Infrastructure.Identity;
 
 internal class RoleService : IRoleService
 {

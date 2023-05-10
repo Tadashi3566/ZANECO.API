@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations.Schema;
 using MassTransit;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FSH.WebApi.Domain.Common.Contracts;
+namespace ZANECO.API.Domain.Common.Contracts;
 
 public abstract class BaseEntity : BaseEntity<DefaultIdType>
 {

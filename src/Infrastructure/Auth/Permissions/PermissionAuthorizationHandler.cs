@@ -1,8 +1,8 @@
-using System.Security.Claims;
-using FSH.WebApi.Application.Identity.Users;
 using Microsoft.AspNetCore.Authorization;
+using ZANECO.API.Application.Identity.Users;
+using ZANECO.API.Shared.Authorization;
 
-namespace FSH.WebApi.Infrastructure.Auth.Permissions;
+namespace ZANECO.API.Infrastructure.Auth.Permissions;
 
 internal class PermissionAuthorizationHandler : AuthorizationHandler<PermissionRequirement>
 {

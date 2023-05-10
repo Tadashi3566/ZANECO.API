@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Application.Common.Specification;
+﻿namespace ZANECO.API.Application.Common.Specification;
 
 public class EntitiesByPaginationFilterSpec<T, TResult> : EntitiesByBaseFilterSpec<T, TResult>
 {

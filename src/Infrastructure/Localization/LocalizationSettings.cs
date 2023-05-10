@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Infrastructure.Localization;
+﻿namespace ZANECO.API.Infrastructure.Localization;
 
 public class LocalizationSettings
 {

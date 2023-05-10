@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Infrastructure.Common.Settings;
+namespace ZANECO.API.Infrastructure.Cors;
 
 public class CorsSettings
 {

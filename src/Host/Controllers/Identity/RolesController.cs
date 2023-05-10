@@ -1,6 +1,6 @@
-using FSH.WebApi.Application.Identity.Roles;
+using ZANECO.API.Application.Identity.Roles;
 
-namespace FSH.WebApi.Host.Controllers.Identity;
+namespace ZANECO.API.Host.Controllers.Identity;
 
 public class RolesController : VersionNeutralApiController
 {

@@ -1,6 +1,6 @@
-using FSH.WebApi.Application.Dashboard;
+using ZANECO.API.Application.Dashboard;
 
-namespace FSH.WebApi.Host.Controllers.Dashboard;
+namespace ZANECO.API.Host.Controllers.Dashboard;
 
 public class DashboardController : VersionedApiController
 {

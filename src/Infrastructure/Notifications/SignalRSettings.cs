@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Infrastructure.Notifications;
+﻿namespace ZANECO.API.Infrastructure.Notifications;
 
 public class SignalRSettings
 {

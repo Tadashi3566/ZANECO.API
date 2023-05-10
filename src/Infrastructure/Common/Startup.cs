@@ -1,7 +1,7 @@
-﻿using FSH.WebApi.Application.Common.Interfaces;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ZANECO.API.Application.Common.Interfaces;
 
-namespace FSH.WebApi.Infrastructure.Common;
+namespace ZANECO.API.Infrastructure.Common;
 
 internal static class Startup
 {

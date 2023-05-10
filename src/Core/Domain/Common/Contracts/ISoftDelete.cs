@@ -1,7 +1,7 @@
-namespace FSH.WebApi.Domain.Common.Contracts;
+namespace ZANECO.API.Domain.Common.Contracts;
 
 public interface ISoftDelete
 {
     DateTime? DeletedOn { get; set; }
-    Guid? DeletedBy { get; set; }
+    DefaultIdType? DeletedBy { get; set; }
 }

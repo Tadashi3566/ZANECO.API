@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Shared.Multitenancy;
+namespace ZANECO.API.Shared.Multitenancy;
 
 public class MultitenancyConstants
 {

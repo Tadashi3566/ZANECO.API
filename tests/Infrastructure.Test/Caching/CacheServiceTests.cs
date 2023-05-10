@@ -1,6 +1,6 @@
 using FluentAssertions;
-using FSH.WebApi.Application.Common.Caching;
 using Xunit;
+using ZANECO.API.Application.Common.Caching;
 
 namespace Infrastructure.Test.Caching;
 
@@ -32,6 +32,7 @@ public abstract class CacheServiceTests
     }
 
 #pragma warning disable RCS1158
+
     public static IEnumerable<object[]> ValueData => new List<object[]>
 #pragma warning restore RCS1158
         {

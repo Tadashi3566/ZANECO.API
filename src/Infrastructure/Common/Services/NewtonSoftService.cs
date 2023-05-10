@@ -1,9 +1,9 @@
-using FSH.WebApi.Application.Common.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using ZANECO.API.Application.Common.Interfaces;
 
-namespace FSH.WebApi.Infrastructure.Common.Services;
+namespace ZANECO.API.Infrastructure.Common.Services;
 
 public class NewtonSoftService : ISerializerService
 {

@@ -1,26 +1,26 @@
 using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
 using Finbuckle.MultiTenant;
-using FSH.WebApi.Application.Common.Caching;
-using FSH.WebApi.Application.Common.Events;
-using FSH.WebApi.Application.Common.Exceptions;
-using FSH.WebApi.Application.Common.FileStorage;
-using FSH.WebApi.Application.Common.Interfaces;
-using FSH.WebApi.Application.Common.Mailing;
-using FSH.WebApi.Application.Common.Models;
-using FSH.WebApi.Application.Common.Specification;
-using FSH.WebApi.Application.Identity.Users;
-using FSH.WebApi.Domain.Identity;
-using FSH.WebApi.Infrastructure.Auth;
-using FSH.WebApi.Infrastructure.Persistence.Context;
-using FSH.WebApi.Shared.Authorization;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
+using ZANECO.API.Application.Common.Caching;
+using ZANECO.API.Application.Common.Events;
+using ZANECO.API.Application.Common.Exceptions;
+using ZANECO.API.Application.Common.FileStorage;
+using ZANECO.API.Application.Common.Interfaces;
+using ZANECO.API.Application.Common.Mailing;
+using ZANECO.API.Application.Common.Models;
+using ZANECO.API.Application.Common.Specification;
+using ZANECO.API.Application.Identity.Users;
+using ZANECO.API.Domain.Identity;
+using ZANECO.API.Infrastructure.Auth;
+using ZANECO.API.Infrastructure.Persistence.Context;
+using ZANECO.API.Shared.Authorization;
 
-namespace FSH.WebApi.Infrastructure.Identity;
+namespace ZANECO.API.Infrastructure.Identity;
 
 internal partial class UserService : IUserService
 {

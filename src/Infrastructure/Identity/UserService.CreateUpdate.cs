@@ -1,15 +1,15 @@
-﻿using System.Security.Claims;
-using FSH.WebApi.Application.Common.Exceptions;
-using FSH.WebApi.Application.Common.Mailing;
-using FSH.WebApi.Application.Identity.Users;
-using FSH.WebApi.Domain.Common;
-using FSH.WebApi.Domain.Identity;
-using FSH.WebApi.Shared.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
+using System.Security.Claims;
+using ZANECO.API.Application.Common.Exceptions;
+using ZANECO.API.Application.Common.Mailing;
+using ZANECO.API.Application.Identity.Users;
+using ZANECO.API.Domain.Common;
+using ZANECO.API.Domain.Identity;
+using ZANECO.API.Shared.Authorization;
 
-namespace FSH.WebApi.Infrastructure.Identity;
+namespace ZANECO.API.Infrastructure.Identity;
 
 internal partial class UserService
 {

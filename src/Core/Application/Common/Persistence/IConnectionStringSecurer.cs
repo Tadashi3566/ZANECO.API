@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Application.Common.Persistence;
+﻿namespace ZANECO.API.Application.Common.Persistence;
 
 public interface IConnectionStringSecurer
 {

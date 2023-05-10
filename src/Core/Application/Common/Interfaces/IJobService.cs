@@ -1,6 +1,6 @@
 using System.Linq.Expressions;
 
-namespace FSH.WebApi.Application.Common.Interfaces;
+namespace ZANECO.API.Application.Common.Interfaces;
 
 public interface IJobService : ITransientService
 {

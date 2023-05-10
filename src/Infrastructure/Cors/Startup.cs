@@ -1,9 +1,8 @@
-﻿using FSH.WebApi.Infrastructure.Common.Settings;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FSH.WebApi.Infrastructure.Cors;
+namespace ZANECO.API.Infrastructure.Cors;
 
 internal static class Startup
 {

@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Application.Identity.Users.Password;
+namespace ZANECO.API.Application.Identity.Users.Password;
 
 public class ChangePasswordRequest
 {

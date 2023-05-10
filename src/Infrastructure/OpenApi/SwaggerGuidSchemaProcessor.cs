@@ -1,7 +1,8 @@
 using NJsonSchema;
 using NJsonSchema.Generation;
 
-namespace FSH.WebApi.Infrastructure.OpenApi;
+namespace ZANECO.API.Infrastructure.OpenApi;
+
 public class SwaggerGuidSchemaProcessor : ISchemaProcessor
 {
     public void Process(SchemaProcessorContext context)

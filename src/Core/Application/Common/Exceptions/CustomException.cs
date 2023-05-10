@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace FSH.WebApi.Application.Common.Exceptions;
+namespace ZANECO.API.Application.Common.Exceptions;
 
 public class CustomException : Exception
 {

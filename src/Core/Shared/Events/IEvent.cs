@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Shared.Events;
+﻿namespace ZANECO.API.Shared.Events;
 
 public interface IEvent
 {

@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Infrastructure.Mapping;
+﻿namespace ZANECO.API.Infrastructure.Mapping;
 
 public class MapsterSettings
 {

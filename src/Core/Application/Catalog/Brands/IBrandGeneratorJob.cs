@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace FSH.WebApi.Application.Catalog.Brands;
+namespace ZANECO.API.Application.Catalog.Brands;
 
 public interface IBrandGeneratorJob : IScopedService
 {

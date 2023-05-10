@@ -1,14 +1,14 @@
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-using FSH.WebApi.Application.Common.FileStorage;
-using FSH.WebApi.Domain.Common;
-using FSH.WebApi.Infrastructure.Common.Extensions;
+using ZANECO.API.Application.Common.FileStorage;
+using ZANECO.API.Domain.Common;
+using ZANECO.API.Infrastructure.Common.Extensions;
 
-namespace FSH.WebApi.Infrastructure.FileStorage;
+namespace ZANECO.API.Infrastructure.FileStorage;
 
 public class LocalFileStorageService : IFileStorageService
 {
-    public async Task<string> UploadAsync<T>(FileUploadRequest? request, FileType supportedFileType, CancellationToken cancellationToken = default)
+    public async Task<string> UploadAsync<T>(ImageUploadRequest? request, FileType supportedFileType, CancellationToken cancellationToken = default)
     where T : class
     {
         if (request == null || request.Data == null)

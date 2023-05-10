@@ -1,25 +1,25 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using FSH.WebApi.Application.Common.Exceptions;
-using FSH.WebApi.Application.Identity.Tokens;
-using FSH.WebApi.Infrastructure.Auth;
-using FSH.WebApi.Infrastructure.Auth.Jwt;
-using FSH.WebApi.Infrastructure.Multitenancy;
-using FSH.WebApi.Shared.Authorization;
-using FSH.WebApi.Shared.Multitenancy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
+using ZANECO.API.Application.Common.Exceptions;
+using ZANECO.API.Application.Identity.Tokens;
+using ZANECO.API.Infrastructure.Auth;
+using ZANECO.API.Infrastructure.Auth.Jwt;
+using ZANECO.API.Infrastructure.Multitenancy;
+using ZANECO.API.Shared.Authorization;
+using ZANECO.API.Shared.Multitenancy;
 
-namespace FSH.WebApi.Infrastructure.Identity;
+namespace ZANECO.API.Infrastructure.Identity;
 
 internal class TokenService : ITokenService
 {
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly IStringLocalizer _t;
+    private readonly IStringLocalizer<TokenService> _localizer;
     private readonly SecuritySettings _securitySettings;
     private readonly JwtSettings _jwtSettings;
     private readonly FSHTenantInfo? _currentTenant;
@@ -32,7 +32,7 @@ internal class TokenService : ITokenService
         IOptions<SecuritySettings> securitySettings)
     {
         _userManager = userManager;
-        _t = localizer;
+        _localizer = localizer;
         _jwtSettings = jwtSettings.Value;
         _currentTenant = currentTenant;
         _securitySettings = securitySettings.Value;
@@ -40,34 +40,46 @@ internal class TokenService : ITokenService
 
     public async Task<TokenResponse> GetTokenAsync(TokenRequest request, string ipAddress, CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(_currentTenant?.Id)
-            || await _userManager.FindByEmailAsync(request.Email.Trim().Normalize()) is not { } user
-            || !await _userManager.CheckPasswordAsync(user, request.Password))
+        if (string.IsNullOrWhiteSpace(_currentTenant?.Id))
         {
-            throw new UnauthorizedException(_t["Authentication Failed."]);
+            throw new UnauthorizedException(_localizer["tenant.invalid"]);
+        }
+
+        var user = await _userManager.FindByNameAsync(request.UserName.Trim().Normalize());
+
+        user ??= await _userManager.FindByEmailAsync(request.Email.Trim().Normalize());
+
+        if (user is null)
+        {
+            throw new UnauthorizedException(_localizer["auth.failed"]);
         }
 
         if (!user.IsActive)
         {
-            throw new UnauthorizedException(_t["User Not Active. Please contact the administrator."]);
+            throw new UnauthorizedException(_localizer["identity.usernotactive"]);
         }
 
         if (_securitySettings.RequireConfirmedAccount && !user.EmailConfirmed)
         {
-            throw new UnauthorizedException(_t["E-Mail not confirmed."]);
+            throw new UnauthorizedException(_localizer["identity.emailnotconfirmed"]);
         }
 
         if (_currentTenant.Id != MultitenancyConstants.Root.Id)
         {
             if (!_currentTenant.IsActive)
             {
-                throw new UnauthorizedException(_t["Tenant is not Active. Please contact the Application Administrator."]);
+                throw new UnauthorizedException(_localizer["tenant.inactive"]);
             }
 
-            if (DateTime.UtcNow > _currentTenant.ValidUpto)
+            if (DateTime.Now > _currentTenant.ValidUpto)
             {
-                throw new UnauthorizedException(_t["Tenant Validity Has Expired. Please contact the Application Administrator."]);
+                throw new UnauthorizedException(_localizer["tenant.expired"]);
             }
+        }
+
+        if (!await _userManager.CheckPasswordAsync(user, request.Password))
+        {
+            throw new UnauthorizedException(_localizer["identity.invalidcredentials"]);
         }
 
         return await GenerateTokensAndUpdateUser(user, ipAddress);
@@ -77,15 +89,11 @@ internal class TokenService : ITokenService
     {
         var userPrincipal = GetPrincipalFromExpiredToken(request.Token);
         string? userEmail = userPrincipal.GetEmail();
-        var user = await _userManager.FindByEmailAsync(userEmail!);
-        if (user is null)
+        var user = await _userManager.FindByEmailAsync(userEmail) ?? throw new UnauthorizedException(_localizer["auth.failed"]);
+        if (user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
         {
-            throw new UnauthorizedException(_t["Authentication Failed."]);
-        }
-
-        if (user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
-        {
-            throw new UnauthorizedException(_t["Invalid Refresh Token."]);
+            //ZANECO.API.Application.Common.Exceptions.UnauthorizedException: 'Invalid Refresh Token.'
+            throw new UnauthorizedException(_localizer["identity.invalidrefreshtoken"]);
         }
 
         return await GenerateTokensAndUpdateUser(user, ipAddress);
@@ -96,9 +104,9 @@ internal class TokenService : ITokenService
         string token = GenerateJwt(user, ipAddress);
 
         user.RefreshToken = GenerateRefreshToken();
-        user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays);
+        user.RefreshTokenExpiryTime = DateTime.Now.AddDays(_jwtSettings.RefreshTokenExpirationInDays);
 
-        await _userManager.UpdateAsync(user);
+        _ = await _userManager.UpdateAsync(user);
 
         return new TokenResponse(token, user.RefreshToken, user.RefreshTokenExpiryTime);
     }
@@ -110,7 +118,7 @@ internal class TokenService : ITokenService
         new List<Claim>
         {
             new(ClaimTypes.NameIdentifier, user.Id),
-            new(ClaimTypes.Email, user.Email!),
+            new(ClaimTypes.Email, user.Email),
             new(FSHClaims.Fullname, $"{user.FirstName} {user.LastName}"),
             new(ClaimTypes.Name, user.FirstName ?? string.Empty),
             new(ClaimTypes.Surname, user.LastName ?? string.Empty),
@@ -120,7 +128,7 @@ internal class TokenService : ITokenService
             new(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty)
         };
 
-    private static string GenerateRefreshToken()
+    private string GenerateRefreshToken()
     {
         byte[] randomNumber = new byte[32];
         using var rng = RandomNumberGenerator.Create();
@@ -132,7 +140,7 @@ internal class TokenService : ITokenService
     {
         var token = new JwtSecurityToken(
            claims: claims,
-           expires: DateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpirationInMinutes),
+           expires: DateTime.Now.AddMinutes(_jwtSettings.TokenExpirationInMinutes),
            signingCredentials: signingCredentials);
         var tokenHandler = new JwtSecurityTokenHandler();
         return tokenHandler.WriteToken(token);
@@ -140,6 +148,11 @@ internal class TokenService : ITokenService
 
     private ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
     {
+        if (string.IsNullOrEmpty(_jwtSettings.Key))
+        {
+            throw new InvalidOperationException("No Key defined in JwtSettings config.");
+        }
+
         var tokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
@@ -157,7 +170,7 @@ internal class TokenService : ITokenService
                 SecurityAlgorithms.HmacSha256,
                 StringComparison.InvariantCultureIgnoreCase))
         {
-            throw new UnauthorizedException(_t["Invalid Token."]);
+            throw new UnauthorizedException(_localizer["identity.invalidtoken"]);
         }
 
         return principal;
@@ -165,6 +178,11 @@ internal class TokenService : ITokenService
 
     private SigningCredentials GetSigningCredentials()
     {
+        if (string.IsNullOrEmpty(_jwtSettings.Key))
+        {
+            throw new InvalidOperationException("No Key defined in JwtSettings config.");
+        }
+
         byte[] secret = Encoding.UTF8.GetBytes(_jwtSettings.Key);
         return new SigningCredentials(new SymmetricSecurityKey(secret), SecurityAlgorithms.HmacSha256);
     }

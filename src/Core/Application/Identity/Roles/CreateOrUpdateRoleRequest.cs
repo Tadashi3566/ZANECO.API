@@ -1,10 +1,10 @@
-namespace FSH.WebApi.Application.Identity.Roles;
+namespace ZANECO.API.Application.Identity.Roles;
 
 public class CreateOrUpdateRoleRequest
 {
     public string? Id { get; set; }
     public string Name { get; set; } = default!;
-    public string? Description { get; set; }
+    public string Description { get; set; } = string.Empty;
 }
 
 public class CreateOrUpdateRoleRequestValidator : CustomValidator<CreateOrUpdateRoleRequest>

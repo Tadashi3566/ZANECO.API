@@ -1,6 +1,6 @@
-﻿using FSH.WebApi.Shared.Events;
+﻿using ZANECO.API.Shared.Events;
 
-namespace FSH.WebApi.Application.Common.Events;
+namespace ZANECO.API.Application.Common.Events;
 
 // This is just a shorthand to make it a bit easier to create event handlers for specific events.
 public interface IEventNotificationHandler<TEvent> : INotificationHandler<EventNotification<TEvent>>

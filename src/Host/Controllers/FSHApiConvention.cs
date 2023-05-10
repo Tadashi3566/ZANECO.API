@@ -1,7 +1,7 @@
-﻿using FSH.WebApi.Infrastructure.Middleware;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
+﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using ZANECO.API.Infrastructure.Middleware;
 
-namespace FSH.WebApi.Host.Controllers;
+namespace ZANECO.API.Host.Controllers;
 
 #nullable disable
 #pragma warning disable RCS1163, IDE0060

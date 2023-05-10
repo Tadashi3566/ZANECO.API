@@ -1,17 +1,17 @@
 ﻿using Ardalis.Specification;
-using FSH.WebApi.Application.Catalog.Brands;
-using FSH.WebApi.Application.Common.Interfaces;
-using FSH.WebApi.Application.Common.Persistence;
-using FSH.WebApi.Domain.Catalog;
-using FSH.WebApi.Shared.Notifications;
 using Hangfire;
 using Hangfire.Console.Extensions;
 using Hangfire.Console.Progress;
 using Hangfire.Server;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using ZANECO.API.Application.Catalog.Brands;
+using ZANECO.API.Application.Common.Interfaces;
+using ZANECO.API.Application.Common.Persistence;
+using ZANECO.API.Domain.Catalog;
+using ZANECO.API.Shared.Notifications;
 
-namespace FSH.WebApi.Infrastructure.Catalog;
+namespace ZANECO.API.Infrastructure.Catalog;
 
 public class BrandGeneratorJob : IBrandGeneratorJob
 {

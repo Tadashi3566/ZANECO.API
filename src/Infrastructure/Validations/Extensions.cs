@@ -1,9 +1,9 @@
-﻿using System.Reflection;
-using FluentValidation;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
-namespace FSH.WebApi.Infrastructure.Validations;
+namespace ZANECO.API.Infrastructure.Validations;
+
 public static class Extensions
 {
     public static IServiceCollection AddBehaviours(this IServiceCollection services, Assembly assemblyContainingValidators)

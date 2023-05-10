@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Domain.Common.Events;
+namespace ZANECO.API.Domain.Common.Events;
 
 public static class EntityDeletedEvent
 {

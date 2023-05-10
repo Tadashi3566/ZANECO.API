@@ -1,8 +1,8 @@
-using FSH.WebApi.Domain.Common.Events;
-using FSH.WebApi.Domain.Identity;
-using FSH.WebApi.Shared.Events;
+using ZANECO.API.Domain.Common.Events;
+using ZANECO.API.Domain.Identity;
+using ZANECO.API.Shared.Events;
 
-namespace FSH.WebApi.Application.Dashboard;
+namespace ZANECO.API.Application.Dashboard;
 
 public class SendStatsChangedNotificationHandler :
     IEventNotificationHandler<EntityCreatedEvent<Brand>>,
@@ -21,16 +21,22 @@ public class SendStatsChangedNotificationHandler :
 
     public Task Handle(EventNotification<EntityCreatedEvent<Brand>> notification, CancellationToken cancellationToken) =>
         SendStatsChangedNotification(notification.Event, cancellationToken);
+
     public Task Handle(EventNotification<EntityDeletedEvent<Brand>> notification, CancellationToken cancellationToken) =>
         SendStatsChangedNotification(notification.Event, cancellationToken);
+
     public Task Handle(EventNotification<EntityCreatedEvent<Product>> notification, CancellationToken cancellationToken) =>
         SendStatsChangedNotification(notification.Event, cancellationToken);
+
     public Task Handle(EventNotification<EntityDeletedEvent<Product>> notification, CancellationToken cancellationToken) =>
         SendStatsChangedNotification(notification.Event, cancellationToken);
+
     public Task Handle(EventNotification<ApplicationRoleCreatedEvent> notification, CancellationToken cancellationToken) =>
         SendStatsChangedNotification(notification.Event, cancellationToken);
+
     public Task Handle(EventNotification<ApplicationRoleDeletedEvent> notification, CancellationToken cancellationToken) =>
         SendStatsChangedNotification(notification.Event, cancellationToken);
+
     public Task Handle(EventNotification<ApplicationUserCreatedEvent> notification, CancellationToken cancellationToken) =>
         SendStatsChangedNotification(notification.Event, cancellationToken);
 

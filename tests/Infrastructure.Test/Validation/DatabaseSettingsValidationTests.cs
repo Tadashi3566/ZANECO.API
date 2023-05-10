@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using FSH.WebApi.Infrastructure.Persistence;
 using Xunit;
+using ZANECO.API.Infrastructure.Persistence;
 
-namespace Infrastructure.Test;
+namespace Infrastructure.Test.Validation;
 
 public class DatabaseSettingsValidationTests
 {

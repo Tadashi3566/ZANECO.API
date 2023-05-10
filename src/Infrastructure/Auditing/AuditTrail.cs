@@ -1,7 +1,7 @@
-using FSH.WebApi.Application.Common.Interfaces;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using ZANECO.API.Application.Common.Interfaces;
 
-namespace FSH.WebApi.Infrastructure.Auditing;
+namespace ZANECO.API.Infrastructure.Auditing;
 
 public class AuditTrail
 {

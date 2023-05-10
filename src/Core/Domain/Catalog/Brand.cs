@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Domain.Catalog;
+namespace ZANECO.API.Domain.Catalog;
 
 public class Brand : AuditableEntity, IAggregateRoot
 {

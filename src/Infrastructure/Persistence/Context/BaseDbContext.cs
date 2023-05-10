@@ -1,16 +1,16 @@
-using System.Data;
 using Finbuckle.MultiTenant;
-using FSH.WebApi.Application.Common.Events;
-using FSH.WebApi.Application.Common.Interfaces;
-using FSH.WebApi.Domain.Common.Contracts;
-using FSH.WebApi.Infrastructure.Auditing;
-using FSH.WebApi.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Options;
+using System.Data;
+using ZANECO.API.Application.Common.Events;
+using ZANECO.API.Application.Common.Interfaces;
+using ZANECO.API.Domain.Common.Contracts;
+using ZANECO.API.Infrastructure.Auditing;
+using ZANECO.API.Infrastructure.Identity;
 
-namespace FSH.WebApi.Infrastructure.Persistence.Context;
+namespace ZANECO.API.Infrastructure.Persistence.Context;
 
 public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUser, ApplicationRole, string, IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, ApplicationRoleClaim, IdentityUserToken<string>>
 {

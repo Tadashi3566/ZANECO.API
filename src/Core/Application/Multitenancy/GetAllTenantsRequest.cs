@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Application.Multitenancy;
+﻿namespace ZANECO.API.Application.Multitenancy;
 
 public class GetAllTenantsRequest : IRequest<List<TenantDto>>
 {

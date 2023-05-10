@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Infrastructure.SecurityHeaders;
+namespace ZANECO.API.Infrastructure.SecurityHeaders;
 
 public class SecurityHeaders
 {

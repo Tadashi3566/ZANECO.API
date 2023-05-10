@@ -1,11 +1,11 @@
-using System.Text;
-using FSH.WebApi.Application.Common.Exceptions;
-using FSH.WebApi.Infrastructure.Common;
-using FSH.WebApi.Shared.Multitenancy;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
+using ZANECO.API.Application.Common.Exceptions;
+using ZANECO.API.Infrastructure.Common;
+using ZANECO.API.Shared.Multitenancy;
 
-namespace FSH.WebApi.Infrastructure.Identity;
+namespace ZANECO.API.Infrastructure.Identity;
 
 internal partial class UserService
 {

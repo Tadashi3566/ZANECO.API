@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Application.Common.Models;
+namespace ZANECO.API.Application.Common.Models;
 
 public class Search
 {

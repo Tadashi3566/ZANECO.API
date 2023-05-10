@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Application.Catalog.Products;
+﻿namespace ZANECO.API.Application.Catalog.Products;
 
 public class ProductExportDto : IDto
 {

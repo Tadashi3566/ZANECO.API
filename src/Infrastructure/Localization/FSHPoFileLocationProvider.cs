@@ -1,11 +1,11 @@
-using FSH.WebApi.Infrastructure.Common.Extensions;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using OrchardCore.Localization;
+using ZANECO.API.Infrastructure.Common.Extensions;
 
-namespace FSH.WebApi.Infrastructure.Localization;
+namespace ZANECO.API.Infrastructure.Localization;
 
 /// <summary>
 /// Provides PO files for FSH Localization.

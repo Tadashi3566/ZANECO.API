@@ -1,6 +1,6 @@
-using FSH.WebApi.Application.Multitenancy;
+using ZANECO.API.Application.Multitenancy;
 
-namespace FSH.WebApi.Host.Controllers.Multitenancy;
+namespace ZANECO.API.Host.Controllers.Multitenancy;
 
 public class TenantsController : VersionNeutralApiController
 {

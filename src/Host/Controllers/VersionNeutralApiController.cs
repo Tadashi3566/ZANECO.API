@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Host.Controllers;
+﻿namespace ZANECO.API.Host.Controllers;
 
 [Route("api/[controller]")]
 [ApiVersionNeutral]

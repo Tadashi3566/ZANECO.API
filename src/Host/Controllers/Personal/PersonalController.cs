@@ -1,9 +1,8 @@
-using System.Security.Claims;
-using FSH.WebApi.Application.Auditing;
-using FSH.WebApi.Application.Identity.Users;
-using FSH.WebApi.Application.Identity.Users.Password;
+using ZANECO.API.Application.Auditing;
+using ZANECO.API.Application.Identity.Users;
+using ZANECO.API.Application.Identity.Users.Password;
 
-namespace FSH.WebApi.Host.Controllers.Identity;
+namespace ZANECO.API.Host.Controllers.Personal;
 
 public class PersonalController : VersionNeutralApiController
 {

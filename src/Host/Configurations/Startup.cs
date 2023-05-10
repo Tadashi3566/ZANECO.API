@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Host.Configurations;
+namespace ZANECO.API.Host.Configurations;
 
 internal static class Startup
 {

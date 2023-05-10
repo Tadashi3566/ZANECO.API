@@ -1,8 +1,8 @@
-using FSH.WebApi.Infrastructure.Persistence.Context;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using ZANECO.API.Infrastructure.Persistence.Context;
 
-namespace FSH.WebApi.Infrastructure.Identity;
+namespace ZANECO.API.Infrastructure.Identity;
 
 internal static class Startup
 {

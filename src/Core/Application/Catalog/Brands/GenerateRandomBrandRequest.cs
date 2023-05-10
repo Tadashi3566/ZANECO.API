@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Application.Catalog.Brands;
+﻿namespace ZANECO.API.Application.Catalog.Brands;
 
 public class GenerateRandomBrandRequest : IRequest<string>
 {

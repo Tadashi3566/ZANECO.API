@@ -1,9 +1,9 @@
-﻿using FSH.WebApi.Application.Common.Events;
-using FSH.WebApi.Application.Common.Interfaces;
-using FSH.WebApi.Shared.Notifications;
-using MediatR;
+﻿using MediatR;
+using ZANECO.API.Application.Common.Events;
+using ZANECO.API.Application.Common.Interfaces;
+using ZANECO.API.Shared.Notifications;
 
-namespace FSH.WebApi.Infrastructure.Notifications;
+namespace ZANECO.API.Infrastructure.Notifications;
 
 // Sends all events that are also an INotificationMessage to all clients
 // Note: for this to work, the Event/NotificationMessage class needs to be in the

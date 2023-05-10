@@ -1,6 +1,6 @@
-﻿using FSH.WebApi.Application.Common.Exporters;
+﻿using ZANECO.API.Application.Common.Exporters;
 
-namespace FSH.WebApi.Application.Catalog.Products;
+namespace ZANECO.API.Application.Catalog.Products;
 
 public class ExportProductsRequest : BaseFilter, IRequest<Stream>
 {

@@ -1,8 +1,8 @@
-using FSH.WebApi.Shared.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
+using ZANECO.API.Shared.Authorization;
 
-namespace FSH.WebApi.Infrastructure.Auth.Permissions;
+namespace ZANECO.API.Infrastructure.Auth.Permissions;
 
 internal class PermissionPolicyProvider : IAuthorizationPolicyProvider
 {

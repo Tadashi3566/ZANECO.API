@@ -1,9 +1,9 @@
-﻿using FSH.WebApi.Application.Common.Caching;
-using FSH.WebApi.Application.Common.Exceptions;
-using FSH.WebApi.Shared.Authorization;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using ZANECO.API.Application.Common.Caching;
+using ZANECO.API.Application.Common.Exceptions;
+using ZANECO.API.Shared.Authorization;
 
-namespace FSH.WebApi.Infrastructure.Identity;
+namespace ZANECO.API.Infrastructure.Identity;
 
 internal partial class UserService
 {

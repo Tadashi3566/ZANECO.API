@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Domain.Common.Contracts;
+﻿namespace ZANECO.API.Domain.Common.Contracts;
 
 public interface IEntity
 {

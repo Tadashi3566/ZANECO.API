@@ -1,6 +1,6 @@
 using System.Data;
 
-namespace FSH.WebApi.Application.Common.Persistence;
+namespace ZANECO.API.Application.Common.Persistence;
 
 public interface IDapperRepository : ITransientService
 {
@@ -14,6 +14,9 @@ public interface IDapperRepository : ITransientService
     /// <param name="cancellationToken">The <see cref="CancellationToken"/> to observe while waiting for the task to complete.</param>
     /// <returns>Returns <see cref="Task"/> of <see cref="IReadOnlyCollection{T}"/>.</returns>
     Task<IReadOnlyList<T>> QueryAsync<T>(string sql, object? param = null, IDbTransaction? transaction = null, CancellationToken cancellationToken = default)
+    where T : class, IEntity;
+
+    Task<List<T>> QueryListAsync<T>(string sql, object? param = null, IDbTransaction? transaction = null, CancellationToken cancellationToken = default)
     where T : class, IEntity;
 
     /// <summary>
@@ -39,4 +42,9 @@ public interface IDapperRepository : ITransientService
     /// <returns>Returns <see cref="Task"/> of <typeparamref name="T"/>.</returns>
     Task<T> QuerySingleAsync<T>(string sql, object? param = null, IDbTransaction? transaction = null, CancellationToken cancellationToken = default)
     where T : class, IEntity;
+
+    Task<T> ExecuteScalarAsync<T>(string sql, object? param = null, IDbTransaction? transaction = null, CancellationToken cancellationToken = default)
+    where T : class, IEntity;
+
+    Task<dynamic> ExecuteScalarAsync(string sql, object? param = null, IDbTransaction? transaction = null, CancellationToken cancellationToken = default);
 }

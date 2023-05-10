@@ -1,4 +1,3 @@
-using FSH.WebApi.Infrastructure.Common;
 using Hangfire;
 using Hangfire.Console;
 using Hangfire.Console.Extensions;
@@ -10,8 +9,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using ZANECO.API.Infrastructure.Common;
 
-namespace FSH.WebApi.Infrastructure.BackgroundJobs;
+namespace ZANECO.API.Infrastructure.BackgroundJobs;
 
 internal static class Startup
 {

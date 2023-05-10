@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Infrastructure.Mailing;
+namespace ZANECO.API.Infrastructure.Mailing;
 
 public class MailSettings
 {

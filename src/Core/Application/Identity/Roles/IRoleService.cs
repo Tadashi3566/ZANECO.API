@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Application.Identity.Roles;
+namespace ZANECO.API.Application.Identity.Roles;
 
 public interface IRoleService : ITransientService
 {

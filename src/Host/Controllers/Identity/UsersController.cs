@@ -1,7 +1,7 @@
-using FSH.WebApi.Application.Identity.Users;
-using FSH.WebApi.Application.Identity.Users.Password;
+using ZANECO.API.Application.Identity.Users;
+using ZANECO.API.Application.Identity.Users.Password;
 
-namespace FSH.WebApi.Host.Controllers.Identity;
+namespace ZANECO.API.Host.Controllers.Identity;
 
 public class UsersController : VersionNeutralApiController
 {

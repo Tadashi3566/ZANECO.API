@@ -1,8 +1,8 @@
-using System.Text;
-using FSH.WebApi.Application.Common.Mailing;
 using RazorEngineCore;
+using System.Text;
+using ZANECO.API.Application.Common.Mailing;
 
-namespace FSH.WebApi.Infrastructure.Mailing;
+namespace ZANECO.API.Infrastructure.Mailing;
 
 public class EmailTemplateService : IEmailTemplateService
 {

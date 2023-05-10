@@ -1,7 +1,5 @@
-using System.Reflection;
 using Figgle;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Serilog;
@@ -9,7 +7,7 @@ using Serilog.Events;
 using Serilog.Exceptions;
 using Serilog.Formatting.Compact;
 
-namespace FSH.WebApi.Infrastructure.Logging.Serilog;
+namespace ZANECO.API.Infrastructure.Logging.Serilog;
 
 public static class Extensions
 {
@@ -104,12 +102,15 @@ public static class Extensions
             case "debug":
                 serilogConfig.MinimumLevel.Debug();
                 break;
+
             case "information":
                 serilogConfig.MinimumLevel.Information();
                 break;
+
             case "warning":
                 serilogConfig.MinimumLevel.Warning();
                 break;
+
             default:
                 serilogConfig.MinimumLevel.Information();
                 break;

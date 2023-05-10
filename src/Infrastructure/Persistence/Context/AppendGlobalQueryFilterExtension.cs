@@ -1,8 +1,8 @@
-using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Expressions;
 
-namespace FSH.WebApi.Infrastructure.Persistence.Context;
+namespace ZANECO.API.Infrastructure.Persistence.Context;
 
 internal static class ModelBuilderExtensions
 {

@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Infrastructure.Auth.AzureAd;
+﻿namespace ZANECO.API.Infrastructure.Auth.AzureAd;
 
 internal static class OpenIdConnectClaimTypes
 {

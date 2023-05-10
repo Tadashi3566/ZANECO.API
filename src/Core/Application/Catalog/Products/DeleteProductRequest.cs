@@ -1,6 +1,6 @@
-﻿using FSH.WebApi.Domain.Common.Events;
+﻿using ZANECO.API.Domain.Common.Events;
 
-namespace FSH.WebApi.Application.Catalog.Products;
+namespace ZANECO.API.Application.Catalog.Products;
 
 public class DeleteProductRequest : IRequest<Guid>
 {

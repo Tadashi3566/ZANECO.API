@@ -1,9 +1,9 @@
-﻿using System.Reflection;
-using NSwag;
+﻿using NSwag;
 using NSwag.Generation.Processors;
 using NSwag.Generation.Processors.Contexts;
+using System.Reflection;
 
-namespace FSH.WebApi.Infrastructure.OpenApi;
+namespace ZANECO.API.Infrastructure.OpenApi;
 
 public class SwaggerHeaderAttributeProcessor : IOperationProcessor
 {

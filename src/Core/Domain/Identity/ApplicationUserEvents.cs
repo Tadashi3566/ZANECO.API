@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Domain.Identity;
+﻿namespace ZANECO.API.Domain.Identity;
 
 public abstract class ApplicationUserEvent : DomainEvent
 {

@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Infrastructure.OpenApi;
+namespace ZANECO.API.Infrastructure.OpenApi;
 
 public class SwaggerSettings
 {

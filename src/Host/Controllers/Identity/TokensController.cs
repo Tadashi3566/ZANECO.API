@@ -1,6 +1,6 @@
-using FSH.WebApi.Application.Identity.Tokens;
+using ZANECO.API.Application.Identity.Tokens;
 
-namespace FSH.WebApi.Host.Controllers.Identity;
+namespace ZANECO.API.Host.Controllers.Identity;
 
 public sealed class TokensController : VersionNeutralApiController
 {

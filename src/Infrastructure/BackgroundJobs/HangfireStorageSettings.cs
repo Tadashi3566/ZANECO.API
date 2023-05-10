@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Infrastructure.BackgroundJobs;
+namespace ZANECO.API.Infrastructure.BackgroundJobs;
 
 public class HangfireStorageSettings
 {

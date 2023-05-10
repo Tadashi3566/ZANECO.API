@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Infrastructure.Auditing;
+namespace ZANECO.API.Infrastructure.Auditing;
 
 public enum TrailType : byte
 {

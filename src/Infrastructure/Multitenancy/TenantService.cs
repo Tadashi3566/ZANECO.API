@@ -1,14 +1,14 @@
 ﻿using Finbuckle.MultiTenant;
-using FSH.WebApi.Application.Common.Exceptions;
-using FSH.WebApi.Application.Common.Persistence;
-using FSH.WebApi.Application.Multitenancy;
-using FSH.WebApi.Infrastructure.Persistence;
-using FSH.WebApi.Infrastructure.Persistence.Initialization;
 using Mapster;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
+using ZANECO.API.Application.Common.Exceptions;
+using ZANECO.API.Application.Common.Persistence;
+using ZANECO.API.Application.Multitenancy;
+using ZANECO.API.Infrastructure.Persistence;
+using ZANECO.API.Infrastructure.Persistence.Initialization;
 
-namespace FSH.WebApi.Infrastructure.Multitenancy;
+namespace ZANECO.API.Infrastructure.Multitenancy;
 
 internal class TenantService : ITenantService
 {

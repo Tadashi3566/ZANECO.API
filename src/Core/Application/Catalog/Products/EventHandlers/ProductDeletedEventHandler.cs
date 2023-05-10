@@ -1,6 +1,6 @@
-using FSH.WebApi.Domain.Common.Events;
+using ZANECO.API.Domain.Common.Events;
 
-namespace FSH.WebApi.Application.Catalog.Products.EventHandlers;
+namespace ZANECO.API.Application.Catalog.Products.EventHandlers;
 
 public class ProductDeletedEventHandler : EventNotificationHandler<EntityDeletedEvent<Product>>
 {

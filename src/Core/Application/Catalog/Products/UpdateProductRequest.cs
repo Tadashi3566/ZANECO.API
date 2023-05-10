@@ -1,16 +1,16 @@
-using FSH.WebApi.Domain.Common.Events;
+using ZANECO.API.Domain.Common.Events;
 
-namespace FSH.WebApi.Application.Catalog.Products;
+namespace ZANECO.API.Application.Catalog.Products;
 
 public class UpdateProductRequest : IRequest<Guid>
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = default!;
-    public string? Description { get; set; }
+    public string Description { get; set; } = string.Empty;
     public decimal Rate { get; set; }
     public Guid BrandId { get; set; }
     public bool DeleteCurrentImage { get; set; } = false;
-    public FileUploadRequest? Image { get; set; }
+    public ImageUploadRequest? Image { get; set; }
 }
 
 public class UpdateProductRequestHandler : IRequestHandler<UpdateProductRequest, Guid>

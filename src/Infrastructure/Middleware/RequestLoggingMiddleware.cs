@@ -1,9 +1,9 @@
-using System.Text;
 using Microsoft.AspNetCore.Http;
 using Serilog;
 using Serilog.Context;
+using System.Text;
 
-namespace FSH.WebApi.Infrastructure.Middleware;
+namespace ZANECO.API.Infrastructure.Middleware;
 
 public class RequestLoggingMiddleware : IMiddleware
 {

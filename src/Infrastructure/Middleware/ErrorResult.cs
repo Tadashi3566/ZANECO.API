@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Infrastructure.Middleware;
+﻿namespace ZANECO.API.Infrastructure.Middleware;
 
 public class ErrorResult
 {

@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Application.Identity.Users;
+namespace ZANECO.API.Application.Identity.Users;
 
 public class UpdateUserRequest
 {
@@ -7,6 +7,6 @@ public class UpdateUserRequest
     public string? LastName { get; set; }
     public string? PhoneNumber { get; set; }
     public string? Email { get; set; }
-    public FileUploadRequest? Image { get; set; }
+    public ImageUploadRequest? Image { get; set; }
     public bool DeleteCurrentImage { get; set; } = false;
 }

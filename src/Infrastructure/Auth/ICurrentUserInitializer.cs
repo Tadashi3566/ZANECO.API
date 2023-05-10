@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace FSH.WebApi.Infrastructure.Auth;
+namespace ZANECO.API.Infrastructure.Auth;
 
 public interface ICurrentUserInitializer
 {

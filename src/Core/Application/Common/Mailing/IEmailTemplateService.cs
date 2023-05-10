@@ -1,4 +1,4 @@
-namespace FSH.WebApi.Application.Common.Mailing;
+namespace ZANECO.API.Application.Common.Mailing;
 
 public interface IEmailTemplateService : ITransientService
 {

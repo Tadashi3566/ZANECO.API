@@ -1,10 +1,10 @@
-namespace FSH.WebApi.Application.Catalog.Brands;
+namespace ZANECO.API.Application.Catalog.Brands;
 
 public class UpdateBrandRequest : IRequest<Guid>
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = default!;
-    public string? Description { get; set; }
+    public string Description { get; set; } = string.Empty;
 }
 
 public class UpdateBrandRequestValidator : CustomValidator<UpdateBrandRequest>
@@ -23,6 +23,7 @@ public class UpdateBrandRequestHandler : IRequestHandler<UpdateBrandRequest, Gui
 {
     // Add Domain Events automatically by using IRepositoryWithEvents
     private readonly IRepositoryWithEvents<Brand> _repository;
+
     private readonly IStringLocalizer _t;
 
     public UpdateBrandRequestHandler(IRepositoryWithEvents<Brand> repository, IStringLocalizer<UpdateBrandRequestHandler> localizer) =>

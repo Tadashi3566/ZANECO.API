@@ -1,6 +1,6 @@
 using Serilog;
 
-namespace FSH.WebApi.Infrastructure.Common;
+namespace ZANECO.API.Infrastructure.Common;
 
 public static class StaticLogger
 {

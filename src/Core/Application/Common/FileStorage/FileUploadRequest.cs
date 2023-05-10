@@ -1,28 +1,28 @@
-namespace FSH.WebApi.Application.Common.FileStorage;
+namespace ZANECO.API.Application.Common.FileStorage;
 
-public class FileUploadRequest
+public class ImageUploadRequest
 {
     public string Name { get; set; } = default!;
     public string Extension { get; set; } = default!;
     public string Data { get; set; } = default!;
 }
 
-public class FileUploadRequestValidator : CustomValidator<FileUploadRequest>
+public class ImageUploadRequestValidator : CustomValidator<ImageUploadRequest>
 {
-    public FileUploadRequestValidator(IStringLocalizer<FileUploadRequestValidator> T)
+    public ImageUploadRequestValidator()
     {
         RuleFor(p => p.Name)
             .NotEmpty()
-                .WithMessage(T["Image Name cannot be empty!"])
+                .WithMessage("Image Name cannot be empty!")
             .MaximumLength(150);
 
         RuleFor(p => p.Extension)
             .NotEmpty()
-                .WithMessage(T["Image Extension cannot be empty!"])
+                .WithMessage("Image Extension cannot be empty!")
             .MaximumLength(5);
 
         RuleFor(p => p.Data)
             .NotEmpty()
-                .WithMessage(T["Image Data cannot be empty!"]);
+                .WithMessage("Image Data cannot be empty!");
     }
 }
