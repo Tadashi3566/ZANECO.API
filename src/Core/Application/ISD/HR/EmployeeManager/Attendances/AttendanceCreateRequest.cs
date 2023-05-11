@@ -86,9 +86,6 @@ public class AttendanceCreateRequestHandler : IRequestHandler<AttendanceCreateRe
                             notes = calendar.Description!;
                         }
 
-                        //disable attendance background worker because some generations are requeuing and sometimes failed.
-                        //_jobService.Enqueue(() => _attendanceService.Generate(request.EmployeeId, employee.FullInitialName(), date, schedule.Id, schedule.Name, dayType, scheduleDetailId, day, scheduleTimeIn1, scheduleTimeOut1, scheduleTimeIn2, scheduleTimeOut2, description, notes, cancellationToken));
-
                         var attendance = new Attendance(request.EmployeeId, employee.NameFullInitial(), schedule.Id, schedule.Name, dayType, date, scheduleDetailId, day, scheduleDetail.TotalHours, scheduleTimeIn1, scheduleTimeOut1, scheduleTimeIn2, scheduleTimeOut2, "PENDING", description!, notes!);
                         await _repoAttendance.AddAsync(attendance, cancellationToken);
                     }

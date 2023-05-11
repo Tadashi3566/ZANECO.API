@@ -11,14 +11,16 @@ public class AppointmentUpdateRequest : IRequest<int>
     public DateTime StartDateTime { get; set; } = default!;
     public DateTime EndDateTime { get; set; } = default!;
     public string? Location { get; set; }
+    public int Hours { get; set; } = default!;
     public bool IsAllDay { get; set; } = default!;
-    public bool IsReadonly { get; set; } = default!;
-    public bool IsBlock { get; set; } = default!;
-    public int? CalendarId { get; set; }
-    public int? RecurrenceID { get; set; }
-    public string? RecurrenceRule { get; set; }
-    public string? RecurrenceException { get; set; }
-    public string? CssClass { get; set; }
+
+    //public bool IsReadonly { get; set; } = default!;
+    //public bool IsBlock { get; set; } = default!;
+    //public int? CalendarId { get; set; }
+    //public int? RecurrenceID { get; set; }
+    //public string? RecurrenceRule { get; set; }
+    //public string? RecurrenceException { get; set; }
+    //public string? CssClass { get; set; }
 
     public DefaultIdType RecommendedBy { get; set; }
     public DateTime? RecommendedOn { get; set; }
@@ -85,7 +87,7 @@ public class AppointmentUpdateRequestHandler : IRequestHandler<AppointmentUpdate
             request.EndDateTime = new DateTime(request.EndDateTime.Year, request.EndDateTime.Month, request.EndDateTime.Day, 23, 59, 59);
         }
 
-        var updatedAppointment = appointment.Update(request.AppointmentType, request.Subject, request.StartDateTime, request.EndDateTime, request.Location, request.IsAllDay, request.IsReadonly, request.IsBlock, request.RecurrenceID, request.RecurrenceRule, request.RecurrenceException, request.CssClass, request.RecommendedBy, request.ApprovedBy, request.Description, request.Notes, imagePath!);
+        var updatedAppointment = appointment.Update(request.AppointmentType, request.Subject, request.StartDateTime, request.EndDateTime, request.Location, request.Hours, request.IsAllDay, request.RecommendedBy, request.ApprovedBy, request.Description, request.Notes, imagePath!);
 
         await _repoAppointment.UpdateAsync(updatedAppointment, cancellationToken);
 

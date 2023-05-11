@@ -22,6 +22,11 @@ public class CurrentUser : ICurrentUser, ICurrentUserInitializer
             ? _user!.GetEmail()
             : string.Empty;
 
+    public string? GetPhoneNumber() =>
+        IsAuthenticated()
+            ? _user!.GetPhoneNumber()
+            : string.Empty;
+
     public bool IsAuthenticated() =>
         _user?.Identity?.IsAuthenticated is true;
 

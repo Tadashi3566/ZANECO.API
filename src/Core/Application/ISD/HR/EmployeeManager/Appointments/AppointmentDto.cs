@@ -10,14 +10,16 @@ public class AppointmentDto : IDto
     public DateTime StartDateTime { get; set; } = default!;
     public DateTime EndDateTime { get; set; } = default!;
     public string Location { get; set; } = default!;
+    public int Hours { get; set; } = default!;
     public bool IsAllDay { get; set; } = default!;
-    public bool IsReadonly { get; set; } = default!;
-    public bool IsBlock { get; set; } = default!;
-    public int? CalendarId { get; set; }
-    public int? RecurrenceID { get; set; }
-    public string? RecurrenceRule { get; set; }
-    public string? RecurrenceException { get; set; }
-    public string? CssClass { get; set; }
+
+    //public bool IsReadonly { get; set; } = default!;
+    //public bool IsBlock { get; set; } = default!;
+    //public int CalendarId { get; set; } = default!;
+    //public int RecurrenceID { get; set; } = default!;
+    //public string RecurrenceRule { get; set; } = default!;
+    //public string RecurrenceException { get; set; } = default!;
+    //public string CssClass { get; set; } = default!;
 
     public DefaultIdType? RecommendedBy { get; set; }
     public DateTime? RecommendedOn { get; set; }

@@ -4,6 +4,7 @@ public class MessageOutCreateRequest : IRequest<int>
 {
     public bool IsBackgroundJob { get; set; } = default!;
     public bool IsScheduled { get; set; } = default!;
+    public bool IsFollowUp { get; set; } = default!;
     public DateTime Schedule { get; set; } = default!;
     public bool IsAPI { get; set; } = default!;
     public string MessageType { get; set; } = default!;
@@ -61,8 +62,11 @@ public class MessageOutCreateRequestHandler : IRequestHandler<MessageOutCreateRe
                 {
                     _jobService.Schedule(() => _smsService.SmsSend(ClassSms.FormatContactNumber(recipient), request.MessageText.Trim(), request.IsAPI, request.MessageType), TimeSpan.FromMinutes(1));
 
-                    // Only send the SMS Subject in order to decrease the cost of SMS Service
-                    _jobService.Schedule(() => _smsService.SmsSend(ClassSms.FormatContactNumber(recipient), request.Subject.Trim(), request.IsAPI, request.MessageType), request.Schedule.AddHours(-5));
+                    if (request.IsFollowUp)
+                    {
+                        // Only send the SMS Subject in order to decrease the cost of SMS Service
+                        _jobService.Schedule(() => _smsService.SmsSend(ClassSms.FormatContactNumber(recipient), request.Subject.Trim(), request.IsAPI, request.MessageType), request.Schedule.AddHours(-5));
+                    }
                 }
                 else
                 {

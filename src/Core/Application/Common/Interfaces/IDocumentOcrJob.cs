@@ -5,5 +5,5 @@ namespace ZANECO.API.Application.Common.Interfaces;
 
 public interface IDocumentOcrJob
 {
-    Task Recognition(Guid id, CancellationToken cancellationToken);
+    Task Recognition(DefaultIdType id, CancellationToken cancellationToken);
 }

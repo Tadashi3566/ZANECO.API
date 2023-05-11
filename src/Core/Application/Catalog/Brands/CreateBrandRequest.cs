@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.Catalog.Brands;
 
-public class CreateBrandRequest : IRequest<Guid>
+public class CreateBrandRequest : IRequest<DefaultIdType>
 {
     public string Name { get; set; } = default!;
     public string Description { get; set; } = string.Empty;
@@ -16,14 +16,14 @@ public class CreateBrandRequestValidator : CustomValidator<CreateBrandRequest>
                 .WithMessage((_, name) => T["Brand {0} already Exists.", name]);
 }
 
-public class CreateBrandRequestHandler : IRequestHandler<CreateBrandRequest, Guid>
+public class CreateBrandRequestHandler : IRequestHandler<CreateBrandRequest, DefaultIdType>
 {
     // Add Domain Events automatically by using IRepositoryWithEvents
     private readonly IRepositoryWithEvents<Brand> _repository;
 
     public CreateBrandRequestHandler(IRepositoryWithEvents<Brand> repository) => _repository = repository;
 
-    public async Task<Guid> Handle(CreateBrandRequest request, CancellationToken cancellationToken)
+    public async Task<DefaultIdType> Handle(CreateBrandRequest request, CancellationToken cancellationToken)
     {
         var brand = new Brand(request.Name, request.Description);
 

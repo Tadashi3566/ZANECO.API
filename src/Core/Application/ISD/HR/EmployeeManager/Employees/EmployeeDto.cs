@@ -119,7 +119,7 @@ public class EmployeeDto : IDto
         get
         {
             if (MiddleName?.Length > 0)
-                return $"{LastName}, {FirstName} {MiddleName.Substring(1, 1)}.".Trim();
+                return $"{LastName}, {FirstName} {MiddleName[..1]}.".Trim();
             else
                 return $"{LastName}, {FirstName}".Trim();
         }

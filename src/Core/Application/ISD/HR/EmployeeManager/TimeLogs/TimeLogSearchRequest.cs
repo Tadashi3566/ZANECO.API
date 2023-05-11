@@ -15,10 +15,10 @@ public class TimeLogsBySearchRequestSpec : EntitiesByPaginationFilterSpec<TimeLo
         : base(request) =>
         Query
         .Include(x => x.Employee)
-        .OrderBy(x => x.LogDateTime, !request.HasOrderBy())
+        .OrderBy(x => x.LogDateTime)
         .Where(x => x.EmployeeId.Equals(request.EmployeeId!.Value), request.EmployeeId.HasValue)
-        .Where(x => x.LogDate >= request.StartDate)
-        .Where(x => x.LogDate <= request.EndDate);
+        .Where(x => x.LogDate >= request.StartDate.AddDays(-1))
+        .Where(x => x.LogDate <= request.EndDate.AddDays(1));
 }
 
 public class TimeLogSearchRequestHandler : IRequestHandler<TimeLogSearchRequest, PaginationResponse<TimeLogDto>>

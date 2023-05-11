@@ -15,7 +15,8 @@ public class EventPublisher : IEventPublisher
 
     public Task PublishAsync(IEvent @event)
     {
-        _logger.LogInformation("Publishing Event : {event}", @event.GetType().Name);
+        string[] eventName = @event.GetType().FullName!.Split(',');
+        _logger.LogInformation("Publishing Event : {event}", eventName[0].Trim());
         return _mediator.Publish(CreateEventNotification(@event));
     }
 

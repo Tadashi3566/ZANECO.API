@@ -20,7 +20,7 @@ internal class SmsService : ISmsService
         _ = await _repositoryDapper.ExecuteScalarAsync<MessageIn>($"UPDATE datazaneco.MessageIn SET IsRead = 1, ReadOn = CURRENT_TIMESTAMP() WHERE Id LIKE '{id}'");
     }
 
-    public async Task<int> SmsSend(string messageTo, string messageText, bool isAPI = false, string messageType = "sms.automatic")
+    public async Task<int> SmsSend(string messageTo, string messageText, bool isAPI = true, string messageType = "sms.automatic")
     {
         byte[] sentenceBytes = Encoding.UTF8.GetBytes(messageText);
         string messageHash;
