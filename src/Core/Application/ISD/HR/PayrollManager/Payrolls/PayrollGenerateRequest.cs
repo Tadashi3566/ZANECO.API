@@ -46,7 +46,7 @@ public class PayrollGenerateRequestHandler : IRequestHandler<PayrollGenerateRequ
                 .Where(x => x.AdjustmentType.Equals("DEDUCTION") && x.Contributor.Equals("EMPLOYEE"))
                 .Select(x => x.Amount).Sum();
 
-            var updatedPayroll = payroll.Update(payroll.PayrollType, payroll.EmploymentType, payroll.Name, totalSalary, totalAdditional, totalSalary + totalAdditional, totalDeduction, (totalSalary + totalAdditional) - totalDeduction, payroll.StartDate, payroll.EndDate, payroll.WorkingDays, payroll.PayrollDate, payroll.IsClosed, payroll.Description, payroll.Notes);
+            var updatedPayroll = payroll.Update(payroll.PayrollType, payroll.EmploymentType, payroll.Name, totalSalary, totalAdditional, totalSalary + totalAdditional, totalDeduction, (totalSalary + totalAdditional) - totalDeduction, payroll.StartDate, payroll.EndDate, payroll.WorkingDays, payroll.PayrollDate, payroll.IsClosed);
 
             await _repoPayroll.UpdateAsync(updatedPayroll, cancellationToken);
 

@@ -3,7 +3,6 @@ namespace ZANECO.API.Domain.Catalog;
 public class Brand : AuditableEntity, IAggregateRoot
 {
     public string Name { get; private set; }
-    public string? Description { get; private set; }
 
     public Brand(string name, string? description)
     {

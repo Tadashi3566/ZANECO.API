@@ -12,14 +12,10 @@ namespace ZANECO.API.Application.Dashboard;
 
 public class GetStatsRequest : IRequest<StatsDto>
 {
-    //public Guid Id { get; set; }
-
-    //public GetStatsRequest(Guid id) => Id = id;
 }
 
 public class GetStatsRequestHandler : IRequestHandler<GetStatsRequest, StatsDto>
 {
-    //private readonly ICurrentUser _currentUser;
     private readonly IUserService _userService;
     private readonly IRoleService _roleService;
 
@@ -36,7 +32,6 @@ public class GetStatsRequestHandler : IRequestHandler<GetStatsRequest, StatsDto>
     private readonly IReadRepository<Product> _repoProduct;
 
     public GetStatsRequestHandler(
-        //ICurrentUser currentUser,
         IUserService userService,
         IRoleService roleService,
         IReadRepository<Employee> repoEmployee,
@@ -48,7 +43,6 @@ public class GetStatsRequestHandler : IRequestHandler<GetStatsRequest, StatsDto>
         IReadRepository<Brand> repoBrand,
         IReadRepository<Product> repoProduct)
     {
-        //_currentUser = currentUser;
         _userService = userService;
         _roleService = roleService;
 

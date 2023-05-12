@@ -37,9 +37,8 @@ public class AppointmentActionRequestHandler : IRequestHandler<AppointmentAction
         IStringLocalizer<AppointmentActionRequestHandler> localizer,
         ICurrentUser currentUser,
         ISmsService smsService,
-        IJobService jobService
-        ) =>
-        (_repoEmployee, _repoAppointment, _repoAttendance, _localizer, _currentUser, _smsService, _jobService)
+        IJobService jobService)
+        => (_repoEmployee, _repoAppointment, _repoAttendance, _localizer, _currentUser, _smsService, _jobService)
         = (repoEmployee, repoAppointment, repoAttendance, localizer, currentUser, smsService, jobService);
 
     public async Task<int> Handle(AppointmentActionRequest request, CancellationToken cancellationToken)
@@ -50,9 +49,15 @@ public class AppointmentActionRequestHandler : IRequestHandler<AppointmentAction
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
         _ = employee ?? throw new NotFoundException(string.Format(_localizer["Employee {0} not found."], request.Id));
 
+        var recommender = await _repoEmployee.GetByIdAsync(appointment.RecommendedBy, cancellationToken);
+        _ = recommender ?? throw new NotFoundException(string.Format(_localizer["Employee {0} not found."], request.Id));
+
+        var approver = await _repoEmployee.GetByIdAsync(appointment.ApprovedBy, cancellationToken);
+        _ = approver ?? throw new NotFoundException(string.Format(_localizer["Employee {0} not found."], request.Id));
+
         var attendances = await _repoAttendance.ListAsync(new AttendanceByDateRangeSpec(request.EmployeeId, appointment.StartDateTime, appointment.EndDateTime), cancellationToken);
 
-        string? phoneNumber = _currentUser.GetPhoneNumber();
+        string? userPhoneNumber = _currentUser.GetPhoneNumber();
 
         switch (request.Action)
         {
@@ -63,8 +68,11 @@ public class AppointmentActionRequestHandler : IRequestHandler<AppointmentAction
                     var attendance = await _repoAttendance.GetByIdAsync(attendanceDto.Id, cancellationToken);
                     attendance?.Send(attendanceDto.Id);
 
-                    if (phoneNumber is not null)
-                        _jobService.Enqueue(() => _smsService.SmsSend(phoneNumber, $"Your Appointment Id:{appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M} has been successfully sent to your Recommender.", true, "sms.automatic"));
+                    if (employee.PhoneNumber is not null)
+                        _jobService.Enqueue(() => _smsService.SmsSend(employee.PhoneNumber, $"Your Appointment Id:{appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M} has been successfully sent as For Recommendation. You may also update your Appointment Information or contact your Supervisor if there are some details were not provided on your Appointment.", true, "sms.automatic"));
+
+                    if (recommender.PhoneNumber is not null)
+                        _jobService.Enqueue(() => _smsService.SmsSend(recommender.PhoneNumber, $"You have received an Appointment Id:{appointment.Id} {appointment.AppointmentType} of Employee:{employee.FullInitialName()} on {appointment.StartDateTime:M} for your Recommendation. You may open the ZANECO HRIS Web App and proceed to the Appointments for details or you may Cancel if Appointment Justifications seems invalid or needs update.", true, "sms.automatic"));
                 }
 
                 break;
@@ -76,8 +84,16 @@ public class AppointmentActionRequestHandler : IRequestHandler<AppointmentAction
                     var attendance = await _repoAttendance.GetByIdAsync(attendanceDto.Id, cancellationToken);
                     attendance?.Cancel(attendanceDto.Id);
 
-                    //if (phoneNumber is not null)
-                    //    _jobService.Enqueue(() => _smsService.SmsSend(phoneNumber, $"Your Appointment Id:{appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M} has been Cancelled.", true, "sms.automatic"));
+                    if (request.EmployeeId.Equals(employee.Id))
+                    {
+                        if (employee.PhoneNumber is not null)
+                            _jobService.Enqueue(() => _smsService.SmsSend(employee.PhoneNumber, $"Your Appointment Id:{appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M} has been Cancelled.", true, "sms.automatic"));
+                    }
+                    else
+                    {
+                        if (userPhoneNumber is not null)
+                            _jobService.Enqueue(() => _smsService.SmsSend(userPhoneNumber, $"You have successfully Cancelled the Appointment Id:{appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M}. You may contact the employee if you need more details or clarifications from the Appointment Information.", true, "sms.automatic"));
+                    }
                 }
 
                 break;
@@ -92,8 +108,14 @@ public class AppointmentActionRequestHandler : IRequestHandler<AppointmentAction
                         var attendance = await _repoAttendance.GetByIdAsync(attendanceDto.Id, cancellationToken);
                         attendance?.Recommend(attendanceDto.Id, employee.FullName());
 
-                        if (phoneNumber is not null)
-                            _jobService.Enqueue(() => _smsService.SmsSend(phoneNumber, $"Your Appointment Id: {appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M} has been successfully sent to your Approver.", true, "sms.automatic"));
+                        if (employee.PhoneNumber is not null)
+                            _jobService.Enqueue(() => _smsService.SmsSend(employee.PhoneNumber, $"Your Appointment Id: {appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M} has been successfully sent to your Approver. You may also contact your Manager if there are more details that were not provided on your Appointment Information.", true, "sms.automatic"));
+
+                        if (userPhoneNumber is not null)
+                            _jobService.Enqueue(() => _smsService.SmsSend(userPhoneNumber, $"You have successfully set the Appointment Id:{appointment.Id} {appointment.AppointmentType} of Employee: {employee.FullInitialName()} on {appointment.StartDateTime:M} as Recommended to the Approver. You may contact the Employee or the Approver if there are some details that were not provided on the Appointment Information.", true, "sms.automatic"));
+
+                        if (approver.PhoneNumber is not null)
+                            _jobService.Enqueue(() => _smsService.SmsSend(approver.PhoneNumber, $"You have received an Appointment Id:{appointment.Id} {appointment.AppointmentType} of Employee:{employee.FullInitialName()} on {appointment.StartDateTime:M} for your Approval. You may open the ZANECO HRIS Web App for more details and/or you may Disapprove if the Appointment Justifications seems invalid.", true, "sms.automatic"));
                     }
                 }
                 else
@@ -113,8 +135,11 @@ public class AppointmentActionRequestHandler : IRequestHandler<AppointmentAction
                         var attendance = await _repoAttendance.GetByIdAsync(attendanceDto.Id, cancellationToken);
                         attendance?.Approve(attendanceDto.Id, employee.FullName(), appointment.AppointmentType, appointment.Subject);
 
-                        if (phoneNumber is not null)
-                            _jobService.Enqueue(() => _smsService.SmsSend(phoneNumber, $"Your Appointment Id: {appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M} has been successfully Approved.", true, "sms.automatic"));
+                        if (employee.PhoneNumber is not null)
+                            _jobService.Enqueue(() => _smsService.SmsSend(employee.PhoneNumber, $"Your Appointment Id:{appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M} has been successfully Approved.", true, "sms.automatic"));
+
+                        if (userPhoneNumber is not null)
+                            _jobService.Enqueue(() => _smsService.SmsSend(userPhoneNumber, $"You have successfully Approved an Appointment Id:{appointment.Id} {appointment.AppointmentType} of Employee: {employee.FullInitialName()} on {appointment.StartDateTime:M}. You may contact the Employee to address applicable conditions if there's any.", true, "sms.automatic"));
                     }
                 }
                 else
@@ -134,8 +159,11 @@ public class AppointmentActionRequestHandler : IRequestHandler<AppointmentAction
                         var attendance = await _repoAttendance.GetByIdAsync(attendanceDto.Id, cancellationToken);
                         attendance?.Disapprove(attendanceDto.Id, employee.FullName());
 
-                        if (phoneNumber is not null)
-                            _jobService.Enqueue(() => _smsService.SmsSend(phoneNumber, $"Your Appointment {appointment.AppointmentType} on {appointment.StartDateTime:M} has been Disapproved.", true, "sms.automatic"));
+                        if (employee.PhoneNumber is not null)
+                            _jobService.Enqueue(() => _smsService.SmsSend(employee.PhoneNumber, $"Your Appointment {appointment.AppointmentType} on {appointment.StartDateTime:M} has been Disapproved. You may contact your Approver and update your Appointment.", true, "sms.automatic"));
+
+                        if (userPhoneNumber is not null)
+                            _jobService.Enqueue(() => _smsService.SmsSend(userPhoneNumber, $"You have Dispproved an Appointment Id:{appointment.Id} {appointment.AppointmentType} of Employee: {employee.FullInitialName()} on {appointment.StartDateTime:M}. You may contact the Employee why such Appointment Justifications are invalid.", true, "sms.automatic"));
                     }
                 }
                 else

@@ -26,7 +26,7 @@ public class UpdateSupplierRequestValidator : CustomValidator<SupplierUpdateRequ
                 .WithMessage((_, name) => T["supplier {0} already Exists.", name]);
 
         RuleFor(p => p.Image)
-            .InjectValidator();
+            .SetNonNullableValidator(new ImageUploadRequestValidator());
     }
 }
 

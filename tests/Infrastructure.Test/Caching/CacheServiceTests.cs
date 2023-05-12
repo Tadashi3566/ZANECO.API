@@ -57,7 +57,7 @@ public abstract class CacheServiceTests
     [Fact]
     public void ReturnsExistingObjectGivenExistingKey()
     {
-        var expected = new TestRecord(Guid.NewGuid(), _testValue, DateTime.UtcNow);
+        var expected = new TestRecord(Guid.NewGuid(), _testValue, DateTime.Now);
 
         _sut.Set(_testKey, expected);
         var result = _sut.Get<TestRecord>(_testKey);

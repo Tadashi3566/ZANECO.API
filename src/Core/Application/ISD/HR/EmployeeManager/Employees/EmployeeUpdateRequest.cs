@@ -157,7 +157,7 @@ public class EmployeeUpdateRequestHandler : IRequestHandler<EmployeeUpdateReques
             ? await _file.UploadAsync<Employee>(request.Image, FileType.Image, cancellationToken)
             : null;
 
-        var updatedEmployee = employee.Update(request.Number, request.Title, request.FirstName, request.MiddleName, request.LastName, request.Extension, request.Gender, ClassSms.FormatContactNumber(request.PhoneNumber), request.Email, request.CivilStatus, request.Address, (DateTime)request.BirthDate!, request.BirthPlace, request.HireDate!, request.RegularDate!, request.Sss, request.Phic, request.Hdmf, request.Tin, request.EmergencyPerson, request.EmergencyNumber, request.EmergencyAddress, request.EmergencyRelation, request.FatherName, request.MotherName, request.Education, request.Course, request.Award, request.BloodType, request.Description, request.Notes, imagePath);
+        var updatedEmployee = employee.Update(request.Number, request.Title, request.FirstName, request.MiddleName, request.LastName, request.Extension, request.Gender, ClassSms.FormatContactNumber(request.PhoneNumber!), request.Email!, request.CivilStatus!, request.Address!, (DateTime)request.BirthDate!, request.BirthPlace!, request.HireDate!, request.RegularDate!, request.Sss!, request.Phic!, request.Hdmf!, request.Tin!, request.EmergencyPerson!, request.EmergencyNumber!, request.EmergencyAddress!, request.EmergencyRelation!, request.FatherName!, request.MotherName!, request.Education!, request.Course!, request.Award!, request.BloodType!, request.Description, request.Notes, imagePath);
 
         await _repoEmployee.UpdateAsync(updatedEmployee, cancellationToken);
 
@@ -172,12 +172,12 @@ public class EmployeeUpdateRequestHandler : IRequestHandler<EmployeeUpdateReques
             var contact = await _repoContact.FirstOrDefaultAsync(new ContactByNumberSpec(ClassSms.FormatContactNumber(request.PhoneNumber)), cancellationToken);
             if (contact == null)
             {
-                var newContact = new Contact("EMPLOYEE", request.Number.ToString(), ClassSms.FormatContactNumber(request.PhoneNumber), employee.FullInitialName(), request.Address, string.Empty, string.Empty, imagePath);
+                var newContact = new Contact("EMPLOYEE", request.Number.ToString(), ClassSms.FormatContactNumber(request.PhoneNumber), employee.FullInitialName(), request.Address!, string.Empty, string.Empty, imagePath);
                 await _repoContact.AddAsync(newContact, cancellationToken);
             }
             else
             {
-                var updatedContact = contact.Update("EMPLOYEE", employee.Number.ToString(), ClassSms.FormatContactNumber(request.PhoneNumber), employee.FullInitialName(), request.Address, string.Empty, string.Empty, imagePath);
+                var updatedContact = contact.Update("EMPLOYEE", employee.Number.ToString(), ClassSms.FormatContactNumber(request.PhoneNumber), employee.FullInitialName(), request.Address!, string.Empty, string.Empty, imagePath);
                 await _repoContact.UpdateAsync(updatedContact, cancellationToken);
             }
         }

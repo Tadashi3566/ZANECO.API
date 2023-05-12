@@ -29,7 +29,7 @@ public class GetProductViaDapperRequestHandler : IRequestHandler<GetProductViaDa
             Id = product.Id,
             BrandId = product.BrandId,
             BrandName = string.Empty,
-            Description = product.Description,
+            Description = product.Description!,
             ImagePath = product.ImagePath,
             Name = product.Name,
             Rate = product.Rate
