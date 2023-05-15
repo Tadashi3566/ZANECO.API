@@ -21,7 +21,7 @@
     },
     "Storage": {
       "StorageProvider": "mysql",
-      "ConnectionString": "Server=10.0.0.3;Database=hangfire2;Uid=root2;Pwd=blaise;ConvertZeroDateTime=True;Allow User Variables=true",
+      "ConnectionString": "Server=10.0.0.3;Database=hangfire0;Uid=root2;Pwd=blaise;ConvertZeroDateTime=True;Allow User Variables=true",
       "Options": {
         "CommandBatchMaxTimeout": "00:05:00",
         "QueuePollInterval": "00:00:01",

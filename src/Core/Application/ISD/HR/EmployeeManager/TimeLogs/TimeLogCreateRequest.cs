@@ -53,7 +53,7 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
             switch (request.LogType)
             {
                 case "TIMEIN1":
-                    var attendanceTimeIn1 = attendance.TimeIn1(DateTime.Now, imagePath);
+                    var attendanceTimeIn1 = attendance.TimeIn1(DateTime.Now.AddMinutes(-3), imagePath);
                     await _repoAttendance.UpdateAsync(attendanceTimeIn1, cancellationToken);
                     break;
 
@@ -63,7 +63,7 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
                     break;
 
                 case "TIMEIN2":
-                    var attendanceTimeIn2 = attendance.TimeIn2(DateTime.Now, imagePath);
+                    var attendanceTimeIn2 = attendance.TimeIn2(DateTime.Now.AddMinutes(-3), imagePath);
                     await _repoAttendance.UpdateAsync(attendanceTimeIn2, cancellationToken);
                     break;
 

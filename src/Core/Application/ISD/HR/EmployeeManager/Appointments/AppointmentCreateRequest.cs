@@ -1,3 +1,5 @@
+using ZANECO.API.Application.Common.Interfaces;
+using ZANECO.API.Application.SMS;
 using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Appointments;
@@ -52,10 +54,19 @@ public class AppointmentCreateRequestHandler : IRequestHandler<AppointmentCreate
 {
     private readonly IReadRepository<Employee> _repoEmployee;
     private readonly IRepositoryWithEvents<Appointment> _repository;
+    private readonly ICurrentUser _currentUser;
+    private readonly ISmsService _smsService;
+    private readonly IJobService _jobService;
     private readonly IFileStorageService _file;
 
-    public AppointmentCreateRequestHandler(IReadRepository<Employee> repoEmployee, IRepositoryWithEvents<Appointment> repository, IFileStorageService file) =>
-        (_repoEmployee, _repository, _file) = (repoEmployee, repository, file);
+    public AppointmentCreateRequestHandler(
+        IReadRepository<Employee> repoEmployee,
+        IRepositoryWithEvents<Appointment> repository,
+        ICurrentUser currentUser,
+        ISmsService smsService,
+        IJobService jobService,
+        IFileStorageService file) =>
+        (_repoEmployee, _repository, _currentUser, _smsService, _jobService, _file) = (repoEmployee, repository, currentUser, smsService, jobService, file);
 
     public async Task<int> Handle(AppointmentCreateRequest request, CancellationToken cancellationToken)
     {
@@ -75,6 +86,14 @@ public class AppointmentCreateRequestHandler : IRequestHandler<AppointmentCreate
         var appointment = new Appointment(request.EmployeeId, employee!.NameFullInitial(), request.AppointmentType, request.Subject, request.StartDateTime, request.EndDateTime, request.Location, request.Hours, request.IsAllDay, request.RecommendedBy, request.ApprovedBy, request.Description, request.Notes, imagePath);
 
         await _repository.AddAsync(appointment, cancellationToken);
+
+        if (employee.PhoneNumber is not null)
+            _jobService.Enqueue(() => _smsService.SmsSend(employee.PhoneNumber, $"Your Appointment Id:{appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M} has been successfully sent as For Recommendation.", false, true, "sms.automatic")); //You may also update your Appointment Information or contact your Supervisor if there are some details were not provided on your Appointment.
+
+        string? userPhoneNumber = _currentUser.GetPhoneNumber();
+
+        if (userPhoneNumber is not null)
+            _jobService.Enqueue(() => _smsService.SmsSend(userPhoneNumber, $"You have received an Appointment Id:{appointment.Id} of Employee:{appointment.EmployeeName} on {appointment.StartDateTime:M} for your Recommendation.{Environment.NewLine}{appointment.AppointmentType}-{appointment.Subject}.{Environment.NewLine}http://www.app.zaneco.ph/employee/appointments", false, true, "sms.automatic")); //You may open the ZANECO HRIS Web App and proceed to the Appointments for details or you may Cancel if Appointment Justifications seems invalid or needs update.
 
         return appointment.Id;
     }

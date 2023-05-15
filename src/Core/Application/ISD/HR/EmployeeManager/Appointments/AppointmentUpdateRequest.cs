@@ -64,6 +64,12 @@ public class AppointmentUpdateRequestHandler : IRequestHandler<AppointmentUpdate
         var appointment = await _repoAppointment.GetByIdAsync(request.Id, cancellationToken);
         _ = appointment ?? throw new NotFoundException(string.Format(_localizer["Appointment not found."], request.Id));
 
+        //Check Appointment if it is updatable
+        if (appointment.Status.Equals("PENDING") || appointment.Status.Equals("RECOMMENDED") || appointment.Status.Equals("APPROVED"))
+        {
+            throw new Exception("Appointment cannot be updated except Cancelled or Disapproved.");
+        }
+
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)
         {

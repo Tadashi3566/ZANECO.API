@@ -20,20 +20,19 @@ internal class SmsService : ISmsService
         _ = await _repositoryDapper.ExecuteScalarAsync<MessageIn>($"UPDATE datazaneco.MessageIn SET IsRead = 1, ReadOn = CURRENT_TIMESTAMP() WHERE Id LIKE '{id}'");
     }
 
-    public async Task<int> SmsSend(string messageTo, string messageText, bool isAPI = true, string messageType = "sms.automatic")
+    public async Task<int> SmsSend(string messageTo, string messageText, bool isCheckExisting = true, bool isAPI = true, string messageType = "sms.automatic")
     {
         byte[] sentenceBytes = Encoding.UTF8.GetBytes(messageText);
         string messageHash;
+        byte[] hashBytes = SHA256.HashData(sentenceBytes);
+        messageHash = Convert.ToBase64String(hashBytes);
 
-        using (SHA256 sha256Hash = SHA256.Create())
+        if (isCheckExisting)
         {
-            byte[] hashBytes = sha256Hash.ComputeHash(sentenceBytes);
-            messageHash = Convert.ToBase64String(hashBytes);
+            // Check existing SMS to send only once
+            var existingMessage = await _repositoryDapper.QueryAsync<MessageLog>($"SELECT MessageTo, MessageHash FROM datazaneco.MessageLog WHERE MessageTo = '{messageTo}' AND MessageHash = '{messageHash}'");
+            if (existingMessage.Count > 0) return 0;
         }
-
-        // Check existing SMS to send only once
-        var existingMessage = await _repositoryDapper.QueryAsync<MessageLog>($"SELECT MessageTo, MessageHash FROM datazaneco.MessageLog WHERE MessageTo = '{messageTo}' AND MessageHash = '{messageHash}'");
-        if (existingMessage.Count > 0) return 0;
 
         if (isAPI)
         {

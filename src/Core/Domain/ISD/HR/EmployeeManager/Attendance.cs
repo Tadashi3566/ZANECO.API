@@ -162,42 +162,42 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
         return this;
     }
 
-    public Attendance Send(Guid employeeId)
-    {
-        Status = "PENDING";
+    //public Attendance Send(Guid employeeId)
+    //{
+    //    Status = "PENDING";
 
-        LastModifiedBy = employeeId;
-        LastModifiedOn = DateTime.Now;
+    //    LastModifiedBy = employeeId;
+    //    LastModifiedOn = DateTime.Now;
 
-        RecommendedOn = null;
-        ApprovedOn = null;
+    //    RecommendedOn = null;
+    //    ApprovedOn = null;
 
-        return this;
-    }
+    //    return this;
+    //}
 
-    public Attendance Cancel(Guid employeeId)
-    {
-        Status = "CANCELLED";
+    //public Attendance Cancel(Guid employeeId)
+    //{
+    //    Status = "CANCELLED";
 
-        LastModifiedBy = employeeId;
-        LastModifiedOn = DateTime.Now;
+    //    LastModifiedBy = employeeId;
+    //    LastModifiedOn = DateTime.Now;
 
-        RecommendedOn = null;
-        ApprovedOn = null;
+    //    RecommendedOn = null;
+    //    ApprovedOn = null;
 
-        return this;
-    }
+    //    return this;
+    //}
 
-    public Attendance Recommend(Guid employeeId, string employeeName)
-    {
-        Status = "RECOMMENDED";
+    //public Attendance Recommend(Guid employeeId, string employeeName)
+    //{
+    //    Status = "RECOMMENDED";
 
-        RecommendedBy = employeeId;
-        RecommenderName = employeeName;
-        RecommendedOn = DateTime.Now;
+    //    RecommendedBy = employeeId;
+    //    RecommenderName = employeeName;
+    //    RecommendedOn = DateTime.Now;
 
-        return this;
-    }
+    //    return this;
+    //}
 
     public Attendance Approve(Guid employeeId, string employeeName, string appointmentType, string description)
     {
@@ -213,14 +213,14 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
         return this;
     }
 
-    public Attendance Disapprove(Guid employeeId, string employeeName)
-    {
-        Status = "DISAPPROVED";
+    //public Attendance Disapprove(Guid employeeId, string employeeName)
+    //{
+    //    Status = "DISAPPROVED";
 
-        ApprovedBy = employeeId;
-        ApproverName = employeeName;
-        ApprovedOn = DateTime.Now;
+    //    ApprovedBy = employeeId;
+    //    ApproverName = employeeName;
+    //    ApprovedOn = DateTime.Now;
 
-        return this;
-    }
+    //    return this;
+    //}
 }

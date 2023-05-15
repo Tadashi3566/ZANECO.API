@@ -44,7 +44,7 @@ public class RemoteCollectionSMSRequestHandler : IRequestHandler<RemoteCollectio
 
             foreach (var contact in contacts!)
             {
-                _jobService.Enqueue(() => _smsService.SmsSend(ClassSms.FormatContactNumber(contact!.PhoneNumber), message, true, "sms.automatic"));
+                _jobService.Enqueue(() => _smsService.SmsSend(ClassSms.FormatContactNumber(contact!.PhoneNumber), message, true, true, "sms.automatic"));
             }
         }
 
