@@ -64,28 +64,16 @@ public class AppointmentActionRequestHandler : IRequestHandler<AppointmentAction
             case "SEND":
                 _ = appointment.Send(appointment.EmployeeId);
 
-                //foreach (var attendanceDto in attendances)
-                //{
-                //    var attendance = await _repoAttendance.GetByIdAsync(attendanceDto.Id, cancellationToken);
-                //    attendance?.Send(attendanceDto.Id);
-                //}
-
                 if (appointmentEmployee.PhoneNumber is not null)
                     _jobService.Enqueue(() => _smsService.SmsSend(appointmentEmployee.PhoneNumber, $"Your Appointment Id:{appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M} has been successfully sent as For Recommendation.", false, true, "sms.automatic")); //You may also update your Appointment Information or contact your Supervisor if there are some details were not provided on your Appointment.
 
                 if (recommender.PhoneNumber is not null)
-                    _jobService.Enqueue(() => _smsService.SmsSend(recommender.PhoneNumber, $"You have received an Appointment Id:{appointment.Id} of Employee:{appointment.EmployeeName} on {appointment.StartDateTime:M} for your Recommendation.{Environment.NewLine}{appointment.AppointmentType}-{appointment.Subject}.{Environment.NewLine}http://www.app.zaneco.ph/employee/appointments", false, true, "sms.automatic")); //You may open the ZANECO HRIS Web App and proceed to the Appointments for details or you may Cancel if Appointment Justifications seems invalid or needs update.
+                    _jobService.Enqueue(() => _smsService.SmsSend(recommender.PhoneNumber, $"You have received an Appointment Id:{appointment.Id} of Employee:{appointment.EmployeeName} on {appointment.StartDateTime:M} for your Recommendation.{Environment.NewLine}{appointment.AppointmentType}-{appointment.Subject}.{Environment.NewLine}http://app.zaneco.ph/employee/appointments/{appointment.Id}", false, true, "sms.automatic")); //You may open the ZANECO HRIS Web App and proceed to the Appointments for details or you may Cancel if Appointment Justifications seems invalid or needs update.
 
                 break;
 
             case "CANCEL":
                 _ = appointment.Cancel(request.UserEmployeeId);
-
-                //foreach (var attendanceDto in attendances)
-                //{
-                //    var attendance = await _repoAttendance.GetByIdAsync(attendanceDto.Id, cancellationToken);
-                //    attendance?.Cancel(attendanceDto.Id);
-                //}
 
                 if (userPhoneNumber is not null)
                     _jobService.Enqueue(() => _smsService.SmsSend(userPhoneNumber, $"You have successfully Cancelled the Appointment Id:{appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M}.", false, true, "sms.automatic")); //You may contact the employee if you need more details or clarifications from the Appointment Information.
@@ -100,12 +88,6 @@ public class AppointmentActionRequestHandler : IRequestHandler<AppointmentAction
                 {
                     _ = appointment.Recommend(recommender.Id, recommender.FullName());
 
-                    //foreach (var attendanceDto in attendances)
-                    //{
-                    //    var attendance = await _repoAttendance.GetByIdAsync(attendanceDto.Id, cancellationToken);
-                    //    attendance?.Recommend(attendanceDto.Id, employee.FullName());
-                    //}
-
                     if (appointmentEmployee.PhoneNumber is not null)
                         _jobService.Enqueue(() => _smsService.SmsSend(appointmentEmployee.PhoneNumber, $"Your Appointment Id: {appointment.Id} {appointment.AppointmentType} on {appointment.StartDateTime:M} has been successfully sent to your Approver.", false, true, "sms.automatic")); //You may also contact your Manager if there are more details that were not provided on your Appointment Information.
 
@@ -113,7 +95,7 @@ public class AppointmentActionRequestHandler : IRequestHandler<AppointmentAction
                         _jobService.Enqueue(() => _smsService.SmsSend(userPhoneNumber, $"You have successfully set the Appointment Id:{appointment.Id} {appointment.AppointmentType} of Employee: {appointment.EmployeeName} on {appointment.StartDateTime:M} as Recommended to the Approver.", false, true, "sms.automatic")); //You may contact the Employee or the Approver if there are some details that were not provided on the Appointment Information.
 
                     if (approver.PhoneNumber is not null)
-                        _jobService.Enqueue(() => _smsService.SmsSend(approver.PhoneNumber, $"You have received an Appointment Id:{appointment.Id} of Employee:{appointment.EmployeeName} on {appointment.StartDateTime:M} for your Approval.{Environment.NewLine}{appointment.AppointmentType}-{appointment.Subject}.{Environment.NewLine}http://www.app.zaneco.ph/employee/appointments", false, true, "sms.automatic")); //You may open the ZANECO HRIS Web App for more details and/or you may Disapprove if the Appointment Justifications seems invalid.
+                        _jobService.Enqueue(() => _smsService.SmsSend(approver.PhoneNumber, $"You have received an Appointment Id:{appointment.Id} of Employee:{appointment.EmployeeName} on {appointment.StartDateTime:M} for your Approval.{Environment.NewLine}{appointment.AppointmentType}-{appointment.Subject}.{Environment.NewLine}http://app.zaneco.ph/employee/appointments/{appointment.Id}", false, true, "sms.automatic")); //You may open the ZANECO HRIS Web App for more details and/or you may Disapprove if the Appointment Justifications seems invalid.
                 }
                 else
                 {
@@ -150,12 +132,6 @@ public class AppointmentActionRequestHandler : IRequestHandler<AppointmentAction
                 if (approver is not null && appointment.ApprovedBy.Equals(request.UserEmployeeId))
                 {
                     _ = appointment.Disapprove(request.UserEmployeeId, appointmentEmployee.FullName());
-
-                    //foreach (var attendanceDto in attendances)
-                    //{
-                    //    var attendance = await _repoAttendance.GetByIdAsync(attendanceDto.Id, cancellationToken);
-                    //    attendance?.Disapprove(attendanceDto.Id, employee.FullName());
-                    //}
 
                     if (appointmentEmployee.PhoneNumber is not null)
                         _jobService.Enqueue(() => _smsService.SmsSend(appointmentEmployee.PhoneNumber, $"Your Appointment {appointment.AppointmentType} on {appointment.StartDateTime:M} has been Disapproved. You may contact your Approver why your Appointment Justifications are invalid.", false, true, "sms.automatic"));

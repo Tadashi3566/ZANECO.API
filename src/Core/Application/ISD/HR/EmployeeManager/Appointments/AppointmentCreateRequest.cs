@@ -70,6 +70,23 @@ public class AppointmentCreateRequestHandler : IRequestHandler<AppointmentCreate
 
     public async Task<int> Handle(AppointmentCreateRequest request, CancellationToken cancellationToken)
     {
+        //Check if Approvals has been filled up
+        if (request.ApprovedBy.Equals(Guid.Empty) || request.RecommendedBy.Equals(Guid.Empty))
+        {
+            //Get recent Recommender and Approver
+            var recentAppointment = await _repository.FirstOrDefaultAsync(new AppointmentRecentSpec(request.EmployeeId), cancellationToken);
+
+            if (recentAppointment is not null)
+            {
+                request.RecommendedBy = recentAppointment.RecommendedBy;
+                request.ApprovedBy = recentAppointment.ApprovedBy;
+            }
+            else
+            {
+                throw new NotFoundException("Please provide Recommender and Approver to continue.");
+            }
+        }
+
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
         _ = employee ?? throw new NotFoundException("Employee not found.");
 
