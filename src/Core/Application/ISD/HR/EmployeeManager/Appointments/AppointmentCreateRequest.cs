@@ -70,6 +70,11 @@ public class AppointmentCreateRequestHandler : IRequestHandler<AppointmentCreate
 
     public async Task<int> Handle(AppointmentCreateRequest request, CancellationToken cancellationToken)
     {
+        var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
+        _ = employee ?? throw new NotFoundException("Employee not found.");
+
+        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+
         //Check if Approvals has been filled up
         if (request.ApprovedBy.Equals(Guid.Empty) || request.RecommendedBy.Equals(Guid.Empty))
         {
@@ -86,11 +91,6 @@ public class AppointmentCreateRequestHandler : IRequestHandler<AppointmentCreate
                 throw new NotFoundException("Please provide Recommender and Approver to continue.");
             }
         }
-
-        var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException("Employee not found.");
-
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
 
         string imagePath = await _file.UploadAsync<Appointment>(request.Image, FileType.Image, cancellationToken);
 
@@ -110,7 +110,7 @@ public class AppointmentCreateRequestHandler : IRequestHandler<AppointmentCreate
         string? userPhoneNumber = _currentUser.GetPhoneNumber();
 
         if (userPhoneNumber is not null)
-            _jobService.Enqueue(() => _smsService.SmsSend(userPhoneNumber, $"You have received an Appointment Id:{appointment.Id} of Employee:{appointment.EmployeeName} on {appointment.StartDateTime:M} for your Recommendation.{Environment.NewLine}{appointment.AppointmentType}-{appointment.Subject}.{Environment.NewLine}http://www.app.zaneco.ph/employee/appointments", false, true, "sms.automatic")); //You may open the ZANECO HRIS Web App and proceed to the Appointments for details or you may Cancel if Appointment Justifications seems invalid or needs update.
+            _jobService.Enqueue(() => _smsService.SmsSend(userPhoneNumber, $"You have received an Appointment Id:{appointment.Id} of Employee:{appointment.EmployeeName} on {appointment.StartDateTime:M} for your Recommendation.{Environment.NewLine}{appointment.AppointmentType}-{appointment.Subject}.{Environment.NewLine}http://app.zaneco.ph/employee/appointment/{appointment.Id}", false, true, "sms.automatic")); //You may open the ZANECO HRIS Web App and proceed to the Appointments for details or you may Cancel if Appointment Justifications seems invalid or needs update.
 
         return appointment.Id;
     }
