@@ -121,6 +121,13 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
         return this;
     }
 
+    public Attendance UpdateEmployeeName(string employeeName)
+    {
+        if (!EmployeeName.Equals(employeeName)) EmployeeName = employeeName;
+
+        return this;
+    }
+
     public Attendance TimeIn1(DateTime? actualTimeIn1, string imagePathIn1)
     {
         if (actualTimeIn1 is not null && !ActualTimeIn1.Equals(actualTimeIn1)) ActualTimeIn1 = actualTimeIn1;

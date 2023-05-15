@@ -1,3 +1,4 @@
+using Mapster;
 using ZANECO.API.Application.ISD.HR.EmployeeManager.Calendars;
 using ZANECO.API.Application.ISD.HR.PayrollManager.ScheduleDetails;
 using ZANECO.API.Domain.ISD.HR.EmployeeManager;
@@ -59,7 +60,12 @@ public class AttendanceCreateRequestHandler : IRequestHandler<AttendanceCreateRe
             foreach (var date in dateList)
             {
                 var generated = await _repoAttendance.FirstOrDefaultAsync(new AttendanceByDateSpec(request.EmployeeId, date), cancellationToken);
-                if (generated is null)
+                if (generated is not null)
+                {
+                    var updatedAttendance = generated.UpdateEmployeeName(employee.NameFullInitial());
+                    await _repoAttendance.UpdateAsync(generated, cancellationToken);
+                }
+                else
                 {
                     string day = date.DayOfWeek.ToString().ToUpper();
                     var scheduleDetail = await _repoScheduleDetail.FirstOrDefaultAsync(new ScheduleDetailByEmployeeScheduleSpec(employee.ScheduleId, day), cancellationToken);
