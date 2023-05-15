@@ -27,6 +27,16 @@ public class LocalFileStorageService : IFileStorageService
         if (streamData.Length > 0)
         {
             string folder = typeof(T).Name;
+            if (request.EmployeeId is not null)
+            {
+                folder += $"\\{request.EmployeeId}";
+            }
+
+            if (request.DateStr is not null)
+            {
+                folder += $"\\{request.DateStr}";
+            }
+
             if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
                 folder = folder.Replace(@"\", "/");
@@ -37,6 +47,7 @@ public class LocalFileStorageService : IFileStorageService
                 FileType.Image => Path.Combine("Files", "Images", folder),
                 _ => Path.Combine("Files", "Others", folder),
             };
+
             string pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
             Directory.CreateDirectory(pathToSave);
 

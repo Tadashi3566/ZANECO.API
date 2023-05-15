@@ -5,6 +5,8 @@ public class ImageUploadRequest
     public string Name { get; set; } = default!;
     public string Extension { get; set; } = default!;
     public string Data { get; set; } = default!;
+    public string? EmployeeId { get; set; }
+    public string? DateStr { get; set; }
 }
 
 public class ImageUploadRequestValidator : CustomValidator<ImageUploadRequest>
