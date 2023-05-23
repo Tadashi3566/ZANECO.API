@@ -9,19 +9,25 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
     public virtual Employee Employee { get; private set; } = default!;
     public DefaultIdType EmployeeId { get; private set; }
     public string EmployeeName { get; private set; } = default!;
+    public string? Device { get; private set; }
     public string LogType { get; private set; } = default!;
     public DateTime LogDate { get; private set; } = default!;
     public DateTime LogDateTime { get; private set; } = default!;
+    public DateTime? SyncDateTime { get; private set; }
+    public string? Coordinates { get; private set; }
     public string? ImagePath { get; private set; }
 
-    public TimeLog(DefaultIdType employeeId, string employeeName, string logType, DateTime logDate, string description, string notes, string imagePath)
+    public TimeLog(DefaultIdType employeeId, string employeeName, string device, string logType, DateTime logDate, DateTime logDateTime, string coordinates, string description, string notes, string imagePath)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
 
+        Device = device;
         LogType = logType;
         LogDate = logDate;
-        LogDateTime = DateTime.Now;
+        LogDateTime = logDateTime;
+        SyncDateTime = DateTime.Now;
+        Coordinates = coordinates;
 
         if (description is not null) Description = description.Trim();
         if (notes is not null) Notes = notes.Trim();

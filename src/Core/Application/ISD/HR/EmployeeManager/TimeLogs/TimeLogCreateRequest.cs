@@ -6,8 +6,11 @@ namespace ZANECO.API.Application.ISD.HR.EmployeeManager.TimeLogs;
 public class TimeLogCreateRequest : IRequest<DefaultIdType>
 {
     public DefaultIdType EmployeeId { get; set; }
+    public string Device { get; set; } = default!;
     public string LogType { get; set; } = default!;
-    public DateTime LogDate { get; set; }
+    public DateTime LogDate { get; set; } = default!;
+    public DateTime LogDateTime { get; set; } = default!;
+    public string? Coordinates { get; set; }
     public string Description { get; set; } = string.Empty;
     public string Notes { get; set; } = string.Empty;
     public ImageUploadRequest? Image { get; set; }
@@ -42,7 +45,7 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
 
         string imagePath = await _file.UploadAsync<TimeLog>(request.Image, FileType.Image, cancellationToken);
 
-        var timeLog = new TimeLog(request.EmployeeId, employee!.FullName(), request.LogType, DateTime.Now, request.Description, request.Notes, imagePath);
+        var timeLog = new TimeLog(request.EmployeeId, employee!.FullName(), request.Device, request.LogType, request.LogDate, request.LogDateTime, request.Coordinates!, request.Description, request.Notes, imagePath);
 
         await _repository.AddAsync(timeLog, cancellationToken);
 

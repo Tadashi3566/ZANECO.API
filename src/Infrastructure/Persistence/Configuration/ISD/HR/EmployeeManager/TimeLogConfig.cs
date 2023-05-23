@@ -12,6 +12,8 @@ internal class TimeLogConfig : IEntityTypeConfiguration<TimeLog>
         _ = builder
             .IsMultiTenant();
 
+        _ = builder.Property(b => b.Device)
+            .HasMaxLength(64);
         _ = builder.Property(b => b.LogType)
             .IsRequired()
             .HasMaxLength(8);
@@ -19,5 +21,9 @@ internal class TimeLogConfig : IEntityTypeConfiguration<TimeLog>
             .HasColumnType("date");
         _ = builder.Property(b => b.LogDateTime)
             .HasColumnType("datetime(6)");
+        _ = builder.Property(b => b.SyncDateTime)
+            .HasColumnType("datetime(6)");
+        _ = builder.Property(b => b.Coordinates)
+            .HasMaxLength(64);
     }
 }

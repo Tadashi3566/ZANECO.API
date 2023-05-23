@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZANECO.API.Infrastructure.Persistence.Context;
 
@@ -10,9 +11,11 @@ using ZANECO.API.Infrastructure.Persistence.Context;
 namespace Migrators.MySQL.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230523074641_TimeLogDeviceSync")]
+    partial class TimeLogDeviceSync
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3134,8 +3137,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Coordinates")
-                        .HasMaxLength(64)
-                        .HasColumnType("varchar(64)");
+                        .HasColumnType("longtext");
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("char(36)");
@@ -3153,8 +3155,8 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Device")
-                        .HasMaxLength(64)
-                        .HasColumnType("varchar(64)");
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("char(36)");
@@ -3199,7 +3201,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .IsRequired()
                         .HasColumnType("VARCHAR(16)");
 
-                    b.Property<DateTime?>("SyncDateTime")
+                    b.Property<DateTime>("SyncDateTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("TenantId")
