@@ -15,8 +15,8 @@ public class SaleItemUpdateRequest : IRequest<DefaultIdType>
     public decimal Vat { get; set; } = default!;
     public decimal DiscountAmount { get; set; } = default!;
     public decimal Net { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public bool DeleteCurrentImage { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }

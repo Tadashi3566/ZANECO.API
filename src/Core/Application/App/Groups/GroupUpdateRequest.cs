@@ -13,8 +13,8 @@ public class GroupUpdateRequest : IRequest<Guid>
     public decimal Amount { get; set; } = default!;
     public string Manager { get; set; } = string.Empty;
     public string Tag { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public bool DeleteCurrentImage { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }

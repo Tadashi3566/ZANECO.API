@@ -8,8 +8,8 @@ public class MessageInUpdateRequest : IRequest<int>
     public string MessageFrom { get; set; } = default!;
     public string MessageTo { get; set; } = default!;
     public string MessageText { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class MessageInUpdateRequestHandler : IRequestHandler<MessageInUpdateRequest, int>

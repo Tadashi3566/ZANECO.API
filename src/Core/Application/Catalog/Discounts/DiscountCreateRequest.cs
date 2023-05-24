@@ -4,8 +4,8 @@ public class DiscountCreateRequest : IRequest<DefaultIdType>
 {
     public string Name { get; set; } = default!;
     public float Percentage { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class CreateDiscountRequestValidator : CustomValidator<DiscountCreateRequest>

@@ -5,8 +5,8 @@ namespace ZANECO.API.Application.ISD.HR.PayrollManager.Schedules;
 public class ScheduleCreateRequest : IRequest<Guid>
 {
     public string Name { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class CreateScheduleRequestValidator : CustomValidator<ScheduleCreateRequest>

@@ -8,7 +8,7 @@ public class PayrollAdjustmentDto : IDto
     public DefaultIdType AdjustmentId { get; set; } = default!;
     public int AdjustmentNumber { get; set; } = default!;
     public string AdjustmentName { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Status { get; set; }
 }

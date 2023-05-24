@@ -4,7 +4,8 @@ public class UpdateBrandRequest : IRequest<DefaultIdType>
 {
     public DefaultIdType Id { get; set; }
     public string Name { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class UpdateBrandRequestValidator : CustomValidator<UpdateBrandRequest>
@@ -36,7 +37,7 @@ public class UpdateBrandRequestHandler : IRequestHandler<UpdateBrandRequest, Def
         _ = brand
         ?? throw new NotFoundException(_t["Brand {0} Not Found.", request.Id]);
 
-        brand.Update(request.Name, request.Description);
+        brand.Update(request.Name, request.Description, request.Notes);
 
         await _repository.UpdateAsync(brand, cancellationToken);
 

@@ -16,6 +16,6 @@ public class MessageInDto : IDto
     public int MessageParts { get; set; }
     public bool IsRead { get; set; }
     public DateTime? ReadOn { get; set; }
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }

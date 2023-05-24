@@ -18,8 +18,8 @@ public class MemberUpdateRequest : IRequest<Guid>
     public DateTime? BirthDate { get; set; } = default!;
     public DateTime? ApplicationDate { get; set; } = default!;
     public DateTime? MembershipDate { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public bool DeleteCurrentImage { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }

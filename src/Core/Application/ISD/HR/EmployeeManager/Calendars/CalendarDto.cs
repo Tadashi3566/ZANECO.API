@@ -8,6 +8,6 @@ public class CalendarDto : IDto
     public DateTime CalendarDate { get; set; } = default!;
     public string Day { get; set; } = default!;
     public string Name { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }

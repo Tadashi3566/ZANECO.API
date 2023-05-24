@@ -14,7 +14,7 @@ public class Contribution : AuditableEntity, IAggregateRoot
 
     public bool IsFixed { get; private set; } = default!;
 
-    public Contribution(string contributionType, DateTime startDate, DateTime endDate, decimal rangeStart, decimal rangeEnd, decimal employerContribution, decimal employeeContribution, decimal totalContribution, decimal percentage, bool isFixed, string description = "", string notes = "")
+    public Contribution(string contributionType, DateTime startDate, DateTime endDate, decimal rangeStart, decimal rangeEnd, decimal employerContribution, decimal employeeContribution, decimal totalContribution, decimal percentage, bool isFixed, string? description = "", string? notes = "")
     {
         ContributionType = contributionType;
 
@@ -35,7 +35,7 @@ public class Contribution : AuditableEntity, IAggregateRoot
         if (notes is not null) Notes = notes.Trim();
     }
 
-    public Contribution Update(string contributionType, DateTime startDate, DateTime endDate, decimal rangeStart, decimal rangeEnd, decimal employerContribution, decimal employeeContribution, decimal totalContribution, decimal percentage, bool isFixed, string description = "", string notes = "")
+    public Contribution Update(string contributionType, DateTime startDate, DateTime endDate, decimal rangeStart, decimal rangeEnd, decimal employerContribution, decimal employeeContribution, decimal totalContribution, decimal percentage, bool isFixed, string? description = "", string? notes = "")
     {
         if (contributionType is not null && !ContributionType.Equals(contributionType)) ContributionType = contributionType;
 

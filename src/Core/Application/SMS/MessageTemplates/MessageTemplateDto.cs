@@ -11,8 +11,8 @@ public class MessageTemplateDto : IDto
     public string Message { get; set; } = default!;
     public string Recipients { get; set; } = default!;
     public DateTime Schedule { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Status { get; set; }
     public string? ImagePath { get; set; }
 }

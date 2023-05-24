@@ -30,8 +30,8 @@ public class DesignationDto : IDto
     public decimal RatePerHour { get; set; } = default!;
     public string TaxType { get; set; } = string.Empty;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Status { get; set; }
     public string? ImagePath { get; set; }
 }

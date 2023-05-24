@@ -12,8 +12,8 @@ public class RemoteCollectionDto : IDto
     public string Name { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
     public string OrNumber { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? ImagePath { get; set; }
     public string? Status { get; set; }
 }

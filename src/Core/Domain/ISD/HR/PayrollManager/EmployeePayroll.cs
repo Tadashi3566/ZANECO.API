@@ -20,7 +20,7 @@ public class EmployeePayroll : AuditableEntity, IAggregateRoot
     public decimal Deduction { get; private set; } = default!;
     public decimal Net { get; private set; } = default!;
 
-    public EmployeePayroll(DefaultIdType employeeId, string employeeName, DefaultIdType payrollId, string payrollName, decimal salary, decimal additional, decimal gross, decimal deduction, decimal net, DateTime startDate, DateTime endDate, DateTime payrollDate, string description = "", string notes = "")
+    public EmployeePayroll(DefaultIdType employeeId, string employeeName, DefaultIdType payrollId, string payrollName, decimal salary, decimal additional, decimal gross, decimal deduction, decimal net, DateTime startDate, DateTime endDate, DateTime payrollDate, string? description = "", string? notes = "")
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -41,7 +41,7 @@ public class EmployeePayroll : AuditableEntity, IAggregateRoot
         if (notes is not null) Notes = notes.Trim();
     }
 
-    public EmployeePayroll Update(string employeeName, string payrollName, decimal salary, decimal additional, decimal gross, decimal deduction, decimal net, DateTime startDate, DateTime endDate, DateTime payrollDate, string description = "", string notes = "")
+    public EmployeePayroll Update(string employeeName, string payrollName, decimal salary, decimal additional, decimal gross, decimal deduction, decimal net, DateTime startDate, DateTime endDate, DateTime payrollDate, string? description = "", string? notes = "")
     {
         if (employeeName is not null && !EmployeeName.Equals(employeeName)) EmployeeName = employeeName;
         if (payrollName is not null && !PayrollName.Equals(payrollName)) PayrollName = payrollName;

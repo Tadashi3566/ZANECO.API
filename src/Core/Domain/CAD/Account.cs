@@ -44,7 +44,7 @@ public class Account : AuditableEntity, IAggregateRoot
     public double UsedKWHCM { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public Account(int idCode, string accountNumber, string area, string route, string cipher, string tag, string name, string address, string accountType, string feeder, string pole, string transformer, string meterBrand, string meterSerial, string billMonth, DateTime previousReadingDate, double previousReadingKWH, DateTime presentReadingDate, double presentReadingKWH, double usedKWH, decimal billAmount, string description, string notes, string? imagePath)
+    public Account(int idCode, string accountNumber, string area, string route, string cipher, string tag, string name, string address, string accountType, string feeder, string pole, string transformer, string meterBrand, string meterSerial, string billMonth, DateTime previousReadingDate, double previousReadingKWH, DateTime presentReadingDate, double presentReadingKWH, double usedKWH, decimal billAmount, string? description, string? notes, string? imagePath)
     {
         IdCode = idCode;
         AccountNumber = accountNumber;
@@ -76,7 +76,7 @@ public class Account : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Account Update(string area, string route, string cipher, string tag, string name, string address, string accountType, string feeder, string pole, string transformer, string meterBrand, string meterSerial, string description, string notes, string? imagePath)
+    public Account Update(string area, string route, string cipher, string tag, string name, string address, string accountType, string feeder, string pole, string transformer, string meterBrand, string meterSerial, string? description, string? notes, string? imagePath)
     {
         if (area is not null && !Area.Equals(area)) Area = area.Trim();
         if (route is not null && !Route.Equals(route)) Route = route.Trim();

@@ -20,7 +20,7 @@ public class EmployeeAdjustment : AuditableEntity, IAggregateRoot
     public DateTime? EndDate { get; private set; }
     public string? ImagePath { get; private set; }
 
-    public EmployeeAdjustment(DefaultIdType employeeId, string employeeName, DefaultIdType adjustmentId, string adjustmentType, string paymentSchedule, string adjustmentName, decimal amount, DateTime startDate, DateTime? endDate, string description, string notes, string? imagePath)
+    public EmployeeAdjustment(DefaultIdType employeeId, string employeeName, DefaultIdType adjustmentId, string adjustmentType, string paymentSchedule, string adjustmentName, decimal amount, DateTime startDate, DateTime? endDate, string? description, string? notes, string? imagePath)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -40,7 +40,7 @@ public class EmployeeAdjustment : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public EmployeeAdjustment Update(string employeeName, DefaultIdType? adjustmentId, string adjustmentType, string paymentSchedule, string adjustmentName, decimal amount, DateTime startDate, DateTime endDate, string description, string notes, string? imagePath)
+    public EmployeeAdjustment Update(string employeeName, DefaultIdType? adjustmentId, string adjustmentType, string paymentSchedule, string adjustmentName, decimal amount, DateTime startDate, DateTime endDate, string? description, string? notes, string? imagePath)
     {
         if (!EmployeeName.Equals(employeeName)) EmployeeName = employeeName;
 

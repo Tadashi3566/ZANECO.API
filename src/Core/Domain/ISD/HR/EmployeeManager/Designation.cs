@@ -41,7 +41,7 @@ public class Designation : AuditableEntity, IAggregateRoot
     public string PayType { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public Designation(DefaultIdType employeeId, int idNumber, string employeeName, DateTime startDate, DateTime endDate, DateTime? regularDate, string area, string department, string division, string section, string position, string employmentType, int salaryNumber, string salaryName, decimal salaryBase, decimal salaryStep, decimal ratePerDay, string rateType, string taxType, string payType, DefaultIdType scheduleId, string scheduleName, string description, string notes, string? imagePath)
+    public Designation(DefaultIdType employeeId, int idNumber, string employeeName, DateTime startDate, DateTime endDate, DateTime? regularDate, string area, string department, string division, string section, string position, string employmentType, int salaryNumber, string salaryName, decimal salaryBase, decimal salaryStep, decimal ratePerDay, string rateType, string taxType, string payType, DefaultIdType scheduleId, string scheduleName, string? description, string? notes, string? imagePath)
     {
         EmployeeId = employeeId;
         IdNumber = idNumber;
@@ -124,7 +124,7 @@ public class Designation : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Designation Update(string employeeName, DateTime startDate, DateTime endDate, DateTime regularDate, string area, string department, string division, string section, string position, string employmentType, int salaryNumber, string salaryName, decimal salaryBase, decimal salaryStep, decimal ratePerDay, string rateType, string taxType, string payType, DefaultIdType? scheduleId, string scheduleName, string description, string notes, string? imagePath)
+    public Designation Update(string employeeName, DateTime startDate, DateTime endDate, DateTime regularDate, string area, string department, string division, string section, string position, string employmentType, int salaryNumber, string salaryName, decimal salaryBase, decimal salaryStep, decimal ratePerDay, string rateType, string taxType, string payType, DefaultIdType? scheduleId, string scheduleName, string? description, string? notes, string? imagePath)
     {
         if (!EmployeeName.Equals(employeeName)) EmployeeName = employeeName;
 

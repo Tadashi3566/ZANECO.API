@@ -14,7 +14,7 @@ public class Winner : AuditableEntity, IAggregateRoot
     public string Address { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public Winner(DefaultIdType raffleId, string raffleName, DefaultIdType prizeId, string prizeName, string name, string address, string description, string notes, string? imagePath)
+    public Winner(DefaultIdType raffleId, string raffleName, DefaultIdType prizeId, string prizeName, string name, string address, string? description, string? notes, string? imagePath)
     {
         RaffleId = raffleId;
         RaffleName = raffleName;
@@ -31,7 +31,7 @@ public class Winner : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Winner Update(string raffleName, string prizeName, string name, string address, string description, string notes, string? imagePath)
+    public Winner Update(string raffleName, string prizeName, string name, string address, string? description, string? notes, string? imagePath)
     {
         if (raffleName is not null && !RaffleName.Equals(raffleName)) RaffleName = raffleName.Trim();
         if (prizeName is not null && !PrizeName.Equals(prizeName)) PrizeName = prizeName.Trim();

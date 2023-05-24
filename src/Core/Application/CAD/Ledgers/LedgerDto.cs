@@ -33,7 +33,7 @@ public class LedgerDto : IDto
     public string? Collector { get; set; } = string.Empty;
     public DateTime PostingDate { get; set; } = default!;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Status { get; set; }
 }

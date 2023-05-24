@@ -13,8 +13,8 @@ public class ScheduleDetailUpdateRequest : IRequest<Guid>
     public string TimeIn2 { get; set; } = default!;
     public string TimeOut2 { get; set; } = default!;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class ScheduleDetailUpdateRequestValidator : CustomValidator<ScheduleDetailUpdateRequest>

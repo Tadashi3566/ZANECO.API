@@ -16,7 +16,7 @@ public class Member : AuditableEntity, IAggregateRoot
     public DateTime? MembershipDate { get; private set; }
     public string? ImagePath { get; private set; }
 
-    public Member(double incrementId, double applicationId, string name, string address, string district, string municipality, string barangay, string gender, string phoneNumber, DateTime? birthDate, DateTime? applicationDate, DateTime? membershipDate, string description, string notes, string imagePath)
+    public Member(double incrementId, double applicationId, string name, string address, string district, string municipality, string barangay, string gender, string phoneNumber, DateTime? birthDate, DateTime? applicationDate, DateTime? membershipDate, string? description, string? notes, string imagePath)
     {
         IncrementId = incrementId;
         ApplicationId = applicationId;
@@ -35,7 +35,7 @@ public class Member : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Member Update(string name, string address, string district, string municipality, string barangay, string gender, string phoneNumber, DateTime? birthDate, DateTime? applicationDate, DateTime? membershipDate, string description, string notes, string? imagePath)
+    public Member Update(string name, string address, string district, string municipality, string barangay, string gender, string phoneNumber, DateTime? birthDate, DateTime? applicationDate, DateTime? membershipDate, string? description, string? notes, string? imagePath)
     {
         if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
         if (address is not null && !Address.Equals(address)) Address = address.Trim().ToUpper();

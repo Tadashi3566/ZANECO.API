@@ -8,8 +8,8 @@ public class SupplierUpdateRequest : IRequest<DefaultIdType>
     public string Tin { get; set; } = default!;
     public string Agent { get; set; } = default!;
     public string PhoneNumber { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public bool DeleteCurrentImage { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }

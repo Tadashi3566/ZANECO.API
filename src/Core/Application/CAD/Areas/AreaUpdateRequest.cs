@@ -9,8 +9,8 @@ public class AreaUpdateRequest : IRequest<Guid>
     public string Code { get; set; } = default!;
     public string Name { get; set; } = default!;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class AreaUpdateRequestValidator : CustomValidator<AreaUpdateRequest>

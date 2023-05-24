@@ -20,7 +20,7 @@ public class MessageIn : AuditableEntity<int>, IAggregateRoot
     public bool IsRead { get; private set; }
     public DateTime? ReadOn { get; private set; }
 
-    public MessageIn(DateTime sendTime, string messageFrom, string messageTo, string messageText, string messageType, string smsc, string messagePDU, string gateway, string userId, int messageParts, string description = "", string notes = "")
+    public MessageIn(DateTime sendTime, string messageFrom, string messageTo, string messageText, string messageType, string smsc, string messagePDU, string gateway, string userId, int messageParts, string? description = "", string? notes = "")
     {
         SendTime = sendTime;
         MessageFrom = messageFrom;

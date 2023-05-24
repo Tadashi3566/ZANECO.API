@@ -11,7 +11,7 @@ public class Dependent : AuditableEntity, IAggregateRoot
     public string Relation { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public Dependent(DefaultIdType employeeId, string employeeName, string name, string gender, DateTime? birthDate, string relation, string description, string notes, string? imagePath)
+    public Dependent(DefaultIdType employeeId, string employeeName, string name, string gender, DateTime? birthDate, string relation, string? description, string? notes, string? imagePath)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -25,7 +25,7 @@ public class Dependent : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Dependent Update(DefaultIdType? employeeId, string employeeName, string name, string gender, DateTime? birthDate, string relation, string description, string notes, string? imagePath)
+    public Dependent Update(DefaultIdType? employeeId, string employeeName, string name, string gender, DateTime? birthDate, string relation, string? description, string? notes, string? imagePath)
     {
         if (employeeId.HasValue && employeeId.Value != DefaultIdType.Empty && !EmployeeId.Equals(employeeId.Value)) EmployeeId = employeeId.Value;
         if (employeeName is not null && !EmployeeName.Equals(employeeName)) EmployeeName = employeeName.Trim().ToUpper();

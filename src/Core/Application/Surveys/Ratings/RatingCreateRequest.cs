@@ -9,8 +9,8 @@ public class RatingCreateRequest : IRequest<DefaultIdType>
     public string Comment { get; set; } = string.Empty;
     public string Reference { get; set; } = string.Empty;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class CreateRatingRequestValidator : CustomValidator<RatingCreateRequest>

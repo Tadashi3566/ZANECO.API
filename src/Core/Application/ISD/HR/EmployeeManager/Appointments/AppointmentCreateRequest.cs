@@ -28,8 +28,8 @@ public class AppointmentCreateRequest : IRequest<int>
     public DefaultIdType? ApprovedBy { get; set; }
     public DateTime? ApprovedOn { get; set; }
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }
 

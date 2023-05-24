@@ -8,8 +8,8 @@ public class MessageLogUpdateRequest : IRequest<int>
     public string MessageFrom { get; set; } = default!;
     public string MessageTo { get; set; } = default!;
     public string MessageText { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class MessageLogUpdateRequestValidator : CustomValidator<MessageLogUpdateRequest>
@@ -26,11 +26,11 @@ public class MessageLogUpdateRequestHandler : IRequestHandler<MessageLogUpdateRe
 
     public async Task<int> Handle(MessageLogUpdateRequest request, CancellationToken cancellationToken)
     {
-        var essageLog = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        var messageLog = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = essageLog ?? throw new NotFoundException(string.Format(_localizer["Message not found."], request.Id));
+        _ = messageLog ?? throw new NotFoundException(string.Format(_localizer["Message not found."], request.Id));
 
-        var updatedMessageLog = essageLog.Update(request.Description, request.Notes);
+        var updatedMessageLog = messageLog.Update(request.Description, request.Notes);
 
         await _repository.UpdateAsync(updatedMessageLog, cancellationToken);
 

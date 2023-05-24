@@ -9,9 +9,10 @@ public class TimeLogDto : IDto
     public string LogType { get; set; } = default!;
     public DateTime LogDate { get; set; } = default!;
     public DateTime LogDateTime { get; set; } = default!;
+    public int SyncId { get; set; } = default!;
     public DateTime? SyncDateTime { get; set; } = default!;
     public string? Coordinates { get; set; } = string.Empty;
-    public string? Description { get; set; } = string.Empty;
-    public string? Notes { get; set; } = string.Empty;
+    public string Description { get; set; } = default!;
+    public string Notes { get; set; } = default!;
     public string? ImagePath { get; set; }
 }

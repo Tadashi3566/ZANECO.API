@@ -10,8 +10,8 @@ public class PrizeUpdateRequest : IRequest<Guid>
     public string PrizeType { get; set; } = default!;
     public int Winners { get; set; } = default!;
     public string Name { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public bool DeleteCurrentImage { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }

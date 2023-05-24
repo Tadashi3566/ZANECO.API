@@ -3,7 +3,8 @@ namespace ZANECO.API.Application.Catalog.Brands;
 public class CreateBrandRequest : IRequest<DefaultIdType>
 {
     public string Name { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class CreateBrandRequestValidator : CustomValidator<CreateBrandRequest>
@@ -25,7 +26,7 @@ public class CreateBrandRequestHandler : IRequestHandler<CreateBrandRequest, Def
 
     public async Task<DefaultIdType> Handle(CreateBrandRequest request, CancellationToken cancellationToken)
     {
-        var brand = new Brand(request.Name, request.Description);
+        var brand = new Brand(request.Name, request.Description, request.Notes);
 
         await _repository.AddAsync(brand, cancellationToken);
 

@@ -40,7 +40,7 @@ public class AccountDto : IDto
     public decimal PresentReadingKWHCM { get; set; }
     public decimal UsedKWHCM { get; set; } = default!;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Status { get; set; }
 }

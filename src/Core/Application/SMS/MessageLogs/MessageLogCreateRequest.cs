@@ -18,8 +18,8 @@ public class MessageLogCreateRequest : IRequest<int>
     public string StatusText { get; set; } = string.Empty;
     public string ErrorCode { get; set; } = string.Empty;
     public string ErrorText { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class MessageLogCreateRequestValidator : CustomValidator<MessageLogCreateRequest>

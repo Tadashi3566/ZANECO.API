@@ -11,7 +11,7 @@ public class Raffle : AuditableEntity, IAggregateRoot
 
     public string? ImagePath { get; private set; }
 
-    public Raffle(string name, DateTime raffleDate, string description, string notes, string? imagePath)
+    public Raffle(string name, DateTime raffleDate, string? description, string? notes, string? imagePath)
     {
         Name = name.Trim();
         RaffleDate = raffleDate;
@@ -22,7 +22,7 @@ public class Raffle : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Raffle Update(string name, DateTime raffleDate, string description, string notes, string? imagePath)
+    public Raffle Update(string name, DateTime raffleDate, string? description, string? notes, string? imagePath)
     {
         if (name is not null && !Name.Equals(name)) Name = name.Trim();
         if (!RaffleDate.Equals(raffleDate)) RaffleDate = raffleDate!;

@@ -12,8 +12,8 @@ public class MessageTemplateUpdateRequest : IRequest<Guid>
     public string Message { get; set; } = default!;
     public string Recipients { get; set; } = default!;
     public DateTime Schedule { get; set; } = DateTime.Today;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public bool DeleteCurrentImage { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }

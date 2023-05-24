@@ -8,8 +8,8 @@ public class SupplierDto : IDto
     public string Tin { get; set; } = default!;
     public string Agent { get; set; } = default!;
     public string PhoneNumber { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Status { get; set; }
     public string? ImagePath { get; set; }
 }

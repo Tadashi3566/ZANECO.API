@@ -10,7 +10,7 @@ public class PayrollAdjustment : AuditableEntity, IAggregateRoot
     public int AdjustmentNumber { get; private set; } = default!;
     public string AdjustmentName { get; private set; } = default!;
 
-    public PayrollAdjustment(DefaultIdType payrollId, string payrollName, DefaultIdType adjustmentId, int adjustmentNumber, string adjustmentName, string description = "", string notes = "")
+    public PayrollAdjustment(DefaultIdType payrollId, string payrollName, DefaultIdType adjustmentId, int adjustmentNumber, string adjustmentName, string? description = "", string? notes = "")
     {
         PayrollId = payrollId;
         PayrollName = payrollName;
@@ -23,7 +23,7 @@ public class PayrollAdjustment : AuditableEntity, IAggregateRoot
         if (notes is not null) Notes = notes.Trim();
     }
 
-    public PayrollAdjustment Update(string payrollName, int adjustmentNumber, string adjustmentName, string description = "", string notes = "")
+    public PayrollAdjustment Update(string payrollName, int adjustmentNumber, string adjustmentName, string? description = "", string? notes = "")
     {
         if (payrollName is not null && !PayrollName.Equals(payrollName)) PayrollName = payrollName;
         if (!AdjustmentNumber.Equals(adjustmentNumber)) AdjustmentNumber = adjustmentNumber;

@@ -9,8 +9,8 @@ public class RatingUpdateRequest : IRequest<Guid>
     public int RateNumber { get; set; } = default!;
     public string Comment { get; set; } = default!;
     public string Reference { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class RatingUpdateRequestValidator : CustomValidator<RatingUpdateRequest>

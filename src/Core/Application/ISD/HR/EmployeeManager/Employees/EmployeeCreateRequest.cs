@@ -54,8 +54,8 @@ public class EmployeeCreateRequest : IRequest<Guid>
     // Others
     public string BloodType { get; set; } = string.Empty;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 
     public ImageUploadRequest? Image { get; set; }
 }

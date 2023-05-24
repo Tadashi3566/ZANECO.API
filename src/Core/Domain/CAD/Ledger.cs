@@ -38,7 +38,7 @@ public class Ledger : AuditableEntity, IAggregateRoot
     public string? Collector { get; private set; } = string.Empty;
     public DateTime PostingDate { get; private set; }
 
-    public Ledger(string accountNumber, string description = "", string notes = "")
+    public Ledger(string accountNumber, string? description = "", string? notes = "")
     {
         AccountNumber = accountNumber.Trim().ToUpper();
         if (description is not null) Description = description.Trim();
@@ -82,7 +82,7 @@ public class Ledger : AuditableEntity, IAggregateRoot
         //if (notes is not null) Notes = notes.Trim();
     }
 
-    public Ledger Update(string accountNumber, string description = "", string notes = "")
+    public Ledger Update(string accountNumber, string? description = "", string? notes = "")
     {
         if (accountNumber is not null && !AccountNumber.Equals(AccountNumber)) AccountNumber = accountNumber.Trim().ToUpper();
         if (description is not null && !Description!.Equals(description)) Description = description.Trim();
@@ -90,7 +90,7 @@ public class Ledger : AuditableEntity, IAggregateRoot
         return this;
     }
 
-    // public Ledger Update(string accountNumber, string document, string billMonth, float reading, float kwh, decimal ucnpcsd, decimal ucnpcscc, decimal ucduscc, decimal ucme, decimal ucetr, decimal ucec, decimal uccsr, decimal vatDist, decimal vatGen, decimal vatTrans, decimal vatSLGen, decimal vatSLTrans, decimal vat, decimal vatDiscount, decimal vatDistDiscoun, decimal vatGenDiscount, decimal vatTransDiscount, decimal VATSLGenDiscount, decimal VATSLTransDiscount, string collector, DateTime? postingDate, string description = "", string notes = "")
+    // public Ledger Update(string accountNumber, string document, string billMonth, float reading, float kwh, decimal ucnpcsd, decimal ucnpcscc, decimal ucduscc, decimal ucme, decimal ucetr, decimal ucec, decimal uccsr, decimal vatDist, decimal vatGen, decimal vatTrans, decimal vatSLGen, decimal vatSLTrans, decimal vat, decimal vatDiscount, decimal vatDistDiscoun, decimal vatGenDiscount, decimal vatTransDiscount, decimal VATSLGenDiscount, decimal VATSLTransDiscount, string collector, DateTime? postingDate, string? description = "", string? notes = "")
     // {
     //    if (accountNumber is not null && Reference?.Equals(accountNumber) is not true) Reference = accountNumber.Trim().ToUpper();
     //    if (document is not null && Documents?.Equals(document) is not true) Documents = document.Trim().ToUpper();

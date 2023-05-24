@@ -31,8 +31,8 @@ public class AttendanceDto : IDto
     public double TotalHours { get; set; } = default!;
     public double PaidHours { get; set; } = default!;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Status { get; set; }
 
     public string? ImagePathIn1 { get; set; }

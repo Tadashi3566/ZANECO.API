@@ -4,12 +4,18 @@ namespace ZANECO.API.Application.Catalog.Products;
 
 public class UpdateProductRequest : IRequest<Guid>
 {
-    public Guid Id { get; set; }
+    public DefaultIdType Id { get; set; }
+    public DefaultIdType BrandId { get; set; }
+    public string SKU { get; set; } = default!;
+    public string Barcode { get; set; } = default!;
     public string Name { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public decimal Rate { get; set; }
-    public Guid BrandId { get; set; }
-    public bool DeleteCurrentImage { get; set; } = false;
+    public string Specification { get; set; } = default!;
+    public string UnitOfMeasurement { get; set; } = default!;
+    public bool IsVatable { get; set; } = default!;
+    public decimal Rate { get; set; } = default!;
+    public string Description { get; private set; } = default!;
+    public string Notes { get; private set; } = default!;
+    public bool DeleteCurrentImage { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }
 
@@ -41,11 +47,11 @@ public class UpdateProductRequestHandler : IRequestHandler<UpdateProductRequest,
             product = product.ClearImagePath();
         }
 
-        string? productImagePath = request.Image is not null
+        string? imagePath = request.Image is not null
             ? await _file.UploadAsync<Product>(request.Image, FileType.Image, cancellationToken)
             : null;
 
-        var updatedProduct = product.Update(request.Name, request.Description, request.Rate, request.BrandId, productImagePath);
+        var updatedProduct = product.Update(request.BrandId, request.SKU, request.Barcode, request.Name, request.Specification, request.UnitOfMeasurement, request.IsVatable, request.Rate, request.Description, request.Notes, imagePath);
 
         // Add Domain Events to be raised after the commit
         product.DomainEvents.Add(EntityUpdatedEvent.WithEntity(product));

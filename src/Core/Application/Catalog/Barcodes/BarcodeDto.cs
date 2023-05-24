@@ -8,8 +8,8 @@ public class BarcodeDto : IDto
     public string Name { get; set; } = default!;
     public string Specification { get; set; } = default!;
     public string UnitOfMeasurement { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Status { get; set; }
     public string? ImagePath { get; set; }
 }

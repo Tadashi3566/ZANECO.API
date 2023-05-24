@@ -7,8 +7,8 @@ public class RatingTemplateUpdateRequest : IRequest<Guid>
     public DefaultIdType Id { get; set; }
     public Guid RateId { get; set; }
     public string Comment { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class RatingTemplateUpdateRequestValidator : CustomValidator<RatingTemplateUpdateRequest>

@@ -12,7 +12,7 @@ public class DocumentDto : IDto
     public string Name { get; set; } = string.Empty;
     public string Content { get; set; } = string.Empty;
     public string Raw { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string ImagePath { get; set; } = default!;
 }

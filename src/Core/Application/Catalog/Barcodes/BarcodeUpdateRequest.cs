@@ -7,8 +7,8 @@ public class BarcodeUpdateRequest : IRequest<DefaultIdType>
     public string Name { get; set; } = default!;
     public string Specification { get; set; } = default!;
     public string UnitOfMeasurement { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public bool DeleteCurrentImage { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }

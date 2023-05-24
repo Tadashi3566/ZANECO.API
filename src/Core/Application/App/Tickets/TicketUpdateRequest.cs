@@ -7,8 +7,8 @@ public class TicketUpdateRequest : IRequest<Guid>
     public DefaultIdType Id { get; set; }
     public Guid GroupId { get; set; }
     public string Name { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Impact { get; set; }
     public string? Urgency { get; set; }
     public string? Priority { get; set; }

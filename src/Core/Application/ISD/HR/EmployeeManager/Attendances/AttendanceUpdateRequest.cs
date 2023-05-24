@@ -29,8 +29,8 @@ public class AttendanceUpdateRequest : IRequest<DefaultIdType>
     public double PaidHours { get; set; }
 
     public string Status { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class AttendanceUpdateRequestValidator : CustomValidator<AttendanceUpdateRequest>

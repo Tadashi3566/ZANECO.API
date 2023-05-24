@@ -12,7 +12,7 @@ public class Group : AuditableEntity, IAggregateRoot
     public string? Manager { get; private set; }
     public string? ImagePath { get; private set; }
 
-    public Group(string application, string parent, string tag, int number, string code, string name, decimal amount, string manager, string description, string notes, string? imagePath)
+    public Group(string application, string parent, string tag, int number, string code, string name, decimal amount, string manager, string? description, string? notes, string? imagePath)
     {
         Application = application.ToUpper();
         Parent = parent.Trim().ToUpper();
@@ -29,7 +29,7 @@ public class Group : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Group Update(string application, string parent, string tag, int number, string code, string name, decimal amount, string manager, string description, string notes, string? imagePath)
+    public Group Update(string application, string parent, string tag, int number, string code, string name, decimal amount, string manager, string? description, string? notes, string? imagePath)
     {
         if (application is not null && !Application.Equals(application)) Application = application.ToUpper();
         if (parent is not null && !Parent.Equals(parent)) Parent = parent.Trim().ToUpper();

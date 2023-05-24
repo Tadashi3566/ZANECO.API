@@ -9,7 +9,7 @@ public class Discount : AuditableEntity, IAggregateRoot
     public string Name { get; private set; } = default!;
     public float Percentage { get; private set; } = default!;
 
-    public Discount(string name, float percentage, string description = "", string notes = "")
+    public Discount(string name, float percentage, string? description = "", string? notes = "")
     {
         Name = name.Trim().ToUpper();
         Percentage = percentage;
@@ -18,7 +18,7 @@ public class Discount : AuditableEntity, IAggregateRoot
         if (notes is not null) Notes = notes.Trim();
     }
 
-    public Discount Update(string name, float percentage, string description = "", string notes = "")
+    public Discount Update(string name, float percentage, string? description = "", string? notes = "")
     {
         if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
         if (!Percentage.Equals(percentage)) Percentage = percentage;

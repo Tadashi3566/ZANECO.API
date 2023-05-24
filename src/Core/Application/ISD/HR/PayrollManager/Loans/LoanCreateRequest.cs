@@ -14,8 +14,8 @@ public class LoanCreateRequest : IRequest<Guid>
     public decimal Ammortization { get; set; } = default!;
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }
 

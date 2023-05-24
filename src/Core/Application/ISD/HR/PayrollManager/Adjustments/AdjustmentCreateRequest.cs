@@ -15,8 +15,8 @@ public class AdjustmentCreateRequest : IRequest<Guid>
     public bool IsOptional { get; set; }
     public bool IsLoan { get; set; }
     public bool IsActive { get; set; }
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class CreateAdjustmentRequestValidator : CustomValidator<AdjustmentCreateRequest>

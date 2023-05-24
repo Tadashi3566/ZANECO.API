@@ -15,8 +15,8 @@ public class MemberDto : IDto
     public DateTime? BirthDate { get; set; }
     public DateTime ApplicationDate { get; set; }
     public DateTime MembershipDate { get; set; }
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? ImagePath { get; set; }
     public string? Status { get; set; }
 }

@@ -17,7 +17,7 @@ public class ScheduleDetail : AuditableEntity, IAggregateRoot
     public string TimeOut2 { get; private set; } = default!;
     public int TotalHours { get; private set; } = default!;
 
-    public ScheduleDetail(DefaultIdType scheduleId, string scheduleName, string scheduleType, string day, string timeIn1, string timeOut1, string timeIn2, string timeOut2, int totalHours, string description = "", string notes = "")
+    public ScheduleDetail(DefaultIdType scheduleId, string scheduleName, string scheduleType, string day, string timeIn1, string timeOut1, string timeIn2, string timeOut2, int totalHours, string? description = "", string? notes = "")
     {
         ScheduleId = scheduleId;
         ScheduleName = scheduleName;
@@ -35,7 +35,7 @@ public class ScheduleDetail : AuditableEntity, IAggregateRoot
         if (notes is not null) Notes = notes.Trim();
     }
 
-    public ScheduleDetail Update(string scheduleName, string scheduleType, string day, string timeIn1, string timeOut1, string timeIn2, string timeOut2, int totalHours, string description = "", string notes = "")
+    public ScheduleDetail Update(string scheduleName, string scheduleType, string day, string timeIn1, string timeOut1, string timeIn2, string timeOut2, int totalHours, string? description = "", string? notes = "")
     {
         if (scheduleName is not null && !ScheduleName.Equals(scheduleName)) ScheduleName = scheduleName;
         if (scheduleType is not null && !ScheduleType.Equals(scheduleType)) ScheduleType = scheduleType;

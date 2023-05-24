@@ -14,8 +14,8 @@ public class LoanDto : IDto
     public decimal Ammortization { get; set; } = default!;
     public DateTime StartDate { get; set; } = default!;
     public DateTime EndDate { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Status { get; set; }
     public string? ImagePath { get; set; }
 }

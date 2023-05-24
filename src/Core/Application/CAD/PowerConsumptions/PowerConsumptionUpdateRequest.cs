@@ -11,8 +11,8 @@ public class PowerConsumptionUpdateRequest : IRequest<Guid>
     public string BillMonth { get; set; } = default!;
     public decimal KWHPurchased { get; set; } = default!;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class PowerConsumptionUpdateRequestValidator : CustomValidator<PowerConsumptionUpdateRequest>

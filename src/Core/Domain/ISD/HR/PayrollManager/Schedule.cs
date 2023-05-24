@@ -4,7 +4,7 @@ public class Schedule : AuditableEntity, IAggregateRoot
 {
     public string Name { get; private set; } = default!;
 
-    public Schedule(string name, string description = "", string notes = "")
+    public Schedule(string name, string? description = "", string? notes = "")
     {
         Name = name.Trim().ToUpper();
 
@@ -12,7 +12,7 @@ public class Schedule : AuditableEntity, IAggregateRoot
         if (notes is not null) Notes = notes.Trim();
     }
 
-    public Schedule Update(string name, string description = "", string notes = "")
+    public Schedule Update(string name, string? description = "", string? notes = "")
     {
         if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
 

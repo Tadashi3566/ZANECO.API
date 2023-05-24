@@ -12,7 +12,7 @@ public class PowerbillDetailsDto : IDto
     public string Name { get; set; } = default!;
     public string Address { get; set; } = default!;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Status { get; set; }
 }

@@ -7,8 +7,8 @@ public class TicketProgressCreateRequest : IRequest<Guid>
     public Guid TicketId { get; set; }
     public string ProgressType { get; set; } = default!;
     public string Name { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }
 

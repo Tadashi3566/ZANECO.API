@@ -13,7 +13,7 @@ public class RemoteCollection : AuditableEntity, IAggregateRoot
     public string? OrNumber { get; private set; }
     public string? ImagePath { get; private set; }
 
-    public RemoteCollection(double collectorId, string collector, string reference, DateTime transactionDate, DateTime reportDate, string accountNumber, decimal amount, string name, string orNumber, string description, string notes, string? imagePath)
+    public RemoteCollection(double collectorId, string collector, string reference, DateTime transactionDate, DateTime reportDate, string accountNumber, decimal amount, string name, string orNumber, string? description, string? notes, string? imagePath)
     {
         CollectorId = collectorId;
         Collector = collector;
@@ -33,7 +33,7 @@ public class RemoteCollection : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public RemoteCollection Update(string orNumber, string description, string notes, string? imagePath)
+    public RemoteCollection Update(string orNumber, string? description, string? notes, string? imagePath)
     {
         if (orNumber is not null && !OrNumber!.Equals(orNumber)) OrNumber = orNumber;
 

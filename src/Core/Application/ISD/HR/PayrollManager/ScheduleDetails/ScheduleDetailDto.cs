@@ -14,7 +14,7 @@ public class ScheduleDetailDto : IDto
     public string TimeOut2 { get; set; } = string.Empty;
     public int TotalHours { get; set; } = default!;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Status { get; set; }
 }

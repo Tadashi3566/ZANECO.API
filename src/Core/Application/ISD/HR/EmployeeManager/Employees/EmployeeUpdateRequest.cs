@@ -82,8 +82,8 @@ public class EmployeeUpdateRequest : IRequest<Guid>
     // Others
     public string? BloodType { get; set; }
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 
     public bool DeleteCurrentImage { get; set; }
     public ImageUploadRequest? Image { get; set; }

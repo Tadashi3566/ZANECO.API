@@ -9,7 +9,7 @@ public class Contact : AuditableEntity, IAggregateRoot
     public string Address { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public Contact(string contactType, string reference, string phoneNumber, string name, string address, string description, string notes, string? imagePath)
+    public Contact(string contactType, string reference, string phoneNumber, string name, string address, string? description, string? notes, string? imagePath)
     {
         ContactType = contactType.ToUpper();
         Reference = reference.Trim().ToUpper();
@@ -22,7 +22,7 @@ public class Contact : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Contact Update(string contactType, string reference, string phoneNumber, string name, string address, string description, string notes, string? imagePath)
+    public Contact Update(string contactType, string reference, string phoneNumber, string name, string address, string? description, string? notes, string? imagePath)
     {
         if (contactType is not null && !ContactType.Equals(contactType)) ContactType = contactType.Trim().ToUpper();
         if (reference is not null && !Reference.Equals(reference)) Reference = reference.Trim().ToUpper();

@@ -4,14 +4,20 @@ namespace ZANECO.API.Application.Catalog.Products;
 
 public class CreateProductRequest : IRequest<Guid>
 {
+    public DefaultIdType BrandId { get; set; }
+    public string SKU { get; set; } = default!;
+    public string Barcode { get; set; } = default!;
     public string Name { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public decimal Rate { get; set; }
-    public Guid BrandId { get; set; }
+    public string Specification { get; set; } = default!;
+    public string UnitOfMeasurement { get; set; } = default!;
+    public bool IsVatable { get; set; } = default!;
+    public decimal Rate { get; private set; } = default!;
+    public string Description { get; private set; } = default!;
+    public string Notes { get; private set; } = default!;
     public ImageUploadRequest? Image { get; set; }
 }
 
-public class CreateProductRequestHandler : IRequestHandler<CreateProductRequest, Guid>
+public class CreateProductRequestHandler : IRequestHandler<CreateProductRequest, DefaultIdType>
 {
     private readonly IRepository<Product> _repository;
     private readonly IFileStorageService _file;
@@ -19,11 +25,11 @@ public class CreateProductRequestHandler : IRequestHandler<CreateProductRequest,
     public CreateProductRequestHandler(IRepository<Product> repository, IFileStorageService file) =>
         (_repository, _file) = (repository, file);
 
-    public async Task<Guid> Handle(CreateProductRequest request, CancellationToken cancellationToken)
+    public async Task<DefaultIdType> Handle(CreateProductRequest request, CancellationToken cancellationToken)
     {
-        string productImagePath = await _file.UploadAsync<Product>(request.Image, FileType.Image, cancellationToken);
+        string imagePath = await _file.UploadAsync<Product>(request.Image, FileType.Image, cancellationToken);
 
-        var product = new Product(request.Name, request.Description, request.Rate, request.BrandId, productImagePath);
+        var product = new Product(request.BrandId, request.SKU, request.Barcode, request.Name, request.Specification, request.UnitOfMeasurement, request.IsVatable, request.Rate, request.Description, request.Notes, imagePath);
 
         // Add Domain Events to be raised after the commit
         product.DomainEvents.Add(EntityCreatedEvent.WithEntity(product));

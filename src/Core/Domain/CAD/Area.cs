@@ -10,7 +10,7 @@ public class Area : AuditableEntity, IAggregateRoot
     public string Code { get; private set; } = default!;
     public string Name { get; private set; } = default!;
 
-    public Area(int number, string code, string name, string description = "", string notes = "")
+    public Area(int number, string code, string name, string? description = "", string? notes = "")
     {
         Number = number;
         Code = code;
@@ -19,7 +19,7 @@ public class Area : AuditableEntity, IAggregateRoot
         if (notes is not null) Notes = notes.Trim();
     }
 
-    public Area Update(int number, string code, string name, string description = "", string notes = "")
+    public Area Update(int number, string code, string name, string? description = "", string? notes = "")
     {
         if (Number != number) Number = number;
         if (!Code.Equals(code)) Code = code;

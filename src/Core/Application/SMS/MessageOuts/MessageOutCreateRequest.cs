@@ -11,7 +11,7 @@ public class MessageOutCreateRequest : IRequest<int>
     public string MessageTo { get; set; } = default!;
     public string Subject { get; set; } = default!;
     public string MessageText { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
+    public string? Description { get; set; }
 }
 
 public class MessageOutCreateRequestValidator : CustomValidator<MessageOutCreateRequest>

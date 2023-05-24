@@ -9,8 +9,8 @@ public class PayrollAdjustmentUpdateRequest : IRequest<Guid>
     public DefaultIdType Id { get; set; }
     public DefaultIdType PayrollId { get; set; } = default!;
     public DefaultIdType AdjustmentId { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class PayrollAdjustmentUpdateRequestValidator : CustomValidator<PayrollAdjustmentUpdateRequest>

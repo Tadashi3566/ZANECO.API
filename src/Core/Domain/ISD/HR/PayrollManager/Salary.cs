@@ -16,7 +16,7 @@ public class Salary : AuditableEntity, IAggregateRoot
     public decimal IncrementAmount { get; private set; } = default!;
     public bool IsActive { get; private set; } = default!;
 
-    public Salary(DateTime startDate, DateTime endDate, string rateType, int number, string name, decimal amount, int incrementYears, decimal incrementAmount, bool isActive, string description = "", string notes = "")
+    public Salary(DateTime startDate, DateTime endDate, string rateType, int number, string name, decimal amount, int incrementYears, decimal incrementAmount, bool isActive, string? description = "", string? notes = "")
     {
         StartDate = startDate;
         EndDate = endDate;
@@ -33,7 +33,7 @@ public class Salary : AuditableEntity, IAggregateRoot
         if (notes is not null) Notes = notes.Trim();
     }
 
-    public Salary Update(DateTime startDate, DateTime endDate, string rateType, int number, string name, decimal amount, int incrementYears, decimal incrementAmount, bool isActive, string description = "", string notes = "")
+    public Salary Update(DateTime startDate, DateTime endDate, string rateType, int number, string name, decimal amount, int incrementYears, decimal incrementAmount, bool isActive, string? description = "", string? notes = "")
     {
         if (!StartDate.Equals(startDate)) StartDate = startDate;
         if (!EndDate.Equals(endDate)) EndDate = endDate;

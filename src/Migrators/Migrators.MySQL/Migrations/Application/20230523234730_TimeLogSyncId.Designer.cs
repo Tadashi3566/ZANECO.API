@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZANECO.API.Infrastructure.Persistence.Context;
 
@@ -10,9 +11,11 @@ using ZANECO.API.Infrastructure.Persistence.Context;
 namespace Migrators.MySQL.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230523234730_TimeLogSyncId")]
+    partial class TimeLogSyncId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1818,10 +1821,6 @@ namespace Migrators.MySQL.Migrations.Application
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("Barcode")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<Guid>("BrandId")
                         .HasColumnType("char(36)");
 
@@ -1844,9 +1843,6 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasMaxLength(2048)
                         .HasColumnType("varchar(2048)");
 
-                    b.Property<bool?>("IsVatable")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -1864,22 +1860,10 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<decimal>("Rate")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<string>("SKU")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Specification")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
-
-                    b.Property<string>("UnitOfMeasurement")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -3172,7 +3156,6 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Device")
-                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 

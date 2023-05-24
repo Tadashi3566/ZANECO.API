@@ -11,7 +11,7 @@ public class Calendar : AuditableEntity, IAggregateRoot
     public string Day { get; private set; } = default!;
     public string Name { get; private set; } = default!;
 
-    public Calendar(string calendarType, DateTime calendarDate, string name, string description = "", string notes = "")
+    public Calendar(string calendarType, DateTime calendarDate, string name, string? description = "", string? notes = "")
     {
         CalendarType = calendarType;
         CalendarDate = calendarDate;
@@ -22,7 +22,7 @@ public class Calendar : AuditableEntity, IAggregateRoot
         if (notes is not null) Notes = notes.Trim();
     }
 
-    public Calendar Update(string calendarType, DateTime calendarDate, string name, string description = "", string notes = "")
+    public Calendar Update(string calendarType, DateTime calendarDate, string name, string? description = "", string? notes = "")
     {
         if (calendarType is not null && !CalendarType.Equals(calendarType)) CalendarType = calendarType;
 

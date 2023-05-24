@@ -8,8 +8,8 @@ public class BarangayUpdateRequest : IRequest<Guid>
     public DefaultIdType AreaId { get; set; } = default!;
     public string Name { get; set; } = default!;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class BarangayUpdateRequestValidator : CustomValidator<BarangayUpdateRequest>

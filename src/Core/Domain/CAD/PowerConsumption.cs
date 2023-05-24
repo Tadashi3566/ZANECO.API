@@ -15,7 +15,7 @@ public class PowerConsumption : AuditableEntity, IAggregateRoot
     public string BillMonth { get; private set; } = default!;
     public decimal KWHPurchased { get; private set; } = default!;
 
-    public PowerConsumption(Guid groupId, string groupCode, string groupName, string billMonth, decimal kwhPurchased, string description = "", string notes = "")
+    public PowerConsumption(Guid groupId, string groupCode, string groupName, string billMonth, decimal kwhPurchased, string? description = "", string? notes = "")
     {
         GroupId = groupId;
         GroupCode = groupCode;
@@ -28,7 +28,7 @@ public class PowerConsumption : AuditableEntity, IAggregateRoot
         if (notes is not null) Notes = notes.Trim();
     }
 
-    public PowerConsumption Update(string groupCode, string groupName, string billMonth, decimal kWHPurchased, string description = "", string notes = "")
+    public PowerConsumption Update(string groupCode, string groupName, string billMonth, decimal kWHPurchased, string? description = "", string? notes = "")
     {
         if (groupCode is not null && GroupCode != groupCode) GroupCode = groupCode;
         if (groupName is not null && GroupName != groupName) GroupName = groupName;

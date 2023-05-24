@@ -15,8 +15,8 @@ public class ContributionUpdateRequest : IRequest<Guid>
     public decimal TotalContribution { get; set; } = default!;
     public decimal Percentage { get; set; } = default!;
     public bool IsFixed { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class ContributionUpdateRequestValidator : CustomValidator<ContributionUpdateRequest>

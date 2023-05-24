@@ -13,7 +13,7 @@ public class Employer : AuditableEntity, IAggregateRoot
 
     public string? ImagePath { get; private set; }
 
-    public Employer(DefaultIdType employeeId, string employeeName, string name, string address, string designation, DateTime startDate, DateTime endDate, string description, string notes, string? imagePath)
+    public Employer(DefaultIdType employeeId, string employeeName, string name, string address, string designation, DateTime startDate, DateTime endDate, string? description, string? notes, string? imagePath)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -30,7 +30,7 @@ public class Employer : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Employer Update(DefaultIdType? employeeId, string employeeName, string name, string address, string designation, DateTime startDate, DateTime endDate, string description, string notes, string? imagePath)
+    public Employer Update(DefaultIdType? employeeId, string employeeName, string name, string address, string designation, DateTime startDate, DateTime endDate, string? description, string? notes, string? imagePath)
     {
         if (employeeId.HasValue && employeeId.Value != DefaultIdType.Empty && !EmployeeId.Equals(employeeId.Value)) EmployeeId = employeeId.Value;
         if (!EmployeeName.Equals(employeeName)) EmployeeName = employeeName;

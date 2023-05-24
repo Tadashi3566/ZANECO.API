@@ -41,8 +41,8 @@ public class AccountCreateRequest : IRequest<Guid>
     public double PresentReadingKWHCM { get; set; }
     public double UsedKWHCM { get; set; } = default!;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }
 

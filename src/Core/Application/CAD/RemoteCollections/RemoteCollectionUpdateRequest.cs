@@ -14,8 +14,8 @@ public class RemoteCollectionUpdateRequest : IRequest<Guid>
     public string Name { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
     public string OrNumber { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public bool DeleteCurrentImage { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }

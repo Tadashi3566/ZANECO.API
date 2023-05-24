@@ -61,8 +61,8 @@ public class PowerRateCreateRequest : IRequest<Guid>
     public decimal WithholdingTaxServices { get; set; }
     public decimal WithholdingTaxRental { get; set; }
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class CreatePowerRateRequestValidator : CustomValidator<PowerRateCreateRequest>

@@ -12,7 +12,7 @@ public class Powerbill : AuditableEntity, IAggregateRoot
     public string Address { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public Powerbill(DefaultIdType employeeId, string employeeName, string account, string meter, string name, string address, string description, string notes, string? imagePath)
+    public Powerbill(DefaultIdType employeeId, string employeeName, string account, string meter, string name, string address, string? description, string? notes, string? imagePath)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -27,7 +27,7 @@ public class Powerbill : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Powerbill Update(DefaultIdType? employeeId, string employeeName, string account, string meter, string name, string address, string description, string notes, string? imagePath)
+    public Powerbill Update(DefaultIdType? employeeId, string employeeName, string account, string meter, string name, string address, string? description, string? notes, string? imagePath)
     {
         if (employeeId.HasValue && employeeId.Value != DefaultIdType.Empty && !EmployeeId.Equals(employeeId.Value)) EmployeeId = employeeId.Value;
         if (employeeName is not null && !EmployeeName.Equals(employeeName)) EmployeeName = employeeName;

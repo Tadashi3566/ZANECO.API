@@ -29,8 +29,8 @@ public class DesignationUpdateRequest : IRequest<Guid>
     public decimal RatePerHour { get; set; } = default!;
     public string TaxType { get; set; } = string.Empty;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 
     public bool DeleteCurrentImage { get; set; }
     public ImageUploadRequest? Image { get; set; }

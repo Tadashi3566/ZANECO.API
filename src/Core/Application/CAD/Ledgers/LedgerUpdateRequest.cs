@@ -42,8 +42,8 @@ public class LedgerUpdateRequest : IRequest<Guid>
     public string? Collector { get; set; }
     public DateTime PostingDate { get; set; }
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public bool DeleteCurrentImage { get; set; }
 }
 

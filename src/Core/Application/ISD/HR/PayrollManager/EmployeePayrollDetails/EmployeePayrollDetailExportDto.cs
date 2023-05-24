@@ -9,7 +9,7 @@ public class EmployeePayrollDetailExportDto : IDto
     public DateTime StartDate { get; set; } = default!;
     public DateTime EndDate { get; set; } = default!;
     public DateTime PayrollDate { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? Status { get; set; }
 }

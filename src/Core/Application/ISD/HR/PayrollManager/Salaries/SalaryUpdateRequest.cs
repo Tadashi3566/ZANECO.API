@@ -14,8 +14,8 @@ public class SalaryUpdateRequest : IRequest<DefaultIdType>
     public int IncrementYears { get; set; } = default!;
     public decimal IncrementAmount { get; set; } = default!;
     public bool IsActive { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class SalaryUpdateRequestValidator : CustomValidator<SalaryUpdateRequest>

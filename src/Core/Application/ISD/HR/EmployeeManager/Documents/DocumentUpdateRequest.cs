@@ -14,8 +14,8 @@ public class DocumentUpdateRequest : IRequest<Guid>
     public string Name { get; set; } = string.Empty;
     public string Content { get; set; } = string.Empty;
     public string Raw { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public bool DeleteCurrentImage { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }

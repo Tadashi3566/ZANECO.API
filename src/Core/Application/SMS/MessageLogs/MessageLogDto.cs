@@ -10,6 +10,6 @@ public class MessageLogDto : IDto
     public string MessageText { get; set; } = default!;
     public int StatusCode { get; set; }
     public string? StatusText { get; set; }
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }

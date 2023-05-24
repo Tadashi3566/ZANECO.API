@@ -16,7 +16,7 @@ public class MessageTemplate : AuditableEntity, IAggregateRoot
     public string Recipients { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public MessageTemplate(string templateType, string messageType, bool isAPI, DateTime schedule, string subject, string message, string recipients, string description, string notes, string? imagePath)
+    public MessageTemplate(string templateType, string messageType, bool isAPI, DateTime schedule, string subject, string message, string recipients, string? description, string? notes, string? imagePath)
     {
         TemplateType = templateType;
         MessageType = messageType;
@@ -32,7 +32,7 @@ public class MessageTemplate : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public MessageTemplate Update(string templateType, string messageType, bool isAPI, DateTime schedule, string subject, string message, string recpients, string description, string notes, string? imagePath)
+    public MessageTemplate Update(string templateType, string messageType, bool isAPI, DateTime schedule, string subject, string message, string recpients, string? description, string? notes, string? imagePath)
     {
         if (templateType is not null && !TemplateType.Equals(templateType)) TemplateType = templateType;
         if (messageType is not null && !MessageType.Equals(messageType)) MessageType = messageType;

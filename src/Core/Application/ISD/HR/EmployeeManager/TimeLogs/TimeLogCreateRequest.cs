@@ -10,9 +10,10 @@ public class TimeLogCreateRequest : IRequest<DefaultIdType>
     public string LogType { get; set; } = default!;
     public DateTime LogDate { get; set; } = default!;
     public DateTime LogDateTime { get; set; } = default!;
+    public int SyncId { get; set; } = default!;
     public string? Coordinates { get; set; }
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }
 
@@ -45,7 +46,7 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
 
         string imagePath = await _file.UploadAsync<TimeLog>(request.Image, FileType.Image, cancellationToken);
 
-        var timeLog = new TimeLog(request.EmployeeId, employee!.FullName(), request.Device, request.LogType, request.LogDate, request.LogDateTime, request.Coordinates!, request.Description, request.Notes, imagePath);
+        var timeLog = new TimeLog(request.EmployeeId, employee!.FullName(), request.Device, request.LogType, request.LogDate, request.LogDateTime, request.SyncId, request.Coordinates!, request.Description, request.Notes, imagePath);
 
         await _repository.AddAsync(timeLog, cancellationToken);
 

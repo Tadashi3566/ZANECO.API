@@ -11,8 +11,8 @@ public class EmployeePayrollDetailUpdateRequest : IRequest<Guid>
     public Guid AdjustmentId { get; set; }
     public decimal Amount { get; set; } = default!;
     public string Contributor { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class EmployeePayrollDetailUpdateRequestValidator : CustomValidator<EmployeePayrollDetailUpdateRequest>

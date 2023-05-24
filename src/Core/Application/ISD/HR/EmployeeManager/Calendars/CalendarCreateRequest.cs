@@ -10,8 +10,8 @@ public class CalendarCreateRequest : IRequest<DefaultIdType>
     public string CalendarType { get; set; } = default!;
     public string Name { get; set; } = default!;
 
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class CreateCalendarRequestValidator : CustomValidator<CalendarCreateRequest>

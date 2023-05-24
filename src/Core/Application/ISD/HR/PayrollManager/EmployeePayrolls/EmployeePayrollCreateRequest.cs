@@ -17,8 +17,8 @@ public class EmployeePayrollCreateRequest : IRequest<Guid>
     public decimal Gross { get; set; } = default!;
     public decimal Deduction { get; set; } = default!;
     public decimal Net { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class EmployeePayrollCreateRequestValidator : CustomValidator<EmployeePayrollCreateRequest>

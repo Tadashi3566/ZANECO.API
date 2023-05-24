@@ -13,7 +13,7 @@ public class Rating : AuditableEntity, IAggregateRoot
     public string Comment { get; private set; } = string.Empty;
     public string Reference { get; private set; } = string.Empty;
 
-    public Rating(DefaultIdType rateId, int rateNumber, string rateName, string comment, string reference, string description = "", string notes = "")
+    public Rating(DefaultIdType rateId, int rateNumber, string rateName, string comment, string reference, string? description = "", string? notes = "")
     {
         RateId = rateId;
         RateNumber = rateNumber;
@@ -24,7 +24,7 @@ public class Rating : AuditableEntity, IAggregateRoot
         if (notes is not null) Notes = notes.Trim();
     }
 
-    public Rating Update(int rateNumber, string rateName, string comment, string reference, string description = "", string notes = "")
+    public Rating Update(int rateNumber, string rateName, string comment, string reference, string? description = "", string? notes = "")
     {
         if (rateNumber is not 0 && !RateNumber.Equals(rateNumber)) RateNumber = rateNumber;
         if (rateName is not null && !RateName.Equals(rateName)) RateName = rateName;

@@ -10,8 +10,8 @@ public class EmployeePayrollDetailCreateRequest : IRequest<Guid>
     public Guid AdjustmentId { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
     public string Contributor { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class EmployeePayrollDetailCreateRequestValidator : CustomValidator<EmployeePayrollDetailCreateRequest>

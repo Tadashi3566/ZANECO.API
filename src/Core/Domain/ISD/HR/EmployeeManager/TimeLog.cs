@@ -9,15 +9,16 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
     public virtual Employee Employee { get; private set; } = default!;
     public DefaultIdType EmployeeId { get; private set; }
     public string EmployeeName { get; private set; } = default!;
-    public string? Device { get; private set; }
+    public string Device { get; private set; } = default!;
     public string LogType { get; private set; } = default!;
     public DateTime LogDate { get; private set; } = default!;
     public DateTime LogDateTime { get; private set; } = default!;
+    public int SyncId { get; private set; } = default!;
     public DateTime? SyncDateTime { get; private set; }
     public string? Coordinates { get; private set; }
     public string? ImagePath { get; private set; }
 
-    public TimeLog(DefaultIdType employeeId, string employeeName, string device, string logType, DateTime logDate, DateTime logDateTime, string coordinates, string description, string notes, string imagePath)
+    public TimeLog(DefaultIdType employeeId, string employeeName, string device, string logType, DateTime logDate, DateTime logDateTime, int syncId, string coordinates, string? description, string? notes, string imagePath)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -26,6 +27,7 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
         LogType = logType;
         LogDate = logDate;
         LogDateTime = logDateTime;
+        SyncId = syncId;
         SyncDateTime = DateTime.Now;
         Coordinates = coordinates;
 
@@ -35,7 +37,7 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
         ImagePath = imagePath;
     }
 
-    public TimeLog Update(string logType, DateTime logDate, DateTime logDateTime, string description, string notes, string imagePath)
+    public TimeLog Update(string logType, DateTime logDate, DateTime logDateTime, string? description, string? notes, string imagePath)
     {
         if (logType is not null && !LogType.Equals(logType)) LogType = logType;
         if (!LogDate.Equals(logDate)) LogDate = logDate;

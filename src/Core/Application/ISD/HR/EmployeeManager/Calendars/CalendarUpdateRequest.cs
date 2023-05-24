@@ -12,8 +12,8 @@ public class CalendarUpdateRequest : IRequest<DefaultIdType>
     public string Name { get; set; } = default!;
 
     public string Status { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class CalendarUpdateRequestValidator : CustomValidator<CalendarUpdateRequest>

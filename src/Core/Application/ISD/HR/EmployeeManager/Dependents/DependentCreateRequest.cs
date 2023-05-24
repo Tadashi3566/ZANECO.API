@@ -9,8 +9,8 @@ public class DependentCreateRequest : IRequest<Guid>
     public string Gender { get; set; } = default!;
     public DateTime? BirthDate { get; set; }
     public string Relation { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public ImageUploadRequest? Image { get; set; }
 }
 

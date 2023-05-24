@@ -7,8 +7,8 @@ public class RateUpdateRequest : IRequest<Guid>
     public DefaultIdType Id { get; set; }
     public int Number { get; set; } = default!;
     public string Name { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
-    public string Notes { get; set; } = string.Empty;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
 }
 
 public class RateUpdateRequestValidator : CustomValidator<RateUpdateRequest>

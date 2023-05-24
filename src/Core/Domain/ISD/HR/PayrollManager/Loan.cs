@@ -26,7 +26,7 @@ public class Loan : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
     public DateTime EndDate { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public Loan(DefaultIdType employeeId, string employeeName, DefaultIdType adjustmentId, string adjustmentName, decimal amount, DateTime dateReleased, string paymentSchedule, int months, decimal ammortization, DateTime startDate, DateTime endDate, string description, string notes, string? imagePath)
+    public Loan(DefaultIdType employeeId, string employeeName, DefaultIdType adjustmentId, string adjustmentName, decimal amount, DateTime dateReleased, string paymentSchedule, int months, decimal ammortization, DateTime startDate, DateTime endDate, string? description, string? notes, string? imagePath)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -50,7 +50,7 @@ public class Loan : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Loan Update(string employeeName, DefaultIdType adjustmentId, string adjustmentName, decimal amount, DateTime dateReleased, string paymentSchedule, int months, decimal ammortization, DateTime startDate, DateTime endDate, string description, string notes, string? imagePath)
+    public Loan Update(string employeeName, DefaultIdType adjustmentId, string adjustmentName, decimal amount, DateTime dateReleased, string paymentSchedule, int months, decimal ammortization, DateTime startDate, DateTime endDate, string? description, string? notes, string? imagePath)
     {
         if (employeeName is not null && !EmployeeName.Equals(employeeName)) EmployeeName = employeeName;
 

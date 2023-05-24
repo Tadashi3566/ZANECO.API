@@ -11,8 +11,8 @@ public class SalaryDto : IDto
     public decimal Amount { get; private set; } = default!;
     public int IncrementYears { get; set; } = default!;
     public decimal IncrementAmount { get; set; } = default!;
-    public string Description { get; set; } = string.Empty;
+    public string? Description { get; set; }
     public bool IsActive { get; set; } = default!;
-    public string Notes { get; set; } = string.Empty;
+    public string? Notes { get; set; }
     public string? Status { get; set; }
 }
