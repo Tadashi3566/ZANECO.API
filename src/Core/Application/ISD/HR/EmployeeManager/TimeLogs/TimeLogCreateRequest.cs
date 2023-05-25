@@ -46,7 +46,7 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
 
         string imagePath = await _file.UploadAsync<TimeLog>(request.Image, FileType.Image, cancellationToken);
 
-        var timeLog = new TimeLog(request.EmployeeId, employee!.FullName(), request.Device, request.LogType, request.LogDate, request.LogDateTime, request.SyncId, request.Coordinates!, request.Description, request.Notes, imagePath);
+        var timeLog = new TimeLog(request.EmployeeId, employee!.FullName(), request.Device, request.LogType, request.LogDate, request.LogDateTime, request.SyncId, request.Coordinates, request.Description, request.Notes, imagePath);
 
         await _repository.AddAsync(timeLog, cancellationToken);
 
@@ -57,22 +57,22 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
             switch (request.LogType)
             {
                 case "TIMEIN1":
-                    var attendanceTimeIn1 = attendance.TimeIn1(DateTime.Now.AddMinutes(-3), imagePath);
+                    var attendanceTimeIn1 = attendance.TimeIn1(request.LogDateTime.AddMinutes(-3), imagePath);
                     await _repoAttendance.UpdateAsync(attendanceTimeIn1, cancellationToken);
                     break;
 
                 case "TIMEOUT1":
-                    var attendanceTimeOut1 = attendance.TimeOut1(DateTime.Now, imagePath);
+                    var attendanceTimeOut1 = attendance.TimeOut1(request.LogDateTime, imagePath);
                     await _repoAttendance.UpdateAsync(attendanceTimeOut1, cancellationToken);
                     break;
 
                 case "TIMEIN2":
-                    var attendanceTimeIn2 = attendance.TimeIn2(DateTime.Now.AddMinutes(-3), imagePath);
+                    var attendanceTimeIn2 = attendance.TimeIn2(request.LogDateTime.AddMinutes(-3), imagePath);
                     await _repoAttendance.UpdateAsync(attendanceTimeIn2, cancellationToken);
                     break;
 
                 case "TIMEOUT2":
-                    var attendanceTimeOut2 = attendance.TimeOut2(DateTime.Now, imagePath);
+                    var attendanceTimeOut2 = attendance.TimeOut2(request.LogDateTime, imagePath);
                     await _repoAttendance.UpdateAsync(attendanceTimeOut2, cancellationToken);
                     break;
             }

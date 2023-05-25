@@ -18,7 +18,7 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
     public string? Coordinates { get; private set; }
     public string? ImagePath { get; private set; }
 
-    public TimeLog(DefaultIdType employeeId, string employeeName, string device, string logType, DateTime logDate, DateTime logDateTime, int syncId, string coordinates, string? description, string? notes, string imagePath)
+    public TimeLog(DefaultIdType employeeId, string employeeName, string device, string logType, DateTime logDate, DateTime logDateTime, int syncId, string? coordinates, string? description, string? notes, string imagePath)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -29,7 +29,8 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
         LogDateTime = logDateTime;
         SyncId = syncId;
         SyncDateTime = DateTime.Now;
-        Coordinates = coordinates;
+
+        if (coordinates is not null) Coordinates = coordinates;
 
         if (description is not null) Description = description.Trim();
         if (notes is not null) Notes = notes.Trim();
