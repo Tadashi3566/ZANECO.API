@@ -26,7 +26,7 @@ public class AppointmentDto : IDto
     public DefaultIdType? ApprovedBy { get; set; }
     public DateTime? ApprovedOn { get; set; }
 
-    public string Description { get; set; } = default!;
-    public string Notes { get; set; } = default!;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string Status { get; set; } = default!;
 }

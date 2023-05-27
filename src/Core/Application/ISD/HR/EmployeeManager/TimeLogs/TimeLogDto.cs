@@ -12,7 +12,7 @@ public class TimeLogDto : IDto
     public int SyncId { get; set; } = default!;
     public DateTime? SyncDateTime { get; set; } = default!;
     public string? Coordinates { get; set; } = string.Empty;
-    public string Description { get; set; } = default!;
-    public string Notes { get; set; } = default!;
+    public string? Description { get; set; }
+    public string? Notes { get; set; }
     public string? ImagePath { get; set; }
 }
