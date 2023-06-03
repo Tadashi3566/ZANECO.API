@@ -41,8 +41,11 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
         _ = employee ?? throw new NotFoundException("Employee not found.");
-
         if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+
+        var existingTimeLog = await _repository.FirstOrDefaultAsync(new TimeLogByFileNameSpec(request.Image.Name), cancellationToken);
+        if (existingTimeLog is not null)
+            return existingTimeLog.Id;
 
         string imagePath = await _file.UploadAsync<TimeLog>(request.Image, FileType.Image, cancellationToken);
 
