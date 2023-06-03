@@ -28,7 +28,9 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
         LogDate = logDate;
         LogDateTime = logDateTime;
         SyncId = syncId;
-        SyncDateTime = DateTime.Now;
+
+        if(syncId > 0)
+            SyncDateTime = DateTime.Now;
 
         if (coordinates is not null) Coordinates = coordinates;
 
