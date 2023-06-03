@@ -25,6 +25,13 @@ public class UsersController : VersionNeutralApiController
         return _userService.GetAsync(id, cancellationToken);
     }
 
+    [HttpGet("mobile/{id}")]
+    [OpenApiOperation("Get a user's details.", "")]
+    public Task<UserDetailsDto> GetDetailByIdAsync(string id, CancellationToken cancellationToken)
+    {
+        return _userService.GetAsync(id, cancellationToken);
+    }
+
     [HttpGet("{id}/roles")]
     [MustHavePermission(FSHAction.View, FSHResource.UserRoles)]
     [OpenApiOperation("Get a user's roles.", "")]

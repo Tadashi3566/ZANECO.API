@@ -14,7 +14,7 @@ public class Employee : AuditableEntity, IAggregateRoot
     public int Number { get; private set; } = default!;
     public string Title { get; private set; } = default!;
     public string FirstName { get; private set; } = default!;
-    public string? MiddleName { get; private set; }
+    public string MiddleName { get; private set; } = default!;
     public string LastName { get; private set; } = default!;
     public string? Extension { get; private set; }
     public string Gender { get; private set; } = default!;
@@ -127,16 +127,16 @@ public class Employee : AuditableEntity, IAggregateRoot
         }
     }
 
-    public Employee(int number, string title, string firstName, string? middleName, string lastName, string? extension, string gender, string phoneNumber, string email, string civilStatus, string address, DateTime birthDate, string birthPlace, DateTime hireDate, DateTime regularDate, string sss, string phic, string hdmf, string tin, string emergencyPerson, string emergencyNumber, string emergencyAddress, string emergencyRelation, string fatherName, string motherName, string education, string course, string award, string bloodType, string? description, string? notes, string? imagePath)
+    public Employee(int number, string title, string firstName, string middleName, string lastName, string? extension, string gender, string phoneNumber, string email, string civilStatus, string address, DateTime birthDate, string birthPlace, DateTime hireDate, DateTime regularDate, string sss, string phic, string hdmf, string tin, string emergencyPerson, string emergencyNumber, string emergencyAddress, string emergencyRelation, string fatherName, string motherName, string education, string course, string award, string bloodType, string? description, string? notes, string? imagePath)
     {
         Number = number;
         Title = title;
         FirstName = firstName.Trim().ToUpper();
 
-        if (middleName is not null)
-            MiddleName = middleName!.Trim().ToUpper();
+        if (string.IsNullOrEmpty(middleName))
+            MiddleName = string.Empty;
         else
-            MiddleName = null;
+            MiddleName = middleName!.Trim().ToUpper();
 
         LastName = lastName.Trim().ToUpper();
 
@@ -180,12 +180,12 @@ public class Employee : AuditableEntity, IAggregateRoot
         ImagePath = imagePath;
     }
 
-    public Employee Update(int number, string title, string firstName, string? middleName, string lastName, string? extension, string gender, string phoneNumber, string email, string civilStatus, string address, DateTime birthDate, string birthPlace, DateTime hireDate, DateTime regularDate, string sss, string phic, string hdmf, string tin, string emergencyPerson, string emergencyNumber, string emergencyAddress, string emergencyRelation, string fatherName, string motherName, string education, string course, string award, string bloodType, string? description, string? notes, string? imagePath)
+    public Employee Update(int number, string title, string firstName, string middleName, string lastName, string? extension, string gender, string phoneNumber, string email, string civilStatus, string address, DateTime birthDate, string birthPlace, DateTime hireDate, DateTime regularDate, string sss, string phic, string hdmf, string tin, string emergencyPerson, string emergencyNumber, string emergencyAddress, string emergencyRelation, string fatherName, string motherName, string education, string course, string award, string bloodType, string? description, string? notes, string? imagePath)
     {
         if (!Number.Equals(number)) Number = number;
         if (title is not null && !Title.Equals(title)) Title = title;
         if (firstName is not null && !FirstName.Equals(firstName)) FirstName = firstName.Trim().ToUpper();
-        if (middleName is not null && !MiddleName!.Equals(middleName)) MiddleName = middleName!.Trim().ToUpper();
+        if (middleName is not null && !MiddleName.Equals(middleName)) MiddleName = middleName.Trim().ToUpper();
         if (lastName is not null && !LastName.Equals(lastName)) LastName = lastName.Trim().ToUpper();
         if (extension is not null && !Extension.Equals(extension)) Extension = extension.Trim().ToUpper();
 

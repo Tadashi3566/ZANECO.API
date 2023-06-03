@@ -11,7 +11,7 @@ public class EmployeeCreateRequest : IRequest<Guid>
     public int Number { get; set; } = default!;
     public string Title { get; set; } = default!;
     public string FirstName { get; set; } = default!;
-    public string? MiddleName { get; set; }
+    public string MiddleName { get; set; } = default!;
     public string LastName { get; set; } = default!;
     public string? Extension { get; set; }
 

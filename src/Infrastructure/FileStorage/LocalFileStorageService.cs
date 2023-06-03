@@ -16,6 +16,8 @@ public class LocalFileStorageService : IFileStorageService
             return string.Empty;
         }
 
+        var a = supportedFileType.GetDescriptionList();
+
         if (request.Extension is null || !supportedFileType.GetDescriptionList().Contains(request.Extension.ToLower()))
             throw new InvalidOperationException("File Format Not Supported.");
         if (request.Name is null)
