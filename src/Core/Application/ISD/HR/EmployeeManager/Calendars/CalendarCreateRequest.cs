@@ -4,8 +4,6 @@ namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Calendars;
 
 public class CalendarCreateRequest : IRequest<DefaultIdType>
 {
-    public DefaultIdType EmployeeId { get; set; } = default!;
-
     public DateTime CalendarDate { get; set; } = default!;
     public string CalendarType { get; set; } = default!;
     public string Name { get; set; } = default!;
@@ -16,11 +14,8 @@ public class CalendarCreateRequest : IRequest<DefaultIdType>
 
 public class CreateCalendarRequestValidator : CustomValidator<CalendarCreateRequest>
 {
-    public CreateCalendarRequestValidator(IReadRepository<Calendar> repoCalendar, IStringLocalizer<CreateCalendarRequestValidator> localizer)
+    public CreateCalendarRequestValidator()
     {
-        //RuleFor(p => p.EmployeeId)
-        //    .NotEmpty();
-
         RuleFor(p => p.CalendarDate)
             .NotEmpty();
 
@@ -29,9 +24,6 @@ public class CreateCalendarRequestValidator : CustomValidator<CalendarCreateRequ
 
         RuleFor(p => p.Name)
             .NotEmpty();
-
-        // .MustAsync(async (name, ct) => await repoCalendar.FirstOrDefaultAsync(new CalendarByNameSpec(name), ct) is null)
-        // .WithMessage((_, name) => string.Format(localizer["adjustment already exists"], name));
     }
 }
 
@@ -51,32 +43,6 @@ public class CalendarCreateRequestHandler : IRequestHandler<CalendarCreateReques
         {
             throw new NotFoundException("Name already exist");
         }
-
-        var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException("Employee not found.");
-
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
-
-        //DefaultIdType employeeId;
-        //string employeeName = string.Empty;
-
-        //if (request.Subject.Contains("HOLIDAY"))
-        //{
-        //    employeeId = Guid.Parse("08da447f-6575-4e91-8be4-b5ddefef61d0");
-        //}
-        //else
-        //{
-        //    employeeId = request.EmployeeId;
-        //    employeeName = employee!.NameFullInitial();
-        //}
-
-        //string description = request.Description;
-
-        //if (request.Description.Equals(string.Empty))
-        //{
-        //    var group = await _repoGroup.FirstOrDefaultAsync(new GroupByNameSpec(request.Subject), cancellationToken);
-        //    if (group is not null) description = group.Description!;
-        //}
 
         var calendar = new Calendar(request.CalendarType, request.CalendarDate, request.Name, request.Description, request.Notes);
 

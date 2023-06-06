@@ -54,8 +54,8 @@ public class MessageLog : AuditableEntity<int>, IAggregateRoot
 
     public MessageLog Update(string? description, string? notes)
     {
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         return this;
     }

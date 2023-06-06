@@ -49,8 +49,8 @@ public class Member : AuditableEntity, IAggregateRoot
         if (applicationDate is not null && !ApplicationDate.Equals(applicationDate)) ApplicationDate = applicationDate;
         if (membershipDate is not null && !MembershipDate.Equals(applicationDate)) MembershipDate = membershipDate;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
         if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
 
         return this;

@@ -80,8 +80,8 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
         if (recommendedBy is not null && !RecommendedBy.Equals(recommendedBy)) RecommendedBy = recommendedBy;
         if (approvedBy is not null && !ApprovedBy.Equals(approvedBy)) ApprovedBy = approvedBy;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         if (!(imagePath is null || ImagePath?.Equals(imagePath) is true)) ImagePath = imagePath;
 

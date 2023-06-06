@@ -42,8 +42,8 @@ public class MessageTemplate : AuditableEntity, IAggregateRoot
         if (message is not null && !Message.Equals(message)) Message = message;
         if (recpients is not null && !Recipients.Equals(recpients)) Recipients = recpients;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
 

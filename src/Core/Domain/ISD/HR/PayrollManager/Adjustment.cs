@@ -51,8 +51,8 @@ public class Adjustment : AuditableEntity, IAggregateRoot
         if (!IsLoan.Equals(isLoan)) IsLoan = isLoan;
         if (!IsActive.Equals(isActive)) IsActive = isActive;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         return this;
     }

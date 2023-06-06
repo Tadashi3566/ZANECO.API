@@ -183,43 +183,43 @@ public class Employee : AuditableEntity, IAggregateRoot
     public Employee Update(int number, string title, string firstName, string middleName, string lastName, string? extension, string gender, string phoneNumber, string email, string civilStatus, string address, DateTime birthDate, string birthPlace, DateTime hireDate, DateTime regularDate, string sss, string phic, string hdmf, string tin, string emergencyPerson, string emergencyNumber, string emergencyAddress, string emergencyRelation, string fatherName, string motherName, string education, string course, string award, string bloodType, string? description, string? notes, string? imagePath)
     {
         if (!Number.Equals(number)) Number = number;
-        if (title is not null && !Title.Equals(title)) Title = title;
-        if (firstName is not null && !FirstName.Equals(firstName)) FirstName = firstName.Trim().ToUpper();
-        if (middleName is not null && !MiddleName.Equals(middleName)) MiddleName = middleName.Trim().ToUpper();
-        if (lastName is not null && !LastName.Equals(lastName)) LastName = lastName.Trim().ToUpper();
-        if (extension is not null && !Extension.Equals(extension)) Extension = extension.Trim().ToUpper();
+        if (title is not null && (Title is null || !Title.Equals(title))) Title = title;
+        if (firstName is not null && (FirstName is null || !FirstName.Equals(firstName))) FirstName = firstName.Trim().ToUpper();
+        if (middleName is not null && (MiddleName is null || !MiddleName.Equals(middleName))) MiddleName = middleName.Trim().ToUpper();
+        if (lastName is not null && (LastName is null || !LastName.Equals(lastName))) LastName = lastName.Trim().ToUpper();
+        if (extension is not null && (Extension is null || !Extension.Equals(extension))) Extension = extension.Trim().ToUpper();
 
-        if (gender is not null && !Gender.Equals(gender)) Gender = gender;
-        if (phoneNumber is not null && !PhoneNumber.Equals(phoneNumber)) PhoneNumber = phoneNumber.Trim();
-        if (email is not null && !Email.Equals(email)) Email = email;
-        if (civilStatus is not null && !CivilStatus.Equals(civilStatus)) CivilStatus = civilStatus;
-        if (address is not null && !Address.Equals(address)) Address = address.Trim();
+        if (gender is not null && (Gender is null || !Gender.Equals(gender))) Gender = gender;
+        if (phoneNumber is not null && (PhoneNumber is null || !PhoneNumber.Equals(phoneNumber))) PhoneNumber = phoneNumber.Trim();
+        if (email is not null && (Email is null || !Email.Equals(email))) Email = email;
+        if (civilStatus is not null && (CivilStatus is null || !CivilStatus.Equals(civilStatus))) CivilStatus = civilStatus;
+        if (address is not null && (Address is null || !Address.Equals(address))) Address = address.Trim();
         if (!BirthDate.Equals(birthDate)) BirthDate = birthDate!;
-        if (birthPlace is not null && !BirthPlace.Equals(birthPlace)) BirthPlace = birthPlace.Trim();
+        if (birthPlace is not null && (BirthPlace is null || !BirthPlace.Equals(birthPlace))) BirthPlace = birthPlace.Trim();
 
         if (!HireDate.Equals(hireDate)) HireDate = hireDate;
         if (!RegularDate.Equals(regularDate)) RegularDate = regularDate;
 
-        if (sss is not null && !Sss.Equals(sss)) Sss = sss.Trim().ToUpper();
-        if (phic is not null && !Phic.Equals(phic)) Phic = phic.Trim().ToUpper();
-        if (hdmf is not null && !Hdmf.Equals(hdmf)) Hdmf = hdmf.Trim().ToUpper();
-        if (tin is not null && !Tin.Equals(tin)) Tin = tin.Trim().ToUpper();
+        if (sss is not null && (Sss is null || !Sss.Equals(sss))) Sss = sss.Trim().ToUpper();
+        if (phic is not null && (Phic is null || !Phic.Equals(phic))) Phic = phic.Trim().ToUpper();
+        if (hdmf is not null && (Hdmf is null || !Hdmf.Equals(hdmf))) Hdmf = hdmf.Trim().ToUpper();
+        if (tin is not null && (Tin is null || !Tin.Equals(tin))) Tin = tin.Trim().ToUpper();
 
-        if (emergencyPerson is not null && !EmergencyPerson.Equals(emergencyPerson)) EmergencyPerson = emergencyPerson.Trim().ToUpper();
-        if (emergencyNumber is not null && !EmergencyNumber.Equals(emergencyNumber)) EmergencyNumber = emergencyNumber.Trim().ToUpper();
-        if (emergencyAddress is not null && !EmergencyAddress.Equals(emergencyAddress)) EmergencyAddress = emergencyAddress.Trim().ToUpper();
-        if (emergencyRelation is not null && !EmergencyRelation.Equals(emergencyRelation)) EmergencyRelation = emergencyRelation.Trim().ToUpper();
-        if (fatherName is not null && !FatherName.Equals(fatherName)) FatherName = fatherName.Trim().ToUpper();
-        if (motherName is not null && !MotherName.Equals(motherName)) MotherName = motherName.Trim().ToUpper();
+        if (emergencyPerson is not null && (EmergencyPerson is null || !EmergencyPerson.Equals(emergencyPerson))) EmergencyPerson = emergencyPerson.Trim().ToUpper();
+        if (emergencyNumber is not null && (EmergencyNumber is null || !EmergencyNumber.Equals(emergencyNumber))) EmergencyNumber = emergencyNumber.Trim().ToUpper();
+        if (emergencyAddress is not null && (EmergencyAddress is null || !EmergencyAddress.Equals(emergencyAddress))) EmergencyAddress = emergencyAddress.Trim().ToUpper();
+        if (emergencyRelation is not null && (EmergencyRelation is null || !EmergencyRelation.Equals(emergencyRelation))) EmergencyRelation = emergencyRelation.Trim().ToUpper();
+        if (fatherName is not null && (FatherName is null || !FatherName.Equals(fatherName))) FatherName = fatherName.Trim().ToUpper();
+        if (motherName is not null && (MotherName is null || !MotherName.Equals(motherName))) MotherName = motherName.Trim().ToUpper();
 
-        if (education is not null && !Education.Equals(education)) Education = education.Trim().ToUpper();
-        if (course is not null && !Course.Equals(course)) Course = course.Trim().ToUpper();
-        if (award is not null && !Award.Equals(award)) Award = award.Trim().ToUpper();
+        if (education is not null && (Education is null || !Education.Equals(education))) Education = education.Trim().ToUpper();
+        if (course is not null && (Course is null || !Course.Equals(course))) Course = course.Trim().ToUpper();
+        if (award is not null && (Award is null || !Award.Equals(award))) Award = award.Trim().ToUpper();
 
-        if (bloodType is not null && !BloodType.Equals(bloodType)) BloodType = bloodType.Trim().ToUpper();
+        if (bloodType is not null && (BloodType is null || !BloodType.Equals(bloodType))) BloodType = bloodType.Trim().ToUpper();
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
         return this;
@@ -231,22 +231,22 @@ public class Employee : AuditableEntity, IAggregateRoot
 
         if (!StartDate.Equals(startDate)) StartDate = startDate;
 
-        if (area is not null && !Area.Equals(area)) Area = area;
-        if (department is not null && !Department.Equals(department)) Department = department;
-        if (division is not null && !Division.Equals(division)) Division = division;
-        if (section is not null && !Section.Equals(section)) Section = section;
-        if (position is not null && !Position.Equals(position)) Position = position;
+        if (area is not null && (Area is null || !Area.Equals(area))) Area = area;
+        if (department is not null && (Department is null || !Department.Equals(department))) Department = department;
+        if (division != null && (Division is null || !Division.Equals(division))) Division = division;
+        if (section is not null && (Section is null || !Section.Equals(section))) Section = section;
+        if (position is not null && (Position is null || !Position.Equals(position))) Position = position;
 
-        if (employmentType is not null && !EmploymentType.Equals(employmentType)) EmploymentType = employmentType;
+        if (employmentType is not null && (EmploymentType is null || !EmploymentType.Equals(employmentType))) EmploymentType = employmentType;
         if (!SalaryNumber.Equals(salaryNumber)) SalaryNumber = salaryNumber;
-        if (salaryName is not null && !SalaryName.Equals(salaryName)) SalaryName = salaryName;
-        if (payType is not null && !PayType.Equals(payType)) PayType = payType;
-        if (rateType is not null && !RateType.Equals(rateType)) RateType = rateType;
+        if (salaryName is not null && (SalaryName is null || !SalaryName.Equals(salaryName))) SalaryName = salaryName;
+        if (payType is not null && (PayType is null || !PayType.Equals(payType))) PayType = payType;
+        if (rateType is not null && (RateType is null || !RateType.Equals(rateType))) RateType = rateType;
         if (!HoursPerDay.Equals(hoursPerDay)) HoursPerDay = hoursPerDay;
-        if (taxType is not null && !TaxType.Equals(taxType)) TaxType = taxType;
+        if (taxType is not null && (TaxType is null || !TaxType.Equals(taxType))) TaxType = taxType;
 
         if (scheduleId.HasValue && scheduleId.Value != DefaultIdType.Empty && !ScheduleId.Equals(scheduleId.Value)) ScheduleId = scheduleId.Value;
-        if (scheduleName is not null && !ScheduleName.Equals(scheduleName)) ScheduleName = scheduleName;
+        if (scheduleName is not null && (ScheduleName is null || !ScheduleName.Equals(scheduleName))) ScheduleName = scheduleName;
 
         decimal ratePerDay = 0;
         decimal ratePerHour = 0;
@@ -262,19 +262,19 @@ public class Employee : AuditableEntity, IAggregateRoot
             case "DAILY":
                 //if (!RegularDate.Equals(regularDate)) RegularDate = regularDate;
 
-                //if (years < 2)
-                //{
-                //    ratePerDay = 345;
-                //}
-                //else
-                //{
-                //    ratePerDay = years switch
-                //    {
-                //        2 => 385,
-                //        3 => 402,
-                //        _ => 500,
-                //    };
-                //}
+                if (years < 2)
+                {
+                    ratePerDay = 351;
+                }
+                else
+                {
+                    ratePerDay = years switch
+                    {
+                        2 => 385,
+                        3 => 402,
+                        _ => 500,
+                    };
+                }
 
                 ratePerHour = ratePerDay / hoursPerDay;
                 salaryAmount = ratePerDay;
@@ -309,7 +309,7 @@ public class Employee : AuditableEntity, IAggregateRoot
     public Employee Schedule(DefaultIdType scheduleId, string scheduleName)
     {
         if (!ScheduleId.Equals(scheduleId)) ScheduleId = scheduleId;
-        if (scheduleName is not null && !ScheduleName.Equals(scheduleName)) ScheduleName = scheduleName;
+        if (scheduleName is not null && (ScheduleName is null || !ScheduleName.Equals(scheduleName))) ScheduleName = scheduleName;
 
         return this;
     }

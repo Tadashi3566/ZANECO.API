@@ -29,8 +29,8 @@ public class PayrollAdjustment : AuditableEntity, IAggregateRoot
         if (!AdjustmentNumber.Equals(adjustmentNumber)) AdjustmentNumber = adjustmentNumber;
         if (adjustmentName is not null && !AdjustmentName.Equals(adjustmentName)) AdjustmentName = adjustmentName;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         return this;
     }

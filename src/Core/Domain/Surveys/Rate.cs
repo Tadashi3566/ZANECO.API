@@ -17,8 +17,8 @@ public class Rate : AuditableEntity, IAggregateRoot
     {
         if (number is not 0 && !Number.Equals(number)) Number = number;
         if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
         return this;
     }
 }

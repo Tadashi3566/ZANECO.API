@@ -36,8 +36,8 @@ public class PowerConsumption : AuditableEntity, IAggregateRoot
         if (billMonth is not null && BillMonth != billMonth) BillMonth = billMonth;
         if (!KWHPurchased.Equals(kWHPurchased)) KWHPurchased = kWHPurchased;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         return this;
     }

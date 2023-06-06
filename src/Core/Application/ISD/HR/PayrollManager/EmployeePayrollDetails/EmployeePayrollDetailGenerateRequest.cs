@@ -182,8 +182,6 @@ public class EmployeePayrollDetailGenerateRequestHandler : IRequestHandler<Emplo
 
                 amount = 0;
             }
-
-            //}
         }
 
         // Save or Update Employee Payroll

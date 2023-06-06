@@ -36,8 +36,8 @@ public class Barcode : AuditableEntity, IAggregateRoot
         if (specification is not null && !Specification.Equals(specification)) Specification = specification;
         if (unitOfMeasurement is not null && !UnitOfMeasurement.Equals(unitOfMeasurement)) UnitOfMeasurement = unitOfMeasurement;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
 

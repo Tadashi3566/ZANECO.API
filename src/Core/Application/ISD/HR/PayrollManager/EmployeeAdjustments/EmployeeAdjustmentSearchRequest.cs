@@ -13,7 +13,7 @@ public class EmployeeAdjustmentsBySearchRequestSpec : EntitiesByPaginationFilter
         : base(request) =>
         Query
             .Include(x => x.Employee)
-            .OrderBy(x => x.AdjustmentName, !request.HasOrderBy())
+            .OrderBy(x => x.EmployeeName, !request.HasOrderBy())
             .Where(x => x.EmployeeId.Equals(request.EmployeeId!.Value), request.EmployeeId.HasValue);
 }
 

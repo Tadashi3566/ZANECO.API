@@ -53,8 +53,8 @@ public class Product : AuditableEntity, IAggregateRoot
         if (isVatable is not null && !IsVatable.Equals(isVatable)) IsVatable = isVatable;
         if (!Rate.Equals(rate)) Rate = rate;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
 

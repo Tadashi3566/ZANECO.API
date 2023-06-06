@@ -93,8 +93,8 @@ public class Account : AuditableEntity, IAggregateRoot
         if (meterBrand is not null && !MeterBrand.Equals(meterBrand)) MeterBrand = meterBrand.Trim().ToUpper();
         if (meterSerial is not null && !MeterSerial.Equals(address)) MeterSerial = meterSerial.Trim().ToUpper();
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
         if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
 
         return this;

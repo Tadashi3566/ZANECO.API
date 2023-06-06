@@ -37,8 +37,8 @@ public class Powerbill : AuditableEntity, IAggregateRoot
         if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
         if (address is not null && !Address.Equals(address)) Address = address;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
         return this;

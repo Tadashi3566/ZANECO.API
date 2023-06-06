@@ -66,8 +66,8 @@ public class Loan : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
         if (!StartDate.Equals(startDate)) StartDate = startDate;
         if (!EndDate.Equals(endDate)) EndDate = endDate;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
 

@@ -26,8 +26,8 @@ public class Customer : AuditableEntity, IAggregateRoot
         Sales = sales;
         Points = points;
 
-        Description = description!.Trim();
-        Notes = notes!.Trim();
+        if (description is not null) Description = description!.Trim();
+        if (notes is not null) Notes = notes!.Trim();
 
         ImagePath = imagePath;
     }
@@ -43,8 +43,8 @@ public class Customer : AuditableEntity, IAggregateRoot
         if (!Sales.Equals(sales)) Sales = sales;
         if (!Points.Equals(points)) Points = points;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
 

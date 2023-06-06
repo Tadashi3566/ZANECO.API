@@ -120,6 +120,13 @@ public class DesignationUpdateRequestHandler : IRequestHandler<DesignationUpdate
 
         await _repoDesignation.UpdateAsync(updatedDesignation, cancellationToken);
 
+        if (designation.IsActive)
+        {
+            // Update Employee Designation
+            var employeeDesignation = employee.Designation(request.DesignationId, designation.StartDate, employee.RegularDate, designation.Area, designation.Department, designation.Division, designation.Section, designation.Position, designation.EmploymentType, salary.Number, salary.Name, salary.Amount, salary.IncrementAmount, designation.RateType, designation.HoursPerDay, designation.TaxType, designation.PayType, schedule.Id, schedule.Name, request.EndDate > DateTime.Today);
+            await _repoEmployee.UpdateAsync(employeeDesignation, cancellationToken);
+        }
+
         return request.Id;
     }
 }

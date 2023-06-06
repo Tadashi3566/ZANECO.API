@@ -27,8 +27,8 @@ public class Raffle : AuditableEntity, IAggregateRoot
         if (name is not null && !Name.Equals(name)) Name = name.Trim();
         if (!RaffleDate.Equals(raffleDate)) RaffleDate = raffleDate!;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
 

@@ -1,4 +1,6 @@
-﻿namespace ZANECO.API.Domain.ISD.HR.PayrollManager;
+﻿using ZANECO.API.Domain.ISD.HR.EmployeeManager;
+
+namespace ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 public class Payroll : AuditableEntity, IAggregateRoot
 {
@@ -37,8 +39,8 @@ public class Payroll : AuditableEntity, IAggregateRoot
         WorkingDays = workingDays;
         PayrollDate = payrollDate;
 
-        Description = description!.Trim();
-        Notes = notes!.Trim();
+        if (description is not null) Description = description!.Trim();
+        if (notes is not null) Notes = notes!.Trim();
     }
 
     public Payroll Update(string payrollType, string employmentType, string name, decimal totalSalary, decimal totalAdditional, decimal totalGross, decimal totalDeduction, decimal totalNet, DateTime startDate, DateTime endDate, int workingDays, DateTime payrollDate, bool isClosed, string? description = "", string? notes = "")
@@ -60,8 +62,8 @@ public class Payroll : AuditableEntity, IAggregateRoot
 
         if (!IsClosed.Equals(isClosed)) IsClosed = isClosed;
 
-        if (description is not null && !Description!.Equals(description)) Description = description.Trim();
-        if (notes is not null && !Notes!.Equals(notes)) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         return this;
     }
