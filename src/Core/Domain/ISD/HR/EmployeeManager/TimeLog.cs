@@ -29,7 +29,7 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
         LogDateTime = logDateTime;
         SyncId = syncId;
 
-        if(syncId > 0)
+        if (syncId > 0)
             SyncDateTime = DateTime.Now;
 
         if (coordinates is not null) Coordinates = coordinates;

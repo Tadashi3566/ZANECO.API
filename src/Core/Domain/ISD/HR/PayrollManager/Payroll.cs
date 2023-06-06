@@ -1,6 +1,4 @@
-﻿using ZANECO.API.Domain.ISD.HR.EmployeeManager;
-
-namespace ZANECO.API.Domain.ISD.HR.PayrollManager;
+﻿namespace ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 public class Payroll : AuditableEntity, IAggregateRoot
 {

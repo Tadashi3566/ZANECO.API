@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using MySqlConnector;
 using Npgsql;
 using Oracle.ManagedDataAccess.Client;
-using System.Data.SqlClient;
 using ZANECO.API.Application.Common.Persistence;
 using ZANECO.API.Infrastructure.Common;
 
