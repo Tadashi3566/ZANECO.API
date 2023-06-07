@@ -41,8 +41,8 @@ public class Ledger : AuditableEntity, IAggregateRoot
     public Ledger(string accountNumber, string? description = "", string? notes = "")
     {
         AccountNumber = accountNumber.Trim().ToUpper();
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public Ledger(DefaultIdType accountId, int idCode, string accountNumber, string billNumber, string billMonth, double lastReading, double kwh, decimal ucnpcsd, decimal ucnpcscc, decimal ucduscc, decimal ucme, decimal ucetr, decimal ucec, decimal uccsr, decimal vatDistribution, decimal vatGeneration, decimal vatTransmission, decimal vatSLGeneration, decimal vatSLTransmission, decimal vat, decimal vatDiscount, decimal debit, decimal credit, decimal balance, string collector, DateTime postingDate)
@@ -78,8 +78,8 @@ public class Ledger : AuditableEntity, IAggregateRoot
         Collector = collector.Trim().ToUpper();
         PostingDate = postingDate;
 
-        //if (description is not null) Description = description.Trim();
-        //if (notes is not null) Notes = notes.Trim();
+        //if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        //if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public Ledger Update(string accountNumber, string? description = "", string? notes = "")

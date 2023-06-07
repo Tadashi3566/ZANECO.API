@@ -24,8 +24,8 @@ public class Group : AuditableEntity, IAggregateRoot
         Amount = amount;
         Manager = manager.Trim();
 
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
         ImagePath = imagePath;
     }
 

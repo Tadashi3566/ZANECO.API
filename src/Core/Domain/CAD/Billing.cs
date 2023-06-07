@@ -70,8 +70,8 @@ public class Billing : AuditableEntity, IAggregateRoot
     public Billing(string accountNumber, string? description = "", string? notes = "")
     {
         AccountNumber = accountNumber.Trim().ToUpper();
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public Billing(DefaultIdType accountId, int idCode, string accountNumber, string billNumber, string billMonth, decimal ucnpcsd, decimal ucnpcscc, decimal ucduscc, decimal ucme, decimal ucetr, decimal ucec, decimal uccsr, decimal vatDistribution, decimal vatGeneration, decimal vatTransmission, decimal vatSLGeneration, decimal vatSLTransmission, decimal vat)
@@ -97,8 +97,8 @@ public class Billing : AuditableEntity, IAggregateRoot
         VATSLTransmission = vatSLTransmission;
         VAT = vat;
 
-        //if (description is not null) Description = description.Trim();
-        //if (notes is not null) Notes = notes.Trim();
+        //if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        //if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public Billing Update(string accountNumber, string? description = "", string? notes = "")

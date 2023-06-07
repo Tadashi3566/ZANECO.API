@@ -80,8 +80,8 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
 
         Status = status;
 
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public Attendance Calculate(bool isOvertime, int lateMinutes, int underTimeMinutes, double totalHours) //DateTime? timeOutDate,

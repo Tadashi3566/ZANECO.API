@@ -29,8 +29,8 @@ public class Salary : AuditableEntity, IAggregateRoot
         IncrementAmount = incrementAmount;
         IsActive = isActive;
 
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public Salary Update(DateTime startDate, DateTime endDate, string rateType, int number, string name, decimal amount, int incrementYears, decimal incrementAmount, bool isActive, string? description = "", string? notes = "")

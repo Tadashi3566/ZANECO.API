@@ -20,8 +20,8 @@ public class Rating : AuditableEntity, IAggregateRoot
         RateName = rateName;
         Comment = comment;
         Reference = reference;
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public Rating Update(int rateNumber, string rateName, string comment, string reference, string? description = "", string? notes = "")

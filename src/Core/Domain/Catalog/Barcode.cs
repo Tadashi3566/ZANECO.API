@@ -23,8 +23,8 @@ public class Barcode : AuditableEntity, IAggregateRoot
         Specification = specification.Trim();
         UnitOfMeasurement = unitOfMeasurement.Trim();
 
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
         ImagePath = imagePath;
     }

@@ -18,8 +18,8 @@ public class Calendar : AuditableEntity, IAggregateRoot
         Day = calendarDate.DayOfWeek.ToString().ToUpper();
         Name = name.Trim().ToUpper();
 
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public Calendar Update(string calendarType, DateTime calendarDate, string name, string? description = "", string? notes = "")

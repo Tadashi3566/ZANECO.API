@@ -10,8 +10,8 @@ public class RatingTemplate : AuditableEntity, IAggregateRoot
     {
         RateId = rateId;
         Comment = comment;
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public RatingTemplate Update(DefaultIdType? rateID, string comment, string? description = "", string? notes = "")

@@ -15,8 +15,8 @@ public class Area : AuditableEntity, IAggregateRoot
         Number = number;
         Code = code;
         Name = name.Trim().ToUpper();
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public Area Update(int number, string code, string name, string? description = "", string? notes = "")

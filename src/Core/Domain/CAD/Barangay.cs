@@ -20,8 +20,8 @@ public class Barangay : AuditableEntity, IAggregateRoot
         AreaId = areaId;
         AreaName = areaName;
         Name = name.Trim().ToUpper();
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public Barangay Update(string areaName, string name, string? description = "", string? notes = "")

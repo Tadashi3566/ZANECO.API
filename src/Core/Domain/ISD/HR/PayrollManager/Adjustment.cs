@@ -31,8 +31,8 @@ public class Adjustment : AuditableEntity, IAggregateRoot
         IsLoan = isLoan;
         IsActive = isActive;
 
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public Adjustment Update(DefaultIdType? groupId, string adjustmentType, string employeeType, int number, string name, decimal amount, string paymentSchedule, bool isOptional, bool isLoan, bool isActive, string? description = "", string? notes = "")

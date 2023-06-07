@@ -24,8 +24,8 @@ public class PowerConsumption : AuditableEntity, IAggregateRoot
         BillMonth = billMonth;
         KWHPurchased = kwhPurchased;
 
-        if (description is not null) Description = description.Trim();
-        if (notes is not null) Notes = notes.Trim();
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
     }
 
     public PowerConsumption Update(string groupCode, string groupName, string billMonth, decimal kWHPurchased, string? description = "", string? notes = "")
