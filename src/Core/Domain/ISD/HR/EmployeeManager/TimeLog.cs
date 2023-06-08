@@ -32,7 +32,7 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
         if (syncId > 0)
             SyncDateTime = DateTime.Now;
 
-        if (coordinates is not null) Coordinates = coordinates;
+        if (coordinates is not null && (Coordinates is null || !Coordinates.Equals(coordinates))) Coordinates = coordinates;
 
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();

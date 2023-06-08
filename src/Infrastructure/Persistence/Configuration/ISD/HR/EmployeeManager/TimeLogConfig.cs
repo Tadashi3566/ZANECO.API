@@ -23,7 +23,5 @@ internal class TimeLogConfig : IEntityTypeConfiguration<TimeLog>
             .HasColumnType("datetime(6)");
         _ = builder.Property(b => b.SyncDateTime)
             .HasColumnType("datetime(6)");
-        _ = builder.Property(b => b.Coordinates)
-            .HasMaxLength(64);
     }
 }
