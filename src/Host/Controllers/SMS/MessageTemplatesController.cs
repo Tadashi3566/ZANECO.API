@@ -12,6 +12,14 @@ public class MessageTemplatesController : VersionedApiController
         return Mediator.Send(request);
     }
 
+    [HttpPost("interruption")]
+    [MustHavePermission(FSHAction.Search, FSHResource.SMS)]
+    [OpenApiOperation("Search MessageTemplates using available filters.", "")]
+    public Task<List<MessageTemplateDto>> InterruptionAsync(MessageTemplateInterruptionRequest request)
+    {
+        return Mediator.Send(request);
+    }
+
     [HttpGet("{id:guid}")]
     [MustHavePermission(FSHAction.View, FSHResource.SMS)]
     [OpenApiOperation("Get MessageTemplate details.", "")]

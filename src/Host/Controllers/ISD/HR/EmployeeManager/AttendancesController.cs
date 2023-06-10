@@ -12,6 +12,14 @@ public class AttendancesController : VersionedApiController
         return Mediator.Send(request);
     }
 
+    [HttpPost("daterange")]
+    [MustHavePermission(FSHAction.Search, FSHResource.Attendance)]
+    [OpenApiOperation("Search Attendance using available filters.", "")]
+    public Task<List<AttendanceDto>> DateRangeAsync(AttendanceDateRangeRequest request)
+    {
+        return Mediator.Send(request);
+    }
+
     [HttpGet("{id:guid}")]
     [MustHavePermission(FSHAction.View, FSHResource.Attendance)]
     [OpenApiOperation("Get Attendance details.", "")]
