@@ -12,6 +12,14 @@ public class EmployeesController : VersionedApiController
         return Mediator.Send(request);
     }
 
+    [HttpPost("mobilesearch")]
+    //[MustHavePermission(FSHAction.Search, FSHResource.Employees)]
+    [OpenApiOperation("Search Employees using available filters.", "")]
+    public Task<List<EmployeeDto>> MobileSearchAsync(EmployeeMobileSearchRequest request)
+    {
+        return Mediator.Send(request);
+    }
+
     [HttpPost("birthday")]
     [MustHavePermission(FSHAction.Search, FSHResource.Employees)]
     [OpenApiOperation("Search Employees with current Birthday.", "")]
