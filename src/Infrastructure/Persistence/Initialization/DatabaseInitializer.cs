@@ -30,7 +30,6 @@ internal class DatabaseInitializer : IDatabaseInitializer
         }
 
         _logger.LogInformation("Developed by: Lowell Carl B. Sumile");
-        //_logger.LogInformation("To Sponsor this project, visit https://opencollective.com/fullstackhero");
     }
 
     public async Task InitializeApplicationDbForTenantAsync(FSHTenantInfo tenant, CancellationToken cancellationToken)

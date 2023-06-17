@@ -49,7 +49,7 @@ public class AttendanceFunctions
             else
                 dtTimeOut = tsScheduleTimOut;
 
-            return (double)(tsScheduleTimeIn.Equals(TimeSpan.Zero) || tsScheduleTimOut.Equals(TimeSpan.Zero)
+            return (tsScheduleTimeIn.Equals(TimeSpan.Zero) || tsScheduleTimOut.Equals(TimeSpan.Zero)
                 ? (tsActualTimeOut - tsActualTimeIn).TotalHours
                 : (dtTimeOut - dtTimeIn).TotalHours);
         }

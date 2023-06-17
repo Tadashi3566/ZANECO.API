@@ -4,13 +4,14 @@ namespace ZANECO.API.Application.SMS.MessageTemplates;
 
 public class MessageTemplateInterruptionRequest : PaginationFilter, IRequest<List<MessageTemplateDto>>
 {
+
 }
 
 public class MessageTemplateByInterruptionRequestSpec : EntitiesByBaseFilterSpec<MessageTemplate, MessageTemplateDto>
 {
     public MessageTemplateByInterruptionRequestSpec(MessageTemplateInterruptionRequest request)
         : base(request) => Query.Where(x => x.Schedule >= DateTime.Today)
-                                .OrderByDescending(c => c.Schedule, !request.HasOrderBy());
+                                .OrderBy(c => c.Schedule);
 }
 
 public class MessageTemplateInterruptionRequestHandler : IRequestHandler<MessageTemplateInterruptionRequest, List<MessageTemplateDto>>

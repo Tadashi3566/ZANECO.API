@@ -15,7 +15,7 @@ public class EmployeesController : VersionedApiController
     [HttpPost("mobilesearch")]
     //[MustHavePermission(FSHAction.Search, FSHResource.Employees)]
     [OpenApiOperation("Search Employees using available filters.", "")]
-    public Task<List<EmployeeDto>> MobileSearchAsync(EmployeeMobileSearchRequest request)
+    public Task<List<EmployeeMobileDto>> MobileSearchAsync(EmployeeMobileSearchRequest request)
     {
         return Mediator.Send(request);
     }
