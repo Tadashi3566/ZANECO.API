@@ -31,6 +31,7 @@ public class TimeLogsController : VersionedApiController
     [HttpPost("mobilecreate")]
     //[MustHavePermission(FSHAction.Create, FSHResource.Attendance)]
     [AllowAnonymous]
+    [TenantIdHeader]
     [OpenApiOperation("Create a new Time Log from Mobile.", "")]
     public Task<DefaultIdType> CreateFromMobileAsync(TimeLogCreateRequest request)
     {

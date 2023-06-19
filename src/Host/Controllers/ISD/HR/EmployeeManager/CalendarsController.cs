@@ -12,6 +12,15 @@ public class CalendarsController : VersionedApiController
         return Mediator.Send(request);
     }
 
+    [HttpPost("mobilesearch")]
+    [AllowAnonymous]
+    [TenantIdHeader]
+    [OpenApiOperation("Get Holiday Schdules through mobile client.", "")]
+    public Task<List<CalendarDto>> MobileSearchAsync(CalendarMobileSearchRequest request)
+    {
+        return Mediator.Send(request);
+    }
+
     [HttpGet("{id:guid}")]
     [MustHavePermission(FSHAction.View, FSHResource.Calendar)]
     [OpenApiOperation("Get Calendar details.", "")]

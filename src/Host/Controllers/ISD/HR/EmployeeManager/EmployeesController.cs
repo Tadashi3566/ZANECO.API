@@ -13,7 +13,8 @@ public class EmployeesController : VersionedApiController
     }
 
     [HttpPost("mobilesearch")]
-    //[MustHavePermission(FSHAction.Search, FSHResource.Employees)]
+    [AllowAnonymous]
+    [TenantIdHeader]
     [OpenApiOperation("Search Employees using available filters.", "")]
     public Task<List<EmployeeMobileDto>> MobileSearchAsync(EmployeeMobileSearchRequest request)
     {

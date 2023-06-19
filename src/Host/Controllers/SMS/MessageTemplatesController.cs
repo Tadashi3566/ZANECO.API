@@ -14,6 +14,7 @@ public class MessageTemplatesController : VersionedApiController
 
     [HttpPost("interruptions")]
     [AllowAnonymous]
+    [TenantIdHeader]
     [OpenApiOperation("Get all incoming power interruptions.", "")]
     public Task<List<MessageTemplateDto>> InterruptionAsync(MessageTemplateInterruptionRequest request)
     {
