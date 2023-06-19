@@ -13,7 +13,7 @@ public class MessageTemplatesController : VersionedApiController
     }
 
     [HttpPost("interruptions")]
-    //[MustHavePermission(FSHAction.Search, FSHResource.SMS)]
+    [AllowAnonymous]
     [OpenApiOperation("Get all incoming power interruptions.", "")]
     public Task<List<MessageTemplateDto>> InterruptionAsync(MessageTemplateInterruptionRequest request)
     {

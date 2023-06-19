@@ -21,6 +21,21 @@ public class CreateTimeLogRequestValidator : CustomValidator<TimeLogCreateReques
 {
     public CreateTimeLogRequestValidator()
     {
+        RuleFor(r => r.EmployeeId)
+            .NotEmpty();
+
+        RuleFor(r => r.Device)
+            .NotEmpty();
+
+        RuleFor(r => r.LogType)
+            .NotEmpty();
+
+        RuleFor(r => r.LogDate)
+            .NotNull();
+
+        RuleFor(r => r.LogDateTime)
+            .NotNull();
+
         RuleFor(p => p.Image)
             .SetNonNullableValidator(new ImageUploadRequestValidator());
     }
