@@ -2,7 +2,7 @@
 
 public class AttendanceFunctions
 {
-    public static int GetLate(DateTime tsScheduleTimIn, DateTime tsActualTimeIn)
+    public int GetLate(DateTime tsScheduleTimIn, DateTime tsActualTimeIn)
     {
         if (!tsActualTimeIn.Equals(TimeSpan.Zero) && !tsScheduleTimIn.Equals(TimeSpan.Zero))
         {
@@ -14,7 +14,7 @@ public class AttendanceFunctions
         return 0;
     }
 
-    public static int GetUnderTime(DateTime tsScheduleTimOut, DateTime tsActualTimeOut)
+    public int GetUnderTime(DateTime tsScheduleTimOut, DateTime tsActualTimeOut)
     {
         if (!tsActualTimeOut.Equals(TimeSpan.Zero) && !tsScheduleTimOut.Equals(TimeSpan.Zero))
         {
@@ -27,7 +27,7 @@ public class AttendanceFunctions
         return 0;
     }
 
-    public static double GetWorkingHours(DateTime tsScheduleTimeIn, DateTime tsActualTimeIn, DateTime tsScheduleTimOut, DateTime tsActualTimeOut, double late = 0, double undertime = 0, bool isOverTime = false)
+    public double GetWorkingHours(DateTime tsScheduleTimeIn, DateTime tsActualTimeIn, DateTime tsScheduleTimOut, DateTime tsActualTimeOut, double late = 0, double undertime = 0, bool isOverTime = false)
     {
         if (isOverTime)
         {
@@ -49,9 +49,9 @@ public class AttendanceFunctions
             else
                 dtTimeOut = tsScheduleTimOut;
 
-            return (tsScheduleTimeIn.Equals(TimeSpan.Zero) || tsScheduleTimOut.Equals(TimeSpan.Zero)
+            return tsScheduleTimeIn.Equals(TimeSpan.Zero) || tsScheduleTimOut.Equals(TimeSpan.Zero)
                 ? (tsActualTimeOut - tsActualTimeIn).TotalHours
-                : (dtTimeOut - dtTimeIn).TotalHours);
+                : (dtTimeOut - dtTimeIn).TotalHours;
         }
 
         return 0;

@@ -44,31 +44,31 @@ public class AttendanceCalculateRequestHandler : IRequestHandler<AttendanceCalcu
             //Check if day attendance is complete
             if (attendance.ActualTimeIn1 is not null && attendance.ActualTimeOut1 is not null && attendance.ActualTimeIn2 is not null && attendance.ActualTimeOut2 is not null)
             {
-                lateMinutes1 = AttendanceFunctions.GetLate(schedTimeIn1, (DateTime)attendance.ActualTimeIn1);
-                undertimeMinutes1 = AttendanceFunctions.GetUnderTime(schedTimeOut1, (DateTime)attendance.ActualTimeOut1);
-                workingHours1 = AttendanceFunctions.GetWorkingHours(schedTimeIn1, (DateTime)attendance.ActualTimeIn1, schedTimeOut1, (DateTime)attendance.ActualTimeOut1, lateMinutes1, undertimeMinutes1);
+                lateMinutes1 = attendanceFunction.GetLate(schedTimeIn1, (DateTime)attendance.ActualTimeIn1);
+                undertimeMinutes1 = attendanceFunction.GetUnderTime(schedTimeOut1, (DateTime)attendance.ActualTimeOut1);
+                workingHours1 = attendanceFunction.GetWorkingHours(schedTimeIn1, (DateTime)attendance.ActualTimeIn1, schedTimeOut1, (DateTime)attendance.ActualTimeOut1, lateMinutes1, undertimeMinutes1);
 
-                lateMinutes2 = AttendanceFunctions.GetLate(schedTimeIn2, (DateTime)attendance.ActualTimeIn2!);
-                undertimeMinutes2 = AttendanceFunctions.GetUnderTime(schedTimeOut2, (DateTime)attendance.ActualTimeOut2);
-                workingHours2 = AttendanceFunctions.GetWorkingHours(schedTimeIn2, (DateTime)attendance.ActualTimeIn2, schedTimeOut2, (DateTime)attendance.ActualTimeOut2, lateMinutes2, undertimeMinutes2, attendance.IsOvertime);
+                lateMinutes2 = attendanceFunction.GetLate(schedTimeIn2, (DateTime)attendance.ActualTimeIn2!);
+                undertimeMinutes2 = attendanceFunction.GetUnderTime(schedTimeOut2, (DateTime)attendance.ActualTimeOut2);
+                workingHours2 = attendanceFunction.GetWorkingHours(schedTimeIn2, (DateTime)attendance.ActualTimeIn2, schedTimeOut2, (DateTime)attendance.ActualTimeOut2, lateMinutes2, undertimeMinutes2, attendance.IsOvertime);
             }
             else if (attendance.ActualTimeIn1 is not null && attendance.ActualTimeOut2 is not null)
             {
-                lateMinutes1 = AttendanceFunctions.GetLate(schedTimeIn1, (DateTime)attendance.ActualTimeIn1);
-                undertimeMinutes1 = AttendanceFunctions.GetUnderTime(schedTimeOut2, (DateTime)attendance.ActualTimeOut2!);
-                workingHours1 = AttendanceFunctions.GetWorkingHours(schedTimeIn1, (DateTime)attendance.ActualTimeIn1, schedTimeOut2, (DateTime)attendance.ActualTimeOut2, lateMinutes1, undertimeMinutes1, attendance.IsOvertime);
+                lateMinutes1 = attendanceFunction.GetLate(schedTimeIn1, (DateTime)attendance.ActualTimeIn1);
+                undertimeMinutes1 = attendanceFunction.GetUnderTime(schedTimeOut2, (DateTime)attendance.ActualTimeOut2!);
+                workingHours1 = attendanceFunction.GetWorkingHours(schedTimeIn1, (DateTime)attendance.ActualTimeIn1, schedTimeOut2, (DateTime)attendance.ActualTimeOut2, lateMinutes1, undertimeMinutes1, attendance.IsOvertime);
             }
         }
         else
         {
             if (attendance.ActualTimeIn1 is not null && attendance.ActualTimeOut1 is not null && attendance.ActualTimeIn2 is not null && attendance.ActualTimeOut2 is not null)
             {
-                workingHours1 = AttendanceFunctions.GetWorkingHours(schedTimeIn1, (DateTime)attendance.ActualTimeIn1, schedTimeOut1, (DateTime)attendance.ActualTimeOut1, isOverTime: attendance.IsOvertime);
-                workingHours2 = AttendanceFunctions.GetWorkingHours(schedTimeIn2, (DateTime)attendance.ActualTimeIn2, schedTimeOut2, (DateTime)attendance.ActualTimeOut2, isOverTime: attendance.IsOvertime);
+                workingHours1 = attendanceFunction.GetWorkingHours(schedTimeIn1, (DateTime)attendance.ActualTimeIn1, schedTimeOut1, (DateTime)attendance.ActualTimeOut1, isOverTime: attendance.IsOvertime);
+                workingHours2 = attendanceFunction.GetWorkingHours(schedTimeIn2, (DateTime)attendance.ActualTimeIn2, schedTimeOut2, (DateTime)attendance.ActualTimeOut2, isOverTime: attendance.IsOvertime);
             }
             else if (attendance.ActualTimeIn1 is not null && attendance.ActualTimeOut2 is not null)
             {
-                workingHours1 = AttendanceFunctions.GetWorkingHours(schedTimeIn1, (DateTime)attendance.ActualTimeIn1, schedTimeOut2, (DateTime)attendance.ActualTimeOut2, isOverTime: attendance.IsOvertime);
+                workingHours1 = attendanceFunction.GetWorkingHours(schedTimeIn1, (DateTime)attendance.ActualTimeIn1, schedTimeOut2, (DateTime)attendance.ActualTimeOut2, isOverTime: attendance.IsOvertime);
             }
         }
 

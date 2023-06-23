@@ -62,7 +62,7 @@ public class AttendanceCreateRequestHandler : IRequestHandler<AttendanceCreateRe
                 if (generated is not null)
                 {
                     var updatedAttendance = generated.UpdateEmployeeName(employee.NameFullInitial());
-                    await _repoAttendance.UpdateAsync(generated, cancellationToken);
+                    await _repoAttendance.UpdateAsync(updatedAttendance, cancellationToken);
                 }
                 else
                 {

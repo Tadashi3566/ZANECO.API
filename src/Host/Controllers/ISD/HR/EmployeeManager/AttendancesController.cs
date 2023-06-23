@@ -54,6 +54,14 @@ public class AttendancesController : VersionedApiController
         return Mediator.Send(new AttendanceDeleteRequest(id));
     }
 
+    [HttpPost("reschedule")]
+    [MustHavePermission(FSHAction.Update, FSHResource.Attendance)]
+    [OpenApiOperation("Attendance Reschedule.", "")]
+    public Task<bool> RescheduleAsync(AttendanceRescheduleRequest request)
+    {
+        return Mediator.Send(request);
+    }
+
     [HttpPost("calculate")]
     [MustHavePermission(FSHAction.Update, FSHResource.Attendance)]
     [OpenApiOperation("Calculate an Attendance.", "")]

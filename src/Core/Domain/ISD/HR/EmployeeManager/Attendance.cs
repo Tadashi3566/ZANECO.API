@@ -92,6 +92,14 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
         if (!UnderTimeMinutes.Equals(underTimeMinutes)) UnderTimeMinutes = underTimeMinutes;
         if (!TotalHours.Equals(totalHours)) TotalHours = totalHours;
 
+        if (DayType.Equals("ON-DUTY"))
+        {
+            if (totalHours > ScheduleHours)
+            {
+                PaidHours = ScheduleHours;
+            }
+        }
+
         return this;
     }
 
@@ -106,14 +114,27 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
 
         if (!IsOvertime.Equals(isOvertime)) IsOvertime = isOvertime;
 
-        if (!ActualTimeIn1.Equals(actualTimeIn1)) ActualTimeIn1 = actualTimeIn1;
-        if (!ActualTimeOut1.Equals(actualTimeOut1)) ActualTimeOut1 = actualTimeOut1;
-        if (!ActualTimeIn2.Equals(actualTimeIn2)) ActualTimeIn2 = actualTimeIn2;
-        if (!ActualTimeOut2.Equals(actualTimeOut2)) ActualTimeOut2 = actualTimeOut2;
+        if (!actualTimeIn1.Equals(default) && !ActualTimeIn1.Equals(actualTimeIn1)) ActualTimeIn1 = actualTimeIn1;
+        if (!actualTimeOut1.Equals(default) && !ActualTimeOut1.Equals(actualTimeOut1)) ActualTimeOut1 = actualTimeOut1;
+        if (!actualTimeIn2.Equals(default) && !ActualTimeIn2.Equals(actualTimeIn2)) ActualTimeIn2 = actualTimeIn2;
+        if (!actualTimeOut2.Equals(default) && !ActualTimeOut2.Equals(actualTimeOut2)) ActualTimeOut2 = actualTimeOut2;
 
         if (!PaidHours.Equals(paidHours)) PaidHours = paidHours;
 
         if (status is not null && !Status!.Equals(status)) Status = status;
+
+        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
+        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+
+        return this;
+    }
+
+    public Attendance Reschedule(DateTime scheduleTimeIn1, DateTime scheduleTimeOut1, DateTime scheduleTimeIn2, DateTime scheduleTimeOut2, string? description = "", string? notes = "")
+    {
+        if (!ScheduleTimeIn1.Equals(scheduleTimeIn1)) ScheduleTimeIn1 = scheduleTimeIn1;
+        if (!ScheduleTimeOut1.Equals(scheduleTimeOut1)) ScheduleTimeOut1 = scheduleTimeOut1;
+        if (!ScheduleTimeIn2.Equals(scheduleTimeIn2)) ScheduleTimeIn2 = scheduleTimeIn2;
+        if (!ScheduleTimeOut2.Equals(scheduleTimeOut2)) ScheduleTimeOut2 = scheduleTimeOut2;
 
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
