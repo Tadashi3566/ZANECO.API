@@ -113,6 +113,7 @@ public class EmployeeCreateRequestHandler : IRequestHandler<EmployeeCreateReques
 
         await _repoEmployee.AddAsync(employee, cancellationToken);
 
+        //Add Employee Contact Number
         if (request.PhoneNumber.Length > 0)
         {
             if (!string.IsNullOrEmpty(imagePath))
@@ -124,11 +125,27 @@ public class EmployeeCreateRequestHandler : IRequestHandler<EmployeeCreateReques
             if (contact == null)
             {
                 var newContact = new Contact("EMPLOYEE", request.Number.ToString(), ClassSms.FormatContactNumber(request.PhoneNumber), employee.FullInitialName(), request.Address, string.Empty, string.Empty, imagePath);
-                await _repoContact.AddAsync(contact!, cancellationToken);
+                await _repoContact.AddAsync(newContact, cancellationToken);
             }
             else
             {
                 var updatedContact = contact.Update("EMPLOYEE", employee.Number.ToString(), ClassSms.FormatContactNumber(request.PhoneNumber), employee.FullInitialName(), request.Address, string.Empty, string.Empty, imagePath);
+                await _repoContact.UpdateAsync(updatedContact!, cancellationToken);
+            }
+        }
+
+        //Emergency Person Contact Number
+        if (request.EmergencyNumber.Length > 0)
+        {
+            var contact = await _repoContact.FirstOrDefaultAsync(new ContactByNumberSpec(ClassSms.FormatContactNumber(request.EmergencyNumber)), cancellationToken);
+            if (contact == null)
+            {
+                var newContact = new Contact("EMERGENCY", request.Number.ToString(), ClassSms.FormatContactNumber(request.EmergencyNumber), request.EmergencyPerson, request.EmergencyAddress, string.Empty, string.Empty, string.Empty);
+                await _repoContact.AddAsync(newContact, cancellationToken);
+            }
+            else
+            {
+                var updatedContact = contact.Update("EMERGENCY", employee.Number.ToString(), ClassSms.FormatContactNumber(request.EmergencyNumber), request.EmergencyPerson, request.EmergencyAddress, string.Empty, string.Empty, string.Empty);
                 await _repoContact.UpdateAsync(updatedContact!, cancellationToken);
             }
         }
