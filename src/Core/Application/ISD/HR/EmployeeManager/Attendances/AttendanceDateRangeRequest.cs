@@ -9,7 +9,7 @@ public class AttendanceDateRangeRequest : PaginationFilter, IRequest<List<Attend
     public DateTime EndDate { get; set; }
 }
 
-public class AttendanceByDateRangeRequestSpec : EntitiesByBaseFilterSpec<Attendance, AttendanceDto>
+public sealed class AttendanceByDateRangeRequestSpec : EntitiesByBaseFilterSpec<Attendance, AttendanceDto>
 {
     public AttendanceByDateRangeRequestSpec(AttendanceDateRangeRequest request)
         : base(request) =>

@@ -9,7 +9,7 @@ public class TimeLogSearchRequest : PaginationFilter, IRequest<PaginationRespons
     public DateTime EndDate { get; set; }
 }
 
-public class TimeLogsBySearchRequestSpec : EntitiesByPaginationFilterSpec<TimeLog, TimeLogDto>
+public sealed class TimeLogsBySearchRequestSpec : EntitiesByPaginationFilterSpec<TimeLog, TimeLogDto>
 {
     public TimeLogsBySearchRequestSpec(TimeLogSearchRequest request)
         : base(request) =>

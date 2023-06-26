@@ -56,7 +56,7 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
         _ = employee ?? throw new NotFoundException("Employee not found.");
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+        if (!employee.IsActive) throw new ArgumentException("Employee is no longer Active");
 
         var existingTimeLog = await _repoTimeLog.FirstOrDefaultAsync(new TimeLogByFileNameSpec(request.Image.Name), cancellationToken);
         if (existingTimeLog is not null) return existingTimeLog.Id;
@@ -69,41 +69,43 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
 
         var attendance = await _repoAttendance.FirstOrDefaultAsync(new AttendanceByDateSpec(request.EmployeeId, request.LogDate!), cancellationToken);
 
-        if (attendance is not null)
+        if (attendance is null)
         {
-            switch (request.LogType)
-            {
-                case "TIMEIN":
-                case "TIMEIN1":
-                    var attendanceTimeIn1 = attendance.TimeIn1(request.LogDateTime.AddMinutes(-1), imagePath);
-                    await _repoAttendance.UpdateAsync(attendanceTimeIn1, cancellationToken);
-                    break;
+            return timeLog.Id;
+        }
 
-                case "TIMEOUT1":
-                    var attendanceTimeOut1 = attendance.TimeOut1(request.LogDateTime, imagePath);
-                    await _repoAttendance.UpdateAsync(attendanceTimeOut1, cancellationToken);
-                    break;
+        switch (request.LogType)
+        {
+            case "TIMEIN":
+            case "TIMEIN1":
+                var attendanceTimeIn1 = attendance.TimeIn1(request.LogDateTime.AddMinutes(-1), imagePath);
+                await _repoAttendance.UpdateAsync(attendanceTimeIn1, cancellationToken);
+                break;
 
-                case "TIMEIN2":
-                    var attendanceTimeIn2 = attendance.TimeIn2(request.LogDateTime, imagePath);
-                    await _repoAttendance.UpdateAsync(attendanceTimeIn2, cancellationToken);
-                    break;
+            case "TIMEOUT1":
+                var attendanceTimeOut1 = attendance.TimeOut1(request.LogDateTime, imagePath);
+                await _repoAttendance.UpdateAsync(attendanceTimeOut1, cancellationToken);
+                break;
 
-                case "TIMEOUT":
-                case "TIMEOUT2":
-                    var attendanceTimeOut2 = attendance.TimeOut2(request.LogDateTime, imagePath);
-                    await _repoAttendance.UpdateAsync(attendanceTimeOut2, cancellationToken);
+            case "TIMEIN2":
+                var attendanceTimeIn2 = attendance.TimeIn2(request.LogDateTime, imagePath);
+                await _repoAttendance.UpdateAsync(attendanceTimeIn2, cancellationToken);
+                break;
 
-                    AttendanceCalculateRequest attendanceCalculateRequest = new()
-                    {
-                        Id = attendance.Id
-                    };
+            case "TIMEOUT":
+            case "TIMEOUT2":
+                var attendanceTimeOut2 = attendance.TimeOut2(request.LogDateTime, imagePath);
+                await _repoAttendance.UpdateAsync(attendanceTimeOut2, cancellationToken);
 
-                    var requestHandler = new AttendanceCalculateRequestHandler(_repoAttendance);
-                    var result = await requestHandler.Handle(attendanceCalculateRequest, cancellationToken);
+                AttendanceCalculateRequest attendanceCalculateRequest = new()
+                {
+                    Id = attendance.Id
+                };
 
-                    break;
-            }
+                var requestHandler = new AttendanceCalculateRequestHandler(_repoAttendance);
+                var result = await requestHandler.Handle(attendanceCalculateRequest, cancellationToken);
+
+                break;
         }
 
         return timeLog.Id;

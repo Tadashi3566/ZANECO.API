@@ -27,14 +27,12 @@ public class AttendanceRescheduleRequestValidator : CustomValidator<AttendanceRe
 public class AttendanceRescheduleRequestHandler : IRequestHandler<AttendanceRescheduleRequest, bool>
 {
     private readonly IRepositoryWithEvents<Attendance> _repoAttendance;
-    private readonly IStringLocalizer<AttendanceRescheduleRequestHandler> _localizer;
 
-    public AttendanceRescheduleRequestHandler(IRepositoryWithEvents<Attendance> repoAttendance, IStringLocalizer<AttendanceRescheduleRequestHandler> localizer) =>
-        (_repoAttendance, _localizer) = (repoAttendance, localizer);
+    public AttendanceRescheduleRequestHandler(IRepositoryWithEvents<Attendance> repoAttendance) => _repoAttendance = repoAttendance;
 
     public async Task<bool> Handle(AttendanceRescheduleRequest request, CancellationToken cancellationToken)
     {
-        DateTime attendanceDate = request.AttendanceDate;
+        var attendanceDate = request.AttendanceDate;
 
         while (attendanceDate <= request.UpToDate)
         {

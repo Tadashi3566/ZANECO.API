@@ -47,54 +47,58 @@ public class AttendanceCreateRequestHandler : IRequestHandler<AttendanceCreateRe
 
         var schedule = await _repoSchedule.GetByIdAsync(employee!.ScheduleId, cancellationToken);
 
-        if (employee is not null && schedule is not null)
+        if (schedule is null)
         {
-            List<DateTime> dateList = new();
+            return DefaultIdType.Empty;
+        }
 
-            for (DateTime date = request.StartDate!; date <= request.EndDate; date = date.AddDays(1))
+        List<DateTime> dateList = new();
+
+        for (var date = request.StartDate!; date <= request.EndDate; date = date.AddDays(1))
+        {
+            dateList.Add(date);
+        }
+
+        foreach (var date in dateList)
+        {
+            var generated = await _repoAttendance.FirstOrDefaultAsync(new AttendanceByDateSpec(request.EmployeeId, date), cancellationToken);
+            if (generated is not null)
             {
-                dateList.Add(date);
+                var updatedAttendance = generated.UpdateEmployeeName(employee.NameFullInitial());
+                await _repoAttendance.UpdateAsync(updatedAttendance, cancellationToken);
             }
-
-            foreach (var date in dateList)
+            else
             {
-                var generated = await _repoAttendance.FirstOrDefaultAsync(new AttendanceByDateSpec(request.EmployeeId, date), cancellationToken);
-                if (generated is not null)
+                string day = date.DayOfWeek.ToString().ToUpper();
+                var scheduleDetail = await _repoScheduleDetail.FirstOrDefaultAsync(new ScheduleDetailByEmployeeScheduleSpec(employee.ScheduleId, day), cancellationToken);
+
+                if (scheduleDetail is null)
                 {
-                    var updatedAttendance = generated.UpdateEmployeeName(employee.NameFullInitial());
-                    await _repoAttendance.UpdateAsync(updatedAttendance, cancellationToken);
+                    continue;
                 }
-                else
+
+                string? description = null;
+                string? notes = null;
+
+                var scheduleDetailId = scheduleDetail.Id;
+                var scheduleTimeIn1 = date + TimeSpan.Parse(scheduleDetail.TimeIn1);
+                var scheduleTimeOut1 = date + TimeSpan.Parse(scheduleDetail.TimeOut1);
+                var scheduleTimeIn2 = date + TimeSpan.Parse(scheduleDetail.TimeIn2);
+                var scheduleTimeOut2 = date + TimeSpan.Parse(scheduleDetail.TimeOut2);
+
+                string dayType = scheduleDetail.ScheduleType;
+
+                // Check if date is calendar
+                var calendar = await _repoCalendar.FirstOrDefaultAsync(new CalendarByDateSpec(date), cancellationToken);
+                if (calendar is not null)
                 {
-                    string day = date.DayOfWeek.ToString().ToUpper();
-                    var scheduleDetail = await _repoScheduleDetail.FirstOrDefaultAsync(new ScheduleDetailByEmployeeScheduleSpec(employee.ScheduleId, day), cancellationToken);
-
-                    if (scheduleDetail is not null)
-                    {
-                        string? description = null;
-                        string? notes = null;
-
-                        Guid scheduleDetailId = scheduleDetail.Id;
-                        DateTime scheduleTimeIn1 = date + TimeSpan.Parse(scheduleDetail.TimeIn1);
-                        DateTime scheduleTimeOut1 = date + TimeSpan.Parse(scheduleDetail.TimeOut1);
-                        DateTime scheduleTimeIn2 = date + TimeSpan.Parse(scheduleDetail.TimeIn2);
-                        DateTime scheduleTimeOut2 = date + TimeSpan.Parse(scheduleDetail.TimeOut2);
-
-                        string dayType = scheduleDetail.ScheduleType;
-
-                        // Check if date is calendar
-                        var calendar = await _repoCalendar.FirstOrDefaultAsync(new CalendarByDateSpec(date), cancellationToken);
-                        if (calendar is not null)
-                        {
-                            dayType = "HOLIDAY";
-                            description = calendar.Name!;
-                            notes = calendar.Description!;
-                        }
-
-                        var attendance = new Attendance(request.EmployeeId, employee.NameFullInitial(), schedule.Id, schedule.Name, dayType, date, scheduleDetailId, day, scheduleDetail.TotalHours, scheduleTimeIn1, scheduleTimeOut1, scheduleTimeIn2, scheduleTimeOut2, "PENDING", description!, notes!);
-                        await _repoAttendance.AddAsync(attendance, cancellationToken);
-                    }
+                    dayType = "HOLIDAY";
+                    description = calendar.Name!;
+                    notes = calendar.Description!;
                 }
+
+                var attendance = new Attendance(request.EmployeeId, employee.NameFullInitial(), schedule.Id, schedule.Name, dayType, date, scheduleDetailId, day, scheduleDetail.TotalHours, scheduleTimeIn1, scheduleTimeOut1, scheduleTimeIn2, scheduleTimeOut2, "PENDING", description!, notes!);
+                await _repoAttendance.AddAsync(attendance, cancellationToken);
             }
         }
 

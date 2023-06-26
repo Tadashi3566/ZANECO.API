@@ -27,10 +27,10 @@ public class AttendanceCalculateRequestHandler : IRequestHandler<AttendanceCalcu
         var attendance = await _repoAttendance.GetByIdAsync(request.Id, cancellationToken);
         _ = attendance ?? throw new NotFoundException("Attendance not found.");
 
-        DateTime schedTimeIn1 = attendance.ScheduleTimeIn1;
-        DateTime schedTimeOut1 = attendance.ScheduleTimeOut1;
-        DateTime schedTimeIn2 = attendance.ScheduleTimeIn2;
-        DateTime schedTimeOut2 = attendance.ScheduleTimeOut2;
+        var schedTimeIn1 = attendance.ScheduleTimeIn1;
+        var schedTimeOut1 = attendance.ScheduleTimeOut1;
+        var schedTimeIn2 = attendance.ScheduleTimeIn2;
+        var schedTimeOut2 = attendance.ScheduleTimeOut2;
 
         var attendanceFunction = new AttendanceFunctions();
         int lateMinutes1 = default!;

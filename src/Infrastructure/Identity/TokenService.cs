@@ -89,7 +89,7 @@ internal class TokenService : ITokenService
     {
         var userPrincipal = GetPrincipalFromExpiredToken(request.Token);
         string? userEmail = userPrincipal.GetEmail();
-        var user = await _userManager.FindByEmailAsync(userEmail) ?? throw new UnauthorizedException(_localizer["auth.failed"]);
+        var user = await _userManager.FindByEmailAsync(userEmail!) ?? throw new UnauthorizedException(_localizer["auth.failed"]);
         if (user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
         {
             //ZANECO.API.Application.Common.Exceptions.UnauthorizedException: 'Invalid Refresh Token.'
@@ -118,7 +118,7 @@ internal class TokenService : ITokenService
         new List<Claim>
         {
             new(ClaimTypes.NameIdentifier, user.Id),
-            new(ClaimTypes.Email, user.Email),
+            new(ClaimTypes.Email, user.Email!),
             new(FSHClaims.Fullname, $"{user.FirstName} {user.LastName}"),
             new(ClaimTypes.Name, user.FirstName ?? string.Empty),
             new(ClaimTypes.Surname, user.LastName ?? string.Empty),

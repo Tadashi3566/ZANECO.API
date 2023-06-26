@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.TimeLogs;
 
-public class TimeLogByIdSpec : Specification<TimeLog, TimeLogDto>, ISingleResultSpecification
+public sealed class TimeLogByIdSpec : Specification<TimeLog, TimeLogDto>, ISingleResultSpecification
 {
-    public TimeLogByIdSpec(DefaultIdType id) => Query.Where(p => p.Id == id);
+    public TimeLogByIdSpec(DefaultIdType id) =>
+        Query.Where(p => p.Id == id);
 }

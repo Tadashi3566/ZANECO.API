@@ -6,9 +6,9 @@ public class PrizeSearchRequest : PaginationFilter, IRequest<PaginationResponse<
 {
 }
 
-public class PrizeBySearchRequestSpec : EntitiesByPaginationFilterSpec<Prize, PrizeDto>
+public sealed class PrizeBySearchRequestSpec : EntitiesByPaginationFilterSpec<Prize, PrizeDto>
 {
-    public PrizeBySearchRequestSpec(PrizeSearchRequest request)
+    public PrizeBySearchRequestSpec(PaginationFilter request)
         : base(request) =>
         Query.OrderBy(c => c.Id, !request.HasOrderBy());
 }
