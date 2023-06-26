@@ -44,12 +44,12 @@ public class CreateTimeLogRequestValidator : CustomValidator<TimeLogCreateReques
 public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest, DefaultIdType>
 {
     private readonly IReadRepository<Employee> _repoEmployee;
-    private readonly IRepositoryWithEvents<TimeLog> _repository;
+    private readonly IRepositoryWithEvents<TimeLog> _repoTimeLog;
     private readonly IRepositoryWithEvents<Attendance> _repoAttendance;
     private readonly IFileStorageService _file;
 
-    public TimeLogCreateRequestHandler(IReadRepository<Employee> repoEmployee, IRepositoryWithEvents<TimeLog> repository, IRepositoryWithEvents<Attendance> repoAttendance, IFileStorageService file) =>
-        (_repoEmployee, _repository, _repoAttendance, _file) = (repoEmployee, repository, repoAttendance, file);
+    public TimeLogCreateRequestHandler(IReadRepository<Employee> repoEmployee, IRepositoryWithEvents<TimeLog> repoTimeLog, IRepositoryWithEvents<Attendance> repoAttendance, IFileStorageService file) =>
+        (_repoEmployee, _repoTimeLog, _repoAttendance, _file) = (repoEmployee, repoTimeLog, repoAttendance, file);
 
     public async Task<DefaultIdType> Handle(TimeLogCreateRequest request, CancellationToken cancellationToken)
     {
@@ -58,15 +58,14 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
         _ = employee ?? throw new NotFoundException("Employee not found.");
         if (!employee.IsActive) throw new Exception("Employee is no longer Active");
 
-        var existingTimeLog = await _repository.FirstOrDefaultAsync(new TimeLogByFileNameSpec(request.Image.Name), cancellationToken);
-        if (existingTimeLog is not null)
-            return existingTimeLog.Id;
+        var existingTimeLog = await _repoTimeLog.FirstOrDefaultAsync(new TimeLogByFileNameSpec(request.Image.Name), cancellationToken);
+        if (existingTimeLog is not null) return existingTimeLog.Id;
 
         string imagePath = await _file.UploadAsync<TimeLog>(request.Image, FileType.Image, cancellationToken);
 
         var timeLog = new TimeLog(request.EmployeeId, employee!.FullName(), request.Device, request.LogType, request.LogDate, request.LogDateTime, request.SyncId, request.Coordinates, request.Description, request.Notes, imagePath);
 
-        await _repository.AddAsync(timeLog, cancellationToken);
+        await _repoTimeLog.AddAsync(timeLog, cancellationToken);
 
         var attendance = await _repoAttendance.FirstOrDefaultAsync(new AttendanceByDateSpec(request.EmployeeId, request.LogDate!), cancellationToken);
 
@@ -94,6 +93,15 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
                 case "TIMEOUT2":
                     var attendanceTimeOut2 = attendance.TimeOut2(request.LogDateTime, imagePath);
                     await _repoAttendance.UpdateAsync(attendanceTimeOut2, cancellationToken);
+
+                    AttendanceCalculateRequest attendanceCalculateRequest = new()
+                    {
+                        Id = attendance.Id
+                    };
+
+                    var requestHandler = new AttendanceCalculateRequestHandler(_repoAttendance);
+                    var result = await requestHandler.Handle(attendanceCalculateRequest, cancellationToken);
+
                     break;
             }
         }

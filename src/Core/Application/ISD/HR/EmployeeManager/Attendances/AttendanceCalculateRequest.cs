@@ -9,20 +9,23 @@ public class AttendanceCalculateRequest : IRequest<DefaultIdType>
 
 public class AttendanceCalculateRequestValidator : CustomValidator<AttendanceCalculateRequest>
 {
+    public AttendanceCalculateRequestValidator()
+    {
+        RuleFor(r => r.Id)
+            .NotEmpty();
+    }
 }
 
 public class AttendanceCalculateRequestHandler : IRequestHandler<AttendanceCalculateRequest, DefaultIdType>
 {
     private readonly IRepositoryWithEvents<Attendance> _repoAttendance;
-    private readonly IStringLocalizer<AttendanceCalculateRequestHandler> _localizer;
 
-    public AttendanceCalculateRequestHandler(IRepositoryWithEvents<Attendance> repoAttendance, IStringLocalizer<AttendanceCalculateRequestHandler> localizer) =>
-        (_repoAttendance, _localizer) = (repoAttendance, localizer);
+    public AttendanceCalculateRequestHandler(IRepositoryWithEvents<Attendance> repoAttendance) => _repoAttendance = repoAttendance;
 
     public async Task<DefaultIdType> Handle(AttendanceCalculateRequest request, CancellationToken cancellationToken)
     {
         var attendance = await _repoAttendance.GetByIdAsync(request.Id, cancellationToken);
-        _ = attendance ?? throw new NotFoundException(string.Format(_localizer["Attendance not found."], request.Id));
+        _ = attendance ?? throw new NotFoundException("Attendance not found.");
 
         DateTime schedTimeIn1 = attendance.ScheduleTimeIn1;
         DateTime schedTimeOut1 = attendance.ScheduleTimeOut1;
@@ -36,8 +39,6 @@ public class AttendanceCalculateRequestHandler : IRequestHandler<AttendanceCalcu
         int undertimeMinutes2 = default!;
         double workingHours1 = default!;
         double workingHours2 = default!;
-
-        //double paidHours = 8;
 
         if (attendance.DayType.Equals("ON-DUTY"))
         {
@@ -71,11 +72,6 @@ public class AttendanceCalculateRequestHandler : IRequestHandler<AttendanceCalcu
                 workingHours1 = attendanceFunction.GetWorkingHours(schedTimeIn1, (DateTime)attendance.ActualTimeIn1, schedTimeOut2, (DateTime)attendance.ActualTimeOut2, isOverTime: attendance.IsOvertime);
             }
         }
-
-        //if ((workingHours1 + workingHours2) < 8)
-        //{
-        //    paidHours = workingHours1 + workingHours2;
-        //}
 
         var calculatedAttendance = attendance.Calculate(attendance.IsOvertime, lateMinutes1 + lateMinutes2, undertimeMinutes1 + undertimeMinutes2, workingHours1 + workingHours2);
 
