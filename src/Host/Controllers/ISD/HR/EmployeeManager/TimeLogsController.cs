@@ -28,16 +28,6 @@ public class TimeLogsController : VersionedApiController
         return Mediator.Send(request);
     }
 
-    [HttpPost("mobilecreate")]
-    //[MustHavePermission(FSHAction.Create, FSHResource.Attendance)]
-    [AllowAnonymous]
-    [TenantIdHeader]
-    [OpenApiOperation("Create a new Time Log from Mobile.", "")]
-    public Task<DefaultIdType> CreateFromMobileAsync(TimeLogCreateRequest request)
-    {
-        return Mediator.Send(request);
-    }
-
     [HttpPut("{id:guid}")]
     [MustHavePermission(FSHAction.Update, FSHResource.Attendance)]
     [OpenApiOperation("Update a TimeLogs.", "")]

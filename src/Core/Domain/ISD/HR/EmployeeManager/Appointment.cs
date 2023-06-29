@@ -131,7 +131,6 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
         if (ApprovedBy.Equals(approver))
         {
             ApprovedOn = DateTime.Now;
-            ApproverName = approverName;
             Status = "APPROVED";
         }
 
@@ -144,7 +143,6 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
         {
             RecommendedOn = null;
             ApprovedOn = null;
-            ApproverName = approverName;
             Status = "DISAPPROVED";
         }
 

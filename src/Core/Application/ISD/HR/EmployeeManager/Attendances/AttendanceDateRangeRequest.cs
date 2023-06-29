@@ -31,9 +31,7 @@ public class AttendanceDateRangeRequestHandler : IRequestHandler<AttendanceDateR
     public async Task<List<AttendanceDto>> Handle(AttendanceDateRangeRequest request, CancellationToken cancellationToken)
     {
         var spec = new AttendanceByDateRangeRequestSpec(request);
-
         var result = await _repoAttendance.ListAsync(spec, cancellationToken);
-
         return result.ToList();
     }
 }

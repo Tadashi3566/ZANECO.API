@@ -10,7 +10,7 @@ public class AppointmentSearchRequest : PaginationFilter, IRequest<PaginationRes
     public DateTime EndDate { get; set; }
 }
 
-public class AppointmentsBySearchRequestSpec : EntitiesByPaginationFilterSpec<Appointment, AppointmentDto>
+public sealed class AppointmentsBySearchRequestSpec : EntitiesByPaginationFilterSpec<Appointment, AppointmentDto>
 {
     public AppointmentsBySearchRequestSpec(AppointmentSearchRequest request)
         : base(request) =>
