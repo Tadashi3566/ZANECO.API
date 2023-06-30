@@ -2,20 +2,12 @@
 
 namespace ZANECO.API.Host.Controllers.ISD.HR.EmployeeManager;
 
-public class AttendancesController : VersionedApiController
+public class AttendanceController : VersionedApiController
 {
     [HttpPost("search")]
     [MustHavePermission(FSHAction.Search, FSHResource.Attendance)]
     [OpenApiOperation("Search Attendance using available filters.", "")]
     public Task<PaginationResponse<AttendanceDto>> SearchAsync(AttendanceSearchRequest request)
-    {
-        return Mediator.Send(request);
-    }
-
-    [HttpPost("mobilesearch")]
-    //[MustHavePermission(FSHAction.Search, FSHResource.Attendance)]
-    [OpenApiOperation("Search Attendance using available filters.", "")]
-    public Task<List<AttendanceDto>> DateRangeAsync(AttendanceDateRangeRequest request)
     {
         return Mediator.Send(request);
     }

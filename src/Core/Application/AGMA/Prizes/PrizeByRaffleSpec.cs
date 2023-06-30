@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.AGMA.Prizes;
 
-public class PrizeByRaffleSpec : Specification<Prize>
+public sealed class PrizeByRaffleSpec : Specification<Prize>
 {
     public PrizeByRaffleSpec(Guid raffleId) =>
         Query.Where(p => p.RaffleId == raffleId);

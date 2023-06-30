@@ -12,15 +12,6 @@ public class EmployeesController : VersionedApiController
         return Mediator.Send(request);
     }
 
-    [HttpPost("mobilesearch")]
-    [AllowAnonymous]
-    [TenantIdHeader]
-    [OpenApiOperation("Search Employees using available filters.", "")]
-    public Task<List<EmployeeMobileDto>> MobileSearchAsync(EmployeeMobileSearchRequest request)
-    {
-        return Mediator.Send(request);
-    }
-
     [HttpPost("birthday")]
     [MustHavePermission(FSHAction.Search, FSHResource.Employees)]
     [OpenApiOperation("Search Employees with current Birthday.", "")]
