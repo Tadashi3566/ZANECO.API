@@ -9,12 +9,12 @@ public class EmployeeAdjustment : AuditableEntity, IAggregateRoot
     }
 
     public virtual Employee Employee { get; private set; } = default!;
-    public DefaultIdType EmployeeId { get; private set; } = default!;
+    public DefaultIdType EmployeeId { get; private set; }
     public string EmployeeName { get; private set; } = default!;
-    public DefaultIdType AdjustmentId { get; private set; } = default!;
+    public DefaultIdType AdjustmentId { get; private set; }
     public string AdjustmentType { get; private set; } = default!;
     public string AdjustmentName { get; private set; } = default!;
-    public decimal Amount { get; private set; } = default!;
+    public decimal Amount { get; private set; }
     public string PaymentSchedule { get; private set; } = default!;
     public DateTime StartDate { get; private set; }
     public DateTime? EndDate { get; private set; }
@@ -37,7 +37,7 @@ public class EmployeeAdjustment : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public EmployeeAdjustment Update(string employeeName, DefaultIdType? adjustmentId, string adjustmentType, string paymentSchedule, string adjustmentName, decimal amount, DateTime startDate, DateTime endDate, string? description, string? notes, string? imagePath)
@@ -57,7 +57,7 @@ public class EmployeeAdjustment : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

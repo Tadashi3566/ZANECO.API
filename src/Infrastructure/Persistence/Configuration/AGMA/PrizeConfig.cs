@@ -10,11 +10,24 @@ public class PrizeConfig : IEntityTypeConfiguration<Prize>
     public void Configure(EntityTypeBuilder<Prize> builder)
     {
         //_ = builder.ToTable("Prizes", SchemaNames.ZANECO)
-        _ = builder.IsMultiTenant();
+        _ = builder
+            .IsMultiTenant();
+
+        _ = builder.Property(b => b.RaffleName)
+            .IsRequired()
+            .HasDefaultValue(default)
+            .HasMaxLength(128);
 
         _ = builder.Property(b => b.PrizeType)
+            .IsRequired()
+            .HasDefaultValue(default)
             .HasMaxLength(16);
+
+        _ = builder.Property(b => b.Winners)
+            .HasDefaultValue(0);
+
         _ = builder.Property(b => b.Name)
+            .IsRequired()
             .HasMaxLength(128);
     }
 }

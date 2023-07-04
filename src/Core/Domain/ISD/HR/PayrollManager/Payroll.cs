@@ -9,15 +9,15 @@ public class Payroll : AuditableEntity, IAggregateRoot
     public string PayrollType { get; private set; } = default!; // FULL MONTH, MONTH-MID & MONTH-END
     public string EmploymentType { get; private set; } = default!; // REGULAR, JO etc.
     public string Name { get; private set; } = default!;
-    public decimal TotalSalary { get; private set; } = default!;
-    public decimal TotalAdditional { get; private set; } = default!;
-    public decimal TotalGross { get; private set; } = default!;
-    public decimal TotalDeduction { get; private set; } = default!;
-    public decimal TotalNet { get; private set; } = default!;
-    public DateTime StartDate { get; private set; } = default!;
-    public DateTime EndDate { get; private set; } = default!;
-    public DateTime PayrollDate { get; private set; } = default!;
-    public int WorkingDays { get; private set; } = default!;
+    public decimal TotalSalary { get; private set; }
+    public decimal TotalAdditional { get; private set; }
+    public decimal TotalGross { get; private set; }
+    public decimal TotalDeduction { get; private set; }
+    public decimal TotalNet { get; private set; }
+    public DateTime StartDate { get; private set; }
+    public DateTime EndDate { get; private set; }
+    public DateTime PayrollDate { get; private set; }
+    public int WorkingDays { get; private set; }
     public bool IsClosed { get; private set; }
 
     public Payroll(string payrollType, string employmentType, string name, decimal totalSalary, decimal totalAdditional, decimal totalGross, decimal totalDeduction, decimal totalNet, DateTime startDate, DateTime endDate, int workingDays, DateTime payrollDate, string? description = "", string? notes = "")

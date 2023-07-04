@@ -12,42 +12,42 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
     [ForeignKey("EmployeeId")]
     public virtual Employee Employee { get; private set; } = default!;
 
-    public DefaultIdType EmployeeId { get; private set; } = default!;
+    public DefaultIdType EmployeeId { get; private set; }
     public string EmployeeName { get; private set; } = default!;
 
     public virtual Schedule Schedule { get; private set; } = default!;
-    public DefaultIdType ScheduleId { get; private set; } = default!;
+    public DefaultIdType ScheduleId { get; private set; }
     public string ScheduleName { get; private set; } = default!;
 
     public virtual ScheduleDetail ScheduleDetail { get; private set; } = default!;
-    public DefaultIdType ScheduleDetailId { get; private set; } = default!;
+    public DefaultIdType ScheduleDetailId { get; private set; }
     public string ScheduleDetailDay { get; private set; } = default!;
-    public int ScheduleHours { get; private set; } = default!;
+    public int ScheduleHours { get; private set; }
 
     public virtual Payroll Payroll { get; private set; } = default!;
     public DefaultIdType? PayrollId { get; private set; }
     public string? PayrollName { get; private set; }
 
     public string DayType { get; private set; } = default!;
-    public DateTime AttendanceDate { get; private set; } = default!;
+    public DateTime AttendanceDate { get; private set; }
 
     public bool IsOvertime { get; private set; }
 
-    public DateTime ScheduleTimeIn1 { get; private set; } = default!;
-    public DateTime ScheduleTimeOut1 { get; private set; } = default!;
-    public DateTime ScheduleTimeIn2 { get; private set; } = default!;
-    public DateTime ScheduleTimeOut2 { get; private set; } = default!;
+    public DateTime ScheduleTimeIn1 { get; private set; }
+    public DateTime ScheduleTimeOut1 { get; private set; }
+    public DateTime ScheduleTimeIn2 { get; private set; }
+    public DateTime ScheduleTimeOut2 { get; private set; }
 
     public DateTime? ActualTimeIn1 { get; private set; }
     public DateTime? ActualTimeOut1 { get; private set; }
     public DateTime? ActualTimeIn2 { get; private set; }
     public DateTime? ActualTimeOut2 { get; private set; }
 
-    public int LateMinutes { get; private set; } = default!;
-    public int UnderTimeMinutes { get; private set; } = default!;
-    public double TotalHours { get; private set; } = default!;
-    public double PaidHours { get; private set; } = default!;
-    public bool IsPaid { get; private set; } = default!;
+    public int LateMinutes { get; private set; }
+    public int UnderTimeMinutes { get; private set; }
+    public double TotalHours { get; private set; }
+    public double PaidHours { get; private set; }
+    public bool IsPaid { get; private set; }
 
     public string? ImagePathIn1 { get; private set; }
     public string? ImagePathOut1 { get; private set; }

@@ -11,11 +11,11 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
     public string EmployeeName { get; private set; } = default!;
     public string AppointmentType { get; private set; } = default!;
     public string Subject { get; private set; } = default!;
-    public DateTime StartDateTime { get; private set; } = default!;
-    public DateTime EndDateTime { get; private set; } = default!;
+    public DateTime StartDateTime { get; private set; }
+    public DateTime EndDateTime { get; private set; }
     public string? Location { get; private set; }
-    public int Hours { get; private set; } = default!;
-    public bool IsAllDay { get; private set; } = default!;
+    public int Hours { get; private set; }
+    public bool IsAllDay { get; private set; }
 
     public bool IsReadonly { get; private set; } = default!;
     public bool IsBlock { get; private set; } = default!;
@@ -56,7 +56,7 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
 
         Status = "PENDING";
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     //public Appointment Update(string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, bool isReadOnly, bool isBlock, int? recurrenceId, string? recurrenceRule, string? recurrenceException, string? cssClass, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description, string? notes, string imagePath)
@@ -83,7 +83,7 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!(imagePath is null || ImagePath?.Equals(imagePath) is true)) ImagePath = imagePath;
+        if (!(imagePath is null || ImagePath?.Equals(imagePath) is true)) if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

@@ -22,7 +22,7 @@ public class Dependent : AuditableEntity, IAggregateRoot
         Relation = relation;
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Dependent Update(DefaultIdType? employeeId, string employeeName, string name, string gender, DateTime? birthDate, string relation, string? description, string? notes, string? imagePath)
@@ -39,7 +39,7 @@ public class Dependent : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
         return this;
     }
 

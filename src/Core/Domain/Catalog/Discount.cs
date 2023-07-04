@@ -7,7 +7,7 @@ public class Discount : AuditableEntity, IAggregateRoot
     }
 
     public string Name { get; private set; } = default!;
-    public float Percentage { get; private set; } = default!;
+    public float Percentage { get; private set; }
 
     public Discount(string name, float percentage, string? description = "", string? notes = "")
     {

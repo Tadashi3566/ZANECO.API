@@ -10,9 +10,9 @@ public class Customer : AuditableEntity, IAggregateRoot
     public string Name { get; private set; } = default!;
     public string Address { get; private set; } = default!;
     public string PhoneNumber { get; private set; } = default!;
-    public decimal Investment { get; private set; } = default!;
-    public decimal Sales { get; private set; } = default!;
-    public int Points { get; private set; } = default!;
+    public decimal Investment { get; private set; }
+    public decimal Sales { get; private set; }
+    public int Points { get; private set; }
     public string? ImagePath { get; private set; }
 
     public Customer(string code, string name, string address, string phoneNumber, decimal investment, decimal sales, int points, string? description, string? notes, string? imagePath)
@@ -29,7 +29,7 @@ public class Customer : AuditableEntity, IAggregateRoot
         if (description is not null) Description = description!.Trim();
         if (notes is not null) Notes = notes!.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Customer Update(string code, string name, string address, string phoneNumber, decimal investment, decimal sales, int points, string? description, string? notes, string? imagePath)
@@ -46,7 +46,7 @@ public class Customer : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

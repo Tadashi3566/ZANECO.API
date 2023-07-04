@@ -3,16 +3,16 @@
 public class Contribution : AuditableEntity, IAggregateRoot
 {
     public string ContributionType { get; private set; } = default!;
-    public DateTime StartDate { get; private set; } = default!;
-    public DateTime EndDate { get; private set; } = default!;
-    public decimal RangeStart { get; private set; } = default!;
-    public decimal RangeEnd { get; private set; } = default!;
-    public decimal EmployerContribution { get; private set; } = default!;
-    public decimal EmployeeContribution { get; private set; } = default!;
-    public decimal TotalContribution { get; private set; } = default!;
-    public decimal Percentage { get; private set; } = default!;
+    public DateTime StartDate { get; private set; }
+    public DateTime EndDate { get; private set; }
+    public decimal RangeStart { get; private set; }
+    public decimal RangeEnd { get; private set; }
+    public decimal EmployerContribution { get; private set; }
+    public decimal EmployeeContribution { get; private set; }
+    public decimal TotalContribution { get; private set; }
+    public decimal Percentage { get; private set; }
 
-    public bool IsFixed { get; private set; } = default!;
+    public bool IsFixed { get; private set; }
 
     public Contribution(string contributionType, DateTime startDate, DateTime endDate, decimal rangeStart, decimal rangeEnd, decimal employerContribution, decimal employeeContribution, decimal totalContribution, decimal percentage, bool isFixed, string? description = "", string? notes = "")
     {

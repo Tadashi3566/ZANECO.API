@@ -7,33 +7,33 @@ public class Ledger : AuditableEntity, IAggregateRoot
     }
 
     public virtual Account Account { get; private set; } = default!;
-    public DefaultIdType AccountId { get; private set; } = default!;
-    public int IdCode { get; private set; } = default!;
+    public DefaultIdType AccountId { get; private set; }
+    public int IdCode { get; private set; }
     public string AccountNumber { get; private set; } = default!;
     public string BillMonth { get; private set; } = default!;
     public string BillNumber { get; private set; } = default!;
-    public double LastReading { get; private set; } = default!;
-    public double KWH { get; private set; } = default!;
+    public double LastReading { get; private set; }
+    public double KWH { get; private set; }
 
-    public decimal UCNPCSD { get; private set; } = default!;
-    public decimal UCNPCSCC { get; private set; } = default!;
-    public decimal UCDUSCC { get; private set; } = default!;
-    public decimal UCME { get; private set; } = default!;
-    public decimal UCETR { get; private set; } = default!;
-    public decimal UCEC { get; private set; } = default!;
-    public decimal UCCSR { get; private set; } = default!;
+    public decimal UCNPCSD { get; private set; }
+    public decimal UCNPCSCC { get; private set; }
+    public decimal UCDUSCC { get; private set; }
+    public decimal UCME { get; private set; }
+    public decimal UCETR { get; private set; }
+    public decimal UCEC { get; private set; }
+    public decimal UCCSR { get; private set; }
 
-    public decimal VATDistribution { get; private set; } = default!;
-    public decimal VATGeneration { get; private set; } = default!;
-    public decimal VATTransmission { get; private set; } = default!;
-    public decimal VATSLGeneration { get; private set; } = default!;
-    public decimal VATSLTransmission { get; private set; } = default!;
-    public decimal VAT { get; private set; } = default!;
-    public decimal VATDiscount { get; private set; } = default!;
+    public decimal VATDistribution { get; private set; }
+    public decimal VATGeneration { get; private set; }
+    public decimal VATTransmission { get; private set; }
+    public decimal VATSLGeneration { get; private set; }
+    public decimal VATSLTransmission { get; private set; }
+    public decimal VAT { get; private set; }
+    public decimal VATDiscount { get; private set; }
 
-    public decimal Debit { get; private set; } = default!;
-    public decimal Credit { get; private set; } = default!;
-    public decimal Balance { get; private set; } = default!;
+    public decimal Debit { get; private set; }
+    public decimal Credit { get; private set; }
+    public decimal Balance { get; private set; }
 
     public string? Collector { get; private set; } = string.Empty;
     public DateTime PostingDate { get; private set; }

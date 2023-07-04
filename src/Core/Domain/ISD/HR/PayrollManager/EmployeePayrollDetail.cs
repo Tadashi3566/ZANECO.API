@@ -5,21 +5,21 @@ namespace ZANECO.API.Domain.ISD.HR.PayrollManager;
 public class EmployeePayrollDetail : AuditableEntity, IAggregateRoot
 {
     public virtual Employee Employee { get; private set; } = default!;
-    public DefaultIdType EmployeeId { get; private set; } = default!;
+    public DefaultIdType EmployeeId { get; private set; }
     public string EmployeeName { get; private set; } = default!;
 
     public virtual Payroll Payroll { get; private set; } = default!;
-    public DefaultIdType PayrollId { get; private set; } = default!;
+    public DefaultIdType PayrollId { get; private set; }
     public string PayrollName { get; private set; } = default!;
 
-    public DefaultIdType AdjustmentId { get; private set; } = default!;
+    public DefaultIdType AdjustmentId { get; private set; }
     public string AdjustmentType { get; private set; } = default!;
     public string AdjustmentName { get; private set; } = default!;
 
-    public decimal Amount { get; private set; } = default!;
-    public DateTime StartDate { get; private set; } = default!;
-    public DateTime EndDate { get; private set; } = default!;
-    public DateTime PayrollDate { get; private set; } = default!;
+    public decimal Amount { get; private set; }
+    public DateTime StartDate { get; private set; }
+    public DateTime EndDate { get; private set; }
+    public DateTime PayrollDate { get; private set; }
 
     public string Contributor { get; private set; }
 

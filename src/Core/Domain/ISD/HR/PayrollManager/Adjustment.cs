@@ -2,13 +2,13 @@
 
 public class Adjustment : AuditableEntity, IAggregateRoot
 {
-    public DefaultIdType GroupId { get; private set; } = default!;
+    public DefaultIdType GroupId { get; private set; }
     public string AdjustmentType { get; private set; } = default!;
     public string EmployeeType { get; private set; } = default!;
-    public int Number { get; private set; } = default!;
+    public int Number { get; private set; }
     public string Name { get; private set; } = default!;
 
-    public decimal Amount { get; private set; } = default!;
+    public decimal Amount { get; private set; }
 
     public string PaymentSchedule { get; private set; } = default!;
     public bool IsOptional { get; private set; }

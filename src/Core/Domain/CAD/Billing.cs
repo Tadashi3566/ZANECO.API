@@ -7,8 +7,8 @@ public class Billing : AuditableEntity, IAggregateRoot
     }
 
     public virtual Account Account { get; private set; } = default!;
-    public DefaultIdType AccountId { get; private set; } = default!;
-    public int IdCode { get; private set; } = default!;
+    public DefaultIdType AccountId { get; private set; }
+    public int IdCode { get; private set; }
     public string AccountNumber { get; private set; } = default!;
     public string BillMonth { get; private set; } = default!;
     public string BillNumber { get; private set; } = default!;
@@ -55,12 +55,12 @@ public class Billing : AuditableEntity, IAggregateRoot
     public decimal OtherSeniorCitizenAdjustment { get; private set; } = default!;
     public decimal SystemLossUnderRecovery { get; private set; } = default!;
 
-    public decimal VAT { get; private set; } = default!;
-    public decimal VATGeneration { get; private set; } = default!;
-    public decimal VATTransmission { get; private set; } = default!;
-    public decimal VATDistribution { get; private set; } = default!;
-    public decimal VATSLGeneration { get; private set; } = default!;
-    public decimal VATSLTransmission { get; private set; } = default!;
+    public decimal VAT { get; private set; }
+    public decimal VATGeneration { get; private set; }
+    public decimal VATTransmission { get; private set; }
+    public decimal VATDistribution { get; private set; }
+    public decimal VATSLGeneration { get; private set; }
+    public decimal VATSLTransmission { get; private set; }
 
     public decimal VATPowerActRecovery { get; private set; } = default!;
     public decimal VATCapex { get; private set; } = default!;

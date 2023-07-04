@@ -7,7 +7,7 @@ public class ScheduleDetail : AuditableEntity, IAggregateRoot
     }
 
     public virtual Schedule Schedule { get; private set; } = default!;
-    public DefaultIdType ScheduleId { get; private set; } = default!;
+    public DefaultIdType ScheduleId { get; private set; }
     public string ScheduleName { get; private set; } = string.Empty;
     public string ScheduleType { get; private set; } = default!; // DAYOFF, WORK
     public string Day { get; private set; } = default!; // MONDAY, TUESDAY, WEDNESDAY ...
@@ -15,7 +15,7 @@ public class ScheduleDetail : AuditableEntity, IAggregateRoot
     public string TimeOut1 { get; private set; } = default!;
     public string TimeIn2 { get; private set; } = default!;
     public string TimeOut2 { get; private set; } = default!;
-    public int TotalHours { get; private set; } = default!;
+    public int TotalHours { get; private set; }
 
     public ScheduleDetail(DefaultIdType scheduleId, string scheduleName, string scheduleType, string day, string timeIn1, string timeOut1, string timeIn2, string timeOut2, int totalHours, string? description = "", string? notes = "")
     {

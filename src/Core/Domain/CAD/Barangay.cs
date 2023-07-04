@@ -11,7 +11,7 @@ public class Barangay : AuditableEntity, IAggregateRoot
     [ForeignKey("AreaId")]
     public virtual Area Area { get; private set; } = default!;
 
-    public DefaultIdType AreaId { get; private set; } = default!;
+    public DefaultIdType AreaId { get; private set; }
     public string AreaName { get; private set; } = default!;
     public string Name { get; private set; } = default!;
 

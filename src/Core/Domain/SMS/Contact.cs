@@ -19,7 +19,7 @@ public class Contact : AuditableEntity, IAggregateRoot
 
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Contact Update(string contactType, string reference, string phoneNumber, string name, string address, string? description, string? notes, string? imagePath)
@@ -32,7 +32,7 @@ public class Contact : AuditableEntity, IAggregateRoot
 
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

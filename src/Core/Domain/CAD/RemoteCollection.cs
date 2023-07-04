@@ -2,13 +2,13 @@
 
 public class RemoteCollection : AuditableEntity, IAggregateRoot
 {
-    public double CollectorId { get; private set; } = default!;
+    public double CollectorId { get; private set; }
     public string Collector { get; private set; } = default!;
     public string Reference { get; private set; } = default!;
-    public DateTime TransactionDate { get; private set; } = default!;
-    public DateTime ReportDate { get; private set; } = default!;
+    public DateTime TransactionDate { get; private set; }
+    public DateTime ReportDate { get; private set; }
     public string AccountNumber { get; private set; } = default!;
-    public decimal Amount { get; private set; } = default!;
+    public decimal Amount { get; private set; }
     public string Name { get; private set; } = default!;
     public string? OrNumber { get; private set; }
     public string? ImagePath { get; private set; }
@@ -30,7 +30,7 @@ public class RemoteCollection : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public RemoteCollection Update(string orNumber, string? description, string? notes, string? imagePath)
@@ -40,7 +40,7 @@ public class RemoteCollection : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

@@ -9,11 +9,11 @@ public class PowerConsumption : AuditableEntity, IAggregateRoot
     }
 
     public virtual Group Group { get; private set; } = default!;
-    public Guid GroupId { get; private set; } = default!;
+    public Guid GroupId { get; private set; }
     public string GroupCode { get; private set; } = default!;
     public string GroupName { get; private set; } = default!;
     public string BillMonth { get; private set; } = default!;
-    public decimal KWHPurchased { get; private set; } = default!;
+    public decimal KWHPurchased { get; private set; }
 
     public PowerConsumption(Guid groupId, string groupCode, string groupName, string billMonth, decimal kwhPurchased, string? description = "", string? notes = "")
     {

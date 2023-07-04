@@ -13,20 +13,30 @@ public class GroupConfig : IEntityTypeConfiguration<Group>
             .IsMultiTenant();
 
         _ = builder.Property(b => b.Application)
+            .IsRequired()
             .HasMaxLength(64);
+
         _ = builder.Property(b => b.Parent)
+            .IsRequired()
             .HasMaxLength(64);
+
         _ = builder.Property(b => b.Tag)
-            .HasMaxLength(64)
-            .HasDefaultValue(string.Empty);
+            .HasDefaultValue(default)
+            .HasMaxLength(64);
+
         _ = builder.Property(b => b.Code)
+            .IsRequired()
             .HasMaxLength(64);
+
         _ = builder.Property(b => b.Name)
+            .IsRequired()
             .HasMaxLength(64);
+
         _ = builder.Property(b => b.Amount)
             .HasColumnType("Decimal(12,2)")
             .HasDefaultValue(0);
-        _ = builder.Property(b => b.Manager)
+
+        _ = builder.Property(b => b.EmployeeName)
             .HasMaxLength(1024);
     }
 }

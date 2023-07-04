@@ -12,7 +12,26 @@ public class WinnerConfig : IEntityTypeConfiguration<Winner>
         _ = builder
             .IsMultiTenant();
 
+        _ = builder.Property(b => b.RaffleId)
+            .IsRequired();
+
+        _ = builder.Property(b => b.RaffleName)
+            .IsRequired()
+            .HasMaxLength(1024);
+
+        _ = builder.Property(b => b.PrizeId)
+            .IsRequired();
+
+        _ = builder.Property(b => b.PrizeName)
+            .IsRequired()
+            .HasMaxLength(1024);
+
         _ = builder.Property(b => b.Name)
+            .IsRequired()
+            .HasMaxLength(1024);
+
+        _ = builder.Property(b => b.Address)
+            .IsRequired()
             .HasMaxLength(1024);
     }
 }

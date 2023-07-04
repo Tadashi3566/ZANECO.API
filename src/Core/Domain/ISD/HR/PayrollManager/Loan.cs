@@ -9,21 +9,21 @@ public class Loan : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
     }
 
     public virtual Employee Employee { get; private set; } = default!;
-    public DefaultIdType EmployeeId { get; private set; } = default!;
+    public DefaultIdType EmployeeId { get; private set; }
     public string EmployeeName { get; private set; } = default!;
 
     public virtual Adjustment Adjustment { get; private set; } = default!;
-    public DefaultIdType AdjustmentId { get; private set; } = default!;
+    public DefaultIdType AdjustmentId { get; private set; }
     public string AdjustmentName { get; private set; } = default!;
 
-    public decimal Amount { get; private set; } = default!;
-    public DateTime DateReleased { get; private set; } = default!;
+    public decimal Amount { get; private set; }
+    public DateTime DateReleased { get; private set; }
     public string PaymentSchedule { get; private set; } = default!;
-    public int Months { get; private set; } = default!;
-    public decimal Ammortization { get; private set; } = default!;
+    public int Months { get; private set; }
+    public decimal Ammortization { get; private set; }
 
-    public DateTime StartDate { get; private set; } = default!;
-    public DateTime EndDate { get; private set; } = default!;
+    public DateTime StartDate { get; private set; }
+    public DateTime EndDate { get; private set; }
     public string? ImagePath { get; private set; }
 
     public Loan(DefaultIdType employeeId, string employeeName, DefaultIdType adjustmentId, string adjustmentName, decimal amount, DateTime dateReleased, string paymentSchedule, int months, decimal ammortization, DateTime startDate, DateTime endDate, string? description, string? notes, string? imagePath)
@@ -47,7 +47,7 @@ public class Loan : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Loan Update(string employeeName, DefaultIdType adjustmentId, string adjustmentName, decimal amount, DateTime dateReleased, string paymentSchedule, int months, decimal ammortization, DateTime startDate, DateTime endDate, string? description, string? notes, string? imagePath)
@@ -69,7 +69,7 @@ public class Loan : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

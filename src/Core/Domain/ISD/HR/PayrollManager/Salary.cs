@@ -6,15 +6,15 @@ public class Salary : AuditableEntity, IAggregateRoot
     {
     }
 
-    public DateTime StartDate { get; private set; } = default!;
-    public DateTime EndDate { get; private set; } = default!;
+    public DateTime StartDate { get; private set; }
+    public DateTime EndDate { get; private set; }
     public string RateType { get; private set; } = default!;
-    public int Number { get; private set; } = default!;
+    public int Number { get; private set; }
     public string Name { get; private set; } = default!;
-    public decimal Amount { get; private set; } = default!;
-    public int IncrementYears { get; private set; } = default!;
-    public decimal IncrementAmount { get; private set; } = default!;
-    public bool IsActive { get; private set; } = default!;
+    public decimal Amount { get; private set; }
+    public int IncrementYears { get; private set; }
+    public decimal IncrementAmount { get; private set; }
+    public bool IsActive { get; private set; }
 
     public Salary(DateTime startDate, DateTime endDate, string rateType, int number, string name, decimal amount, int incrementYears, decimal incrementAmount, bool isActive, string? description = "", string? notes = "")
     {

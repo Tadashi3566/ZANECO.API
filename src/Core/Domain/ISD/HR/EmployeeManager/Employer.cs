@@ -8,7 +8,7 @@ public class Employer : AuditableEntity, IAggregateRoot
     public string Name { get; private set; } = default!;
     public string Address { get; private set; } = default!;
     public string Designation { get; private set; } = default!;
-    public DateTime StartDate { get; private set; } = default!;
+    public DateTime StartDate { get; private set; }
     public DateTime EndDate { get; private set; }
 
     public string? ImagePath { get; private set; }
@@ -27,7 +27,7 @@ public class Employer : AuditableEntity, IAggregateRoot
 
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Employer Update(DefaultIdType? employeeId, string employeeName, string name, string address, string designation, DateTime startDate, DateTime endDate, string? description, string? notes, string? imagePath)
@@ -45,7 +45,7 @@ public class Employer : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
         return this;
     }
 

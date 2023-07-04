@@ -15,14 +15,14 @@ public class SaleItem : AuditableEntity, IAggregateRoot
     public virtual Discount Discount { get; private set; } = default!;
     public DefaultIdType DiscountId { get; private set; }
 
-    public DateTime Date { get; private set; } = default!;
+    public DateTime Date { get; private set; }
     public string Transaction { get; private set; } = default!;
-    public int Items { get; private set; } = default!;
+    public int Items { get; private set; }
     public string Name { get; private set; } = default!;
-    public decimal Gross { get; private set; } = default!;
-    public decimal Vat { get; private set; } = default!;
-    public decimal DiscountAmount { get; private set; } = default!;
-    public decimal Net { get; private set; } = default!;
+    public decimal Gross { get; private set; }
+    public decimal Vat { get; private set; }
+    public decimal DiscountAmount { get; private set; }
+    public decimal Net { get; private set; }
     public string? ImagePath { get; private set; }
 
     public SaleItem(DefaultIdType saleId, DefaultIdType productId, DefaultIdType barcodeId, DefaultIdType discountId, int items, string name, decimal gross, decimal vat, decimal discountAmount, decimal net, string? description, string? notes, string? imagePath)
@@ -47,7 +47,7 @@ public class SaleItem : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public SaleItem Update(DefaultIdType barcodeId, DefaultIdType discountId, int items, string name, decimal gross, decimal vat, decimal discountAmount, decimal net, string? description, string? notes, string? imagePath)
@@ -66,7 +66,7 @@ public class SaleItem : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

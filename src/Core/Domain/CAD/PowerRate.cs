@@ -9,7 +9,7 @@ public class PowerRate : AuditableEntity, IAggregateRoot
     }
 
     public virtual Group Group { get; private set; } = default!;
-    public Guid GroupId { get; private set; } = default!;
+    public Guid GroupId { get; private set; }
     public string Code { get; private set; } = default!; // rate code
     public string Name { get; private set; } = default!; // rate name
     public string BillMonth { get; private set; } = default!; // Billing Month

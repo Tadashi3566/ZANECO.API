@@ -24,7 +24,7 @@ public class Supplier : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Supplier Update(string name, string address, string tin, string agent, string phoneNumber, string? description, string? notes, string? imagePath)
@@ -38,7 +38,7 @@ public class Supplier : AuditableEntity, IAggregateRoot
         if (description is not null && Description?.Equals(description) is false) Description = description.Trim();
         if (notes is not null && Notes?.Equals(notes) is false) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && ImagePath?.Equals(imagePath) is false) ImagePath = imagePath;
+        if (!string.IsNullOrEmpty(imagePath) && ImagePath?.Equals(imagePath) is false) if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

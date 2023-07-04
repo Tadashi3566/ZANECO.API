@@ -5,20 +5,20 @@ namespace ZANECO.API.Domain.ISD.HR.PayrollManager;
 public class EmployeePayroll : AuditableEntity, IAggregateRoot
 {
     public virtual Employee Employee { get; private set; } = default!;
-    public DefaultIdType EmployeeId { get; private set; } = default!;
+    public DefaultIdType EmployeeId { get; private set; }
     public string EmployeeName { get; private set; } = default!;
     public virtual Payroll Payroll { get; private set; } = default!;
-    public DefaultIdType PayrollId { get; private set; } = default!;
+    public DefaultIdType PayrollId { get; private set; }
     public string PayrollName { get; private set; } = default!;
 
-    public DateTime StartDate { get; private set; } = default!;
-    public DateTime EndDate { get; private set; } = default!;
-    public DateTime PayrollDate { get; private set; } = default!;
-    public decimal Salary { get; private set; } = default!;
-    public decimal Additional { get; private set; } = default!;
-    public decimal Gross { get; private set; } = default!;
-    public decimal Deduction { get; private set; } = default!;
-    public decimal Net { get; private set; } = default!;
+    public DateTime StartDate { get; private set; }
+    public DateTime EndDate { get; private set; }
+    public DateTime PayrollDate { get; private set; }
+    public decimal Salary { get; private set; }
+    public decimal Additional { get; private set; }
+    public decimal Gross { get; private set; }
+    public decimal Deduction { get; private set; }
+    public decimal Net { get; private set; }
 
     public EmployeePayroll(DefaultIdType employeeId, string employeeName, DefaultIdType payrollId, string payrollName, decimal salary, decimal additional, decimal gross, decimal deduction, decimal net, DateTime startDate, DateTime endDate, DateTime payrollDate, string? description = "", string? notes = "")
     {

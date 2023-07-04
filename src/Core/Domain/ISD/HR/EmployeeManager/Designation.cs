@@ -13,7 +13,7 @@ public class Designation : AuditableEntity, IAggregateRoot
     public virtual Employee Employee { get; private set; } = default!;
 
     public DefaultIdType EmployeeId { get; private set; }
-    public int IdNumber { get; private set; } = default!;
+    public int IdNumber { get; private set; }
     public string EmployeeName { get; private set; } = default!;
 
     public bool IsActive { get; private set; }
@@ -21,8 +21,8 @@ public class Designation : AuditableEntity, IAggregateRoot
     public DefaultIdType ScheduleId { get; private set; }
     public string ScheduleName { get; private set; } = default!;
 
-    public DateTime StartDate { get; private set; } = default!;
-    public DateTime EndDate { get; private set; } = default!;
+    public DateTime StartDate { get; private set; }
+    public DateTime EndDate { get; private set; }
     public string Area { get; private set; } = default!;
     public string Department { get; private set; } = default!;
     public string Division { get; private set; } = string.Empty;
@@ -30,13 +30,13 @@ public class Designation : AuditableEntity, IAggregateRoot
     public string Position { get; private set; } = default!;
 
     public string EmploymentType { get; private set; } = default!;
-    public int SalaryNumber { get; private set; } = default!;
+    public int SalaryNumber { get; private set; }
     public string SalaryName { get; private set; } = default!;
-    public decimal SalaryAmount { get; private set; } = default!;
+    public decimal SalaryAmount { get; private set; }
     public string RateType { get; private set; } = default!;
-    public decimal RatePerDay { get; private set; } = default!;
+    public decimal RatePerDay { get; private set; }
     public int HoursPerDay { get; private set; } = 8;
-    public decimal RatePerHour { get; private set; } = default!;
+    public decimal RatePerHour { get; private set; }
     public string TaxType { get; private set; } = string.Empty;
     public string PayType { get; private set; } = default!;
     public string? ImagePath { get; private set; }
@@ -121,7 +121,7 @@ public class Designation : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Designation Update(string employeeName, DateTime startDate, DateTime endDate, DateTime regularDate, string area, string department, string division, string section, string position, string employmentType, int salaryNumber, string salaryName, decimal salaryBase, decimal salaryStep, decimal ratePerDay, string rateType, string taxType, string payType, DefaultIdType? scheduleId, string scheduleName, string? description, string? notes, string? imagePath)
@@ -204,7 +204,7 @@ public class Designation : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
         return this;
     }
 

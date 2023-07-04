@@ -20,7 +20,7 @@ public class TicketProgress : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public TicketProgress Update(string progressType, string name, string? description, string? notes, string? imagePath)
@@ -30,7 +30,7 @@ public class TicketProgress : AuditableEntity, IAggregateRoot
         if (!(description is null || Description?.Equals(description) is true)) Description = description.Trim();
         if (!(notes is null || Notes?.Equals(notes) is true)) Notes = notes.Trim();
 
-        if (!(imagePath is null || ImagePath?.Equals(imagePath) is true)) ImagePath = imagePath;
+        if (!(imagePath is null || ImagePath?.Equals(imagePath) is true)) if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

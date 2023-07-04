@@ -8,9 +8,9 @@ public class MessageTemplate : AuditableEntity, IAggregateRoot
 
     public string TemplateType { get; private set; } = default!;
     public string MessageType { get; private set; } = default!;
-    public bool IsAPI { get; private set; } = default!;
-    public bool IsSent { get; private set; } = default!;
-    public DateTime Schedule { get; private set; } = default!;
+    public bool IsAPI { get; private set; }
+    public bool IsSent { get; private set; }
+    public DateTime Schedule { get; private set; }
     public string Subject { get; private set; } = default!;
     public string Message { get; private set; } = default!;
     public string Recipients { get; private set; } = default!;
@@ -29,7 +29,7 @@ public class MessageTemplate : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public MessageTemplate Update(string templateType, string messageType, bool isAPI, DateTime schedule, string subject, string message, string recpients, string? description, string? notes, string? imagePath)
@@ -45,7 +45,7 @@ public class MessageTemplate : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

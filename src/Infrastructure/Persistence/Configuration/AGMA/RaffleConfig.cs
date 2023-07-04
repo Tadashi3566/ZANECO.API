@@ -14,6 +14,7 @@ public class RaffleConfig : IEntityTypeConfiguration<Raffle>
 
         _ = builder.Property(b => b.Name)
             .HasMaxLength(128);
+
         _ = builder.Property(b => b.RaffleDate)
             .HasColumnType("datetime(6)");
     }

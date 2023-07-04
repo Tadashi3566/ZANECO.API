@@ -31,7 +31,7 @@ public class Ticket : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Ticket Update(DefaultIdType? groupID, string name, string? description, string? notes, string? impact, string? urgency, string? priority, string? requestedBy, string? requestThrough, string? reference, string? assignedTo, string? imagePath)
@@ -50,7 +50,7 @@ public class Ticket : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
         if (assignedTo is not null && !AssignedTo!.Equals(assignedTo)) AssignedTo = assignedTo;
         if (reference is not null && !Reference!.Equals(reference)) Reference = reference;
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

@@ -1,4 +1,5 @@
 using ZANECO.API.Domain.App;
+using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.App.Groups;
 
@@ -10,8 +11,8 @@ public class GroupCreateRequest : IRequest<Guid>
     public string Code { get; set; } = default!;
     public string Name { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
-    public string Manager { get; set; } = string.Empty;
     public string Tag { get; set; } = string.Empty;
+    public Guid EmployeeId { get; set; } = default!;
     public string? Description { get; set; }
     public string? Notes { get; set; }
     public ImageUploadRequest? Image { get; set; }
@@ -52,16 +53,28 @@ public class GroupCreateRequestValidator : CustomValidator<GroupCreateRequest>
 public class GroupCreateRequestHandler : IRequestHandler<GroupCreateRequest, Guid>
 {
     private readonly IRepositoryWithEvents<Group> _repository;
+    private readonly IReadRepository<Employee> _repoEmployee;
     private readonly IFileStorageService _file;
 
-    public GroupCreateRequestHandler(IRepositoryWithEvents<Group> repository, IFileStorageService file) =>
-        (_repository, _file) = (repository, file);
+    public GroupCreateRequestHandler(IRepositoryWithEvents<Group> repository, IReadRepository<Employee> repoEmployee, IFileStorageService file) =>
+        (_repository, _repoEmployee, _file) = (repository, repoEmployee, file);
 
     public async Task<Guid> Handle(GroupCreateRequest request, CancellationToken cancellationToken)
     {
+        string? employeeName = null;
+
+        if (request.EmployeeId != default)
+        {
+            var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
+            if (employee is not null)
+            {
+                employeeName = employee.FullName();
+            }
+        }
+
         string imagePath = await _file.UploadAsync<Group>(request.Image, FileType.Image, cancellationToken);
 
-        var group = new Group(request.Application, request.Parent, request.Tag, request.Number, request.Code, request.Name, request.Amount, request.Manager, request.Description, request.Notes, imagePath);
+        var group = new Group(request.Application, request.Parent, request.Tag, request.Number, request.Code, request.Name, request.Amount, request.EmployeeId, employeeName, request.Description, request.Notes, imagePath);
 
         await _repository.AddAsync(group, cancellationToken);
 

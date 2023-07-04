@@ -1,4 +1,5 @@
 using ZANECO.API.Domain.App;
+using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.App.Groups;
 
@@ -11,8 +12,8 @@ public class GroupUpdateRequest : IRequest<Guid>
     public string Code { get; set; } = default!;
     public string Name { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
-    public string Manager { get; set; } = string.Empty;
     public string Tag { get; set; } = string.Empty;
+    public Guid EmployeeId { get; set; } = default!;
     public string? Description { get; set; }
     public string? Notes { get; set; }
     public bool DeleteCurrentImage { get; set; }
@@ -58,16 +59,16 @@ public class GroupUpdateRequestValidator : CustomValidator<GroupUpdateRequest>
 public class GroupUpdateRequestHandler : IRequestHandler<GroupUpdateRequest, Guid>
 {
     private readonly IRepositoryWithEvents<Group> _repository;
+    private readonly IReadRepository<Employee> _repoEmployee;
     private readonly IStringLocalizer<GroupUpdateRequestHandler> _localizer;
     private readonly IFileStorageService _file;
 
-    public GroupUpdateRequestHandler(IRepositoryWithEvents<Group> repository, IStringLocalizer<GroupUpdateRequestHandler> localizer, IFileStorageService file) =>
-        (_repository, _localizer, _file) = (repository, localizer, file);
+    public GroupUpdateRequestHandler(IRepositoryWithEvents<Group> repository, IReadRepository<Employee> repoEmployee, IStringLocalizer<GroupUpdateRequestHandler> localizer, IFileStorageService file) =>
+        (_repository, _repoEmployee, _localizer, _file) = (repository, repoEmployee, localizer, file);
 
     public async Task<Guid> Handle(GroupUpdateRequest request, CancellationToken cancellationToken)
     {
         var group = await _repository.GetByIdAsync(request.Id, cancellationToken);
-
         _ = group ?? throw new NotFoundException(string.Format(_localizer["group not found."], request.Id));
 
         // Remove old image if flag is set
@@ -87,7 +88,18 @@ public class GroupUpdateRequestHandler : IRequestHandler<GroupUpdateRequest, Gui
             ? await _file.UploadAsync<Group>(request.Image, FileType.Image, cancellationToken)
             : null;
 
-        var updatedGroup = group.Update(request.Application, request.Parent, request.Tag, request.Number, request.Code, request.Name, request.Amount, request.Manager, request.Description, request.Notes, imagePath);
+        string? employeeName = null;
+
+        if (request.EmployeeId != default)
+        {
+            var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
+            if (employee is not null)
+            {
+                employeeName = employee.FullName();
+            }
+        }
+
+        var updatedGroup = group.Update(request.Application, request.Parent, request.Tag, request.Number, request.Code, request.Name, request.Amount, request.EmployeeId, employeeName, request.Description, request.Notes, imagePath);
 
         await _repository.UpdateAsync(updatedGroup, cancellationToken);
 

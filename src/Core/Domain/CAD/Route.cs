@@ -11,9 +11,9 @@ public class Route : AuditableEntity, IAggregateRoot
     [ForeignKey("AreaId")]
     public virtual Area Area { get; private set; } = default!;
 
-    public DefaultIdType AreaId { get; private set; } = default!;
+    public DefaultIdType AreaId { get; private set; }
     public string AreaName { get; private set; } = default!;
-    public int Number { get; private set; } = default!;
+    public int Number { get; private set; }
     public string Code { get; private set; } = default!;
     public string Name { get; private set; } = default!;
 

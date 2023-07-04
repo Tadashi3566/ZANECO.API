@@ -5,10 +5,10 @@ public class Document : AuditableEntity, IAggregateRoot
     public virtual Employee Employee { get; private set; } = default!;
     public DefaultIdType EmployeeId { get; private set; }
     public string EmployeeName { get; private set; } = default!;
-    public DateTime DocumentDate { get; private set; } = default!;
+    public DateTime DocumentDate { get; private set; }
     public string DocumentType { get; private set; } = string.Empty;
     public string Reference { get; private set; } = string.Empty;
-    public bool IsPublic { get; private set; } = default!;
+    public bool IsPublic { get; private set; }
     public string Name { get; private set; } = string.Empty;
     public string Content { get; private set; } = string.Empty;
     public string Raw { get; private set; } = string.Empty;
@@ -28,7 +28,7 @@ public class Document : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Document Update(string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description, string? notes, string imagePath)
@@ -45,7 +45,7 @@ public class Document : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

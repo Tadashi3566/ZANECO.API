@@ -6,7 +6,7 @@ public class Account : AuditableEntity, IAggregateRoot
     {
     }
 
-    public int IdCode { get; private set; } = default!;
+    public int IdCode { get; private set; }
     public string AccountNumber { get; private set; } = string.Empty;
     public string Name { get; private set; } = string.Empty;
     public string Address { get; private set; } = string.Empty;
@@ -30,9 +30,9 @@ public class Account : AuditableEntity, IAggregateRoot
 
     public string BillMonth { get; private set; } = string.Empty;
     public DateTime? PreviousReadingDate { get; private set; } = DateTime.MinValue;
-    public double PreviousReadingKWH { get; private set; } = default!;
+    public double PreviousReadingKWH { get; private set; }
     public DateTime? PresentReadingDate { get; private set; } = DateTime.MinValue;
-    public double PresentReadingKWH { get; private set; } = default!;
+    public double PresentReadingKWH { get; private set; }
     public double UsedKWH { get; private set; }
     public int Multiplier { get; private set; }
     public decimal BillAmount { get; private set; }
@@ -73,7 +73,7 @@ public class Account : AuditableEntity, IAggregateRoot
 
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Account Update(string area, string route, string cipher, string tag, string name, string address, string accountType, string feeder, string pole, string transformer, string meterBrand, string meterSerial, string? description, string? notes, string? imagePath)
@@ -95,7 +95,7 @@ public class Account : AuditableEntity, IAggregateRoot
 
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

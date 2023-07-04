@@ -7,8 +7,8 @@ public class Rating : AuditableEntity, IAggregateRoot
     }
 
     public virtual Rate Rate { get; set; } = default!;
-    public DefaultIdType RateId { get; private set; } = default!;
-    public int RateNumber { get; private set; } = default!;
+    public DefaultIdType RateId { get; private set; }
+    public int RateNumber { get; private set; }
     public string RateName { get; private set; } = default!;
     public string Comment { get; private set; } = string.Empty;
     public string Reference { get; private set; } = string.Empty;

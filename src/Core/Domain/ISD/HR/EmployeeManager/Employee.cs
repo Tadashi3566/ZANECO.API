@@ -9,9 +9,9 @@ public class Employee : AuditableEntity, IAggregateRoot
     }
 
     // Basic
-    public bool IsActive { get; private set; } = default!;
+    public bool IsActive { get; private set; }
 
-    public int Number { get; private set; } = default!;
+    public int Number { get; private set; }
     public string Title { get; private set; } = default!;
     public string FirstName { get; private set; } = default!;
     public string MiddleName { get; private set; } = default!;
@@ -25,12 +25,12 @@ public class Employee : AuditableEntity, IAggregateRoot
     public string? BirthPlace { get; private set; }
 
     // Employment
-    public DefaultIdType DesignationId { get; private set; } = default!;
+    public DefaultIdType DesignationId { get; private set; }
 
-    public DateTime BirthDate { get; private set; } = default!;
-    public DateTime HireDate { get; private set; } = default!;
-    public DateTime StartDate { get; private set; } = default!;
-    public DateTime RegularDate { get; private set; } = default!;
+    public DateTime BirthDate { get; private set; }
+    public DateTime HireDate { get; private set; }
+    public DateTime StartDate { get; private set; }
+    public DateTime RegularDate { get; private set; }
 
     public string? Area { get; private set; }
     public string? Department { get; private set; }
@@ -48,19 +48,19 @@ public class Employee : AuditableEntity, IAggregateRoot
     // Payroll
     public string? EmploymentType { get; private set; }
 
-    public int SalaryNumber { get; private set; } = default!;
+    public int SalaryNumber { get; private set; }
     public string? SalaryName { get; private set; }
-    public decimal SalaryAmount { get; private set; } = default!;
+    public decimal SalaryAmount { get; private set; }
     public string? RateType { get; private set; }
     public int DaysPerMonth { get; private set; } = default!;
-    public decimal RatePerDay { get; private set; } = default!;
-    public int HoursPerDay { get; private set; } = default!;
-    public decimal RatePerHour { get; private set; } = default!;
+    public decimal RatePerDay { get; private set; }
+    public int HoursPerDay { get; private set; }
+    public decimal RatePerHour { get; private set; }
     public string? TaxType { get; private set; }
     public string? PayType { get; private set; }
     public string? PayThrough { get; private set; }
 
-    public DefaultIdType ScheduleId { get; private set; } = default!;
+    public DefaultIdType ScheduleId { get; private set; }
     public string? ScheduleName { get; private set; }
 
     // Emergency
@@ -177,7 +177,7 @@ public class Employee : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Employee Update(int number, string title, string firstName, string middleName, string lastName, string? extension, string gender, string phoneNumber, string email, string civilStatus, string address, DateTime birthDate, string birthPlace, DateTime hireDate, DateTime regularDate, string sss, string phic, string hdmf, string tin, string emergencyPerson, string emergencyNumber, string emergencyAddress, string emergencyRelation, string fatherName, string motherName, string education, string course, string award, string bloodType, string? description, string? notes, string? imagePath)
@@ -221,7 +221,7 @@ public class Employee : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
         return this;
     }
 

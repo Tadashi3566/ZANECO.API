@@ -11,9 +11,9 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
     public string EmployeeName { get; private set; } = default!;
     public string Device { get; private set; } = default!;
     public string LogType { get; private set; } = default!;
-    public DateTime LogDate { get; private set; } = default!;
-    public DateTime LogDateTime { get; private set; } = default!;
-    public int SyncId { get; private set; } = default!;
+    public DateTime LogDate { get; private set; }
+    public DateTime LogDateTime { get; private set; }
+    public int SyncId { get; private set; }
     public DateTime? SyncDateTime { get; private set; }
     public string? Coordinates { get; private set; }
     public string? ImagePath { get; private set; }
@@ -37,7 +37,7 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public TimeLog Update(string logType, DateTime logDate, DateTime logDateTime, string? description, string? notes, string imagePath)
@@ -49,7 +49,7 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
         if (description is not null && Description?.Equals(description) is false) Description = description.Trim();
         if (notes is not null && Notes?.Equals(notes) is false) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && ImagePath?.Equals(imagePath) is false) ImagePath = imagePath;
+        if (!string.IsNullOrEmpty(imagePath) && ImagePath?.Equals(imagePath) is false) if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

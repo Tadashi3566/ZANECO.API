@@ -8,16 +8,16 @@ public class Sale : AuditableEntity, IAggregateRoot
 
     public virtual Customer Customer { get; private set; } = default!;
     public DefaultIdType CustomerId { get; private set; }
-    public DateTime Date { get; private set; } = default!;
+    public DateTime Date { get; private set; }
     public string Transaction { get; private set; } = default!;
-    public double OrNumber { get; private set; } = default!;
-    public int Items { get; private set; } = default!;
-    public decimal GrossSales { get; private set; } = default!;
-    public decimal TotalVat { get; private set; } = default!;
-    public decimal TotalDiscount { get; private set; } = default!;
-    public decimal NetSales { get; private set; } = default!;
-    public decimal Received { get; private set; } = default!;
-    public decimal Change { get; private set; } = default!;
+    public double OrNumber { get; private set; }
+    public int Items { get; private set; }
+    public decimal GrossSales { get; private set; }
+    public decimal TotalVat { get; private set; }
+    public decimal TotalDiscount { get; private set; }
+    public decimal NetSales { get; private set; }
+    public decimal Received { get; private set; }
+    public decimal Change { get; private set; }
     public string? ImagePath { get; private set; }
 
     public Sale(DefaultIdType customerId, double orNumber, int items, decimal grossSales, decimal totalVat, decimal totalDiscount, decimal netSales, decimal received, decimal change, string? description, string? notes, string? imagePath)
@@ -41,7 +41,7 @@ public class Sale : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Sale Update(DefaultIdType customerId, double orNumber, int items, decimal grossSales, decimal totalVat, decimal totalDiscount, decimal netSales, decimal received, decimal change, string? description, string? notes, string? imagePath)
@@ -61,7 +61,7 @@ public class Sale : AuditableEntity, IAggregateRoot
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }

@@ -2,8 +2,8 @@
 
 public class Member : AuditableEntity, IAggregateRoot
 {
-    public double IncrementId { get; private set; } = default!;
-    public double ApplicationId { get; private set; } = default!;
+    public double IncrementId { get; private set; }
+    public double ApplicationId { get; private set; }
     public string Name { get; private set; } = default!;
     public string Address { get; private set; } = default!;
     public string District { get; private set; } = default!;
@@ -32,7 +32,7 @@ public class Member : AuditableEntity, IAggregateRoot
         MembershipDate = membershipDate;
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
-        ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
     public Member Update(string name, string address, string district, string municipality, string barangay, string gender, string phoneNumber, DateTime? birthDate, DateTime? applicationDate, DateTime? membershipDate, string? description, string? notes, string? imagePath)
@@ -51,7 +51,7 @@ public class Member : AuditableEntity, IAggregateRoot
 
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
-        if (!string.IsNullOrEmpty(imagePath) && !ImagePath!.Equals(imagePath)) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 
         return this;
     }
