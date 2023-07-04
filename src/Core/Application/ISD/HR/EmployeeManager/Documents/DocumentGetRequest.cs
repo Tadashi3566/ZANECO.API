@@ -19,6 +19,6 @@ public class DocumentGetRequestHandler : IRequestHandler<DocumentGetRequest, Doc
 
     public async Task<DocumentDto> Handle(DocumentGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<Document, DocumentDto>)new DocumentByIdSpec(request.Id), cancellationToken)
+            new DocumentByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["Documents not found."], request.Id));
 }

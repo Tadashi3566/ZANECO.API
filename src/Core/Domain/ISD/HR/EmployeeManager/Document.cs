@@ -14,7 +14,7 @@ public class Document : AuditableEntity, IAggregateRoot
     public string Raw { get; private set; } = string.Empty;
     public string ImagePath { get; private set; } = default!;
 
-    public Document(DefaultIdType employeeId, string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description, string? notes, string imagePath)
+    public Document(DefaultIdType employeeId, string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description, string? notes, string? imagePath)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -31,7 +31,7 @@ public class Document : AuditableEntity, IAggregateRoot
         if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
-    public Document Update(string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description, string? notes, string imagePath)
+    public Document Update(string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description, string? notes, string? imagePath)
     {
         if (employeeName is not null && !EmployeeName.Equals(employeeName)) EmployeeName = employeeName;
 

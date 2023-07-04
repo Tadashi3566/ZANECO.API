@@ -19,6 +19,6 @@ public class RateGetRequestHandler : IRequestHandler<RateGetRequest, RateDto>
 
     public async Task<RateDto> Handle(RateGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<Rate, RateDto>)new RateByIdSpec(request.Id), cancellationToken)
+            new RateByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["rate not found."], request.Id));
 }

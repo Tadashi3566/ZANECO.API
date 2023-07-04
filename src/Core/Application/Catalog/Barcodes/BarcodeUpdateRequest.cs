@@ -22,7 +22,7 @@ public class UpdateBarcodeRequestValidator : CustomValidator<BarcodeUpdateReques
             .MaximumLength(1024)
             .MustAsync(async (Barcode, code, ct) =>
                     await repository.FirstOrDefaultAsync(new BarcodeByCodeSpec(code), ct)
-                        is not Barcode existingBarcode || existingBarcode.Id == Barcode.Id)
+                        is not { } existingBarcode || existingBarcode.Id == Barcode.Id)
                 .WithMessage((_, name) => T["barcode {0} already Exists.", name]);
 
         RuleFor(p => p.Name)
@@ -30,7 +30,7 @@ public class UpdateBarcodeRequestValidator : CustomValidator<BarcodeUpdateReques
             .MaximumLength(1024)
             .MustAsync(async (Barcode, name, ct) =>
                     await repository.FirstOrDefaultAsync(new BarcodeByNameSpec(name), ct)
-                        is not Barcode existingBarcode || existingBarcode.Id == Barcode.Id)
+                        is not { } existingBarcode || existingBarcode.Id == Barcode.Id)
                 .WithMessage((_, name) => T["barcode {0} already Exists.", name]);
 
         RuleFor(p => p.Specification)
@@ -38,7 +38,7 @@ public class UpdateBarcodeRequestValidator : CustomValidator<BarcodeUpdateReques
             .MaximumLength(1024)
             .MustAsync(async (Barcode, specification, ct) =>
                     await repository.FirstOrDefaultAsync(new BarcodeBySpecificationSpec(specification), ct)
-                        is not Barcode existingBarcode || existingBarcode.Id == Barcode.Id)
+                        is not { } existingBarcode || existingBarcode.Id == Barcode.Id)
                 .WithMessage((_, name) => T["barcode {0} already Exists.", name]);
 
         RuleFor(p => p.Image)

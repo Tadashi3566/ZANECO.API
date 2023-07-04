@@ -18,6 +18,6 @@ public class CalendarGetRequestHandler : IRequestHandler<CalendarGetRequest, Cal
         (_repository, _localizer) = (repository, localizer);
 
     public async Task<CalendarDto> Handle(CalendarGetRequest request, CancellationToken cancellationToken) =>
-        await _repository.FirstOrDefaultAsync((ISpecification<Calendar, CalendarDto>)new CalendarByIdSpec(request.Id), cancellationToken)
+        await _repository.FirstOrDefaultAsync(new CalendarByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["Calendar not found."], request.Id));
 }

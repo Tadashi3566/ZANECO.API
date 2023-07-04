@@ -40,7 +40,7 @@ public class GroupUpdateRequestValidator : CustomValidator<GroupUpdateRequest>
             .MaximumLength(32)
             .MustAsync(async (group, code, ct) =>
                     await repoGroupRepo.FirstOrDefaultAsync(new GroupByCodeSpec(code), ct)
-                        is not Group existingGroup || existingGroup.Id == group.Id)
+                        is not { } existingGroup || existingGroup.Id == group.Id)
                 .WithMessage((_, code) => string.Format(localizer["group already exists"], code));
 
         RuleFor(p => p.Name)
@@ -48,7 +48,7 @@ public class GroupUpdateRequestValidator : CustomValidator<GroupUpdateRequest>
             .MaximumLength(128)
             .MustAsync(async (group, name, ct) =>
                     await repoGroupRepo.FirstOrDefaultAsync(new GroupByNameSpec(name), ct)
-                        is not Group existingGroup || existingGroup.Id == group.Id)
+                        is not { } existingGroup || existingGroup.Id == group.Id)
                 .WithMessage((_, name) => string.Format(localizer["group already exists"], name));
 
         RuleFor(p => p.Image)
@@ -88,6 +88,7 @@ public class GroupUpdateRequestHandler : IRequestHandler<GroupUpdateRequest, Gui
             ? await _file.UploadAsync<Group>(request.Image, FileType.Image, cancellationToken)
             : null;
 
+        Guid? employeeId = null;
         string? employeeName = null;
 
         if (request.EmployeeId != default)
@@ -95,11 +96,12 @@ public class GroupUpdateRequestHandler : IRequestHandler<GroupUpdateRequest, Gui
             var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
             if (employee is not null)
             {
-                employeeName = employee.FullName();
+                employeeId = employee.Id;
+                employeeName = employee.TitleFullInitialName();
             }
         }
 
-        var updatedGroup = group.Update(request.Application, request.Parent, request.Tag, request.Number, request.Code, request.Name, request.Amount, request.EmployeeId, employeeName, request.Description, request.Notes, imagePath);
+        var updatedGroup = group.Update(request.Application, request.Parent, request.Tag, request.Number, request.Code, request.Name, request.Amount, employeeId, employeeName, request.Description, request.Notes, imagePath);
 
         await _repository.UpdateAsync(updatedGroup, cancellationToken);
 

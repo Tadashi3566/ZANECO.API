@@ -19,6 +19,6 @@ public class MessageTemplateGetRequestHandler : IRequestHandler<MessageTemplateG
 
     public async Task<MessageTemplateDto> Handle(MessageTemplateGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<MessageTemplate, MessageTemplateDto>)new MessageTemplateByIdSpec(request.Id), cancellationToken)
+            new MessageTemplateByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["MessageTemplate not found."], request.Id));
 }

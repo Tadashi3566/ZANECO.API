@@ -19,6 +19,6 @@ public class RemoteCollectionGetRequestHandler : IRequestHandler<RemoteCollectio
 
     public async Task<RemoteCollectionDto> Handle(RemoteCollectionGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<RemoteCollection, RemoteCollectionDto>)new RemoteCollectionByIdSpec(request.Id), cancellationToken)
+            new RemoteCollectionByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["RemoteCollection not found."], request.Id));
 }

@@ -57,7 +57,7 @@ public class AccountUpdateRequestValidator : CustomValidator<AccountUpdateReques
             .MaximumLength(16)
             .MustAsync(async (account, accountNumber, ct) =>
                     await AccountRepo.FirstOrDefaultAsync(new AccountByNameSpec(accountNumber), ct)
-                        is not Account existingAccount || existingAccount.Id == account.Id)
+                        is not { } existingAccount || existingAccount.Id == account.Id)
                 .WithMessage((_, name) => string.Format(localizer["account already exists"], name));
 
         RuleFor(p => p.Name)

@@ -18,6 +18,6 @@ public class AttendanceGetRequestHandler : IRequestHandler<AttendanceGetRequest,
         (_repository, _localizer) = (repository, localizer);
 
     public async Task<AttendanceDto> Handle(AttendanceGetRequest request, CancellationToken cancellationToken) =>
-        await _repository.FirstOrDefaultAsync((ISpecification<Attendance, AttendanceDto>)new AttendanceByIdSpec(request.Id), cancellationToken)
+        await _repository.FirstOrDefaultAsync(new AttendanceByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["Attendance not found."], request.Id));
 }

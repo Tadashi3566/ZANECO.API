@@ -19,6 +19,6 @@ public class SalaryGetRequestHandler : IRequestHandler<SalaryGetRequest, SalaryD
 
     public async Task<SalaryDto> Handle(SalaryGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<Salary, SalaryDto>)new SalaryByIdSpec(request.Id), cancellationToken)
+            new SalaryByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["Salary not found."], request.Id));
 }

@@ -29,14 +29,14 @@ public class RouteUpdateRequestValidator : CustomValidator<RouteUpdateRequest>
             .NotEmpty()
             .MustAsync(async (route, code, ct) =>
                     await repository.FirstOrDefaultAsync(new RouteByCodeSpec(code), ct)
-                        is not Route existingRoute || existingRoute.Id == route.Id)
+                        is not { } existingRoute || existingRoute.Id == route.Id)
                 .WithMessage((_, code) => string.Format(localizer["Route already exists"], code));
 
         RuleFor(p => p.Name)
             .NotEmpty()
             .MustAsync(async (route, name, ct) =>
                     await repository.FirstOrDefaultAsync(new RouteByNameSpec(name), ct)
-                        is not Route existingRoute || existingRoute.Id == route.Id)
+                        is not { } existingRoute || existingRoute.Id == route.Id)
                 .WithMessage((_, name) => string.Format(localizer["Route already exists"], name));
     }
 }

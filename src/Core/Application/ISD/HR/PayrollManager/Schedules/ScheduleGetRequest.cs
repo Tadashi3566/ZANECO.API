@@ -18,6 +18,6 @@ public class ScheduleGetRequestHandler : IRequestHandler<ScheduleGetRequest, Sch
         (_repository, _localizer) = (repository, localizer);
 
     public async Task<ScheduleDto> Handle(ScheduleGetRequest request, CancellationToken cancellationToken) =>
-        await _repository.FirstOrDefaultAsync((ISpecification<Schedule, ScheduleDto>)new ScheduleByIdSpec(request.Id), cancellationToken)
+        await _repository.FirstOrDefaultAsync(new ScheduleByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["Schedule not found."], request.Id));
 }

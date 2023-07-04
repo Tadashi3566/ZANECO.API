@@ -19,6 +19,6 @@ public class GroupGetRequestHandler : IRequestHandler<GroupGetRequest, GroupDto>
 
     public async Task<GroupDto> Handle(GroupGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<Group, GroupDto>)new GroupByIdSpec(request.Id), cancellationToken)
+            new GroupByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["group not found."], request.Id));
 }

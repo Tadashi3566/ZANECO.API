@@ -27,7 +27,7 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
 
     public string? ImagePath { get; private set; }
 
-    public Appointment(DefaultIdType employeeId, string employeeName, string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description, string? notes, string imagePath) //, bool isReadOnly, bool isBlock, int? recurrenceId, string? recurrenceRule, string? recurrenceException, string? cssClass
+    public Appointment(DefaultIdType employeeId, string employeeName, string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description, string? notes, string? imagePath) //, bool isReadOnly, bool isBlock, int? recurrenceId, string? recurrenceRule, string? recurrenceException, string? cssClass
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -59,8 +59,8 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
         if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
 
-    //public Appointment Update(string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, bool isReadOnly, bool isBlock, int? recurrenceId, string? recurrenceRule, string? recurrenceException, string? cssClass, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description, string? notes, string imagePath)
-    public Appointment Update(string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description, string? notes, string imagePath)
+    //public Appointment Update(string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, bool isReadOnly, bool isBlock, int? recurrenceId, string? recurrenceRule, string? recurrenceException, string? cssClass, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description, string? notes, string? imagePath)
+    public Appointment Update(string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description, string? notes, string? imagePath)
     {
         if (appointmentType is not null && !AppointmentType.Equals(appointmentType)) AppointmentType = appointmentType.Trim().ToUpper();
         if (subject is not null && !Subject.Equals(subject)) Subject = subject;

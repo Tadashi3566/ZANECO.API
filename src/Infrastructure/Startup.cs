@@ -37,7 +37,7 @@ public static class Startup
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
-        var applicationAssembly = typeof(ZANECO.API.Application.Startup).GetTypeInfo().Assembly;
+        var applicationAssembly = typeof(Application.Startup).GetTypeInfo().Assembly;
         MapsterSettings.Configure();
         return services
             .AddApiVersioning()

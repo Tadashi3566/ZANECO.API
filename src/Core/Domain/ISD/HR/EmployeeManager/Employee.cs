@@ -85,46 +85,27 @@ public class Employee : AuditableEntity, IAggregateRoot
 
     public string FullName()
     {
-        if (Extension?.Length > 0)
-            return $"{FirstName} {MiddleName} {LastName} {Extension}".Trim();
-        else
-            return $"{FirstName} {MiddleName} {LastName}".Trim();
+        return Extension?.Length > 0 ? $"{FirstName} {MiddleName} {LastName} {Extension}".Trim() : $"{FirstName} {MiddleName} {LastName}".Trim();
     }
 
     public string FullInitialName()
     {
-        if (MiddleName?.Length > 0)
-        {
-            return $"{FirstName} {MiddleName[..1]}. {LastName} {Extension}".Trim();
-        }
-        else
-        {
-            return $"{FirstName} {LastName} {Extension}".Trim();
-        }
+        return MiddleName?.Length > 0 ? $"{FirstName} {MiddleName[..1]}. {LastName} {Extension}".Trim() : $"{FirstName} {LastName} {Extension}".Trim();
+    }
+
+    public string TitleFullInitialName()
+    {
+        return MiddleName?.Length > 0 ? $"{Title}. {FirstName} {MiddleName[..1]}. {LastName} {Extension}".Trim() : $"{Title} {FirstName} {LastName} {Extension}".Trim();
     }
 
     public string NameFull()
     {
-        if (Extension?.Length > 0)
-        {
-            return $"{LastName} {Extension}, {FirstName} {MiddleName}".Trim();
-        }
-        else
-        {
-            return $"{LastName}, {FirstName} {MiddleName}".Trim();
-        }
+        return Extension?.Length > 0 ? $"{LastName} {Extension}, {FirstName} {MiddleName}".Trim() : $"{LastName}, {FirstName} {MiddleName}".Trim();
     }
 
     public string NameFullInitial()
     {
-        if (MiddleName?.Length > 0)
-        {
-            return $"{LastName}, {FirstName} {MiddleName[..1]}.".Trim();
-        }
-        else
-        {
-            return $"{LastName}, {FirstName}".Trim();
-        }
+        return MiddleName?.Length > 0 ? $"{LastName}, {FirstName} {MiddleName[..1]}.".Trim() : $"{LastName}, {FirstName}".Trim();
     }
 
     public Employee(int number, string title, string firstName, string middleName, string lastName, string? extension, string gender, string phoneNumber, string email, string civilStatus, string address, DateTime birthDate, string birthPlace, DateTime hireDate, DateTime regularDate, string sss, string phic, string hdmf, string tin, string emergencyPerson, string emergencyNumber, string emergencyAddress, string emergencyRelation, string fatherName, string motherName, string education, string course, string award, string bloodType, string? description, string? notes, string? imagePath)
@@ -133,17 +114,11 @@ public class Employee : AuditableEntity, IAggregateRoot
         Title = title;
         FirstName = firstName.Trim().ToUpper();
 
-        if (string.IsNullOrEmpty(middleName))
-            MiddleName = string.Empty;
-        else
-            MiddleName = middleName!.Trim().ToUpper();
+        MiddleName = string.IsNullOrEmpty(middleName) ? string.Empty : middleName!.Trim().ToUpper();
 
         LastName = lastName.Trim().ToUpper();
 
-        if (extension is not null)
-            Extension = extension!.Trim().ToUpper();
-        else
-            Extension = null;
+        Extension = extension is not null ? extension!.Trim().ToUpper() : null;
 
         Gender = gender;
         PhoneNumber = phoneNumber.Trim();

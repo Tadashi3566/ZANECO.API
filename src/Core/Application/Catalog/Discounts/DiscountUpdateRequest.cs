@@ -18,7 +18,7 @@ public class UpdateDiscountRequestValidator : CustomValidator<DiscountUpdateRequ
             .MaximumLength(1024)
             .MustAsync(async (Discount, name, ct) =>
                     await repository.FirstOrDefaultAsync(new DiscountByNameSpec(name), ct)
-                        is not Discount existingDiscount || existingDiscount.Id == Discount.Id)
+                        is not { } existingDiscount || existingDiscount.Id == Discount.Id)
                 .WithMessage((_, name) => T["discount {0} already Exists.", name]);
     }
 }

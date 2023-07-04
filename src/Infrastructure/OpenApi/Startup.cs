@@ -22,7 +22,7 @@ internal static class Startup
             services.AddVersionedApiExplorer(o => o.SubstituteApiVersionInUrl = true);
             services.AddEndpointsApiExplorer();
 
-            services.AddScoped<FluentValidationSchemaProcessor>(provider =>
+            services.AddScoped(provider =>
             {
                 var validationRules = provider.GetService<IEnumerable<FluentValidationRule>>();
                 var loggerFactory = provider.GetService<ILoggerFactory>();

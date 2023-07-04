@@ -96,11 +96,11 @@ public class EventAddingRepositoryDecorator<T> : IRepositoryWithEvents<T>
     => _decorated.FirstOrDefaultAsync(specification, cancellationToken);
 
     public Task<TResult?> FirstOrDefaultAsync<TResult>(ISpecification<T, TResult> specification, CancellationToken cancellationToken = default) =>
-        _decorated.FirstOrDefaultAsync<TResult>(specification, cancellationToken);
+        _decorated.FirstOrDefaultAsync(specification, cancellationToken);
 
     public Task<T?> SingleOrDefaultAsync(ISingleResultSpecification<T> specification, CancellationToken cancellationToken = default) =>
         _decorated.SingleOrDefaultAsync(specification, cancellationToken);
 
     public Task<TResult?> SingleOrDefaultAsync<TResult>(ISingleResultSpecification<T, TResult> specification, CancellationToken cancellationToken = default) =>
-        _decorated.SingleOrDefaultAsync<TResult>(specification, cancellationToken);
+        _decorated.SingleOrDefaultAsync(specification, cancellationToken);
 }

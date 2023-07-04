@@ -19,6 +19,6 @@ public class AppointmentGetRequestHandler : IRequestHandler<AppointmentGetReques
 
     public async Task<AppointmentDto> Handle(AppointmentGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<Appointment, AppointmentDto>)new AppointmentByIdSpec(request.Id), cancellationToken)
+            new AppointmentByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["Appointment not found."], request.Id));
 }

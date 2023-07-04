@@ -10,7 +10,8 @@ public class GroupDto : IDto
     public string Code { get; set; } = default!;
     public string Name { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
-    public string? Manager { get; set; }
+    public DefaultIdType? EmployeeId { get; set; }
+    public string? EmployeeName { get; set; }
     public string? Description { get; set; }
     public string? Notes { get; set; }
     public string? Status { get; set; }

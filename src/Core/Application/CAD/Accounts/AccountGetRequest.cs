@@ -19,6 +19,6 @@ public class AccountGetRequestHandler : IRequestHandler<AccountGetRequest, Accou
 
     public async Task<AccountDto> Handle(AccountGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<Account, AccountDto>)new AccountByIdSpec(request.Id), cancellationToken)
+            new AccountByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["Account not found."], request.Id));
 }

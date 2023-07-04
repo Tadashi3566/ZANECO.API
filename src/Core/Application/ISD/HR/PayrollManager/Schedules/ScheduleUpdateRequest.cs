@@ -18,7 +18,7 @@ public class ScheduleUpdateRequestValidator : CustomValidator<ScheduleUpdateRequ
             .NotEmpty()
             .MaximumLength(128)
             .MustAsync(async (Schedule, name, ct) => await repoSchedule.FirstOrDefaultAsync(new ScheduleByNameSpec(name), ct)
-                        is not Schedule existingSchedule || existingSchedule.Id == Schedule.Id)
+                        is not { } existingSchedule || existingSchedule.Id == Schedule.Id)
             .WithMessage((_, name) => string.Format(localizer["Schedule already exists"], name));
     }
 }

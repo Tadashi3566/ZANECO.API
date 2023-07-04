@@ -26,7 +26,7 @@ public class SalaryUpdateRequestValidator : CustomValidator<SalaryUpdateRequest>
             .GreaterThanOrEqualTo(0)
             .MustAsync(async (salary, number, ct) =>
                     await repository.FirstOrDefaultAsync(new SalaryByNumberSpec(number), ct)
-                        is not Salary existingSalary || existingSalary.Id == salary.Id)
+                        is not { } existingSalary || existingSalary.Id == salary.Id)
                 .WithMessage((_, number) => string.Format(localizer["salary already exists"], number));
 
         RuleFor(p => p.Amount)

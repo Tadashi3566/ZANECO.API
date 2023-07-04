@@ -19,6 +19,6 @@ public class EmployerGetRequestHandler : IRequestHandler<EmployerGetRequest, Emp
 
     public async Task<EmployerDetailsDto> Handle(EmployerGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<Employer, EmployerDetailsDto>)new EmployerByIdWithEmployeeSpec(request.Id), cancellationToken)
+            new EmployerByIdWithEmployeeSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["employer not found."], request.Id));
 }

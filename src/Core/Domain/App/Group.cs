@@ -12,7 +12,7 @@ public class Group : AuditableEntity, IAggregateRoot
     public string Name { get; private set; }
     public decimal Amount { get; private set; }
     public virtual Employee? Employee { get; set; }
-    public Guid? EmployeeId { get; set; }
+    public Guid? EmployeeId { get; private set; }
     public string? EmployeeName { get; private set; }
     public string? ImagePath { get; private set; }
 
@@ -46,8 +46,8 @@ public class Group : AuditableEntity, IAggregateRoot
         if (!Name.Equals(name)) Name = name.Trim();
         if (!Amount.Equals(amount)) Amount = amount;
 
-        if (employeeId is not null && !EmployeeId!.Equals(employeeId)) EmployeeId = employeeId;
-        if (employeeName is not null && !EmployeeName!.Equals(employeeName)) EmployeeName = employeeName.Trim();
+        if (!EmployeeId!.Equals(employeeId)) EmployeeId = employeeId;
+        if (!EmployeeName!.Equals(employeeName)) EmployeeName = employeeName;
 
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
         if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();

@@ -19,6 +19,6 @@ public class RatingGetRequestHandler : IRequestHandler<RatingGetRequest, RatingD
 
     public async Task<RatingDto> Handle(RatingGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<Rating, RatingDto>)new RatingByIdSpec(request.Id), cancellationToken)
+            new RatingByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["Rating not found."], request.Id));
 }

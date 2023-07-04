@@ -19,6 +19,6 @@ public class ContactGetRequestHandler : IRequestHandler<ContactGetRequest, Conta
 
     public async Task<ContactDto> Handle(ContactGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<Contact, ContactDto>)new ContactByIdSpec(request.Id), cancellationToken)
+            new ContactByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["Contact not found."], request.Id));
 }

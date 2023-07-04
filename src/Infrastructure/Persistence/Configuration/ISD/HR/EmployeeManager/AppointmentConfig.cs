@@ -15,13 +15,17 @@ internal class AppointmentConfig : IEntityTypeConfiguration<Appointment>
         _ = builder.Property(b => b.AppointmentType)
             .IsRequired()
             .HasMaxLength(16);
+
         _ = builder.Property(b => b.Subject)
             .IsRequired()
             .HasMaxLength(1024);
+
         _ = builder.Property(b => b.StartDateTime)
             .HasColumnType("datetime(6)");
+
         _ = builder.Property(b => b.EndDateTime)
             .HasColumnType("datetime(6)");
+
         _ = builder.Property(b => b.Subject)
             .HasMaxLength(1024);
     }

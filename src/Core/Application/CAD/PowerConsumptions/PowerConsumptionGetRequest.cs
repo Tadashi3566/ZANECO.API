@@ -19,6 +19,6 @@ public class PowerConsumptionGetRequestHandler : IRequestHandler<PowerConsumptio
 
     public async Task<PowerConsumptionDto> Handle(PowerConsumptionGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<PowerConsumption, PowerConsumptionDto>)new PowerConsumptionByIdSpec(request.Id), cancellationToken)
+            new PowerConsumptionByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["PowerConsumption not found."], request.Id));
 }

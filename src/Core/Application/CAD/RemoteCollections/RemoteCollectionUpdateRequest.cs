@@ -33,7 +33,7 @@ public class RemoteCollectionUpdateRequestValidator : CustomValidator<RemoteColl
             .MaximumLength(16)
             .MustAsync(async (RemoteCollection, reference, ct) =>
                     await repository.FirstOrDefaultAsync(new RemoteCollectionByReferenceSpec(reference), ct)
-                        is not RemoteCollection existingRemoteCollection || existingRemoteCollection.Id == RemoteCollection.Id)
+                        is not { } existingRemoteCollection || existingRemoteCollection.Id == RemoteCollection.Id)
                 .WithMessage((_, reference) => string.Format(localizer["remoteCollection already exists"], reference));
 
         RuleFor(p => p.Amount)

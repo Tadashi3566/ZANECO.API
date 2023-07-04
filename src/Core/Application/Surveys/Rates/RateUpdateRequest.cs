@@ -19,7 +19,7 @@ public class RateUpdateRequestValidator : CustomValidator<RateUpdateRequest>
             .GreaterThan(0)
             .MustAsync(async (Rate, number, ct) =>
                     await RateRepo.FirstOrDefaultAsync(new RateByNumberSpec(number), ct)
-                        is not Rate existingRate || existingRate.Id == Rate.Id)
+                        is not { } existingRate || existingRate.Id == Rate.Id)
                 .WithMessage((_, number) => string.Format(localizer["rate already exists"], number));
 
         RuleFor(p => p.Name)
@@ -27,7 +27,7 @@ public class RateUpdateRequestValidator : CustomValidator<RateUpdateRequest>
             .MaximumLength(16)
             .MustAsync(async (Rate, name, ct) =>
                     await RateRepo.FirstOrDefaultAsync(new RateByNameSpec(name), ct)
-                        is not Rate existingRate || existingRate.Id == Rate.Id)
+                        is not { } existingRate || existingRate.Id == Rate.Id)
                 .WithMessage((_, name) => string.Format(localizer["rate already exists"], name));
     }
 }

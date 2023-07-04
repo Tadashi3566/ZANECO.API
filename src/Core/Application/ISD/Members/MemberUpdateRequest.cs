@@ -33,7 +33,7 @@ public class MemberUpdateRequestValidator : CustomValidator<MemberUpdateRequest>
             .MaximumLength(1024)
             .MustAsync(async (member, name, ct) =>
                     await MemberRepo.FirstOrDefaultAsync(new MemberByNameSpec(name), ct)
-                        is not Member existingMember || existingMember.Id == member.Id)
+                        is not { } existingMember || existingMember.Id == member.Id)
                 .WithMessage((_, name) => string.Format(localizer["member already exists"], name));
 
         RuleFor(p => p.Address)

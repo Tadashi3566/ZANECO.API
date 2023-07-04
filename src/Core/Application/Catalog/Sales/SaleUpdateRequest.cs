@@ -26,7 +26,7 @@ public class UpdateSaleRequestValidator : CustomValidator<SaleUpdateRequest>
             .NotEmpty()
             .MustAsync(async (Sale, orNumber, ct) =>
                     await repository.FirstOrDefaultAsync(new SaleByOrNumerSpec(orNumber), ct)
-                        is not Sale existingSale || existingSale.Id == Sale.Id)
+                        is not { } existingSale || existingSale.Id == Sale.Id)
                 .WithMessage((_, orNumer) => T["sale {0} already Exists.", orNumer]);
 
         RuleFor(p => p.Image)

@@ -19,6 +19,6 @@ public class RatingTemplateGetRequestHandler : IRequestHandler<RatingTemplateGet
 
     public async Task<RatingTemplateDetailsDto> Handle(RatingTemplateGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<RatingTemplate, RatingTemplateDetailsDto>)new RatingTemplateByIdWithRateSpec(request.Id), cancellationToken)
+            new RatingTemplateByIdWithRateSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["ratingTemplate not found."], request.Id));
 }

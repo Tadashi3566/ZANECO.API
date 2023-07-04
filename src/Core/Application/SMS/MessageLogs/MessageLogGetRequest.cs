@@ -19,6 +19,6 @@ public class MessageLogGetRequestHandler : IRequestHandler<MessageLogGetRequest,
 
     public async Task<MessageLogDto> Handle(MessageLogGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<MessageLog, MessageLogDto>)new MessageLogByIdSpec(request.Id), cancellationToken)
+            new MessageLogByIdSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["Message not found."], request.Id));
 }

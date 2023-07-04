@@ -19,6 +19,6 @@ public class EmployeeAdjustmentGetRequestHandler : IRequestHandler<EmployeeAdjus
 
     public async Task<EmployeeAdjustmentDto> Handle(EmployeeAdjustmentGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<EmployeeAdjustment, EmployeeAdjustmentDto>)new EmployeeAdjustmentByIdWithEmployeeSpec(request.Id), cancellationToken)
+            new EmployeeAdjustmentByIdWithEmployeeSpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["EmployeeAdjustment not found."], request.Id));
 }

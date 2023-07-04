@@ -30,7 +30,7 @@ public class PayrollUpdateRequestValidator : CustomValidator<PayrollUpdateReques
             .NotEmpty()
             .MaximumLength(128)
             .MustAsync(async (payroll, name, ct) => await repoPayroll.FirstOrDefaultAsync(new PayrollByNameSpec(name), ct)
-                        is not Payroll existingPayroll || existingPayroll.Id == payroll.Id)
+                        is not { } existingPayroll || existingPayroll.Id == payroll.Id)
             .WithMessage((_, name) => string.Format(localizer["payroll already exists"], name));
 
         //RuleFor(p => p.PayrollDate)

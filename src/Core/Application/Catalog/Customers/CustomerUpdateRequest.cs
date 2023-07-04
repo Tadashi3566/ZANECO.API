@@ -25,7 +25,7 @@ public class UpdateCustomerRequestValidator : CustomValidator<CustomerUpdateRequ
             .MaximumLength(16)
             .MustAsync(async (Customer, code, ct) =>
                     await repository.FirstOrDefaultAsync(new CustomerByCodeSpec(code), ct)
-                        is not Customer existingCustomer || existingCustomer.Id == Customer.Id)
+                        is not { } existingCustomer || existingCustomer.Id == Customer.Id)
                 .WithMessage((_, name) => T["customer {0} already Exists.", name]);
 
         RuleFor(p => p.Name)
@@ -33,7 +33,7 @@ public class UpdateCustomerRequestValidator : CustomValidator<CustomerUpdateRequ
             .MaximumLength(1024)
             .MustAsync(async (Customer, name, ct) =>
                     await repository.FirstOrDefaultAsync(new CustomerByNameSpec(name), ct)
-                        is not Customer existingCustomer || existingCustomer.Id == Customer.Id)
+                        is not { } existingCustomer || existingCustomer.Id == Customer.Id)
                 .WithMessage((_, name) => T["customer {0} already Exists.", name]);
 
         RuleFor(p => p.Image)

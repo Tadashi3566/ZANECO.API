@@ -19,6 +19,6 @@ public class RegistrationGetRequestHandler : IRequestHandler<RegistrationGetRequ
 
     public async Task<Master2022Dto> Handle(RegistrationGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
-            (ISpecification<Master2022, Master2022Dto>)new RegistrationByAccountSpec(request.Account), cancellationToken)
+            new RegistrationByAccountSpec(request.Account), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["Registration not found."], request.Account));
 }

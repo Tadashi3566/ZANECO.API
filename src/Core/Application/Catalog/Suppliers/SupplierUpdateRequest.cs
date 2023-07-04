@@ -22,7 +22,7 @@ public class UpdateSupplierRequestValidator : CustomValidator<SupplierUpdateRequ
             .NotEmpty()
             .MustAsync(async (Supplier, name, ct) =>
                     await repository.FirstOrDefaultAsync(new SupplierByNameSpec(name), ct)
-                        is not Supplier existingSupplier || existingSupplier.Id == Supplier.Id)
+                        is not { } existingSupplier || existingSupplier.Id == Supplier.Id)
                 .WithMessage((_, name) => T["supplier {0} already Exists.", name]);
 
         RuleFor(p => p.Image)
