@@ -22,7 +22,7 @@ public class DocumentUpdateRequest : IRequest<Guid>
 
 public class DocumentUpdateRequestValidator : CustomValidator<DocumentUpdateRequest>
 {
-    public DocumentUpdateRequestValidator(IReadRepository<Employee> repoEmployee, IStringLocalizer<DesignationUpdateRequestValidator> localizer)
+    public DocumentUpdateRequestValidator(IReadRepository<Employee> repoEmployee, IStringLocalizer<DocumentUpdateRequestValidator> localizer)
     {
         RuleFor(p => p.EmployeeId)
             .NotEmpty()

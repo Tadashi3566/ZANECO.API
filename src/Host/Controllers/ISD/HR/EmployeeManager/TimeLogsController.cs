@@ -4,6 +4,16 @@ namespace ZANECO.API.Host.Controllers.ISD.HR.EmployeeManager;
 
 public class TimeLogsController : VersionedApiController
 {
+    // To be transferred to mobile controller
+    [HttpPost("mobilecreate")]
+    [AllowAnonymous]
+    [TenantIdHeader]
+    [OpenApiOperation("Create a new Time Log from Mobile.", "")]
+    public Task<DefaultIdType> CreateFromMobileAsync(TimeLogCreateRequest request)
+    {
+        return Mediator.Send(request);
+    }
+
     [HttpPost("search")]
     [MustHavePermission(FSHAction.Search, FSHResource.Attendance)]
     [OpenApiOperation("Search TimeLogs using available filters.", "")]

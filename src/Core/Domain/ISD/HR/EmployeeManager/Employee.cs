@@ -227,6 +227,8 @@ public class Employee : AuditableEntity, IAggregateRoot
 
     public Employee Designation(DefaultIdType designationId, DateTime startDate, DateTime regularDate, string area, string department, string division, string section, string position, string employmentType, int salaryNumber, string salaryName, decimal salaryBase, decimal salaryStep, string rateType, int hoursPerDay, string taxType, string payType, DefaultIdType? scheduleId, string scheduleName, bool isActive)
     {
+        if (!IsActive.Equals(isActive)) IsActive = isActive;
+
         if (!DesignationId.Equals(designationId)) DesignationId = designationId;
 
         if (!StartDate.Equals(startDate)) StartDate = startDate;
@@ -300,8 +302,6 @@ public class Employee : AuditableEntity, IAggregateRoot
         if (!RatePerDay.Equals(ratePerDay)) RatePerDay = ratePerDay;
         if (!RatePerHour.Equals(ratePerHour)) RatePerHour = ratePerHour;
         if (!SalaryAmount.Equals(salaryAmount)) SalaryAmount = salaryAmount;
-
-        if (!IsActive.Equals(isActive)) IsActive = isActive;
 
         return this;
     }

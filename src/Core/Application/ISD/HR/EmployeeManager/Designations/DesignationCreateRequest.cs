@@ -40,7 +40,14 @@ public class DesignationCreateRequestValidator : CustomValidator<DesignationCrea
                 .WithMessage((_, id) => string.Format(localizer["employee not found."], id));
 
         RuleFor(p => p.StartDate)
-           .NotNull();
+            .NotNull();
+
+        RuleFor(p => p.EndDate)
+            .NotNull();
+
+        RuleFor(p => p.EndDate)
+            .GreaterThan(x => x.StartDate)
+            .WithMessage("End Date should be greater than Start Date");
 
         RuleFor(p => p.Area)
            .NotEmpty();
@@ -70,18 +77,23 @@ public class DesignationCreateRequestValidator : CustomValidator<DesignationCrea
 
 public class DesignationCreateRequestHandler : IRequestHandler<DesignationCreateRequest, Guid>
 {
+    private readonly IRepositoryWithEvents<Designation> _repoDesignation;
     private readonly IRepositoryWithEvents<Employee> _repoEmployee;
     private readonly IReadRepository<Salary> _repoSalary;
     private readonly IReadRepository<Schedule> _repoSchedule;
-    private readonly IRepository<Designation> _repoDesignation;
     private readonly IDapperRepository _dapper;
     private readonly IFileStorageService _file;
 
-    public DesignationCreateRequestHandler(IRepositoryWithEvents<Employee> repoEmployee, IReadRepository<Salary> repoRank, IReadRepository<Schedule> repoSchedule, IRepository<Designation> repoDesignation, IDapperRepository dapper, IFileStorageService file) =>
-        (_repoEmployee, _repoSalary, _repoSchedule, _repoDesignation, _dapper, _file) = (repoEmployee, repoRank, repoSchedule, repoDesignation, dapper, file);
+    public DesignationCreateRequestHandler(IRepositoryWithEvents<Designation> repoDesignation, IRepositoryWithEvents<Employee> repoEmployee, IReadRepository<Salary> repoRank, IReadRepository<Schedule> repoSchedule, IDapperRepository dapper, IFileStorageService file) =>
+        (_repoDesignation, _repoEmployee, _repoSalary, _repoSchedule, _dapper, _file) = (repoDesignation, repoEmployee, repoRank, repoSchedule, dapper, file);
 
     public async Task<Guid> Handle(DesignationCreateRequest request, CancellationToken cancellationToken)
     {
+        if (request.StartDate >= request.EndDate)
+        {
+            throw new ArgumentException("End Date should be greater then Start Date");
+        }
+
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
         _ = employee ?? throw new NotFoundException("Employee not found.");
@@ -94,12 +106,20 @@ public class DesignationCreateRequestHandler : IRequestHandler<DesignationCreate
         var schedule = await _repoSchedule.FirstOrDefaultAsync(new ScheduleByIdSpec(request.ScheduleId), cancellationToken);
         _ = schedule ?? throw new NotFoundException("Schedule not found.");
 
+        // Update last designation End Date
+        var lastDesignation = await _repoDesignation.FirstOrDefaultAsync(new DesignationLastSpec(request.EmployeeId), cancellationToken);
+        if (lastDesignation is not null)
+        {
+            var updatedLastDesignation = lastDesignation.Deactivate(request.StartDate.AddDays(-1));
+            await _repoDesignation.UpdateAsync(updatedLastDesignation, cancellationToken);
+        }
+
         // Set all Employee Designations as Active=false
-        await _dapper.ExecuteScalarAsync<Designation>($"UPDATE datazaneco.designations SET IsActive = 0 WHERE EmployeeId LIKE '{employee.Id}'", cancellationToken: cancellationToken);
+        // await _dapper.ExecuteScalarAsync<Designation>($"UPDATE datazaneco.designations SET IsActive = 0 WHERE EmployeeId LIKE '{employee.Id}'", cancellationToken: cancellationToken);
 
         string imagePath = await _file.UploadAsync<Designation>(request.Image, FileType.Image, cancellationToken);
 
-        var designation = new Designation(request.EmployeeId, employee!.Number, employee.NameFull(), request.StartDate, request.EndDate, employee.RegularDate, request.Area, request.Department, request.Division, request.Section, request.Position, request.EmploymentType, salary.Number, salary.Name, salary.Amount, salary.IncrementAmount, request.RatePerDay, salary.RateType, request.TaxType, request.PayType, request.ScheduleId, schedule.Name, request.Description, request.Notes, imagePath);
+        var designation = new Designation(request.EmployeeId, employee.Number, employee.NameFull(), request.StartDate, request.EndDate, employee.RegularDate, request.Area, request.Department, request.Division, request.Section, request.Position, request.EmploymentType, salary.Number, salary.Name, salary.Amount, salary.IncrementAmount, request.RatePerDay, salary.RateType, request.TaxType, request.PayType, request.ScheduleId, schedule.Name, request.Description, request.Notes, imagePath);
         await _repoDesignation.AddAsync(designation, cancellationToken);
 
         // Update Employee Designation

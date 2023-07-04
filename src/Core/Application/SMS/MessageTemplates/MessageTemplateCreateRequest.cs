@@ -1,3 +1,4 @@
+using System;
 using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.SMS.MessageTemplates;
@@ -55,6 +56,9 @@ public class MessageTemplateCreateRequestHandler : IRequestHandler<MessageTempla
 
     public async Task<Guid> Handle(MessageTemplateCreateRequest request, CancellationToken cancellationToken)
     {
+        if (request.Schedule < DateTime.Today)
+            throw new ArgumentException("Message Schedule should be at least today.");
+
         string imagePath = await _file.UploadAsync<MessageTemplate>(request.Image, FileType.Image, cancellationToken);
 
         var messageTemplate = new MessageTemplate(request.TemplateType, request.MessageType, request.IsAPI, request.Schedule, request.Subject, request.Message, request.Recipients, request.Description, request.Notes, imagePath);

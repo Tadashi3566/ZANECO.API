@@ -2,8 +2,10 @@
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Designations;
 
-public sealed class DesignationByNameSpec : Specification<Designation>, ISingleResultSpecification
+public sealed class DesignationLastSpec : Specification<Designation>, ISingleResultSpecification
 {
-    public DesignationByNameSpec(string name) =>
-        Query.Where(p => p.Position == name);
+    public DesignationLastSpec(DefaultIdType employeeId) =>
+        Query.Where(x => x.EmployeeId.Equals(employeeId))
+            .OrderByDescending(x => x.EndDate)
+            .Take(1);
 }

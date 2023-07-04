@@ -48,6 +48,13 @@ public class DesignationUpdateRequestValidator : CustomValidator<DesignationUpda
         RuleFor(p => p.StartDate)
            .NotNull();
 
+        RuleFor(p => p.EndDate)
+            .NotNull();
+
+        RuleFor(p => p.EndDate)
+            .GreaterThan(x => x.StartDate)
+            .WithMessage("End Date should be greater than Start Date");
+
         RuleFor(p => p.Area)
            .NotEmpty();
 
@@ -84,6 +91,11 @@ public class DesignationUpdateRequestHandler : IRequestHandler<DesignationUpdate
 
     public async Task<Guid> Handle(DesignationUpdateRequest request, CancellationToken cancellationToken)
     {
+        if (request.StartDate >= request.EndDate)
+        {
+            throw new ArgumentException("End Date should be greater then Start Date");
+        }
+
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
         _ = employee ?? throw new NotFoundException("employee not found.");

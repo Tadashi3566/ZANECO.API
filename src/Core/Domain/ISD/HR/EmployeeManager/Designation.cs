@@ -208,6 +208,15 @@ public class Designation : AuditableEntity, IAggregateRoot
         return this;
     }
 
+    public Designation Deactivate(DateTime endDate)
+    {
+        IsActive = false;
+
+        if (!EndDate.Equals(endDate)) EndDate = endDate;
+
+        return this;
+    }
+
     public Designation Activate()
     {
         IsActive = true;
