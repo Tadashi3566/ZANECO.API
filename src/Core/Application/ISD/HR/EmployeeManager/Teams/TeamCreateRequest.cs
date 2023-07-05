@@ -32,6 +32,13 @@ public class TeamCreateRequestHandler : IRequestHandler<TeamCreateRequest, Defau
 
     public async Task<DefaultIdType> Handle(TeamCreateRequest request, CancellationToken cancellationToken)
     {
+        var existingMember =
+            await _repoTeam.FirstOrDefaultAsync(new TeamByMemberSpec(request.ManagerId, request.MemberId),
+                cancellationToken);
+
+        if (existingMember is not null)
+            throw new ArgumentException("Team Member already existing.");
+
         // Get Manager Information
         var manager = await _repoEmployee.GetByIdAsync(request.ManagerId, cancellationToken);
         _ = manager ?? throw new NotFoundException("Employee not found.");

@@ -19,9 +19,16 @@ public class DapperRepository : IDapperRepository
             .AsList();
 
     public async Task<List<T>> QueryListAsync<T>(string sql, object? param = null, IDbTransaction? transaction = null, CancellationToken cancellationToken = default)
-    where T : class, IEntity =>
-        (await _dbContext.Connection.QueryAsync<T>(sql, param, transaction))
-            .AsList();
+        where T : class, IEntity
+    {
+        if (_dbContext.Model.GetMultiTenantEntityTypes().Any(t => t.ClrType == typeof(T)))
+        {
+            sql = sql.Replace("@tenant", _dbContext.TenantInfo.Id);
+        }
+
+        var results = await _dbContext.Connection.QueryAsync<T>(sql, param, transaction);
+        return results.ToList();
+    }
 
     public async Task<T?> QueryFirstOrDefaultAsync<T>(string sql, object? param = null, IDbTransaction? transaction = null, CancellationToken cancellationToken = default)
     where T : class, IEntity

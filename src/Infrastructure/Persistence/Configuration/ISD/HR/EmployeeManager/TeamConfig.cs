@@ -10,6 +10,7 @@ internal class TeamConfig : IEntityTypeConfiguration<Team>
     public void Configure(EntityTypeBuilder<Team> builder)
     {
         _ = builder
+            .ToTable("Teams", SchemaNames.ZANECO)
             .IsMultiTenant();
 
         _ = builder.Property(b => b.ManagerId)

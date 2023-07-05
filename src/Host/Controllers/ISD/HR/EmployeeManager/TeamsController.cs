@@ -12,6 +12,15 @@ public class TeamsController : VersionedApiController
         return Mediator.Send(request);
     }
 
+
+    [HttpPost("dapper-search")]
+    [MustHavePermission(FSHAction.Search, FSHResource.Employees)]
+    [OpenApiOperation("Search Team Members using through dapper.", "")]
+    public Task<List<TeamDto>> DapperSearchAsync(TeamSearchViaDapperRequest request)
+    {
+        return Mediator.Send(request);
+    }
+
     //[HttpGet("{id:guid}")]
     //[MustHavePermission(FSHAction.View, FSHResource.Employees)]
     //[OpenApiOperation("Get Team details.", "")]
