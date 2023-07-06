@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Teams;
 
-public sealed class TeamByIdSpec : Specification<Team, TeamDto>, ISingleResultSpecification
+public sealed class TeamByIdSpec : Specification<Team, TeamDetailDto>, ISingleResultSpecification
 {
     public TeamByIdSpec(DefaultIdType id) =>
         Query.Where(p => p.Id == id);

@@ -12,7 +12,6 @@ public class TeamsController : VersionedApiController
         return Mediator.Send(request);
     }
 
-
     [HttpPost("dapper-search")]
     [MustHavePermission(FSHAction.Search, FSHResource.Employees)]
     [OpenApiOperation("Search Team Members using through dapper.", "")]
@@ -21,13 +20,13 @@ public class TeamsController : VersionedApiController
         return Mediator.Send(request);
     }
 
-    //[HttpGet("{id:guid}")]
-    //[MustHavePermission(FSHAction.View, FSHResource.Employees)]
-    //[OpenApiOperation("Get Team details.", "")]
-    //public Task<TeamDetailsDto> GetAsync(DefaultIdType id)
-    //{
-    //    return Mediator.Send(new TeamGetRequest(id));
-    //}
+    [HttpGet("{id:guid}")]
+    [MustHavePermission(FSHAction.View, FSHResource.Employees)]
+    [OpenApiOperation("Get Team details.", "")]
+    public Task<TeamDetailDto> GetAsync(DefaultIdType id)
+    {
+        return Mediator.Send(new TeamGetRequest(id));
+    }
 
     [HttpGet("dapper")]
     [MustHavePermission(FSHAction.View, FSHResource.Employees)]

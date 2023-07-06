@@ -4,6 +4,6 @@ public class ProductByIdWithBrandSpec : Specification<Product, ProductDetailsDto
 {
     public ProductByIdWithBrandSpec(DefaultIdType id) =>
         Query
-            .Where(p => p.Id == id)
-            .Include(p => p.Brand);
+            .Include(p => p.Brand)
+            .Where(p => p.Id == id);
 }

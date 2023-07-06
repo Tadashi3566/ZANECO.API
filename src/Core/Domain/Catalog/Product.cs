@@ -43,14 +43,14 @@ public class Product : AuditableEntity, IAggregateRoot
     {
         if (brandId.HasValue && brandId.Value != DefaultIdType.Empty && !BrandId.Equals(brandId.Value)) BrandId = brandId.Value;
 
-        if (sku is not null && !SKU.Equals(sku)) SKU = sku;
-        if (barcode is not null && !Barcode.Equals(barcode)) Barcode = barcode;
+        if (!SKU.Equals(sku)) SKU = sku;
+        if (!Barcode.Equals(barcode)) Barcode = barcode;
 
-        if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
-        if (specification is not null && !Specification.Equals(specification)) Specification = specification;
-        if (unitOfMeasurement is not null && !UnitOfMeasurement.Equals(unitOfMeasurement)) UnitOfMeasurement = unitOfMeasurement;
+        if (!Name.Equals(name)) Name = name.Trim().ToUpper();
+        if (!Specification.Equals(specification)) Specification = specification;
+        if (!UnitOfMeasurement.Equals(unitOfMeasurement)) UnitOfMeasurement = unitOfMeasurement;
 
-        if (isVatable is not null && !IsVatable.Equals(isVatable)) IsVatable = isVatable;
+        if (!IsVatable.Equals(isVatable)) IsVatable = isVatable;
         if (!Rate.Equals(rate)) Rate = rate;
 
         if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();

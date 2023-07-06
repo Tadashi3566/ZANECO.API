@@ -13,17 +13,17 @@ internal class TeamConfig : IEntityTypeConfiguration<Team>
             .ToTable("Teams", SchemaNames.ZANECO)
             .IsMultiTenant();
 
-        _ = builder.Property(b => b.ManagerId)
+        _ = builder.Property(b => b.LeaderId)
             .IsRequired();
 
-        _ = builder.Property(b => b.ManagerName)
+        _ = builder.Property(b => b.LeaderName)
             .IsRequired()
             .HasMaxLength(1024);
 
-        _ = builder.Property(b => b.MemberId)
+        _ = builder.Property(b => b.EmployeeId)
             .IsRequired();
 
-        _ = builder.Property(b => b.MemberName)
+        _ = builder.Property(b => b.EmployeeName)
             .IsRequired()
             .HasMaxLength(1024);
     }

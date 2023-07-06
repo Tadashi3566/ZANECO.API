@@ -13,8 +13,8 @@ public sealed class TeamsBySearchRequestSpec : EntitiesByPaginationFilterSpec<Te
         : base(request) =>
         Query
             .Include(x => x.Employee)
-            .OrderBy(x => x.MemberName)
-            .Where(x => x.ManagerId.Equals(request.ManagerId!.Value), request.ManagerId.HasValue);
+            .OrderBy(x => x.EmployeeName)
+            .Where(x => x.LeaderId.Equals(request.ManagerId!.Value), request.ManagerId.HasValue);
 }
 
 public class TeamSearchRequestHandler : IRequestHandler<TeamSearchRequest, PaginationResponse<TeamDto>>
