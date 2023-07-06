@@ -10,16 +10,16 @@ public class RatingTemplate : AuditableEntity, IAggregateRoot
     {
         RateId = rateId;
         Comment = comment;
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
     public RatingTemplate Update(DefaultIdType? rateID, string comment, string? description = "", string? notes = "")
     {
         if (rateID.HasValue && rateID.Value != DefaultIdType.Empty && !RateId.Equals(rateID.Value)) RateId = rateID.Value;
         if (comment is not null && !Comment.Equals(comment)) Comment = comment;
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
         return this;
     }
 }

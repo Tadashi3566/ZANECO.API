@@ -44,8 +44,8 @@ public class SaleItem : AuditableEntity, IAggregateRoot
         DiscountAmount = discountAmount;
         Net = net;
 
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
         if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
     }
@@ -63,8 +63,8 @@ public class SaleItem : AuditableEntity, IAggregateRoot
         if (!DiscountAmount.Equals(discountAmount)) DiscountAmount = discountAmount;
         if (!Net.Equals(net)) Net = net;
 
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
         if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
 

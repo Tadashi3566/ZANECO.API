@@ -24,8 +24,8 @@ public class Route : AuditableEntity, IAggregateRoot
         Number = number;
         Code = code;
         Name = name.Trim().ToUpper();
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
     public Route Update(string areaName, int number, string code, string name, string? description = "", string? notes = "")
@@ -36,8 +36,8 @@ public class Route : AuditableEntity, IAggregateRoot
         if (code is not null && Code != code) Code = code;
         if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
 
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
         return this;
     }

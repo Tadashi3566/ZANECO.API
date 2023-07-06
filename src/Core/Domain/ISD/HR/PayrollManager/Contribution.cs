@@ -31,8 +31,8 @@ public class Contribution : AuditableEntity, IAggregateRoot
 
         IsFixed = isFixed;
 
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
     public Contribution Update(string contributionType, DateTime startDate, DateTime endDate, decimal rangeStart, decimal rangeEnd, decimal employerContribution, decimal employeeContribution, decimal totalContribution, decimal percentage, bool isFixed, string? description = "", string? notes = "")
@@ -52,8 +52,8 @@ public class Contribution : AuditableEntity, IAggregateRoot
 
         if (!IsFixed.Equals(isFixed)) IsFixed = isFixed;
 
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
         return this;
     }

@@ -7,7 +7,7 @@ public class TeamsController : VersionedApiController
     [HttpPost("search")]
     [MustHavePermission(FSHAction.Search, FSHResource.Employees)]
     [OpenApiOperation("Search Team Members using available filters.", "")]
-    public Task<PaginationResponse<TeamDto>> SearchAsync(TeamSearchRequest request)
+    public Task<PaginationResponse<TeamDetailDto>> SearchAsync(TeamSearchRequest request)
     {
         return Mediator.Send(request);
     }
@@ -15,7 +15,7 @@ public class TeamsController : VersionedApiController
     [HttpPost("dapper-search")]
     [MustHavePermission(FSHAction.Search, FSHResource.Employees)]
     [OpenApiOperation("Search Team Members using through dapper.", "")]
-    public Task<List<TeamDto>> DapperSearchAsync(TeamSearchViaDapperRequest request)
+    public Task<PaginationResponse<TeamDetailDto>> DapperSearchAsync(TeamSearchViaDapperRequest request)
     {
         return Mediator.Send(request);
     }

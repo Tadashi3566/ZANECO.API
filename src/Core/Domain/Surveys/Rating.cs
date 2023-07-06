@@ -20,8 +20,8 @@ public class Rating : AuditableEntity, IAggregateRoot
         RateName = rateName;
         Comment = comment;
         Reference = reference;
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
     public Rating Update(int rateNumber, string rateName, string comment, string reference, string? description = "", string? notes = "")
@@ -30,8 +30,8 @@ public class Rating : AuditableEntity, IAggregateRoot
         if (rateName is not null && !RateName.Equals(rateName)) RateName = rateName;
         if (comment is not null && !Comment.Equals(comment)) Comment = comment;
         if (reference is not null && !Reference.Equals(reference)) Reference = reference;
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
         return this;
     }
 }

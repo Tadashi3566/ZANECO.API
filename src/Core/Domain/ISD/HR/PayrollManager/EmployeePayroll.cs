@@ -37,8 +37,8 @@ public class EmployeePayroll : AuditableEntity, IAggregateRoot
         EndDate = endDate;
         PayrollDate = payrollDate;
 
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
     public EmployeePayroll Update(string employeeName, string payrollName, decimal salary, decimal additional, decimal gross, decimal deduction, decimal net, DateTime startDate, DateTime endDate, DateTime payrollDate, string? description = "", string? notes = "")
@@ -56,8 +56,8 @@ public class EmployeePayroll : AuditableEntity, IAggregateRoot
         if (!EndDate.Equals(endDate)) EndDate = endDate;
         if (!PayrollDate.Equals(payrollDate)) PayrollDate = payrollDate;
 
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
         return this;
     }

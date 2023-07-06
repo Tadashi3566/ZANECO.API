@@ -31,8 +31,8 @@ public class ScheduleDetail : AuditableEntity, IAggregateRoot
 
         TotalHours = totalHours;
 
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
     public ScheduleDetail Update(string scheduleName, string scheduleType, string day, string timeIn1, string timeOut1, string timeIn2, string timeOut2, int totalHours, string? description = "", string? notes = "")
@@ -48,8 +48,8 @@ public class ScheduleDetail : AuditableEntity, IAggregateRoot
 
         if (!TotalHours.Equals(totalHours)) TotalHours = totalHours;
 
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
         return this;
     }

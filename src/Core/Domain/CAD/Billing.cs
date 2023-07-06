@@ -70,8 +70,8 @@ public class Billing : AuditableEntity, IAggregateRoot
     public Billing(string accountNumber, string? description = "", string? notes = "")
     {
         AccountNumber = accountNumber.Trim().ToUpper();
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
     public Billing(DefaultIdType accountId, int idCode, string accountNumber, string billNumber, string billMonth, decimal ucnpcsd, decimal ucnpcscc, decimal ucduscc, decimal ucme, decimal ucetr, decimal ucec, decimal uccsr, decimal vatDistribution, decimal vatGeneration, decimal vatTransmission, decimal vatSLGeneration, decimal vatSLTransmission, decimal vat)
@@ -97,15 +97,15 @@ public class Billing : AuditableEntity, IAggregateRoot
         VATSLTransmission = vatSLTransmission;
         VAT = vat;
 
-        //if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        //if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        //if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        //if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
     public Billing Update(string accountNumber, string? description = "", string? notes = "")
     {
         if (accountNumber is not null && !AccountNumber.Equals(AccountNumber)) AccountNumber = accountNumber.Trim().ToUpper();
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
         return this;
     }
 
@@ -118,8 +118,8 @@ public class Billing : AuditableEntity, IAggregateRoot
     //    if (kwh > 0 && !KWH.Equals(kwh)) KWH = kwh;
     //    if (collector is not null && Collector?.Equals(collector) is not true) Collector = collector.Trim().ToUpper();
     //    if (postingDate is not null && PostingDate?.Equals(postingDate) is not true) PostingDate = postingDate;
-    //    if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-    //    if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+    //    if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+    //    if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     //    return this;
     // }
 }

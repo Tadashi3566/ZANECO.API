@@ -80,8 +80,8 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
 
         Status = status;
 
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
     public Attendance Calculate(bool isOvertime, int lateMinutes, int underTimeMinutes, double totalHours) //DateTime? timeOutDate,
@@ -123,8 +123,8 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
 
         if (status is not null && !Status!.Equals(status)) Status = status;
 
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
         return this;
     }
@@ -136,8 +136,8 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
         if (!ScheduleTimeIn2.Equals(scheduleTimeIn2)) ScheduleTimeIn2 = scheduleTimeIn2;
         if (!ScheduleTimeOut2.Equals(scheduleTimeOut2)) ScheduleTimeOut2 = scheduleTimeOut2;
 
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
         return this;
     }

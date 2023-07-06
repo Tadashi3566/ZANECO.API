@@ -5,8 +5,8 @@ namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Teams;
 public class TeamUpdateRequest : IRequest<DefaultIdType>
 {
     public DefaultIdType Id { get; set; }
-    public DefaultIdType ManagerId { get; set; } = default!;
-    public DefaultIdType MemberId { get; set; } = default!;
+    public DefaultIdType LeaderId { get; set; } = default!;
+    public DefaultIdType EmployeeId { get; set; } = default!;
     public string? Description { get; set; }
     public string? Notes { get; set; }
 }
@@ -15,10 +15,10 @@ public class TeamUpdateRequestValidator : CustomValidator<TeamUpdateRequest>
 {
     public TeamUpdateRequestValidator()
     {
-        RuleFor(p => p.ManagerId)
+        RuleFor(p => p.LeaderId)
             .NotEmpty();
 
-        RuleFor(p => p.MemberId)
+        RuleFor(p => p.EmployeeId)
             .NotEmpty();
     }
 }
@@ -37,12 +37,12 @@ public class TeamUpdateRequestHandler : IRequestHandler<TeamUpdateRequest, Defau
         _ = team ?? throw new NotFoundException("Team not found.");
 
         // Get Manager Information
-        var manager = await _repoEmployee.GetByIdAsync(request.ManagerId, cancellationToken);
+        var manager = await _repoEmployee.GetByIdAsync(request.LeaderId, cancellationToken);
         _ = manager ?? throw new NotFoundException("Employee not found.");
         if (!manager.IsActive) throw new ArgumentException("Employee is no longer Active");
 
         // Get Member Information
-        var member = await _repoEmployee.GetByIdAsync(request.MemberId, cancellationToken);
+        var member = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
         _ = member ?? throw new NotFoundException("Employee not found.");
         if (!member.IsActive) throw new ArgumentException("Employee is no longer Active");
 

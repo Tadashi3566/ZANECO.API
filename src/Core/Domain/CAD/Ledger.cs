@@ -41,8 +41,8 @@ public class Ledger : AuditableEntity, IAggregateRoot
     public Ledger(string accountNumber, string? description = "", string? notes = "")
     {
         AccountNumber = accountNumber.Trim().ToUpper();
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
     public Ledger(DefaultIdType accountId, int idCode, string accountNumber, string billNumber, string billMonth, double lastReading, double kwh, decimal ucnpcsd, decimal ucnpcscc, decimal ucduscc, decimal ucme, decimal ucetr, decimal ucec, decimal uccsr, decimal vatDistribution, decimal vatGeneration, decimal vatTransmission, decimal vatSLGeneration, decimal vatSLTransmission, decimal vat, decimal vatDiscount, decimal debit, decimal credit, decimal balance, string collector, DateTime postingDate)
@@ -78,15 +78,15 @@ public class Ledger : AuditableEntity, IAggregateRoot
         Collector = collector.Trim().ToUpper();
         PostingDate = postingDate;
 
-        //if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        //if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        //if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        //if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
     public Ledger Update(string accountNumber, string? description = "", string? notes = "")
     {
         if (accountNumber is not null && !AccountNumber.Equals(AccountNumber)) AccountNumber = accountNumber.Trim().ToUpper();
-        if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-        if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+        if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+        if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
         return this;
     }
 
@@ -99,8 +99,8 @@ public class Ledger : AuditableEntity, IAggregateRoot
     //    if (kwh > 0 && !KWH.Equals(kwh)) KWH = kwh;
     //    if (collector is not null && Collector?.Equals(collector) is not true) Collector = collector.Trim().ToUpper();
     //    if (postingDate is not null && PostingDate?.Equals(postingDate) is not true) PostingDate = postingDate;
-    //    if (description is not null && (Description is null || !Description!.Equals(description))) Description = description.Trim();
-    //    if (notes is not null && (Notes is null || !Notes!.Equals(notes))) Notes = notes.Trim();
+    //    if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
+    //    if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     //    return this;
     // }
 }
