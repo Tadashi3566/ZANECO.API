@@ -26,5 +26,13 @@ internal class TeamConfig : IEntityTypeConfiguration<Team>
         _ = builder.Property(b => b.EmployeeName)
             .IsRequired()
             .HasMaxLength(1024);
+
+        _ = builder.Property(b => b.Department)
+            .HasDefaultValue(null)
+            .HasMaxLength(256);
+
+        _ = builder.Property(b => b.Position)
+            .HasDefaultValue(null)
+            .HasMaxLength(256);
     }
 }

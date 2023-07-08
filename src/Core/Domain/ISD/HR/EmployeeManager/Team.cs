@@ -12,13 +12,12 @@ public class Team : AuditableEntity, IAggregateRoot
     public string? Department { get; private set; }
     public string? Position { get; private set; }
 
-    public Team(DefaultIdType leaderId, string leaderName, DefaultIdType employeeId, string employeeName, string? department, string? position, string? description, string? notes, Employee employee)
+    public Team(DefaultIdType leaderId, string leaderName, DefaultIdType employeeId, string employeeName, string? department, string? position, string? description, string? notes)
     {
         LeaderId = leaderId;
         LeaderName = leaderName;
         EmployeeId = employeeId;
         EmployeeName = employeeName;
-        Employee = employee;
 
         if (department is not null && (Department?.Equals(department) != true)) Department = department.Trim();
         if (position is not null && (Position?.Equals(position) != true)) Position = position.Trim();

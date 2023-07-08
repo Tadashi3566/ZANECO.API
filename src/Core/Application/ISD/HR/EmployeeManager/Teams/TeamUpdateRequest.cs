@@ -46,7 +46,7 @@ public class TeamUpdateRequestHandler : IRequestHandler<TeamUpdateRequest, Defau
         _ = member ?? throw new NotFoundException("Employee not found.");
         if (!member.IsActive) throw new ArgumentException("Employee is no longer Active");
 
-        var updatedTeam = team.Update(manager.FullInitialName(), member.FullInitialName(), request.Description, request.Notes);
+        var updatedTeam = team.Update(manager.FullInitialName(), member.FullInitialName(), member.Department, member.Position, request.Description, request.Notes);
 
         await _repoTeam.UpdateAsync(updatedTeam, cancellationToken);
 

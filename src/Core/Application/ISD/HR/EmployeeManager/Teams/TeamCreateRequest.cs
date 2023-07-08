@@ -50,7 +50,7 @@ public class TeamCreateRequestHandler : IRequestHandler<TeamCreateRequest, Defau
         _ = member ?? throw new NotFoundException("Employee not found.");
         if (!member.IsActive) throw new ArgumentException("Employee is no longer Active");
 
-        var team = new Team(request.LeaderId, manager.FullInitialName(), request.EmployeeId, member.FullInitialName(), request.Description, request.Notes);
+        var team = new Team(request.LeaderId, manager.FullInitialName(), request.EmployeeId, member.FullInitialName(), member.Department, member.Position, request.Description, request.Notes);
 
         await _repoTeam.AddAsync(team, cancellationToken);
 
