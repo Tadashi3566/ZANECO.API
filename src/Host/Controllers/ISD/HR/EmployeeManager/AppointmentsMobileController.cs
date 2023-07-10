@@ -4,7 +4,7 @@ namespace ZANECO.API.Host.Controllers.ISD.HR.EmployeeManager;
 
 public class AppointmentsMobileController : VersionedApiController
 {
-    [HttpPost("mobile-search")]
+    [HttpPost("search")]
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Search Appointment using available filters.", "")]
@@ -13,7 +13,7 @@ public class AppointmentsMobileController : VersionedApiController
         return Mediator.Send(request);
     }
 
-    [HttpGet("mobile-get/{id:int}")]
+    [HttpGet("{id:int}")]
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Get Appointment details.", "")]
@@ -22,7 +22,7 @@ public class AppointmentsMobileController : VersionedApiController
         return Mediator.Send(new AppointmentGetRequest(id));
     }
 
-    [HttpPost("mobile-create")]
+    [HttpPost("create")]
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Create a new Appointment.", "")]

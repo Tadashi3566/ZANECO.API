@@ -4,7 +4,7 @@ namespace ZANECO.API.Host.Controllers.ISD.HR.EmployeeManager;
 
 public class AttendanceMobileController : VersionedApiController
 {
-    [HttpPost("mobile-search")]
+    [HttpPost("search")]
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Search Attendance using available filters.", "")]

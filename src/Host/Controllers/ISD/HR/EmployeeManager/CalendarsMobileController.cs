@@ -4,7 +4,7 @@ namespace ZANECO.API.Host.Controllers.ISD.HR.EmployeeManager;
 
 public class CalendarsMobileController : VersionedApiController
 {
-    [HttpPost("mobile-search")]
+    [HttpPost("search")]
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Get Holiday Schdules through mobile client.", "")]
