@@ -4,13 +4,18 @@ namespace ZANECO.API.Application.ISD.HR.PayrollManager.Payrolls;
 
 public class PayrollSearchRequest : PaginationFilter, IRequest<PaginationResponse<PayrollDto>>
 {
+    public DateTime StartDate { get; set; }
+    public DateTime EndDate { get; set; }
 }
 
 public class PayrollBySearchRequestSpec : EntitiesByPaginationFilterSpec<Payroll, PayrollDto>
 {
     public PayrollBySearchRequestSpec(PayrollSearchRequest request)
         : base(request) =>
-        Query.OrderByDescending(c => c.PayrollDate, !request.HasOrderBy());
+        Query
+        .OrderBy(x => x.PayrollDate, !request.HasOrderBy())
+        .Where(x => x.PayrollDate >= request.StartDate)
+        .Where(x => x.PayrollDate <= request.EndDate);
 }
 
 public class PayrollSearchRequestHandler : IRequestHandler<PayrollSearchRequest, PaginationResponse<PayrollDto>>
