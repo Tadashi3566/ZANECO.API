@@ -31,7 +31,7 @@ public class AppointmentsMobileController : VersionedApiController
         return Mediator.Send(request);
     }
 
-    [HttpPut("mobile-update/{id:int}")]
+    [HttpPut("{id:int}")]
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Update an Appointment.", "")]
@@ -42,7 +42,7 @@ public class AppointmentsMobileController : VersionedApiController
             : Ok(await Mediator.Send(request));
     }
 
-    [HttpPut("mobile-action")]
+    [HttpPut("action")]
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Appointment Action", "")]
@@ -51,7 +51,7 @@ public class AppointmentsMobileController : VersionedApiController
         return await Mediator.Send(request);
     }
 
-    [HttpDelete("delete/{id:int}")]
+    [HttpDelete("{id:int}")]
     [AllowAnonymous]
     [TenantIdHeader]
     [OpenApiOperation("Delete an Appointment.", "")]
