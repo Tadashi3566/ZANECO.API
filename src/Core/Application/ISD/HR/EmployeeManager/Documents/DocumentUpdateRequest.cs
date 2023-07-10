@@ -1,4 +1,3 @@
-using ZANECO.API.Application.ISD.HR.EmployeeManager.Designations;
 using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Documents;

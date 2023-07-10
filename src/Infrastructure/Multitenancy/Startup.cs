@@ -43,6 +43,6 @@ internal static class Startup
 
             httpContext.Request.Query.TryGetValue(queryStringKey, out StringValues tenantIdParam);
 
-            return Task.FromResult((string?)tenantIdParam.ToString());
+            return Task.FromResult(tenantIdParam.ToString());
         });
 }

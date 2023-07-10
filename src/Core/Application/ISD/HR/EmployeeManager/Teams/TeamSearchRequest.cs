@@ -14,9 +14,8 @@ public sealed class TeamsBySearchRequestSpec : EntitiesByPaginationFilterSpec<Te
     {
         Query
             .Include(x => x.Employee)
-                //.ThenInclude(e => e!.Department)
-            .OrderBy(x => x.EmployeeName)
-            .Where(x => x.LeaderId.Equals(request.LeaderId!.Value), request.LeaderId.HasValue);
+            .Where(x => x.LeaderId.Equals(request.LeaderId!.Value), request.LeaderId.HasValue)
+            .OrderBy(x => x.EmployeeName);
     }
 }
 

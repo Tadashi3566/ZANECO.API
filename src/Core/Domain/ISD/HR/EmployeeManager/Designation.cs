@@ -156,7 +156,7 @@ public class Designation : AuditableEntity, IAggregateRoot
         if (endDate.Equals(DateTime.MinValue))
             endDate = DateTime.Today;
 
-        int years = DateTimeFunctions.Years((DateTime)regularDate!, (DateTime)endDate!);
+        int years = DateTimeFunctions.Years(regularDate!, endDate!);
 
         switch (rateType)
         {
