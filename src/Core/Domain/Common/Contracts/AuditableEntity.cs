@@ -8,6 +8,7 @@ public abstract class AuditableEntity : AuditableEntity<DefaultIdType>
 
 public abstract class AuditableEntity<T> : BaseEntity<T>, IAuditableEntity, ISoftDelete
 {
+    public string? Remarks { get; set; }
     public string? Description { get; set; }
     public string? Notes { get; set; }
     public DefaultIdType CreatedBy { get; set; }
