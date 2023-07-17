@@ -10,6 +10,7 @@
         <PublishProfile>DefaultContainer</PublishProfile>
         <UserSecretsId>86a78f97-42d1-4066-9f04-4b4798abbb76</UserSecretsId>
     </PropertyGroup>
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'Host' " />
     <ItemGroup>
         <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
         <PackageReference Include="Hangfire.Console.Extensions.Serilog" Version="1.0.2" />

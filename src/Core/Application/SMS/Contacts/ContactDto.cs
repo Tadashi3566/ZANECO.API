@@ -8,6 +8,7 @@ public class ContactDto : IDto
     public string PhoneNumber { get; set; } = default!;
     public string Name { get; set; } = default!;
     public string Address { get; set; } = default!;
+    public string? Remarks { get; set; }
     public string? Description { get; set; }
     public string? Notes { get; set; }
     public string? Status { get; set; }

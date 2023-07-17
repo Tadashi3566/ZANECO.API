@@ -12,7 +12,7 @@ public abstract class AuditableEntity<T> : BaseEntity<T>, IAuditableEntity, ISof
     public string? Description { get; set; }
     public string? Notes { get; set; }
     public DefaultIdType CreatedBy { get; set; }
-    public DateTime CreatedOn { get; private set; }
+    public DateTime CreatedOn { get; set; }
     public DefaultIdType LastModifiedBy { get; set; }
     public DateTime? LastModifiedOn { get; set; }
     public DefaultIdType? DeletedBy { get; set; }
@@ -25,14 +25,14 @@ public abstract class AuditableEntity<T> : BaseEntity<T>, IAuditableEntity, ISof
     }
 }
 
-public abstract class AuditableEntityWithApproval<T> : BaseEntity<T>, IAuditableEntity, ISoftDelete
+public abstract class AuditableEntityWithApproval<T> : AuditableEntity<T>
 {
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public DefaultIdType CreatedBy { get; set; }
-    public DateTime CreatedOn { get; private set; }
-    public DefaultIdType LastModifiedBy { get; set; }
-    public DateTime? LastModifiedOn { get; set; }
+    //public string? Description { get; set; }
+    //public string? Notes { get; set; }
+    //public DefaultIdType CreatedBy { get; set; }
+    //public DateTime CreatedOn { get; private set; }
+    //public DefaultIdType LastModifiedBy { get; set; }
+    //public DateTime? LastModifiedOn { get; set; }
 
     [Column(TypeName = "VARCHAR(16)")]
     public string Status { get; set; } = "PENDING";
@@ -45,8 +45,8 @@ public abstract class AuditableEntityWithApproval<T> : BaseEntity<T>, IAuditable
     public string? ApproverName { get; set; }
     public DateTime? ApprovedOn { get; set; }
 
-    public DefaultIdType? DeletedBy { get; set; }
-    public DateTime? DeletedOn { get; set; }
+    //public DefaultIdType? DeletedBy { get; set; }
+    //public DateTime? DeletedOn { get; set; }
 
     protected AuditableEntityWithApproval()
     {
