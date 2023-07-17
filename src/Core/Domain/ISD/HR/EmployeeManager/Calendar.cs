@@ -16,7 +16,7 @@ public class Calendar : AuditableEntity, IAggregateRoot
         CalendarType = calendarType;
         CalendarDate = calendarDate;
         Day = calendarDate.DayOfWeek.ToString().ToUpper();
-        Name = name.Trim().ToUpper();
+        Name = name.Trim();
 
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();

@@ -5,8 +5,6 @@ namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Calendars;
 public class CalendarUpdateRequest : IRequest<DefaultIdType>
 {
     public DefaultIdType Id { get; set; }
-    public DefaultIdType EmployeeId { get; set; } = default!;
-
     public DateTime CalendarDate { get; set; }
     public string CalendarType { get; set; } = default!;
     public string Name { get; set; } = default!;
@@ -49,24 +47,6 @@ public class CalendarUpdateRequestHandler : IRequestHandler<CalendarUpdateReques
     {
         var calendar = await _repoCalendar.GetByIdAsync(request.Id, cancellationToken);
         _ = calendar ?? throw new NotFoundException(string.Format(_localizer["Calendar not found."], request.Id));
-
-        var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException("Employee not found.");
-
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
-
-        //DefaultIdType employeeId;
-        //string employeeName = string.Empty;
-
-        //if (request.Subject.Contains("HOLIDAY"))
-        //{
-        //    employeeId = Guid.Parse("08da447f-6575-4e91-8be4-b5ddefef61d0");
-        //}
-        //else
-        //{
-        //    employeeId = request.EmployeeId;
-        //    employeeName = employee!.NameFullInitial();
-        //}
 
         var updatedCalendar = calendar.Update(request.CalendarType, request.CalendarDate!, request.Name, request.Description, request.Notes);
 
