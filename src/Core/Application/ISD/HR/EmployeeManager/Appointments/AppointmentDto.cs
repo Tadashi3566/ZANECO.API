@@ -9,7 +9,7 @@ public class AppointmentDto : IDto
     public string Subject { get; set; } = default!;
     public DateTime StartDateTime { get; set; } = default!;
     public DateTime EndDateTime { get; set; } = default!;
-    public string Location { get; set; } = default!;
+    public string? Location { get; set; }
     public int Hours { get; set; } = default!;
     public bool IsAllDay { get; set; } = default!;
 
@@ -26,7 +26,7 @@ public class AppointmentDto : IDto
     public DefaultIdType? ApprovedBy { get; set; }
     public DateTime? ApprovedOn { get; set; }
 
+    public string Status { get; set; } = default!;
     public string? Description { get; set; }
     public string? Notes { get; set; }
-    public string Status { get; set; } = default!;
 }
