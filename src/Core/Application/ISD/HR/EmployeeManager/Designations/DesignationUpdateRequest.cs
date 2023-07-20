@@ -98,18 +98,18 @@ public class DesignationUpdateRequestHandler : IRequestHandler<DesignationUpdate
 
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException("employee not found.");
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
 
         // Get Rank Information
         var salary = await _repoSalary.FirstOrDefaultAsync(new SalaryByNumberSpec(request.SalaryNumber), cancellationToken);
-        _ = salary ?? throw new NotFoundException("salary not found.");
+        _ = salary ?? throw new NotFoundException($"Salary {request.SalaryNumber} not found.");
 
         // Get Schedule Information
         var schedule = await _repoSchedule.FirstOrDefaultAsync(new ScheduleByIdSpec(request.ScheduleId), cancellationToken);
-        _ = schedule ?? throw new NotFoundException("schedule not found.");
+        _ = schedule ?? throw new NotFoundException($"Schedule {request.ScheduleId} not found.");
 
         var designation = await _repoDesignation.GetByIdAsync(request.Id, cancellationToken);
-        _ = designation ?? throw new NotFoundException("designation not found.");
+        _ = designation ?? throw new NotFoundException($"Designation {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

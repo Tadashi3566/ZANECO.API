@@ -34,17 +34,19 @@ public class TeamUpdateRequestHandler : IRequestHandler<TeamUpdateRequest, Defau
     public async Task<DefaultIdType> Handle(TeamUpdateRequest request, CancellationToken cancellationToken)
     {
         var team = await _repoTeam.GetByIdAsync(request.Id, cancellationToken);
-        _ = team ?? throw new NotFoundException("Team not found.");
+        _ = team ?? throw new NotFoundException($"Team {request.Id} not found.");
 
         // Get Manager Information
         var manager = await _repoEmployee.GetByIdAsync(request.LeaderId, cancellationToken);
-        _ = manager ?? throw new NotFoundException("Employee not found.");
+        _ = manager ?? throw new NotFoundException($"Employee {request.LeaderId} not found.");
+
         if (!manager.IsActive) throw new ArgumentException("Employee is no longer Active");
 
         // Get Member Information
         var member = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = member ?? throw new NotFoundException("Employee not found.");
-        if (!member.IsActive) throw new ArgumentException("Employee is no longer Active");
+        _ = member ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
+
+        if (!member.IsActive) throw new ArgumentException($"Employee {request.EmployeeId} is no longer Active");
 
         var updatedTeam = team.Update(manager.FullInitialName(), member.FullInitialName(), member.Department, member.Position, request.Description, request.Notes);
 

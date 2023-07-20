@@ -22,7 +22,7 @@ public class LedgerGetViaDapperRequestHandler : IRequestHandler<LedgerGetViaDapp
     {
         var ledger = await _repository.QueryFirstOrDefaultAsync<Ledger>($"SELECT * FROM datazaneco.\"Ledgers\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = ledger ?? throw new NotFoundException(string.Format(_localizer["Ledger not found."], request.Id));
+        _ = ledger ?? throw new NotFoundException($"Ledger {request.Id} not found.");
 
         return ledger.Adapt<LedgerDto>();
     }

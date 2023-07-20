@@ -21,7 +21,7 @@ public class RouteDeleteRequestHandler : IRequestHandler<RouteDeleteRequest, Gui
     {
         var route = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = route ?? throw new NotFoundException(_localizer["Route not found."]);
+        _ = route ?? throw new NotFoundException($"Route {request.Id} not found.");
 
         await _repository.DeleteAsync(route, cancellationToken);
 

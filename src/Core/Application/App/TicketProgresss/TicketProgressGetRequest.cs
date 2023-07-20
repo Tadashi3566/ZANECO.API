@@ -20,5 +20,5 @@ public class TicketProgressGetRequestHandler : IRequestHandler<TicketProgressGet
     public async Task<TicketProgressDetailsDto> Handle(TicketProgressGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new TicketProgressByIdWithTicketSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["Ticket Progress not found."], request.Id));
+        ?? throw new NotFoundException($"Ticket Progress {request.Id} not found.");
 }

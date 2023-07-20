@@ -23,7 +23,7 @@ public class GroupViaDapperGetRequestHandler : IRequestHandler<GroupGetViaDapper
         var group = await _repository.QueryFirstOrDefaultAsync<Group>(
             $"SELECT * FROM datazaneco.\"Groups\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = group ?? throw new NotFoundException(string.Format(_localizer["group not found."], request.Id));
+        _ = group ?? throw new NotFoundException($"group {request.Id} not found.");
 
         return group.Adapt<GroupDto>();
     }

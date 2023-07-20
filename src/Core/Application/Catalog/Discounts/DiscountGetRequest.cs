@@ -17,5 +17,5 @@ public class GetDiscountRequestHandler : IRequestHandler<DiscountGetRequest, Dis
     public async Task<DiscountDto> Handle(DiscountGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             (ISpecification<Discount, DiscountDto>)new DiscountByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(_localizer["Discount {0} Not Found.", request.Id]);
+        ?? throw new NotFoundException($"Discount {request.Id} not found.");
 }

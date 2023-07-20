@@ -32,7 +32,7 @@ public class TicketOpenRequestHandler : IRequestHandler<TicketProgressRequest, G
     {
         var ticket = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = ticket ?? throw new NotFoundException(string.Format(_localizer["ticket not found."], request.Id));
+        _ = ticket ?? throw new NotFoundException($"ticket {request.Id} not found.");
 
         Ticket opendTicket = new();
 

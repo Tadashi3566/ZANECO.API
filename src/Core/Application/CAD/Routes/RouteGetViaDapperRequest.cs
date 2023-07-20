@@ -23,7 +23,7 @@ public class RouteGetViaDapperRequestHandler : IRequestHandler<RouteGetViaDapper
         var route = await _repository.QueryFirstOrDefaultAsync<Route>(
             $"SELECT * FROM datazaneco.\"Routes\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = route ?? throw new NotFoundException(string.Format(_localizer["Route not found."], request.Id));
+        _ = route ?? throw new NotFoundException($"Route {request.Id} not found.");
 
         return route.Adapt<RouteDto>();
     }

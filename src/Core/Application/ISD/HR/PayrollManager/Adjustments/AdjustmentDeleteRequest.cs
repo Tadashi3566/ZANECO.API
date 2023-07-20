@@ -21,7 +21,7 @@ public class AdjustmentDeleteRequestHandler : IRequestHandler<AdjustmentDeleteRe
     {
         var adjustment = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = adjustment ?? throw new NotFoundException(_localizer["Adjustment not found."]);
+        _ = adjustment ?? throw new NotFoundException($"Adjustment {request.Id} not found.");
 
         await _repository.DeleteAsync(adjustment, cancellationToken);
 

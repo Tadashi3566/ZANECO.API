@@ -21,7 +21,7 @@ public class ContributionDeleteRequestHandler : IRequestHandler<ContributionDele
     {
         var contribution = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = contribution ?? throw new NotFoundException(_localizer["Contribution not found."]);
+        _ = contribution ?? throw new NotFoundException($"Contribution {request.Id} not found.");
 
         await _repository.DeleteAsync(contribution, cancellationToken);
 

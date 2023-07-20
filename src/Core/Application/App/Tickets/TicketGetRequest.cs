@@ -20,5 +20,5 @@ public class TicketGetRequestHandler : IRequestHandler<TicketGetRequest, TicketD
     public async Task<TicketDetailsDto> Handle(TicketGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new TicketByIdWithGroupSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["ticket not found."], request.Id));
+        ?? throw new NotFoundException($"ticket {request.Id} not found.");
 }

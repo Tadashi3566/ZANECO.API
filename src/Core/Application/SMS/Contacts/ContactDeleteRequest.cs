@@ -21,7 +21,7 @@ public class ContactDeleteRequestHandler : IRequestHandler<DeleteContactRequest,
     {
         var contact = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = contact ?? throw new NotFoundException(_localizer["Contact not found."]);
+        _ = contact ?? throw new NotFoundException($"Contact {request.Id} not found.");
 
         await _repository.DeleteAsync(contact, cancellationToken);
 

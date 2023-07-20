@@ -19,5 +19,5 @@ public class ContributionGetRequestHandler : IRequestHandler<ContributionGetRequ
 
     public async Task<ContributionDto> Handle(ContributionGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(new ContributionByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["Contribution not found."], request.Id));
+        ?? throw new NotFoundException($"Contribution {request.Id} not found.");
 }

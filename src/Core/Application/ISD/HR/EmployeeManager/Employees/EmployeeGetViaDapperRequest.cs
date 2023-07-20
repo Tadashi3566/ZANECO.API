@@ -23,7 +23,7 @@ public class EmployeeGetViaDapperRequestHandler : IRequestHandler<EmployeeGetVia
         var employee = await _repository.QueryFirstOrDefaultAsync<Employee>(
         $"SELECT * FROM datazaneco.\"Employees\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = employee ?? throw new NotFoundException(string.Format(_localizer["employee not found."], request.Id));
+        _ = employee ?? throw new NotFoundException($"employee {request.Id} not found.");
 
         return employee.Adapt<EmployeeDto>();
     }

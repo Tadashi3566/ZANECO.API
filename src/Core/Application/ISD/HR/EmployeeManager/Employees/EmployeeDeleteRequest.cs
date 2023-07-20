@@ -21,7 +21,7 @@ public class EmployeeDeleteRequestHandler : IRequestHandler<EmployeeDeleteReques
     {
         var employee = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = employee ?? throw new NotFoundException(_localizer["employee not found."]);
+        _ = employee ?? throw new NotFoundException($"employee {request.Id} not found.");
 
         await _repository.DeleteAsync(employee, cancellationToken);
 

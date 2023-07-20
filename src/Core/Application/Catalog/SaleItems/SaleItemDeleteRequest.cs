@@ -26,7 +26,7 @@ public class DeleteSaleItemRequestHandler : IRequestHandler<SaleItemDeleteReques
 
         var saleItem = await _repoSaleItem.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = saleItem ?? throw new NotFoundException(_localizer["saleItem {0} Not Found."]);
+        _ = saleItem ?? throw new NotFoundException($"saleItem {0} {request.Id} not found.");
 
         await _repoSaleItem.DeleteAsync(saleItem, cancellationToken);
 

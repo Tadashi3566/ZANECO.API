@@ -23,7 +23,7 @@ public class WinnerViaDapperGetRequestHandler : IRequestHandler<WinnerGetViaDapp
         var winner = await _repository.QueryFirstOrDefaultAsync<Winner>(
             $"SELECT * FROM datazaneco.\"Winners\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = winner ?? throw new NotFoundException(string.Format(_localizer["Winner not found."], request.Id));
+        _ = winner ?? throw new NotFoundException($"Winner {request.Id} not found.");
 
         return winner.Adapt<WinnerDto>();
     }

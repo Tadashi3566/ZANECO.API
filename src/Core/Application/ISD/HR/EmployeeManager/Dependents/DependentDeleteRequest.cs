@@ -21,7 +21,7 @@ public class DependentDeleteRequestHandler : IRequestHandler<DependentDeleteRequ
     {
         var dependent = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = dependent ?? throw new NotFoundException(_localizer["dependent not found."]);
+        _ = dependent ?? throw new NotFoundException($"dependent {request.Id} not found.");
 
         await _repository.DeleteAsync(dependent, cancellationToken);
 

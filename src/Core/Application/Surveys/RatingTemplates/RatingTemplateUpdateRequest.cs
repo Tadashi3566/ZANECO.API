@@ -38,7 +38,7 @@ public class RatingTemplateUpdateRequestHandler : IRequestHandler<RatingTemplate
     {
         var ratingTemplate = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = ratingTemplate ?? throw new NotFoundException(string.Format(_localizer["RatingTemplate not found."], request.Id));
+        _ = ratingTemplate ?? throw new NotFoundException($"RatingTemplate {request.Id} not found.");
 
         var updatedRatingTemplate = ratingTemplate.Update(request.RateId, request.Comment, request.Description!, request.Notes!);
 

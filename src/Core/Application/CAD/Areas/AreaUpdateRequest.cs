@@ -53,7 +53,7 @@ public class AreaUpdateRequestHandler : IRequestHandler<AreaUpdateRequest, Guid>
     {
         var area = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = area ?? throw new NotFoundException(string.Format(_localizer["Area not found."], request.Id));
+        _ = area ?? throw new NotFoundException($"Area {request.Id} not found.");
 
         var updatedArea = area.Update(request.Number, request.Code, request.Name, request.Description, request.Notes);
 

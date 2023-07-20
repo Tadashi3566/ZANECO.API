@@ -21,7 +21,7 @@ public class WinnerDeleteRequestHandler : IRequestHandler<WinnerDeleteRequest, G
     {
         var winner = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = winner ?? throw new NotFoundException(_localizer["Winner not found."]);
+        _ = winner ?? throw new NotFoundException($"Winner {request.Id} not found.");
 
         await _repository.DeleteAsync(winner, cancellationToken);
 

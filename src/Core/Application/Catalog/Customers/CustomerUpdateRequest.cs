@@ -56,7 +56,7 @@ public class UpdateCustomerRequestHandler : IRequestHandler<CustomerUpdateReques
     {
         var customer = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = customer ?? throw new NotFoundException(_localizer["customer {0} Not Found.", request.Id]);
+        _ = customer ?? throw new NotFoundException($"customer {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

@@ -21,7 +21,7 @@ public class EmployeePayrollDetailDeleteRequestHandler : IRequestHandler<Employe
     {
         var employeePayrollDetail = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = employeePayrollDetail ?? throw new NotFoundException(_localizer["EmployeePayrollDetail not found."]);
+        _ = employeePayrollDetail ?? throw new NotFoundException($"EmployeePayrollDetail {request.Id} not found.");
 
         await _repository.DeleteAsync(employeePayrollDetail, cancellationToken);
 

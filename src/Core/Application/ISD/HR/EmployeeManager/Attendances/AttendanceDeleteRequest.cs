@@ -21,7 +21,7 @@ public class AttendanceDeleteRequestHandler : IRequestHandler<AttendanceDeleteRe
     {
         var attendance = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = attendance ?? throw new NotFoundException(_localizer["Attendance not found."]);
+        _ = attendance ?? throw new NotFoundException($"Attendance {request.Id} not found.");
 
         //await _repository.DeleteAsync(attendance, cancellationToken);
 

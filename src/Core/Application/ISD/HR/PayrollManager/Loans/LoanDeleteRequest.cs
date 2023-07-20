@@ -21,7 +21,7 @@ public class LoanDeleteRequestHandler : IRequestHandler<LoanDeleteRequest, Guid>
     {
         var loan = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = loan ?? throw new NotFoundException(_localizer["Loan not found."]);
+        _ = loan ?? throw new NotFoundException($"Loan {request.Id} not found.");
 
         await _repository.DeleteAsync(loan, cancellationToken);
 

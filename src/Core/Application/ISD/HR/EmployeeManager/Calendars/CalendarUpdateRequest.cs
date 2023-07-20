@@ -46,7 +46,7 @@ public class CalendarUpdateRequestHandler : IRequestHandler<CalendarUpdateReques
     public async Task<DefaultIdType> Handle(CalendarUpdateRequest request, CancellationToken cancellationToken)
     {
         var calendar = await _repoCalendar.GetByIdAsync(request.Id, cancellationToken);
-        _ = calendar ?? throw new NotFoundException(string.Format(_localizer["Calendar not found."], request.Id));
+        _ = calendar ?? throw new NotFoundException($"Calendar {request.Id} not found.");
 
         var updatedCalendar = calendar.Update(request.CalendarType, request.CalendarDate!, request.Name, request.Description, request.Notes);
 

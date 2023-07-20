@@ -45,7 +45,7 @@ public class TicketProgressUpdateRequestHandler : IRequestHandler<TicketProgress
     {
         var ticketProgress = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = ticketProgress ?? throw new NotFoundException(string.Format(_localizer["Ticket Progress not found."], request.Id));
+        _ = ticketProgress ?? throw new NotFoundException($"Ticket Progress {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

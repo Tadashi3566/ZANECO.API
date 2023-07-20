@@ -39,7 +39,7 @@ public class TimeLogUpdateRequestHandler : IRequestHandler<TimeLogUpdateRequest,
     public async Task<DefaultIdType> Handle(TimeLogUpdateRequest request, CancellationToken cancellationToken)
     {
         var timeLog = await _repoLog.GetByIdAsync(request.Id, cancellationToken);
-        _ = timeLog ?? throw new NotFoundException(string.Format(_localizer["timeLog not found."], request.Id));
+        _ = timeLog ?? throw new NotFoundException($"timeLog {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

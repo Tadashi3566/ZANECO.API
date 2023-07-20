@@ -38,7 +38,7 @@ public class BarangayCreateRequestHandler : IRequestHandler<BarangayCreateReques
     public async Task<Guid> Handle(BarangayCreateRequest request, CancellationToken cancellationToken)
     {
         var area = await _repoArea.GetByIdAsync(request.AreaId, cancellationToken);
-        _ = area ?? throw new NotFoundException(string.Format(_localizer["Area not found."], request.AreaId));
+        _ = area ?? throw new NotFoundException($"Area {request.AreaId} not found.");
 
         var barangay = new Barangay(request.AreaId, area.Name, request.Name, request.Description, request.Notes);
 

@@ -19,5 +19,5 @@ public class PayrollGetRequestHandler : IRequestHandler<PayrollGetRequest, Payro
 
     public async Task<PayrollDto> Handle(PayrollGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(new PayrollByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["payroll not found."], request.Id));
+        ?? throw new NotFoundException($"payroll {request.Id} not found.");
 }

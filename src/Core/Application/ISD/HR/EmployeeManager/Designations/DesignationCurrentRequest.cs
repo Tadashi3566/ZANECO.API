@@ -43,19 +43,19 @@ public class DesignationCurrentRequestHandler : IRequestHandler<DesignationCurre
     {
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException(string.Format(_localizer["Employee not found."], employee!.Id));
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
 
         // Get Designation Information
         var designation = await _repoDesignation.GetByIdAsync(request.DesignationId, cancellationToken);
-        _ = designation ?? throw new NotFoundException(string.Format(_localizer["Designation not found."], designation!.Id));
+        _ = designation ?? throw new NotFoundException($"Designation {request.DesignationId} not found.");
 
         // Get Rank Information
         var salary = await _repoSalary.FirstOrDefaultAsync(new SalaryByNumberSpec(designation.SalaryNumber), cancellationToken);
-        _ = salary ?? throw new NotFoundException(string.Format(_localizer["Salary not found."], salary!.Id));
+        _ = salary ?? throw new NotFoundException($"Salary {designation.SalaryNumber} not found.");
 
         // Get Schedule Information
         var schedule = await _repoSchedule.FirstOrDefaultAsync(new ScheduleByIdSpec(designation.ScheduleId), cancellationToken);
-        _ = schedule ?? throw new NotFoundException(string.Format(_localizer["Schedule not found."], schedule!.Id));
+        _ = schedule ?? throw new NotFoundException($"Schedule {designation.ScheduleId} not found.");
 
         // Set all Employee Designations as Active=false
         await _dapper.ExecuteScalarAsync<Designation>($"UPDATE datazaneco.designations SET IsActive = 0 WHERE EmployeeId LIKE '{employee.Id}'", cancellationToken: cancellationToken);

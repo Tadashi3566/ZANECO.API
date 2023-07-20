@@ -21,7 +21,7 @@ public class TimeLogDeleteRequestHandler : IRequestHandler<TimeLogDeleteRequest,
     {
         var timeLog = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = timeLog ?? throw new NotFoundException(_localizer["timeLog not found."]);
+        _ = timeLog ?? throw new NotFoundException($"timeLog {request.Id} not found.");
 
         await _repository.DeleteAsync(timeLog, cancellationToken);
 

@@ -23,7 +23,7 @@ public class SalaryGetViaDapperRequestHandler : IRequestHandler<SalaryGetViaDapp
         var salary = await _repository.QueryFirstOrDefaultAsync<Salary>(
             $"SELECT * FROM datazaneco.\"Salaries\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = salary ?? throw new NotFoundException(string.Format(_localizer["salary not found."], request.Id));
+        _ = salary ?? throw new NotFoundException($"salary {request.Id} not found.");
 
         return salary.Adapt<SalaryDto>();
     }

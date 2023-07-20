@@ -21,7 +21,7 @@ public class PowerRateDeleteRequestHandler : IRequestHandler<PowerRateDeleteRequ
     {
         var powerRate = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = powerRate ?? throw new NotFoundException(_localizer["PowerRate not found."]);
+        _ = powerRate ?? throw new NotFoundException($"PowerRate {request.Id} not found.");
 
         await _repository.DeleteAsync(powerRate, cancellationToken);
 

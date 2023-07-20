@@ -42,13 +42,15 @@ public class TeamCreateRequestHandler : IRequestHandler<TeamCreateRequest, Defau
 
         // Get Manager Information
         var manager = await _repoEmployee.GetByIdAsync(request.LeaderId, cancellationToken);
-        _ = manager ?? throw new NotFoundException("Employee not found.");
-        if (!manager.IsActive) throw new ArgumentException("Employee is no longer Active");
+        _ = manager ?? throw new NotFoundException($"Employee {request.LeaderId} not found.");
+
+        if (!manager.IsActive) throw new ArgumentException($"Employee {request.LeaderId} is no longer Active");
 
         // Get Member Information
         var member = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = member ?? throw new NotFoundException("Employee not found.");
-        if (!member.IsActive) throw new ArgumentException("Employee is no longer Active");
+        _ = member ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
+
+        if (!member.IsActive) throw new ArgumentException($"Employee {request.EmployeeId} is no longer Active");
 
         var team = new Team(request.LeaderId, manager.FullInitialName(), request.EmployeeId, member.FullInitialName(), member.Department, member.Position, request.Description, request.Notes);
 

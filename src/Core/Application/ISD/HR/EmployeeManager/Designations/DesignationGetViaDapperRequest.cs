@@ -23,7 +23,7 @@ public class DesignationGetViaDapperRequestHandler : IRequestHandler<Designation
         var designation = await _repository.QueryFirstOrDefaultAsync<Designation>(
         $"SELECT * FROM datazaneco.\"Designations\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = designation ?? throw new NotFoundException(string.Format(_localizer["designation not found."], request.Id));
+        _ = designation ?? throw new NotFoundException($"designation {request.Id} not found.");
 
         return designation.Adapt<DesignationDto>();
     }

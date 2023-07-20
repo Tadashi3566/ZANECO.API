@@ -23,7 +23,7 @@ public class MessageTemplateViaDapperGetRequestHandler : IRequestHandler<Message
         var messageTemplate = await _repository.QueryFirstOrDefaultAsync<MessageTemplate>(
             $"SELECT * FROM datazaneco.\"MessageTemplates\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = messageTemplate ?? throw new NotFoundException(string.Format(_localizer["MessageTemplate not found."], request.Id));
+        _ = messageTemplate ?? throw new NotFoundException($"MessageTemplate {request.Id} not found.");
 
         return messageTemplate.Adapt<MessageTemplateDto>();
     }

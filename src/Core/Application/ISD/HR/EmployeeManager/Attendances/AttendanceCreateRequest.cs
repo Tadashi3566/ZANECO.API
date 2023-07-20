@@ -41,9 +41,9 @@ public class AttendanceCreateRequestHandler : IRequestHandler<AttendanceCreateRe
     public async Task<DefaultIdType> Handle(AttendanceCreateRequest request, CancellationToken cancellationToken)
     {
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException("Employee not found.");
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
 
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+        if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         var schedule = await _repoSchedule.GetByIdAsync(employee!.ScheduleId, cancellationToken);
 

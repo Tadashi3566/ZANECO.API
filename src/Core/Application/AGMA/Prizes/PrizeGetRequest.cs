@@ -20,5 +20,5 @@ public class PrizeGetRequestHandler : IRequestHandler<PrizeGetRequest, PrizeDto>
     public async Task<PrizeDto> Handle(PrizeGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new PrizeByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["Prize not found."], request.Id));
+        ?? throw new NotFoundException($"Prize {request.Id} not found.");
 }

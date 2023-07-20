@@ -19,5 +19,5 @@ public class AdjustmentGetRequestHandler : IRequestHandler<AdjustmentGetRequest,
 
     public async Task<AdjustmentDto> Handle(AdjustmentGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(new AdjustmentByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["Adjustment not found."], request.Id));
+        ?? throw new NotFoundException($"Adjustment {request.Id} not found.");
 }

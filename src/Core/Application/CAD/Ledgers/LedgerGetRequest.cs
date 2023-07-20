@@ -20,5 +20,5 @@ public class LedgerGetRequestHandler : IRequestHandler<LedgerGetRequest, LedgerD
     public async Task<LedgerDto> Handle(LedgerGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new LedgerByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["Ledger not found."], request.Id));
+        ?? throw new NotFoundException($"Ledger {request.Id} not found.");
 }

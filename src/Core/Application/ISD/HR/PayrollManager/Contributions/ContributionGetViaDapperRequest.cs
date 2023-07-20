@@ -23,7 +23,7 @@ public class ContributionGetViaDapperRequestHandler : IRequestHandler<Contributi
         var contribution = await _repository.QueryFirstOrDefaultAsync<Contribution>(
         $"SELECT * FROM datazaneco.\"Contribution\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = contribution ?? throw new NotFoundException(string.Format(_localizer["Contribution not found."], request.Id));
+        _ = contribution ?? throw new NotFoundException($"Contribution {request.Id} not found.");
 
         return contribution.Adapt<ContributionDto>();
     }

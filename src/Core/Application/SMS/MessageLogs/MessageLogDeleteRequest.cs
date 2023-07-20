@@ -21,7 +21,7 @@ public class MessageLogDeleteRequestHandler : IRequestHandler<DeleteMessageLogRe
     {
         var messageLog = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = messageLog ?? throw new NotFoundException(_localizer["Message not found."]);
+        _ = messageLog ?? throw new NotFoundException($"Message {request.Id} not found.");
 
         await _repository.DeleteAsync(messageLog, cancellationToken);
 

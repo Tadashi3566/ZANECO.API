@@ -58,7 +58,7 @@ public class MemberUpdateRequestHandler : IRequestHandler<MemberUpdateRequest, G
     {
         var member = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = member ?? throw new NotFoundException(string.Format(_localizer["member not found."], request.Id));
+        _ = member ?? throw new NotFoundException($"member {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

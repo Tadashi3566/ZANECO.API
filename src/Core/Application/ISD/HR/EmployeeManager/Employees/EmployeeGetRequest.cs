@@ -20,5 +20,5 @@ public class GetEmployeeRequestHandler : IRequestHandler<EmployeeGetRequest, Emp
     public async Task<EmployeeDto> Handle(EmployeeGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new EmployeeByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["employee not found."], request.Id));
+        ?? throw new NotFoundException($"employee {request.Id} not found.");
 }

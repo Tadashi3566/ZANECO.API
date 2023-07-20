@@ -70,9 +70,9 @@ public class AppointmentCreateRequestHandler : IRequestHandler<AppointmentCreate
     public async Task<int> Handle(AppointmentCreateRequest request, CancellationToken cancellationToken)
     {
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException("Employee not found.");
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
 
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+        if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         //Check if Approvals has been filled up
         if (request.ApprovedBy.Equals(Guid.Empty) || request.RecommendedBy.Equals(Guid.Empty))

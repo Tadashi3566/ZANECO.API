@@ -45,7 +45,7 @@ public class UpdateSupplierRequestHandler : IRequestHandler<SupplierUpdateReques
     {
         var supplier = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = supplier ?? throw new NotFoundException(_localizer["supplier {0} Not Found.", request.Id]);
+        _ = supplier ?? throw new NotFoundException($"supplier {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

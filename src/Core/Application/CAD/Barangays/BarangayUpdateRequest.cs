@@ -40,11 +40,10 @@ public class BarangayUpdateRequestHandler : IRequestHandler<BarangayUpdateReques
     public async Task<Guid> Handle(BarangayUpdateRequest request, CancellationToken cancellationToken)
     {
         var area = await _repoArea.GetByIdAsync(request.AreaId, cancellationToken);
-        _ = area ?? throw new NotFoundException(string.Format(_localizer["Area not found."], request.AreaId));
+        _ = area ?? throw new NotFoundException($"Area {request.AreaId} not found.");
 
         var barangay = await _repository.GetByIdAsync(request.Id, cancellationToken);
-
-        _ = barangay ?? throw new NotFoundException(string.Format(_localizer["Barangay not found."], request.Id));
+        _ = barangay ?? throw new NotFoundException($"Barangay {request.Id} not found.");
 
         var updatedBarangay = barangay.Update(area.Name, request.Name, request.Description, request.Notes);
 

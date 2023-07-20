@@ -23,7 +23,7 @@ public class PowerConsumptionGetViaDapperRequestHandler : IRequestHandler<PowerC
         var powerConsumption = await _repository.QueryFirstOrDefaultAsync<PowerConsumption>(
         $"SELECT * FROM datazaneco.\"PowerConsumptions\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = powerConsumption ?? throw new NotFoundException(string.Format(_localizer["PowerConsumption not found."], request.Id));
+        _ = powerConsumption ?? throw new NotFoundException($"PowerConsumption {request.Id} not found.");
 
         return powerConsumption.Adapt<PowerConsumptionDto>();
     }

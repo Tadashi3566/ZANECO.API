@@ -20,5 +20,5 @@ public class BarangayGetRequestHandler : IRequestHandler<BarangayGetRequest, Bar
     public async Task<BarangayDto> Handle(BarangayGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new BarangayByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["Barangay not found."], request.Id));
+        ?? throw new NotFoundException($"Barangay {request.Id} not found.");
 }

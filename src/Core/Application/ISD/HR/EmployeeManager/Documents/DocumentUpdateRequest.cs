@@ -51,7 +51,7 @@ public class DocumentUpdateRequestHandler : IRequestHandler<DocumentUpdateReques
 
         var document = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = document ?? throw new NotFoundException(string.Format(_localizer["document not found."], request.Id));
+        _ = document ?? throw new NotFoundException($"document {request.Id} not found.");
 
         // Remove old file if flag is set
         if (request.DeleteCurrentImage)

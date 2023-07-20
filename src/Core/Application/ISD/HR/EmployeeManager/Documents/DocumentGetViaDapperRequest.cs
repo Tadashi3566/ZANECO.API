@@ -23,7 +23,7 @@ public class DocumentGetViaDapperRequestHandler : IRequestHandler<DocumentGetVia
         var document = await _repository.QueryFirstOrDefaultAsync<Document>(
             $"SELECT * FROM datazaneco.\"Documents\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = document ?? throw new NotFoundException(string.Format(_localizer["document not found."], request.Id));
+        _ = document ?? throw new NotFoundException($"document {request.Id} not found.");
 
         return document.Adapt<DocumentDto>();
     }

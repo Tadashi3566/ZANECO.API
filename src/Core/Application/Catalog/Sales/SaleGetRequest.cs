@@ -17,5 +17,5 @@ public class GetSaleRequestHandler : IRequestHandler<SaleGetRequest, SaleDto>
     public async Task<SaleDto> Handle(SaleGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             (ISpecification<Sale, SaleDto>)new SaleByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(_localizer["Sale {0} Not Found.", request.Id]);
+        ?? throw new NotFoundException($"Sale {request.Id} not found.");
 }

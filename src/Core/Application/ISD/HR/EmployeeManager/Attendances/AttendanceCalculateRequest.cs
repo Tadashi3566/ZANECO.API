@@ -25,7 +25,7 @@ public class AttendanceCalculateRequestHandler : IRequestHandler<AttendanceCalcu
     public async Task<DefaultIdType> Handle(AttendanceCalculateRequest request, CancellationToken cancellationToken)
     {
         var attendance = await _repoAttendance.GetByIdAsync(request.Id, cancellationToken);
-        _ = attendance ?? throw new NotFoundException("Attendance not found.");
+        _ = attendance ?? throw new NotFoundException($"Attendance {request.Id} not found.");
 
         var schedTimeIn1 = attendance.ScheduleTimeIn1;
         var schedTimeOut1 = attendance.ScheduleTimeOut1;

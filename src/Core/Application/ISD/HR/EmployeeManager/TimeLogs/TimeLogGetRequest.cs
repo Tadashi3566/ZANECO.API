@@ -20,5 +20,5 @@ public class TimeLogGetRequestHandler : IRequestHandler<TimeLogGetRequest, TimeL
     public async Task<TimeLogDto> Handle(TimeLogGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new TimeLogByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["TimeLog not found."], request.Id));
+        ?? throw new NotFoundException($"TimeLog {request.Id} not found.");
 }

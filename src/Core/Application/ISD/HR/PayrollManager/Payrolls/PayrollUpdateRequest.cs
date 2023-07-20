@@ -52,7 +52,7 @@ public class PayrollUpdateRequestHandler : IRequestHandler<PayrollUpdateRequest,
     public async Task<Guid> Handle(PayrollUpdateRequest request, CancellationToken cancellationToken)
     {
         var payroll = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        _ = payroll ?? throw new NotFoundException(string.Format(_localizer["payroll not found."], request.Id));
+        _ = payroll ?? throw new NotFoundException($"payroll {request.Id} not found.");
 
         int workingDays = _dateTimeFunctions.GetWorkingDays(request.StartDate, request.EndDate);
 

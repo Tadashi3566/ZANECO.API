@@ -23,7 +23,7 @@ public class RemoteCollectionGetViaDapperRequestHandler : IRequestHandler<Remote
         var remoteCollection = await _repository.QueryFirstOrDefaultAsync<RemoteCollection>(
             $"SELECT * FROM datazaneco.\"RemoteCollections\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = remoteCollection ?? throw new NotFoundException(string.Format(_localizer["remoteCollection not found."], request.Id));
+        _ = remoteCollection ?? throw new NotFoundException($"remoteCollection {request.Id} not found.");
 
         return remoteCollection.Adapt<RemoteCollectionDto>();
     }

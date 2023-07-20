@@ -26,7 +26,7 @@ public class DeleteSupplierRequestHandler : IRequestHandler<SupplierDeleteReques
 
         var supplier = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = supplier ?? throw new NotFoundException(_localizer["supplier {0} Not Found."]);
+        _ = supplier ?? throw new NotFoundException($"supplier {0} {request.Id} not found.");
 
         await _repository.DeleteAsync(supplier, cancellationToken);
 

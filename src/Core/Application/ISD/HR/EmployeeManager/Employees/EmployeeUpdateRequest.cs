@@ -138,7 +138,7 @@ public class EmployeeUpdateRequestHandler : IRequestHandler<EmployeeUpdateReques
     public async Task<Guid> Handle(EmployeeUpdateRequest request, CancellationToken cancellationToken)
     {
         var employee = await _repoEmployee.GetByIdAsync(request.Id, cancellationToken);
-        _ = employee ?? throw new NotFoundException(string.Format(_localizer["Employee not found."], request.Id));
+        _ = employee ?? throw new NotFoundException($"Employee {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

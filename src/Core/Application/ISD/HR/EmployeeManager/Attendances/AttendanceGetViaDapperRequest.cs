@@ -23,7 +23,7 @@ public class AttendanceGetViaDapperRequestHandler : IRequestHandler<AttendanceGe
         var attendance = await _repository.QueryFirstOrDefaultAsync<Attendance>(
         $"SELECT * FROM datazaneco.\"Attendance\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = attendance ?? throw new NotFoundException(string.Format(_localizer["Attendance not found."], request.Id));
+        _ = attendance ?? throw new NotFoundException($"Attendance {request.Id} not found.");
 
         return attendance.Adapt<AttendanceDto>();
     }

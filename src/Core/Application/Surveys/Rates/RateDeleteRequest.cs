@@ -28,7 +28,7 @@ public class RateDeleteRequestHandler : IRequestHandler<RateDeleteRequest, Guid>
 
         var rate = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = rate ?? throw new NotFoundException(_localizer["rate not found."]);
+        _ = rate ?? throw new NotFoundException($"rate {request.Id} not found.");
 
         await _repository.DeleteAsync(rate, cancellationToken);
 

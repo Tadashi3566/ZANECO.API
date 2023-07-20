@@ -22,7 +22,7 @@ public class SupplierViaDapperGetRequestHandler : IRequestHandler<SupplierGetVia
         var supplier = await _repository.QueryFirstOrDefaultAsync<Supplier>(
             $"SELECT * FROM datazaneco.\"Suppliers\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = supplier ?? throw new NotFoundException(string.Format(_localizer["supplier not found."], request.Id));
+        _ = supplier ?? throw new NotFoundException($"supplier {request.Id} not found.");
 
         return supplier.Adapt<SupplierDto>();
     }

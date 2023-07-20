@@ -27,7 +27,7 @@ public class PrizeDeleteRequestHandler : IRequestHandler<PrizeDeleteRequest, Gui
         }
 
         var prize = await _repoPrize.GetByIdAsync(request.Id, cancellationToken);
-        _ = prize ?? throw new NotFoundException(_localizer["Prize not found."]);
+        _ = prize ?? throw new NotFoundException($"Prize {request.Id} not found.");
 
         await _repoPrize.DeleteAsync(prize, cancellationToken);
 

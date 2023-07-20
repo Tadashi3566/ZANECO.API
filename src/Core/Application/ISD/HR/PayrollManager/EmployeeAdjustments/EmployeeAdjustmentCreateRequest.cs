@@ -48,18 +48,17 @@ public class EmployeeAdjustmentCreateRequestHandler : IRequestHandler<EmployeeAd
     {
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException(string.Format(_localizer["Employee not found."], request.AdjustmentId));
-
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
+        if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         //Check if already exist
         var existingEmployeeAdjustment = await _repoEmployeeAdjustment.FirstOrDefaultAsync(new EmployeeAdjustmentByAdjustmentIdSpec(request.EmployeeId, request.AdjustmentId), cancellationToken);
         if (existingEmployeeAdjustment is not null)
-            throw new NotFoundException(string.Format(_localizer["Employee Adjustment already exist."], request.AdjustmentId));
+            throw new NotFoundException($"Employee Adjustment {request.AdjustmentId} already exist.");
 
         // Get Adjustment Information
         var adjustment = await _repoAdjustment.GetByIdAsync(request.AdjustmentId, cancellationToken);
-        _ = adjustment ?? throw new NotFoundException(string.Format(_localizer["Adjustment not found."], request.AdjustmentId));
+        _ = adjustment ?? throw new NotFoundException($"Adjustment {request.AdjustmentId} not found.");
 
         decimal adjustmentAmount = request.Amount.Equals(0) ? adjustment.Amount : request.Amount;
 

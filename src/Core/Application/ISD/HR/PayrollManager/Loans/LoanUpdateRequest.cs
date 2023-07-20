@@ -63,15 +63,15 @@ public class LoanUpdateRequestHandler : IRequestHandler<LoanUpdateRequest, Guid>
     {
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException("Employee not found.");
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
+        if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         // Get Adjustment Information
         var adjustment = await _repoAdjustment.GetByIdAsync(request.AdjustmentId, cancellationToken);
-        _ = adjustment ?? throw new NotFoundException("Adjustment not found.");
+        _ = adjustment ?? throw new NotFoundException($"Adjustment {request.AdjustmentId} not found.");
 
         var loan = await _repoLoan.GetByIdAsync(request.Id, cancellationToken);
-        _ = loan ?? throw new NotFoundException(string.Format(_localizer["Loan not found."], request.Id));
+        _ = loan ?? throw new NotFoundException($"Loan {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

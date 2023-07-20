@@ -40,7 +40,7 @@ public class RatingUpdateRequestHandler : IRequestHandler<RatingUpdateRequest, G
     {
         var rating = await _repoRating.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = rating ?? throw new NotFoundException(string.Format(_localizer["Rating not found."], request.Id));
+        _ = rating ?? throw new NotFoundException($"Rating {request.Id} not found.");
 
         var rate = await _repoRate.FirstOrDefaultAsync(new RateByNumberSpec(request.RateNumber), cancellationToken);
 

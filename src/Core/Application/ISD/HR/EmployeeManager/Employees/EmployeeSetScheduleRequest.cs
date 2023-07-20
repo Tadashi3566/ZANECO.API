@@ -29,7 +29,7 @@ public class EmployeeSetScheduleRequestHandler : IRequestHandler<EmployeeSetSche
     {
         var schedule = await _repoDesignation.GetByIdAsync(request.ScheduleId, cancellationToken);
 
-        _ = schedule ?? throw new NotFoundException(string.Format(_localizer["schedule not found."], request.ScheduleId));
+        _ = schedule ?? throw new NotFoundException($"Schedule {request.ScheduleId} not found.");
 
         var employeesToBeUpdated = await _repoEmployee.ListAsync(new EmployeeByEmptyScheduleIdSpec(), cancellationToken);
 

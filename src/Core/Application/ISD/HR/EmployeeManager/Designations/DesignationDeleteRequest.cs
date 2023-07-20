@@ -21,7 +21,7 @@ public class DesignationDeleteRequestHandler : IRequestHandler<DesignationDelete
     {
         var designation = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = designation ?? throw new NotFoundException(_localizer["designation not found."]);
+        _ = designation ?? throw new NotFoundException($"designation {request.Id} not found.");
 
         await _repository.DeleteAsync(designation, cancellationToken);
 

@@ -48,7 +48,7 @@ public class AttendanceUpdateRequestHandler : IRequestHandler<AttendanceUpdateRe
     public async Task<DefaultIdType> Handle(AttendanceUpdateRequest request, CancellationToken cancellationToken)
     {
         var attendance = await _repoAttendance.GetByIdAsync(request.Id, cancellationToken);
-        _ = attendance ?? throw new NotFoundException(string.Format(_localizer["Attendance not found."], request.Id));
+        _ = attendance ?? throw new NotFoundException($"Attendance {request.Id} not found.");
 
         DateTime? actualTimeIn1 = default; // = Convert.ToDateTime(request.ActualTimeIn1);
         DateTime? actualTimeOut1 = default; // = Convert.ToDateTime(request.ActualTimeOut1);

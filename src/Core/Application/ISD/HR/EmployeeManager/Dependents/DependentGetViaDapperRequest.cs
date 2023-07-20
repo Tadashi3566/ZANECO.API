@@ -23,7 +23,7 @@ public class DependentGetViaDapperRequestHandler : IRequestHandler<DependentGetV
         var dependent = await _repository.QueryFirstOrDefaultAsync<Dependent>(
         $"SELECT * FROM datazaneco.\"Dependents\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = dependent ?? throw new NotFoundException(string.Format(_localizer["dependent not found."], request.Id));
+        _ = dependent ?? throw new NotFoundException($"dependent {request.Id} not found.");
 
         return dependent.Adapt<DependentDto>();
     }

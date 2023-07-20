@@ -23,7 +23,7 @@ public class TeamGetViaDapperRequestHandler : IRequestHandler<TeamGetViaDapperRe
         var team = await _repository.QueryFirstOrDefaultAsync<Team>(
             $"SELECT * FROM datazaneco.\"Teams\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = team ?? throw new NotFoundException(string.Format(_localizer["Team not found."], request.Id));
+        _ = team ?? throw new NotFoundException($"Team {request.Id} not found.");
 
         return team.Adapt<TeamDto>();
     }

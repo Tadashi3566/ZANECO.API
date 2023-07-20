@@ -21,7 +21,7 @@ public class SalaryDeleteRequestHandler : IRequestHandler<SalaryDeleteRequest, D
     {
         var salary = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = salary ?? throw new NotFoundException(_localizer["salary not found."]);
+        _ = salary ?? throw new NotFoundException($"salary {request.Id} not found.");
 
         await _repository.DeleteAsync(salary, cancellationToken);
 

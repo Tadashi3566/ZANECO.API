@@ -23,7 +23,7 @@ public class LoanGetViaDapperRequestHandler : IRequestHandler<LoanGetViaDapperRe
         var loan = await _repository.QueryFirstOrDefaultAsync<Loan>(
             $"SELECT * FROM datazaneco.\"Loan\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = loan ?? throw new NotFoundException(string.Format(_localizer["Loan not found."], request.Id));
+        _ = loan ?? throw new NotFoundException($"Loan {request.Id} not found.");
 
         return loan.Adapt<LoanDto>();
     }

@@ -20,5 +20,5 @@ public class DesignationGetRequestHandler : IRequestHandler<DesignationGetReques
     public async Task<DesignationDetailsDto> Handle(DesignationGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new DesignationByIdWithEmployeeSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["designation not found."], request.Id));
+        ?? throw new NotFoundException($"designation {request.Id} not found.");
 }

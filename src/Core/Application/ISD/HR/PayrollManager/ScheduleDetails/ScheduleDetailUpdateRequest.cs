@@ -48,7 +48,7 @@ public class ScheduleDetailUpdateRequestHandler : IRequestHandler<ScheduleDetail
         var schedule = await _repoSchedule.GetByIdAsync(request.ScheduleId, cancellationToken);
 
         var scheduleDetail = await _repoScheduleDetail.GetByIdAsync(request.Id, cancellationToken);
-        _ = scheduleDetail ?? throw new NotFoundException(string.Format(_localizer["ScheduleDetail not found."], request.Id));
+        _ = scheduleDetail ?? throw new NotFoundException($"ScheduleDetail {request.Id} not found.");
 
         TimeSpan ts1 = Convert.ToDateTime(request.TimeOut1) - Convert.ToDateTime(request.TimeIn1);
         TimeSpan ts2 = Convert.ToDateTime(request.TimeOut2) - Convert.ToDateTime(request.TimeIn2);

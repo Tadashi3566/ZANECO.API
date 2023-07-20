@@ -33,7 +33,7 @@ public class ScheduleUpdateRequestHandler : IRequestHandler<ScheduleUpdateReques
     public async Task<Guid> Handle(ScheduleUpdateRequest request, CancellationToken cancellationToken)
     {
         var schedule = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        _ = schedule ?? throw new NotFoundException(string.Format(_localizer["Schedule not found."], request.Id));
+        _ = schedule ?? throw new NotFoundException($"Schedule {request.Id} not found.");
 
         var updatedSchedule = schedule.Update(request.Name, request.Description, request.Notes);
 

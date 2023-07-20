@@ -46,12 +46,12 @@ public class EmployeePayrollCreateRequestHandler : IRequestHandler<EmployeePayro
     {
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException("Employee not found.");
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
+        if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         // Get Payroll Information
         var payroll = await _repoPayroll.GetByIdAsync(request.PayrollId, cancellationToken);
-        _ = payroll ?? throw new NotFoundException("Payroll not found.");
+        _ = payroll ?? throw new NotFoundException($"Payroll {request.PayrollId} not found.");
 
         var employeePayroll = new EmployeePayroll(request.EmployeeId, employee.NameFull(), request.PayrollId, payroll.Name, request.Salary, request.Additional, request.Gross, request.Deduction, request.Net, payroll.StartDate, payroll.EndDate, payroll.PayrollDate, request.Description, request.Notes);
 

@@ -27,7 +27,7 @@ public class DeleteDiscountRequestHandler : IRequestHandler<DiscountDeleteReques
 
         var discount = await _repoDiscount.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = discount ?? throw new NotFoundException(_localizer["discount {0} Not Found."]);
+        _ = discount ?? throw new NotFoundException($"discount {0} {request.Id} not found.");
 
         await _repoDiscount.DeleteAsync(discount, cancellationToken);
 

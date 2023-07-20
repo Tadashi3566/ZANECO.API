@@ -21,7 +21,7 @@ public class EmployerDeleteRequestHandler : IRequestHandler<EmployerDeleteReques
     {
         var employer = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = employer ?? throw new NotFoundException(_localizer["employer not found."]);
+        _ = employer ?? throw new NotFoundException($"employer {request.Id} not found.");
 
         await _repository.DeleteAsync(employer, cancellationToken);
 

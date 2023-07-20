@@ -59,7 +59,7 @@ public class AdjustmentUpdateRequestHandler : IRequestHandler<AdjustmentUpdateRe
         var group = await _repoGroup.FirstOrDefaultAsync(new GroupByNameSpec(request.Name), cancellationToken);
 
         var adjustment = await _repoAdjustment.GetByIdAsync(request.Id, cancellationToken);
-        _ = adjustment ?? throw new NotFoundException(string.Format(_localizer["Adjustment not found."], request.Id));
+        _ = adjustment ?? throw new NotFoundException($"Adjustment {request.Id} not found.");
 
         decimal amount = request.Amount.Equals(0) ? group!.Amount : request.Amount;
 

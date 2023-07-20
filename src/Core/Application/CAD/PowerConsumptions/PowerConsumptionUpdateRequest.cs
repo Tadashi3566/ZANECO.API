@@ -43,7 +43,7 @@ public class PowerConsumptionUpdateRequestHandler : IRequestHandler<PowerConsump
 
         var powerConsumption = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = powerConsumption ?? throw new NotFoundException(string.Format(_localizer["PowerConsumption not found."], request.Id));
+        _ = powerConsumption ?? throw new NotFoundException($"PowerConsumption {request.Id} not found.");
 
         var updatedPowerConsumption = powerConsumption.Update(group!.Code, group.Name, request.BillMonth, request.KWHPurchased, request.Description, request.Notes);
 

@@ -38,13 +38,13 @@ public class PayrollAdjustmentUpdateRequestHandler : IRequestHandler<PayrollAdju
     public async Task<Guid> Handle(PayrollAdjustmentUpdateRequest request, CancellationToken cancellationToken)
     {
         var payroll = await _repoPayroll.FirstOrDefaultAsync(new PayrollByIdSpec(request.PayrollId), cancellationToken);
-        _ = payroll ?? throw new NotFoundException(string.Format(_localizer["Payroll not found."], request.Id));
+        _ = payroll ?? throw new NotFoundException($"Payroll {request.Id} not found.");
 
         var adjustment = await _repoAdjustment.FirstOrDefaultAsync(new AdjustmentByIdSpec(request.AdjustmentId), cancellationToken);
-        _ = adjustment ?? throw new NotFoundException(string.Format(_localizer["Adjustment not found."], request.Id));
+        _ = adjustment ?? throw new NotFoundException($"Adjustment {request.Id} not found.");
 
         var payrollAdjustment = await _repoPayrollAdjustment.GetByIdAsync(request.Id, cancellationToken);
-        _ = payrollAdjustment ?? throw new NotFoundException(string.Format(_localizer["Payroll Adjustment not found."], request.Id));
+        _ = payrollAdjustment ?? throw new NotFoundException($"Payroll Adjustment {request.Id} not found.");
 
         var updatedPayrollAdjustment = payrollAdjustment.Update(payroll.Name, adjustment.Number, adjustment.Name, request.Description, request.Notes);
         await _repoPayrollAdjustment.UpdateAsync(updatedPayrollAdjustment, cancellationToken);

@@ -49,15 +49,15 @@ public class PowerbillCreateRequestHandler : IRequestHandler<PowerbillCreateRequ
     {
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException("Employee not found.");
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
 
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+        if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         string imagePath = await _file.UploadAsync<Designation>(request.Image, FileType.Image, cancellationToken);
 
         // Get Account Information
         var account = await _repoAccount.FirstOrDefaultAsync(new AccountByAccountNumberSpec(request.Account), cancellationToken);
-        _ = account ?? throw new NotFoundException("Account not found.");
+        _ = account ?? throw new NotFoundException($"Account {request.Account} not found.");
 
         var powerbill = new Powerbill(request.EmployeeId, employee.NameFull(), request.Account, account.MeterSerial, account.Name, account.Address, request.Description, request.Notes, imagePath);
 

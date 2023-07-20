@@ -20,7 +20,7 @@ public class PowerbillDeleteRequestHandler : IRequestHandler<PowerbillDeleteRequ
     public async Task<Guid> Handle(PowerbillDeleteRequest request, CancellationToken cancellationToken)
     {
         var powerbill = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        _ = powerbill ?? throw new NotFoundException(_localizer["Powerbill not found."]);
+        _ = powerbill ?? throw new NotFoundException($"Powerbill {request.Id} not found.");
 
         await _repository.DeleteAsync(powerbill, cancellationToken);
 

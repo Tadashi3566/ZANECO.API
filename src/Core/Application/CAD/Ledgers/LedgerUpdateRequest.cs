@@ -63,7 +63,7 @@ public class LedgerUpdateRequestHandler : IRequestHandler<LedgerUpdateRequest, G
     {
         var ledger = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = ledger ?? throw new NotFoundException(string.Format(_localizer["Ledger not found."], request.Id));
+        _ = ledger ?? throw new NotFoundException($"Ledger {request.Id} not found.");
 
         var updatedLedger = ledger.Update(request.AccountNumber, request.Description, request.Notes);
 

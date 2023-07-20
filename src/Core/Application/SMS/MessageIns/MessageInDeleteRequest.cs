@@ -18,7 +18,7 @@ public class MessageInDeleteRequestHandler : IRequestHandler<DeleteMessageInRequ
     public async Task<int> Handle(DeleteMessageInRequest request, CancellationToken cancellationToken)
     {
         //var messageIn = await _repoRating.GetByIdAsync(request.Id, cancellationToken);
-        //_ = messageIn ?? throw new NotFoundException(_localizer["Message not found."]);
+        //_ = messageIn ?? throw new NotFoundException($"Message {request.Id} not found.");
         //await _repoRating.DeleteAsync(messageIn, cancellationToken);
 
         //Delete via dapper

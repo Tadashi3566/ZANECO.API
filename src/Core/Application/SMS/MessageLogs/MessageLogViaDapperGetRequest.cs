@@ -23,7 +23,7 @@ public class MessageLogViaDapperGetRequestHandler : IRequestHandler<MessageLogGe
         var messageLog = await _repository.QueryFirstOrDefaultAsync<MessageLog>(
             $"SELECT * FROM datazaneco.\"MessageLogs\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = messageLog ?? throw new NotFoundException(string.Format(_localizer["Message not found."], request.Id));
+        _ = messageLog ?? throw new NotFoundException($"Message {request.Id} not found.");
 
         return messageLog.Adapt<MessageLogDto>();
     }

@@ -23,7 +23,7 @@ public class PowerbillGetViaDapperRequestHandler : IRequestHandler<PowerbillGetV
         var powerbill = await _repository.QueryFirstOrDefaultAsync<Powerbill>(
             $"SELECT * FROM datazaneco.\"Powerbills\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = powerbill ?? throw new NotFoundException(string.Format(_localizer["powerbill not found."], request.Id));
+        _ = powerbill ?? throw new NotFoundException($"powerbill {request.Id} not found.");
 
         return powerbill.Adapt<PowerbillDto>();
     }

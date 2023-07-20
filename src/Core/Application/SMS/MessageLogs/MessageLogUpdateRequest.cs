@@ -28,7 +28,7 @@ public class MessageLogUpdateRequestHandler : IRequestHandler<MessageLogUpdateRe
     {
         var messageLog = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = messageLog ?? throw new NotFoundException(string.Format(_localizer["Message not found."], request.Id));
+        _ = messageLog ?? throw new NotFoundException($"Message {request.Id} not found.");
 
         var updatedMessageLog = messageLog.Update(request.Description, request.Notes);
 

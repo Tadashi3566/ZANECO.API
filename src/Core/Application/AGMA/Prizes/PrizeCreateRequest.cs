@@ -50,7 +50,7 @@ public class PrizeCreateRequestHandler : IRequestHandler<PrizeCreateRequest, Gui
         string imagePath = await _file.UploadAsync<Prize>(request.Image, FileType.Image, cancellationToken);
 
         var raffle = await _repoRaffle.GetByIdAsync(request.RaffleId, cancellationToken);
-        _ = raffle ?? throw new NotFoundException("Raffle Profile not found.");
+        _ = raffle ?? throw new NotFoundException($"Raffle {request.RaffleId} not found.");
 
         var prize = new Prize(request.RaffleId, raffle.Name, request.PrizeType, request.Winners, request.Name, request.Description, request.Notes, imagePath);
 

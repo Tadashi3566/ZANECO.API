@@ -60,7 +60,7 @@ public class MessageTemplateUpdateRequestHandler : IRequestHandler<MessageTempla
     {
         var messageTemplate = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = messageTemplate ?? throw new NotFoundException(string.Format(_localizer["MessageTemplate not found."], request.Id));
+        _ = messageTemplate ?? throw new NotFoundException($"MessageTemplate {request.Id} not found.");
 
         // Remove old file if flag is set
         if (request.DeleteCurrentImage)

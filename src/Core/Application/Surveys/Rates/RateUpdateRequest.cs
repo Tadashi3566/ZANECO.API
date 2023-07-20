@@ -44,7 +44,7 @@ public class RateUpdateRequestHandler : IRequestHandler<RateUpdateRequest, Guid>
     {
         var rate = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = rate ?? throw new NotFoundException(string.Format(_localizer["rate not found."], request.Id));
+        _ = rate ?? throw new NotFoundException($"rate {request.Id} not found.");
 
         var updatedRate = rate.Update(request.Number, request.Name, request.Description, request.Notes);
 

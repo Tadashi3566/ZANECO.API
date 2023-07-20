@@ -23,7 +23,7 @@ public class CalendarGetViaDapperRequestHandler : IRequestHandler<CalendarGetVia
         var calendar = await _repository.QueryFirstOrDefaultAsync<Calendar>(
         $"SELECT * FROM datazaneco.\"Calendar\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = calendar ?? throw new NotFoundException(string.Format(_localizer["Calendar not found."], request.Id));
+        _ = calendar ?? throw new NotFoundException($"Calendar {request.Id} not found.");
 
         return calendar.Adapt<CalendarDto>();
     }

@@ -22,7 +22,7 @@ public class CustomerViaDapperGetRequestHandler : IRequestHandler<CustomerGetVia
         var customer = await _repository.QueryFirstOrDefaultAsync<Customer>(
             $"SELECT * FROM datazaneco.\"Customers\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = customer ?? throw new NotFoundException(string.Format(_localizer["customer not found."], request.Id));
+        _ = customer ?? throw new NotFoundException($"customer {request.Id} not found.");
 
         return customer.Adapt<CustomerDto>();
     }

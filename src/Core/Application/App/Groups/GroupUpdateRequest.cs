@@ -69,7 +69,7 @@ public class GroupUpdateRequestHandler : IRequestHandler<GroupUpdateRequest, Gui
     public async Task<Guid> Handle(GroupUpdateRequest request, CancellationToken cancellationToken)
     {
         var group = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        _ = group ?? throw new NotFoundException(string.Format(_localizer["group not found."], request.Id));
+        _ = group ?? throw new NotFoundException($"group {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

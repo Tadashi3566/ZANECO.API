@@ -17,5 +17,5 @@ public class GetCustomerRequestHandler : IRequestHandler<CustomerGetRequest, Cus
     public async Task<CustomerDto> Handle(CustomerGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             (ISpecification<Customer, CustomerDto>)new CustomerByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(_localizer["Customer {0} Not Found.", request.Id]);
+        ?? throw new NotFoundException($"Customer {request.Id} not found.");
 }

@@ -21,7 +21,7 @@ public class CalendarDeleteRequestHandler : IRequestHandler<CalendarDeleteReques
     {
         var calendar = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = calendar ?? throw new NotFoundException(_localizer["Calendar not found."]);
+        _ = calendar ?? throw new NotFoundException($"Calendar {request.Id} not found.");
 
         await _repository.DeleteAsync(calendar, cancellationToken);
 

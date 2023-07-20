@@ -37,16 +37,16 @@ public class PayrollAdjustmentCreateRequestHandler : IRequestHandler<PayrollAdju
     public async Task<Guid> Handle(PayrollAdjustmentCreateRequest request, CancellationToken cancellationToken)
     {
         var payroll = await _repoPayroll.FirstOrDefaultAsync(new PayrollByIdSpec(request.PayrollId), cancellationToken);
-        _ = payroll ?? throw new NotFoundException(string.Format(_localizer["Payroll not found."], request.PayrollId));
+        _ = payroll ?? throw new NotFoundException($"Payroll {request.PayrollId} not found.");
 
         var adjustment = await _repoAdjustment.FirstOrDefaultAsync(new AdjustmentByIdSpec(request.AdjustmentId), cancellationToken);
-        _ = adjustment ?? throw new NotFoundException(string.Format(_localizer["Payroll Adjustment not found."], request.AdjustmentId));
+        _ = adjustment ?? throw new NotFoundException($"Payroll Adjustment {request.AdjustmentId} not found.");
 
         var existingPayrollAjustment = await _repoPayrollAdjustment.FirstOrDefaultAsync(new PayrollAdjustmentBySpec(payroll.Id, adjustment.Id));
 
         if (existingPayrollAjustment is not null)
         {
-            throw new NotFoundException(string.Format(_localizer["Payroll Adjustment already exist."], request.AdjustmentId));
+            throw new NotFoundException($"Payroll Adjustment {request.AdjustmentId} already exist.");
         }
 
         var payrollAdjustment = new PayrollAdjustment(payroll.Id, payroll.Name, adjustment.Id, adjustment.Number, adjustment.Name, request.Description, request.Notes);

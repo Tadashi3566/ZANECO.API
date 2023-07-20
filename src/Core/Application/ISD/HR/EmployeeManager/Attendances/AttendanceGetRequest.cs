@@ -19,5 +19,5 @@ public class AttendanceGetRequestHandler : IRequestHandler<AttendanceGetRequest,
 
     public async Task<AttendanceDto> Handle(AttendanceGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(new AttendanceByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["Attendance not found."], request.Id));
+        ?? throw new NotFoundException($"Attendance {request.Id} not found.");
 }

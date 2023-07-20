@@ -23,7 +23,7 @@ public class TicketGetViaDapperRequestHandler : IRequestHandler<TicketGetViaDapp
         var ticket = await _repository.QueryFirstOrDefaultAsync<Ticket>(
             $"SELECT * FROM datazaneco.\"Tickets\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = ticket ?? throw new NotFoundException(string.Format(_localizer["ticket not found."], request.Id));
+        _ = ticket ?? throw new NotFoundException($"ticket {request.Id} not found.");
 
         return ticket.Adapt<TicketDto>();
     }

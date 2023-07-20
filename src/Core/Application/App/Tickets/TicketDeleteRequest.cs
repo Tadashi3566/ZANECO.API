@@ -28,7 +28,7 @@ public class TicketDeleteRequestHandler : IRequestHandler<TicketDeleteRequest, G
 
         var ticket = await _repoTicket.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = ticket ?? throw new NotFoundException(_localizer["ticket not found."]);
+        _ = ticket ?? throw new NotFoundException($"ticket {request.Id} not found.");
 
         await _repoTicket.DeleteAsync(ticket, cancellationToken);
 

@@ -29,7 +29,7 @@ public class DeleteCustomerRequestHandler : IRequestHandler<CustomerDeleteReques
 
         var customer = await _repoCustomer.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = customer ?? throw new NotFoundException(_localizer["customer {0} Not Found."]);
+        _ = customer ?? throw new NotFoundException($"customer {0} {request.Id} not found.");
 
         await _repoCustomer.DeleteAsync(customer, cancellationToken);
 

@@ -35,7 +35,7 @@ public class UpdateBrandRequestHandler : IRequestHandler<UpdateBrandRequest, Def
         var brand = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
         _ = brand
-        ?? throw new NotFoundException(_t["Brand {0} Not Found.", request.Id]);
+        ?? throw new NotFoundException($"Brand {request.Id} not found.");
 
         brand.Update(request.Name, request.Description, request.Notes);
 

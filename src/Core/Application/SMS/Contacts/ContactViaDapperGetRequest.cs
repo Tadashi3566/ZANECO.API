@@ -23,7 +23,7 @@ public class ContactViaDapperGetRequestHandler : IRequestHandler<ContactGetViaDa
         var contact = await _repository.QueryFirstOrDefaultAsync<Contact>(
         $"SELECT * FROM datazaneco.\"Contacts\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = contact ?? throw new NotFoundException(string.Format(_localizer["Contact not found."], request.Id));
+        _ = contact ?? throw new NotFoundException($"Contact {request.Id} not found.");
 
         return contact.Adapt<ContactDto>();
     }

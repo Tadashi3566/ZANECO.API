@@ -53,10 +53,10 @@ public class WinnerCreateRequestHandler : IRequestHandler<WinnerCreateRequest, G
         string imagePath = await _file.UploadAsync<Winner>(request.Image, FileType.Image, cancellationToken);
 
         var raffle = await _repoRaffle.GetByIdAsync(request.RaffleId, cancellationToken);
-        _ = raffle ?? throw new NotFoundException("Raffle Profile not found.");
+        _ = raffle ?? throw new NotFoundException($"Raffle {request.RaffleId} not found.");
 
         var prize = await _repoPrize.GetByIdAsync(request.PrizeId, cancellationToken);
-        _ = prize ?? throw new NotFoundException("Raffle Prize not found.");
+        _ = prize ?? throw new NotFoundException($"Prize {request.PrizeId} not found.");
 
         var winner = new Winner(request.RaffleId, raffle.Name, request.PrizeId, prize.Name, request.Name, request.Address, request.Description, request.Notes, imagePath);
 

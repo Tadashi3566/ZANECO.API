@@ -23,7 +23,7 @@ public class RaffleViaDapperGetRequestHandler : IRequestHandler<RaffleGetViaDapp
         var raffle = await _repository.QueryFirstOrDefaultAsync<Raffle>(
             $"SELECT * FROM datazaneco.\"Raffles\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = raffle ?? throw new NotFoundException(string.Format(_localizer["Raffle not found."], request.Id));
+        _ = raffle ?? throw new NotFoundException($"Raffle {request.Id} not found.");
 
         return raffle.Adapt<RaffleDto>();
     }

@@ -19,5 +19,5 @@ public class ScheduleDetailGetRequestHandler : IRequestHandler<ScheduleDetailGet
 
     public async Task<ScheduleDetailDto> Handle(ScheduleDetailGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(new ScheduleDetailByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["ScheduleDetail not found."], request.Id));
+        ?? throw new NotFoundException($"ScheduleDetail {request.Id} not found.");
 }

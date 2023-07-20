@@ -20,7 +20,7 @@ public class GetProductViaDapperRequestHandler : IRequestHandler<GetProductViaDa
         var product = await _repository.QueryFirstOrDefaultAsync<Product>(
             $"SELECT * FROM Catalog.\"Products\" WHERE \"Id\"  = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = product ?? throw new NotFoundException(_t["Product {0} Not Found.", request.Id]);
+        _ = product ?? throw new NotFoundException($"Product {request.Id} not found.");
 
         // Using mapster here throws a null reference exception because of the "BrandName" property
         // in ProductDto and the product not having a Brand assigned.

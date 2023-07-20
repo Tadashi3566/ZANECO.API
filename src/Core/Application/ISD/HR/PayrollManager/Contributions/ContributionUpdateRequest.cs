@@ -44,7 +44,7 @@ public class ContributionUpdateRequestHandler : IRequestHandler<ContributionUpda
     public async Task<Guid> Handle(ContributionUpdateRequest request, CancellationToken cancellationToken)
     {
         var contribution = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        _ = contribution ?? throw new NotFoundException(string.Format(_localizer["Contribution not found."], request.Id));
+        _ = contribution ?? throw new NotFoundException($"Contribution {request.Id} not found.");
 
         var updatedContribution = contribution.Update(request.ContributionType, request.StartDate, request.EndDate, request.RangeStart, request.RangeEnd, request.EmployerContribution, request.EmployeeContribution, request.TotalContribution, request.Percentage, request.IsFixed, request.Description, request.Notes);
 

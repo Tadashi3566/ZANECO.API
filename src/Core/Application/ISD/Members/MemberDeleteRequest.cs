@@ -21,7 +21,7 @@ public class MemberDeleteRequestHandler : IRequestHandler<MemberDeleteRequest, G
     {
         var member = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = member ?? throw new NotFoundException(_localizer["member not found."]);
+        _ = member ?? throw new NotFoundException($"member {request.Id} not found.");
 
         await _repository.DeleteAsync(member, cancellationToken);
 

@@ -22,7 +22,7 @@ public class ScheduleGetViaDapperRequestHandler : IRequestHandler<ScheduleGetVia
     {
         var schedule = await _repository.QueryFirstOrDefaultAsync<Schedule>($"SELECT * FROM datazaneco.\"Schedule\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = schedule ?? throw new NotFoundException(string.Format(_localizer["Schedule not found."], request.Id));
+        _ = schedule ?? throw new NotFoundException($"Schedule {request.Id} not found.");
 
         return schedule.Adapt<ScheduleDto>();
     }

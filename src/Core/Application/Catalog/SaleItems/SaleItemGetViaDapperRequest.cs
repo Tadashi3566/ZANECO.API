@@ -22,7 +22,7 @@ public class SaleItemViaDapperGetRequestHandler : IRequestHandler<SaleItemGetVia
         var saleItem = await _repository.QueryFirstOrDefaultAsync<SaleItem>(
             $"SELECT * FROM datazaneco.\"SaleItems\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = saleItem ?? throw new NotFoundException(string.Format(_localizer["saleItem not found."], request.Id));
+        _ = saleItem ?? throw new NotFoundException($"saleItem {request.Id} not found.");
 
         return saleItem.Adapt<SaleItemDto>();
     }

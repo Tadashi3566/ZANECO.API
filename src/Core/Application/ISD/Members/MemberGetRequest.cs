@@ -20,5 +20,5 @@ public class MemberGetRequestHandler : IRequestHandler<MemberGetRequest, MemberD
     public async Task<MemberDto> Handle(MemberGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new MemberByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["member not found."], request.Id));
+        ?? throw new NotFoundException($"member {request.Id} not found.");
 }

@@ -57,13 +57,13 @@ public class EmployerUpdateRequestHandler : IRequestHandler<EmployerUpdateReques
     {
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException("Employee not found.");
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
 
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+        if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         var employer = await _repoEmployer.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = employer ?? throw new NotFoundException(string.Format(_localizer["employer not found."], request.Id));
+        _ = employer ?? throw new NotFoundException($"employer {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

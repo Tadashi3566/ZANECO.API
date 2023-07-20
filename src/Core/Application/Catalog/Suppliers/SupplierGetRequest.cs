@@ -16,5 +16,5 @@ public class GetSupplierRequestHandler : IRequestHandler<SupplierGetRequest, Sup
 
     public async Task<SupplierDto> Handle(SupplierGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync((ISpecification<Supplier, SupplierDto>)new SupplierByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(_localizer["Supplier {0} Not Found.", request.Id]);
+        ?? throw new NotFoundException($"Supplier {request.Id} not found.");
 }

@@ -21,7 +21,7 @@ public class RemoteCollectionDeleteRequestHandler : IRequestHandler<RemoteCollec
     {
         var remoteCollection = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = remoteCollection ?? throw new NotFoundException(_localizer["remoteCollection not found."]);
+        _ = remoteCollection ?? throw new NotFoundException($"remoteCollection {request.Id} not found.");
 
         await _repository.DeleteAsync(remoteCollection, cancellationToken);
 

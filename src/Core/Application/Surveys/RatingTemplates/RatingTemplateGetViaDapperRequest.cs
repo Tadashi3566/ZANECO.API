@@ -23,7 +23,7 @@ public class RatingTemplateGetViaDapperRequestHandler : IRequestHandler<RatingTe
         var ratingTemplate = await _repository.QueryFirstOrDefaultAsync<RatingTemplate>(
             $"SELECT * FROM datazaneco.\"RatingTemplates\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = ratingTemplate ?? throw new NotFoundException(string.Format(_localizer["ratingTemplate not found."], request.Id));
+        _ = ratingTemplate ?? throw new NotFoundException($"ratingTemplate {request.Id} not found.");
 
         return ratingTemplate.Adapt<RatingTemplateDto>();
     }

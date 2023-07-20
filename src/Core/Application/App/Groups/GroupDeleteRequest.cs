@@ -20,7 +20,7 @@ public class GroupDeleteRequestHandler : IRequestHandler<GroupDeleteRequest, Gui
     public async Task<Guid> Handle(GroupDeleteRequest request, CancellationToken cancellationToken)
     {
         var group = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        _ = group ?? throw new NotFoundException(_localizer["Group not found."]);
+        _ = group ?? throw new NotFoundException($"Group {request.Id} not found.");
 
         await _repository.DeleteAsync(group, cancellationToken);
 

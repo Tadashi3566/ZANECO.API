@@ -21,7 +21,7 @@ public class AppointmentDeleteRequestHandler : IRequestHandler<AppointmentDelete
     {
         var appointment = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = appointment ?? throw new NotFoundException(_localizer["appointment not found."]);
+        _ = appointment ?? throw new NotFoundException($"appointment {request.Id} not found.");
 
         await _repository.DeleteAsync(appointment, cancellationToken);
 

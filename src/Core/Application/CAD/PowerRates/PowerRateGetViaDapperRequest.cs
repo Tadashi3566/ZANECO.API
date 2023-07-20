@@ -23,7 +23,7 @@ public class PowerRateGetViaDapperRequestHandler : IRequestHandler<PowerRateGetV
         var powerRate = await _repository.QueryFirstOrDefaultAsync<PowerRate>(
         $"SELECT * FROM datazaneco.\"PowerRates\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = powerRate ?? throw new NotFoundException(string.Format(_localizer["PowerRate not found."], request.Id));
+        _ = powerRate ?? throw new NotFoundException($"PowerRate {request.Id} not found.");
 
         return powerRate.Adapt<PowerRateDto>();
     }

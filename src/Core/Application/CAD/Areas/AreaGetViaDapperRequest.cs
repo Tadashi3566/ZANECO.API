@@ -23,7 +23,7 @@ public class AreaGetViaDapperRequestHandler : IRequestHandler<AreaGetViaDapperRe
         var area = await _repository.QueryFirstOrDefaultAsync<Area>(
         $"SELECT * FROM datazaneco.\"Areas\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = area ?? throw new NotFoundException(string.Format(_localizer["Area not found."], request.Id));
+        _ = area ?? throw new NotFoundException($"Area {request.Id} not found.");
 
         return area.Adapt<AreaDto>();
     }

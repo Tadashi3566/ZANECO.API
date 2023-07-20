@@ -23,7 +23,7 @@ public class EmployeePayrollDetailGetViaDapperRequestHandler : IRequestHandler<E
         var employeePayrollDetail = await _repository.QueryFirstOrDefaultAsync<EmployeePayrollDetail>(
         $"SELECT * FROM datazaneco.\"EmployeePayrollDetail\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = employeePayrollDetail ?? throw new NotFoundException(string.Format(_localizer["EmployeePayrollDetail not found."], request.Id));
+        _ = employeePayrollDetail ?? throw new NotFoundException($"EmployeePayrollDetail {request.Id} not found.");
 
         return employeePayrollDetail.Adapt<EmployeePayrollDetailDto>();
     }

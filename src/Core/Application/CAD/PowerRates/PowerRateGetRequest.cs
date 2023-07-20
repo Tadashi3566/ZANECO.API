@@ -20,5 +20,5 @@ public class PowerRateGetRequestHandler : IRequestHandler<PowerRateGetRequest, P
     public async Task<PowerRateDto> Handle(PowerRateGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new PowerRateByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["PowerRate not found."], request.Id));
+        ?? throw new NotFoundException($"PowerRate {request.Id} not found.");
 }

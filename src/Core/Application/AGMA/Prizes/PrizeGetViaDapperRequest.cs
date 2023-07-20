@@ -23,7 +23,7 @@ public class PrizeViaDapperGetRequestHandler : IRequestHandler<PrizeGetViaDapper
         var prize = await _repository.QueryFirstOrDefaultAsync<Prize>(
             $"SELECT * FROM datazaneco.\"Prizes\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = prize ?? throw new NotFoundException(string.Format(_localizer["Prize not found."], request.Id));
+        _ = prize ?? throw new NotFoundException($"Prize {request.Id} not found.");
 
         return prize.Adapt<PrizeDto>();
     }

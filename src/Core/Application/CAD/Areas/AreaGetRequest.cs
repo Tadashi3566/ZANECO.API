@@ -20,5 +20,5 @@ public class AreaGetRequestHandler : IRequestHandler<AreaGetRequest, AreaDto>
     public async Task<AreaDto> Handle(AreaGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new AreaByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["Area not found."], request.Id));
+        ?? throw new NotFoundException($"Area {request.Id} not found.");
 }

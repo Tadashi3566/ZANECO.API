@@ -52,7 +52,7 @@ public class PrizeUpdateRequestHandler : IRequestHandler<PrizeUpdateRequest, Gui
     public async Task<Guid> Handle(PrizeUpdateRequest request, CancellationToken cancellationToken)
     {
         var prize = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        _ = prize ?? throw new NotFoundException(string.Format(_localizer["Prize not found."], request.Id));
+        _ = prize ?? throw new NotFoundException($"Prize {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)
@@ -72,7 +72,7 @@ public class PrizeUpdateRequestHandler : IRequestHandler<PrizeUpdateRequest, Gui
             : null;
 
         var raffle = await _repoRaffle.GetByIdAsync(request.RaffleId, cancellationToken);
-        _ = raffle ?? throw new NotFoundException("Raffle Profile not found.");
+        _ = raffle ?? throw new NotFoundException($"Raffle {request.RaffleId} not found.");
 
         var updatedPrize = prize.Update(raffle.Name, request.PrizeType, request.Winners, request.Name, request.Description, request.Notes, imagePath);
 

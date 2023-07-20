@@ -27,7 +27,7 @@ public class DeleteBarcodeRequestHandler : IRequestHandler<BarcodeDeleteRequest,
 
         var barcode = await _repoBarcode.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = barcode ?? throw new NotFoundException(_localizer["barcode {0} Not Found."]);
+        _ = barcode ?? throw new NotFoundException($"barcode {0} {request.Id} not found.");
 
         await _repoBarcode.DeleteAsync(barcode, cancellationToken);
 

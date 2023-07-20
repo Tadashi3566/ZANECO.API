@@ -21,7 +21,7 @@ public class PowerConsumptionDeleteRequestHandler : IRequestHandler<PowerConsump
     {
         var powerConsumption = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = powerConsumption ?? throw new NotFoundException(_localizer["PowerConsumption not found."]);
+        _ = powerConsumption ?? throw new NotFoundException($"PowerConsumption {request.Id} not found.");
 
         await _repository.DeleteAsync(powerConsumption, cancellationToken);
 

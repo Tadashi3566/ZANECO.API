@@ -51,17 +51,17 @@ public class PowerbillUpdateRequestHandler : IRequestHandler<PowerbillUpdateRequ
     {
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException("Employee not found.");
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
 
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+        if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         // Get Account Information
         var account = await _repoAccount.FirstOrDefaultAsync(new AccountByAccountNumberSpec(request.Account), cancellationToken);
-        _ = account ?? throw new NotFoundException("Account not found.");
+        _ = account ?? throw new NotFoundException($"Account {request.Account} not found.");
 
         var powerbill = await _repoPowerBill.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = powerbill ?? throw new NotFoundException(string.Format(_localizer["powerbill not found."], request.Id));
+        _ = powerbill ?? throw new NotFoundException($"Powerbill {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

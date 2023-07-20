@@ -48,20 +48,20 @@ public class EmployeePayrollDetailUpdateRequestHandler : IRequestHandler<Employe
     {
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException(string.Format(_localizer["Employee not found."]));
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
+        if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         // Get Payroll Information
         var payroll = await _repoPayroll.GetByIdAsync(request.PayrollId, cancellationToken);
-        _ = payroll ?? throw new NotFoundException("Payroll not found.");
+        _ = payroll ?? throw new NotFoundException($"Payroll {request.PayrollId} not found.");
 
         // Get Adjustment Information
         var adjustment = await _repoAdjustment.GetByIdAsync(request.AdjustmentId, cancellationToken);
-        _ = adjustment ?? throw new NotFoundException("Adjustment not found.");
+        _ = adjustment ?? throw new NotFoundException($"Adjustment {request.AdjustmentId} not found.");
 
         var employeePayrollDetail = await _repoEmployeePayrollDetail.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = employeePayrollDetail ?? throw new NotFoundException(string.Format(_localizer["EmployeePayrollDetail not found."], request.Id));
+        _ = employeePayrollDetail ?? throw new NotFoundException($"EmployeePayrollDetail {request.Id} not found.");
 
         var updatedEmployeePayrollDetail = employeePayrollDetail.Update(employee.NameFull(), payroll.Name, adjustment.Name, request.Amount, payroll.StartDate, payroll.EndDate, payroll.PayrollDate, "EMPLOYEE", request.Description, request.Notes);
 

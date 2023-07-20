@@ -20,5 +20,5 @@ public class RouteGetRequestHandler : IRequestHandler<RouteGetRequest, RouteDto>
     public async Task<RouteDto> Handle(RouteGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new RouteByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["Route not found."], request.Id));
+        ?? throw new NotFoundException($"Route {request.Id} not found.");
 }

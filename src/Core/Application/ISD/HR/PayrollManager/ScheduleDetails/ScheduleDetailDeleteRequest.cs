@@ -21,7 +21,7 @@ public class ScheduleDetailDeleteRequestHandler : IRequestHandler<ScheduleDetail
     {
         var scheduleDetail = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = scheduleDetail ?? throw new NotFoundException(_localizer["ScheduleDetail not found."]);
+        _ = scheduleDetail ?? throw new NotFoundException($"ScheduleDetail {request.Id} not found.");
 
         await _repository.DeleteAsync(scheduleDetail, cancellationToken);
 

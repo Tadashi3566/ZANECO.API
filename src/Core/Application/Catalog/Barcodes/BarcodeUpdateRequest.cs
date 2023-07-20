@@ -61,7 +61,7 @@ public class UpdateBarcodeRequestHandler : IRequestHandler<BarcodeUpdateRequest,
     {
         var barcode = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = barcode ?? throw new NotFoundException(_localizer["barcode {0} Not Found.", request.Id]);
+        _ = barcode ?? throw new NotFoundException($"barcode {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

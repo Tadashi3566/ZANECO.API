@@ -59,12 +59,12 @@ public class EmployeePayrollDetailGenerateRequestHandler : IRequestHandler<Emplo
     {
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException(string.Format(_localizer["Employee not found."]));
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
+        if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         // Get Payroll Information
         var payroll = await _repoPayroll.GetByIdAsync(request.PayrollId, cancellationToken);
-        _ = payroll ?? throw new NotFoundException(string.Format(_localizer["Payroll not found."]));
+        _ = payroll ?? throw new NotFoundException($"Payroll {request.PayrollId} not found.");
         if (payroll.IsClosed) return false;
 
         string payrollType = payroll.PayrollType;
@@ -83,7 +83,7 @@ public class EmployeePayrollDetailGenerateRequestHandler : IRequestHandler<Emplo
         foreach (var payrollAdjustment in await adjustmentsAll)
         {
             var adjustment = await _repoAdjustment.GetByIdAsync(payrollAdjustment.AdjustmentId, cancellationToken);
-            _ = adjustment ?? throw new NotFoundException(string.Format(_localizer["Adjustment not found."]));
+            _ = adjustment ?? throw new NotFoundException($"Adjustment {payrollAdjustment.AdjustmentId} not found.");
 
             // Assign Divisor for Every Payroll or Monthly
             divisor = adjustment.PaymentSchedule.Equals("PAYROLL") ? 2 : 1;

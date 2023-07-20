@@ -17,5 +17,5 @@ public class GetBarcodeRequestHandler : IRequestHandler<BarcodeGetRequest, Barco
     public async Task<BarcodeDto> Handle(BarcodeGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             (ISpecification<Barcode, BarcodeDto>)new BarcodeByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(_localizer["Barcode {0} Not Found.", request.Id]);
+        ?? throw new NotFoundException($"Barcode {request.Id} not found.");
 }

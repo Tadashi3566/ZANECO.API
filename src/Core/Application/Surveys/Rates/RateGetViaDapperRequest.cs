@@ -23,7 +23,7 @@ public class RateGetViaDapperRequestHandler : IRequestHandler<RateGetViaDapperRe
         var rate = await _repository.QueryFirstOrDefaultAsync<Rate>(
             $"SELECT * FROM datazaneco.\"Rates\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = rate ?? throw new NotFoundException(string.Format(_localizer["rate not found."], request.Id));
+        _ = rate ?? throw new NotFoundException($"rate {request.Id} not found.");
 
         return rate.Adapt<RateDto>();
     }

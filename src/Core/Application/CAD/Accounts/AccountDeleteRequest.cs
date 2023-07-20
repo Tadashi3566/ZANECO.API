@@ -21,7 +21,7 @@ public class AccountDeleteRequestHandler : IRequestHandler<AccountDeleteRequest,
     {
         var account = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = account ?? throw new NotFoundException(_localizer["Account not found."]);
+        _ = account ?? throw new NotFoundException($"Account {request.Id} not found.");
 
         await _repository.DeleteAsync(account, cancellationToken);
 

@@ -56,12 +56,12 @@ public class DependentUpdateRequestHandler : IRequestHandler<DependentUpdateRequ
     {
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-        _ = employee ?? throw new NotFoundException(string.Format(_localizer["Employee not found."]));
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
 
-        if (!employee.IsActive) throw new Exception("Employee is no longer Active");
+        if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         var dependent = await _repoDependent.GetByIdAsync(request.Id, cancellationToken);
-        _ = dependent ?? throw new NotFoundException(string.Format(_localizer["dependent not found."], request.Id));
+        _ = dependent ?? throw new NotFoundException($"dependent {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

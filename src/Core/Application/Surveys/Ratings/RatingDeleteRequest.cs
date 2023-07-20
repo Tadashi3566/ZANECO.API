@@ -21,7 +21,7 @@ public class RatingDeleteRequestHandler : IRequestHandler<RatingDeleteRequest, G
     {
         var rating = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = rating ?? throw new NotFoundException(_localizer["Rating not found."]);
+        _ = rating ?? throw new NotFoundException($"Rating {request.Id} not found.");
 
         await _repository.DeleteAsync(rating, cancellationToken);
 

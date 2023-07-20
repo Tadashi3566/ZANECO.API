@@ -91,7 +91,7 @@ public class AccountUpdateRequestHandler : IRequestHandler<AccountUpdateRequest,
     {
         var account = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = account ?? throw new NotFoundException(string.Format(_localizer["Account not found."], request.Id));
+        _ = account ?? throw new NotFoundException($"Account {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

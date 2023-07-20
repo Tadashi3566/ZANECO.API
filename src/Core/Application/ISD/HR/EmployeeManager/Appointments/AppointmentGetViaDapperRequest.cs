@@ -23,7 +23,7 @@ public class AppointmentGetViaDapperRequestHandler : IRequestHandler<Appointment
         var appointment = await _repository.QueryFirstOrDefaultAsync<Appointment>(
             $"SELECT * FROM datazaneco.\"Appointments\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = appointment ?? throw new NotFoundException(string.Format(_localizer["appointment not found."], request.Id));
+        _ = appointment ?? throw new NotFoundException($"appointment {request.Id} not found.");
 
         return appointment.Adapt<AppointmentDto>();
     }

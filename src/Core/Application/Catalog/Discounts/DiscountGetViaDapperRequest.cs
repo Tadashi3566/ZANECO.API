@@ -22,7 +22,7 @@ public class DiscountViaDapperGetRequestHandler : IRequestHandler<DiscountGetVia
         var discount = await _repository.QueryFirstOrDefaultAsync<Discount>(
             $"SELECT * FROM datazaneco.\"Discounts\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = discount ?? throw new NotFoundException(string.Format(_localizer["discount not found."], request.Id));
+        _ = discount ?? throw new NotFoundException($"discount {request.Id} not found.");
 
         return discount.Adapt<DiscountDto>();
     }

@@ -21,7 +21,7 @@ public class TicketProgressDeleteRequestHandler : IRequestHandler<TicketProgress
     {
         var ticketProgress = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = ticketProgress ?? throw new NotFoundException(_localizer["Ticket Progress not found."]);
+        _ = ticketProgress ?? throw new NotFoundException($"Ticket Progress {request.Id} not found.");
 
         await _repository.DeleteAsync(ticketProgress, cancellationToken);
 

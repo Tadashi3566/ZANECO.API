@@ -62,7 +62,7 @@ public class AppointmentUpdateRequestHandler : IRequestHandler<AppointmentUpdate
     public async Task<int> Handle(AppointmentUpdateRequest request, CancellationToken cancellationToken)
     {
         var appointment = await _repoAppointment.GetByIdAsync(request.Id, cancellationToken);
-        _ = appointment ?? throw new NotFoundException(string.Format(_localizer["Appointment not found."], request.Id));
+        _ = appointment ?? throw new NotFoundException($"Appointment {request.Id} not found.");
 
         //Check Appointment if it is updatable
         if (appointment.Status.Equals("PENDING") || appointment.Status.Equals("RECOMMENDED") || appointment.Status.Equals("APPROVED"))

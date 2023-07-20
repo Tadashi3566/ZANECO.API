@@ -22,7 +22,7 @@ public class ScheduleDetailGetViaDapperRequestHandler : IRequestHandler<Schedule
     {
         var scheduleDetail = await _repository.QueryFirstOrDefaultAsync<ScheduleDetail>($"SELECT * FROM datazaneco.\"ScheduleDetail\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = scheduleDetail ?? throw new NotFoundException(string.Format(_localizer["ScheduleDetail not found."], request.Id));
+        _ = scheduleDetail ?? throw new NotFoundException($"ScheduleDetail {request.Id} not found.");
 
         return scheduleDetail.Adapt<ScheduleDetailDto>();
     }

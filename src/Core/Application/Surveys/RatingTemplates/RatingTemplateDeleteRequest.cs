@@ -20,7 +20,7 @@ public class RatingTemplateDeleteRequestHandler : IRequestHandler<RatingTemplate
     public async Task<Guid> Handle(RatingTemplateDeleteRequest request, CancellationToken cancellationToken)
     {
         var ratingTemplate = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        _ = ratingTemplate ?? throw new NotFoundException(_localizer["ratingTemplate not found."]);
+        _ = ratingTemplate ?? throw new NotFoundException($"ratingTemplate {request.Id} not found.");
 
         await _repository.DeleteAsync(ratingTemplate, cancellationToken);
 

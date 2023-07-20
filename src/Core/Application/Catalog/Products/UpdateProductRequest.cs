@@ -32,7 +32,7 @@ public class UpdateProductRequestHandler : IRequestHandler<UpdateProductRequest,
     {
         var product = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = product ?? throw new NotFoundException(_t["Product {0} Not Found.", request.Id]);
+        _ = product ?? throw new NotFoundException($"Product {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

@@ -18,7 +18,6 @@ public class RaffleGetRequestHandler : IRequestHandler<RaffleGetRequest, RaffleD
         (_repository, _localizer) = (repository, localizer);
 
     public async Task<RaffleDto> Handle(RaffleGetRequest request, CancellationToken cancellationToken) =>
-        await _repository.FirstOrDefaultAsync(
-            new RaffleByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["Raffle not found."], request.Id));
+        await _repository.FirstOrDefaultAsync(new RaffleByIdSpec(request.Id), cancellationToken)
+        ?? throw new NotFoundException($"Raffle {request.Id} not found.");
 }

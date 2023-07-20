@@ -22,7 +22,7 @@ public class BarcodeViaDapperGetRequestHandler : IRequestHandler<BarcodeGetViaDa
         var barcode = await _repository.QueryFirstOrDefaultAsync<Barcode>(
             $"SELECT * FROM datazaneco.\"Barcodes\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = barcode ?? throw new NotFoundException(string.Format(_localizer["barcode not found."], request.Id));
+        _ = barcode ?? throw new NotFoundException($"barcode {request.Id} not found.");
 
         return barcode.Adapt<BarcodeDto>();
     }

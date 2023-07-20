@@ -45,7 +45,7 @@ public class RaffleUpdateRequestHandler : IRequestHandler<RaffleUpdateRequest, G
     public async Task<Guid> Handle(RaffleUpdateRequest request, CancellationToken cancellationToken)
     {
         var raffle = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        _ = raffle ?? throw new NotFoundException(string.Format(_localizer["Raffle not found."], request.Id));
+        _ = raffle ?? throw new NotFoundException($"Raffle {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

@@ -21,7 +21,7 @@ public class DocumentDeleteRequestHandler : IRequestHandler<DocumentDeleteReques
     {
         var document = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = document ?? throw new NotFoundException(_localizer["Documents not found."]);
+        _ = document ?? throw new NotFoundException($"Documents {request.Id} not found.");
 
         await _repository.DeleteAsync(document, cancellationToken);
 

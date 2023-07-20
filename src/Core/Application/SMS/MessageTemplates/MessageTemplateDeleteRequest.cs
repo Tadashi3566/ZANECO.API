@@ -21,7 +21,7 @@ public class MessageTemplateDeleteRequestHandler : IRequestHandler<DeleteMessage
     {
         var messageTemplate = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = messageTemplate ?? throw new NotFoundException(_localizer["MessageTemplate not found."]);
+        _ = messageTemplate ?? throw new NotFoundException($"MessageTemplate {request.Id} not found.");
 
         await _repository.DeleteAsync(messageTemplate, cancellationToken);
 

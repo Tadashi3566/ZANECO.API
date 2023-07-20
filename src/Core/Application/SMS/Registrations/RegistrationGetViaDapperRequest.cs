@@ -24,7 +24,7 @@ public class RegistrationViaDapperGetRequestHandler : IRequestHandler<Registrati
         var account = await _repository.QueryFirstOrDefaultAsync<Master2022>(
         $"SELECT * FROM dmo.master_2022 WHERE accountnumber = '{request.Account}'", cancellationToken: cancellationToken);
 
-        _ = account ?? throw new NotFoundException(string.Format(_localizer["Registration not found."], request.Account));
+        _ = account ?? throw new NotFoundException($"Registration Account {request.Account} not found.");
 
         return account.Adapt<Master2022Dto>();
     }

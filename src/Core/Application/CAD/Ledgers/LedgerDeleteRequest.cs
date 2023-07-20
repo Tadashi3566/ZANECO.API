@@ -21,7 +21,7 @@ public class LedgerDeleteRequestHandler : IRequestHandler<LedgerDeleteRequest, G
     {
         var ledger = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = ledger ?? throw new NotFoundException(_localizer["Ledger not found."]);
+        _ = ledger ?? throw new NotFoundException($"Ledger {request.Id} not found.");
 
         await _repository.DeleteAsync(ledger, cancellationToken);
 

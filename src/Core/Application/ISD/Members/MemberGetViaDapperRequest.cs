@@ -23,7 +23,7 @@ public class MemberGetViaDapperRequestHandler : IRequestHandler<MemberGetViaDapp
         var member = await _repository.QueryFirstOrDefaultAsync<Member>(
             $"SELECT * FROM datazaneco.\"Members\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = member ?? throw new NotFoundException(string.Format(_localizer["member not found."], request.Id));
+        _ = member ?? throw new NotFoundException($"member {request.Id} not found.");
 
         return member.Adapt<MemberDto>();
     }

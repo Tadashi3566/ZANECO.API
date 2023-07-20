@@ -52,7 +52,7 @@ public class TicketUpdateRequestHandler : IRequestHandler<TicketUpdateRequest, G
     {
         var ticket = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = ticket ?? throw new NotFoundException(string.Format(_localizer["ticket not found."], request.Id));
+        _ = ticket ?? throw new NotFoundException($"ticket {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

@@ -28,7 +28,7 @@ public class MessageTemplateSendRequestHandler : IRequestHandler<MessageTemplate
     {
         var messageTemplate = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = messageTemplate ?? throw new NotFoundException(string.Format(_localizer["MessageTemplate not found."], request.Id));
+        _ = messageTemplate ?? throw new NotFoundException($"MessageTemplate {request.Id} not found.");
 
         var sendMessageTemplate = messageTemplate.Sent();
 

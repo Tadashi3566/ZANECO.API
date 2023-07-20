@@ -23,7 +23,7 @@ public class TicketProgressGetViaDapperRequestHandler : IRequestHandler<TicketPr
         var ticketProgress = await _repository.QueryFirstOrDefaultAsync<TicketProgress>(
             $"SELECT * FROM datazaneco.\"TicketProgress\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = ticketProgress ?? throw new NotFoundException(string.Format(_localizer["Ticket Progress not found."], request.Id));
+        _ = ticketProgress ?? throw new NotFoundException($"Ticket Progress {request.Id} not found.");
 
         return ticketProgress.Adapt<TicketProgressDto>();
     }

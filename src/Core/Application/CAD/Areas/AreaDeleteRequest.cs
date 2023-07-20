@@ -21,7 +21,7 @@ public class AreaDeleteRequestHandler : IRequestHandler<AreaDeleteRequest, Guid>
     {
         var area = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = area ?? throw new NotFoundException(_localizer["Area not found."]);
+        _ = area ?? throw new NotFoundException($"Area {request.Id} not found.");
 
         await _repository.DeleteAsync(area, cancellationToken);
 

@@ -53,10 +53,10 @@ public class RouteUpdateRequestHandler : IRequestHandler<RouteUpdateRequest, Gui
     public async Task<Guid> Handle(RouteUpdateRequest request, CancellationToken cancellationToken)
     {
         var area = await _repoArea.GetByIdAsync(request.AreaId, cancellationToken);
-        _ = area ?? throw new NotFoundException(string.Format(_localizer["Area not found."], request.AreaId));
+        _ = area ?? throw new NotFoundException($"Area {request.AreaId} not found.");
 
         var route = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        _ = route ?? throw new NotFoundException(string.Format(_localizer["Route not found."], request.Id));
+        _ = route ?? throw new NotFoundException($"Route {request.Id} not found.");
 
         var updatedRoute = route.Update(area.Name, request.Number, request.Code, request.Name, request.Description, request.Notes);
 

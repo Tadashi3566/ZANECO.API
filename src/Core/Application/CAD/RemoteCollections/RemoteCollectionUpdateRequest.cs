@@ -57,7 +57,7 @@ public class RemoteCollectionUpdateRequestHandler : IRequestHandler<RemoteCollec
     {
         var remoteCollection = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = remoteCollection ?? throw new NotFoundException(string.Format(_localizer["remoteCollection not found."], request.Id));
+        _ = remoteCollection ?? throw new NotFoundException($"remoteCollection {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

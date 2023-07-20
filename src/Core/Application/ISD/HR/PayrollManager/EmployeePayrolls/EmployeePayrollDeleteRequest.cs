@@ -20,7 +20,7 @@ public class EmployeePayrollDeleteRequestHandler : IRequestHandler<EmployeePayro
     public async Task<Guid> Handle(EmployeePayrollDeleteRequest request, CancellationToken cancellationToken)
     {
         var employeePayroll = await _repository.GetByIdAsync(request.Id, cancellationToken);
-        _ = employeePayroll ?? throw new NotFoundException(_localizer["Employee Payroll not found."]);
+        _ = employeePayroll ?? throw new NotFoundException($"Employee Payroll {request.Id} not found.");
 
         await _repository.DeleteAsync(employeePayroll, cancellationToken);
 

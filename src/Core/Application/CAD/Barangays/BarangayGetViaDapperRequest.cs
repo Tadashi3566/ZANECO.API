@@ -23,7 +23,7 @@ public class BarangayGetViaDapperRequestHandler : IRequestHandler<BarangayGetVia
         var barangay = await _repository.QueryFirstOrDefaultAsync<Barangay>(
         $"SELECT * FROM datazaneco.\"Barangays\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = barangay ?? throw new NotFoundException(string.Format(_localizer["Barangay not found."], request.Id));
+        _ = barangay ?? throw new NotFoundException($"Barangay {request.Id} not found.");
 
         return barangay.Adapt<BarangayDto>();
     }

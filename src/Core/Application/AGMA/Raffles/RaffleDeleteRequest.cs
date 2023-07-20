@@ -27,7 +27,7 @@ public class RaffleDeleteRequestHandler : IRequestHandler<RaffleDeleteRequest, G
         }
 
         var raffle = await _repoRaffle.GetByIdAsync(request.Id, cancellationToken);
-        _ = raffle ?? throw new NotFoundException(_localizer["Raffle not found."]);
+        _ = raffle ?? throw new NotFoundException($"Raffle {request.Id} not found.");
 
         await _repoRaffle.DeleteAsync(raffle, cancellationToken);
 

@@ -49,7 +49,7 @@ public class UpdateSaleRequestHandler : IRequestHandler<SaleUpdateRequest, Defau
     {
         var sale = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = sale ?? throw new NotFoundException(_localizer["sale {0} Not Found.", request.Id]);
+        _ = sale ?? throw new NotFoundException($"sale {request.Id} not found.");
 
         // Remove old image if flag is set
         if (request.DeleteCurrentImage)

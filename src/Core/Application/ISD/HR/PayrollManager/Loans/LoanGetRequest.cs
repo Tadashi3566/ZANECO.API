@@ -20,5 +20,5 @@ public class LoanGetRequestHandler : IRequestHandler<LoanGetRequest, LoanDto>
     public async Task<LoanDto> Handle(LoanGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new LoanByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["Loan not found."], request.Id));
+        ?? throw new NotFoundException($"Loan {request.Id} not found.");
 }

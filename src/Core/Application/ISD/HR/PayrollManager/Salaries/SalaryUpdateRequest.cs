@@ -52,7 +52,7 @@ public class SalaryUpdateRequestHandler : IRequestHandler<SalaryUpdateRequest, D
     {
         var salary = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = salary ?? throw new NotFoundException(string.Format(_localizer["salary not found."], request.Id));
+        _ = salary ?? throw new NotFoundException($"salary {request.Id} not found.");
 
         var updatedSalary = salary.Update(request.StartDate, request.EndDate, request.RateType, request.Number, request.Name, request.Amount, request.IncrementYears, request.IncrementAmount, request.IsActive, request.Description, request.Notes);
 

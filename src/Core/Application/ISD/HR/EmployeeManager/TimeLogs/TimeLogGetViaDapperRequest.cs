@@ -23,7 +23,7 @@ public class TimeLogGetViaDapperRequestHandler : IRequestHandler<TimeLogGetViaDa
         var timeLog = await _repository.QueryFirstOrDefaultAsync<TimeLog>(
             $"SELECT * FROM datazaneco.\"TimeLogs\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = timeLog ?? throw new NotFoundException(string.Format(_localizer["timeLog not found."], request.Id));
+        _ = timeLog ?? throw new NotFoundException($"timeLog {request.Id} not found.");
 
         return timeLog.Adapt<TimeLogDto>();
     }

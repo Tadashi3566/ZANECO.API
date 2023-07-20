@@ -48,7 +48,7 @@ public class RouteCreateRequestHandler : IRequestHandler<RouteCreateRequest, Gui
     public async Task<Guid> Handle(RouteCreateRequest request, CancellationToken cancellationToken)
     {
         var area = await _repoArea.GetByIdAsync(request.AreaId, cancellationToken);
-        _ = area ?? throw new NotFoundException(string.Format(_localizer["Area not found."], request.AreaId));
+        _ = area ?? throw new NotFoundException($"Area {request.AreaId} not found.");
 
         var route = new Route(request.AreaId, area.Name, request.Number, request.Code, request.Name, request.Description, request.Notes);
 

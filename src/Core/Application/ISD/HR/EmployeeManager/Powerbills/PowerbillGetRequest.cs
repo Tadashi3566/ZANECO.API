@@ -20,5 +20,5 @@ public class PowerbillGetRequestHandler : IRequestHandler<PowerbillGetRequest, P
     public async Task<PowerbillDetailsDto> Handle(PowerbillGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new PowerbillByIdWithEmployeeSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["powerbill not found."], request.Id));
+        ?? throw new NotFoundException($"powerbill {request.Id} not found.");
 }

@@ -20,5 +20,5 @@ public class WinnerGetRequestHandler : IRequestHandler<WinnerGetRequest, WinnerD
     public async Task<WinnerDto> Handle(WinnerGetRequest request, CancellationToken cancellationToken) =>
         await _repository.FirstOrDefaultAsync(
             new WinnerByIdSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException(string.Format(_localizer["Winner not found."], request.Id));
+        ?? throw new NotFoundException($"Winner {request.Id} not found.");
 }

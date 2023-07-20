@@ -38,7 +38,7 @@ public class UpdateDiscountRequestHandler : IRequestHandler<DiscountUpdateReques
     {
         var discount = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = discount ?? throw new NotFoundException(_localizer["discount {0} Not Found.", request.Id]);
+        _ = discount ?? throw new NotFoundException($"discount {request.Id} not found.");
 
         discount.Update(request.Name, request.Percentage, request.Description!, request.Notes!);
 

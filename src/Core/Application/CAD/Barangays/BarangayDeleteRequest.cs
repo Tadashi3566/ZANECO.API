@@ -21,7 +21,7 @@ public class BarangayDeleteRequestHandler : IRequestHandler<BarangayDeleteReques
     {
         var barangay = await _repository.GetByIdAsync(request.Id, cancellationToken);
 
-        _ = barangay ?? throw new NotFoundException(_localizer["Barangay not found."]);
+        _ = barangay ?? throw new NotFoundException($"Barangay {request.Id} not found.");
 
         await _repository.DeleteAsync(barangay, cancellationToken);
 

@@ -23,7 +23,7 @@ public class AccountGetViaDapperRequestHandler : IRequestHandler<AccountGetViaDa
         var account = await _repository.QueryFirstOrDefaultAsync<Account>(
         $"SELECT * FROM datazaneco.\"Accounts\" WHERE \"Id\" = '{request.Id}' AND \"TenantId\" = '@tenant'", cancellationToken: cancellationToken);
 
-        _ = account ?? throw new NotFoundException(string.Format(_localizer["Account not found."], request.Id));
+        _ = account ?? throw new NotFoundException($"Account {request.Id} not found.");
 
         return account.Adapt<AccountDto>();
     }
