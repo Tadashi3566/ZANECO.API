@@ -56,9 +56,16 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
         _ = employee ?? throw new NotFoundException("Employee not found.");
+
+        // Timelog cannot be created when Employee is no longer active.
         if (!employee.IsActive) throw new ArgumentException("Employee is no longer Active");
 
-        var existingTimeLog = await _repoTimeLog.FirstOrDefaultAsync(new TimeLogByFileNameSpec(request.Image.Name), cancellationToken);
+        // Timelog cannot be created when Attendance is not yet generated.
+        var generatedAttendance = await _repoAttendance.FirstOrDefaultAsync(new AttendanceByDateSpec(employee.Id, request.LogDate), cancellationToken);
+        _ = generatedAttendance ?? throw new NotFoundException("Attendance not yet generated.");
+
+        // Timelog cannot be created when duplicate.
+        var existingTimeLog = await _repoTimeLog.FirstOrDefaultAsync(new TimeLogBySyncIdSpec(request.LogDate, request.SyncId), cancellationToken);
         if (existingTimeLog is not null) return existingTimeLog.Id;
 
         string imagePath = await _file.UploadAsync<TimeLog>(request.Image, FileType.Image, cancellationToken);
