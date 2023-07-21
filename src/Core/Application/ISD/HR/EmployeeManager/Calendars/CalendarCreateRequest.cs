@@ -1,4 +1,5 @@
 using ZANECO.API.Domain.ISD.HR.EmployeeManager;
+using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Calendars;
 
@@ -7,6 +8,7 @@ public class CalendarCreateRequest : IRequest<DefaultIdType>
     public DateTime CalendarDate { get; set; } = default!;
     public string CalendarType { get; set; } = default!;
     public string Name { get; set; } = default!;
+    public bool IsNationalHoliday { get; set; } = default!;
 
     public string? Description { get; set; }
     public string? Notes { get; set; }
@@ -17,10 +19,13 @@ public class CreateCalendarRequestValidator : CustomValidator<CalendarCreateRequ
     public CreateCalendarRequestValidator()
     {
         RuleFor(p => p.CalendarDate)
-            .NotEmpty();
+            .NotEmpty()
+            .LessThan(DateTime.Today.AddYears(-2));
 
         RuleFor(p => p.CalendarType)
-            .NotEmpty();
+            .NotEmpty()
+            .MinimumLength(6)
+            .MaximumLength(16);
 
         RuleFor(p => p.Name)
             .NotEmpty();
@@ -44,7 +49,7 @@ public class CalendarCreateRequestHandler : IRequestHandler<CalendarCreateReques
             throw new NotFoundException("Name already exist");
         }
 
-        var calendar = new Calendar(request.CalendarType, request.CalendarDate, request.Name, request.Description, request.Notes);
+        var calendar = new Calendar(request.CalendarType, request.CalendarDate, request.Name, request.IsNationalHoliday, request.Description, request.Notes);
 
         await _repoCalendar.AddAsync(calendar, cancellationToken);
 
