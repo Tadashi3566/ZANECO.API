@@ -36,12 +36,12 @@ public class CalendarUpdateRequestValidator : CustomValidator<CalendarUpdateRequ
 
 public class CalendarUpdateRequestHandler : IRequestHandler<CalendarUpdateRequest, DefaultIdType>
 {
-    private readonly IReadRepository<Employee> _repoEmployee;
     private readonly IRepositoryWithEvents<Calendar> _repoCalendar;
-    private readonly IStringLocalizer<CalendarUpdateRequestHandler> _localizer;
+    private readonly IRepositoryWithEvents<Attendance> _repoAttendance;
+    private readonly IDapperRepository _repoDapper;
 
-    public CalendarUpdateRequestHandler(IReadRepository<Employee> repoEmployee, IRepositoryWithEvents<Calendar> repoCalendar, IStringLocalizer<CalendarUpdateRequestHandler> localizer) =>
-        (_repoEmployee, _repoCalendar, _localizer) = (repoEmployee, repoCalendar, localizer);
+    public CalendarUpdateRequestHandler(IRepositoryWithEvents<Calendar> repoCalendar, IRepositoryWithEvents<Attendance> repoAttendance, IDapperRepository repoDapper) =>
+        (_repoCalendar, _repoAttendance, _repoDapper) = (repoCalendar, repoAttendance, repoDapper);
 
     public async Task<DefaultIdType> Handle(CalendarUpdateRequest request, CancellationToken cancellationToken)
     {
@@ -51,6 +51,9 @@ public class CalendarUpdateRequestHandler : IRequestHandler<CalendarUpdateReques
         var updatedCalendar = calendar.Update(request.CalendarType, request.CalendarDate!, request.Name, request.IsNationalHoliday, request.Description, request.Notes);
 
         await _repoCalendar.UpdateAsync(updatedCalendar, cancellationToken);
+
+        await _repoDapper.ExecuteScalarAsync<Calendar>(
+            $"UPDATE datazaneco.Attendance SET DayType = 'HOLIDAY', Description = '{request.Name}' WHERE TenantId = '@tenant' AND AttendanceDate = '{request.CalendarDate:yyyy-MM-dd}' AND DayType != 'HOLIDAY'", cancellationToken: cancellationToken);
 
         return request.Id;
     }

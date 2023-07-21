@@ -1,6 +1,6 @@
 ﻿using ZANECO.API.Application.ISD.HR.PayrollManager.Calendars;
 
-namespace ZANECO.API.Host.Controllers.ISD.HR.EmployeeManager;
+namespace ZANECO.API.Host.Controllers.ISD.HR.PayrollManager;
 
 public class CalendarsController : VersionedApiController
 {

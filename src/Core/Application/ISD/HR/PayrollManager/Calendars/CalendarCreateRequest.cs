@@ -34,12 +34,12 @@ public class CreateCalendarRequestValidator : CustomValidator<CalendarCreateRequ
 
 public class CalendarCreateRequestHandler : IRequestHandler<CalendarCreateRequest, DefaultIdType>
 {
-    private readonly IReadRepository<Employee> _repoEmployee;
-    private readonly IReadRepository<Domain.App.Group> _repoGroup;
     private readonly IRepositoryWithEvents<Calendar> _repoCalendar;
+    private readonly IRepositoryWithEvents<Attendance> _repoAttendance;
+    private readonly IDapperRepository _repoDapper;
 
-    public CalendarCreateRequestHandler(IReadRepository<Employee> repoEmployee, IReadRepository<Domain.App.Group> repoGroup, IRepositoryWithEvents<Calendar> repoCalendar) =>
-        (_repoEmployee, _repoGroup, _repoCalendar) = (repoEmployee, repoGroup, repoCalendar);
+    public CalendarCreateRequestHandler(IRepositoryWithEvents<Calendar> repoCalendar, IRepositoryWithEvents<Attendance> repoAttendance, IDapperRepository repoDapper) =>
+        (_repoCalendar, _repoAttendance, _repoDapper) = (repoCalendar, repoAttendance, repoDapper);
 
     public async Task<DefaultIdType> Handle(CalendarCreateRequest request, CancellationToken cancellationToken)
     {
@@ -52,6 +52,9 @@ public class CalendarCreateRequestHandler : IRequestHandler<CalendarCreateReques
         var calendar = new Calendar(request.CalendarType, request.CalendarDate, request.Name, request.IsNationalHoliday, request.Description, request.Notes);
 
         await _repoCalendar.AddAsync(calendar, cancellationToken);
+
+        await _repoDapper.ExecuteScalarAsync<Calendar>(
+            $"UPDATE datazaneco.Attendance SET DayType = 'HOLIDAY', Description = '{request.Name}' WHERE TenantId = '@tenant' AND AttendanceDate = '{request.CalendarDate:yyyy-MM-dd}'", cancellationToken: cancellationToken);
 
         return calendar.Id;
     }
