@@ -1,6 +1,6 @@
 ﻿using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
-namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Calendars;
+namespace ZANECO.API.Application.ISD.HR.PayrollManager.Calendars;
 
 public class CalendarByDateSpec : Specification<Calendar, CalendarDto>, ISingleResultSpecification
 {

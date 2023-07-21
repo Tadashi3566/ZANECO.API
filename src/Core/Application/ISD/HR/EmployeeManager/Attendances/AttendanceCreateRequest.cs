@@ -1,4 +1,4 @@
-using ZANECO.API.Application.ISD.HR.EmployeeManager.Calendars;
+using ZANECO.API.Application.ISD.HR.PayrollManager.Calendars;
 using ZANECO.API.Application.ISD.HR.PayrollManager.ScheduleDetails;
 using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 using ZANECO.API.Domain.ISD.HR.PayrollManager;

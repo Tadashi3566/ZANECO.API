@@ -1,7 +1,7 @@
 using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
-namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Calendars;
+namespace ZANECO.API.Application.ISD.HR.PayrollManager.Calendars;
 
 public class CalendarUpdateRequest : IRequest<DefaultIdType>
 {
