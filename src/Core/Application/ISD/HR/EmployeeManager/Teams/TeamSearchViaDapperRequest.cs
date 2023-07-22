@@ -16,11 +16,23 @@ public class TeamSearchViaDapperRequestHandler : IRequestHandler<TeamSearchViaDa
 
     public async Task<PaginationResponse<TeamDetailDto>?> Handle(TeamSearchViaDapperRequest request, CancellationToken cancellationToken)
     {
-        string sqlQuery = @"SELECT t.*, e.*
-                            FROM datazaneco.Teams AS t
-                            INNER JOIN datazaneco.Employees AS e
-                            ON t.EmployeeId = e.Id
-                            WHERE t.TenantId = '@tenant' AND t.LeaderId = @LeaderId";
+        //const string sqlQuery = "SELECT team.LeaderId, team.EmployeeId, emp.LastName, emp.FirstName, emp.Department, emp.Position FROM datazaneco.Teams AS team INNER JOIN datazaneco.Employees AS emp ON team.LeaderId = emp.Id WHERE team.TenantId = '@tenant' AND team.LeaderId = @LeaderId";
+        //const string sqlQuery = "SELECT LeaderId, EmployeeId, Department FROM datazaneco.Teams WHERE TenantId = '@tenant' AND LeaderId = @LeaderId";
+
+        const string sqlQuery = @"
+            SELECT 
+                team.LeaderId, 
+                team.EmployeeId, 
+                emp.Department, 
+                emp.Department, 
+                emp.Position 
+            FROM 
+                datazaneco.Teams AS team 
+            INNER JOIN 
+                datazaneco.Employees AS emp ON team.LeaderId = emp.Id 
+            WHERE 
+                team.TenantId = '@tenant'
+                AND team.LeaderId = @LeaderId";
 
         var parameters = new { LeaderId = request.LeaderId };
 

@@ -65,8 +65,11 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
         _ = generatedAttendance ?? throw new NotFoundException($"Attendance {request.LogDate:D} not yet generated.");
 
         // Timelog cannot be created when duplicate.
-        var existingTimeLog = await _repoTimeLog.FirstOrDefaultAsync(new TimeLogBySyncIdSpec(request.LogDate, request.SyncId), cancellationToken);
-        if (existingTimeLog is not null) return existingTimeLog.Id;
+        if (request.SyncId > 0)
+        {
+            var existingTimeLog = await _repoTimeLog.FirstOrDefaultAsync(new TimeLogBySyncIdSpec(request.LogDate, request.SyncId), cancellationToken);
+            if (existingTimeLog is not null) return existingTimeLog.Id;
+        }
 
         string imagePath = await _file.UploadAsync<TimeLog>(request.Image, FileType.Image, cancellationToken);
 

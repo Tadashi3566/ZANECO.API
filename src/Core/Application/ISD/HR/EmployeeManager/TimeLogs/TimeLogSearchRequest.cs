@@ -17,12 +17,8 @@ public sealed class TimeLogsBySearchRequestSpec : EntitiesByPaginationFilterSpec
         .Include(x => x.Employee)
         .OrderBy(x => x.LogDateTime)
         .Where(x => x.EmployeeId.Equals(request.EmployeeId!.Value), request.EmployeeId.HasValue)
-    //.Where(x => x.LogDate >= new DateTime(request.StartDate.Year, request.StartDate.Month, request.StartDate.Day, 0, 0, 0))
-    //.Where(x => x.LogDate <= new DateTime(request.EndDate.Year, request.EndDate.Month, request.EndDate.Day, 23, 59, 59));
-    //.Where(x => x.LogDate >= request.StartDate.AddDays(-1))
-    //.Where(x => x.LogDate <= request.EndDate);
-    .Where(x => x.LogDate >= request.StartDate)
-    .Where(x => x.LogDate <= request.EndDate);
+        .Where(x => x.LogDate >= request.StartDate)
+        .Where(x => x.LogDate <= request.EndDate);
 }
 
 public class TimeLogSearchRequestHandler : IRequestHandler<TimeLogSearchRequest, PaginationResponse<TimeLogDto>>
