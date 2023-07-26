@@ -11,7 +11,7 @@ using ZANECO.API.Application.Common.Interfaces;
 using ZANECO.API.Application.Common.Persistence;
 using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
-namespace ZANECO.API.Infrastructure.Services.PaddleOCR;
+namespace ZANECO.API.Infrastructure.PaddleOCR;
 
 public class DocumentOcrJob : IDocumentOcrJob
 {
@@ -34,7 +34,7 @@ public class DocumentOcrJob : IDocumentOcrJob
         _timer = new Stopwatch();
     }
 
-    private string readbase64string(string path)
+    private string Readbase64string(string path)
     {
         using var image = Image.FromFile(path);
         using var m = new MemoryStream();
@@ -60,7 +60,7 @@ public class DocumentOcrJob : IDocumentOcrJob
 
             if (!File.Exists(imgfile)) return;
 
-            string base64string = readbase64string(imgfile);
+            string base64string = Readbase64string(imgfile);
 
             using var client = _httpClientFactory.CreateClient("ocr");
             var response = client.PostAsJsonAsync<dynamic>(string.Empty, new { images = new string[] { base64string } }, cancellationToken: cancellationToken).Result;
@@ -70,10 +70,10 @@ public class DocumentOcrJob : IDocumentOcrJob
                 var ocrResult = JsonSerializer.Deserialize<Ocr_result>(result);
 
                 string ocr_status = ocrResult!.status;
-                if (ocrResult is not null && ocrResult.status == "000")
+                if (ocrResult?.status == "000")
                 {
                     StringBuilder documentContent = new();
-                    DateTime documentDate = DateTime.MinValue;
+                    var documentDate = DateTime.MinValue;
 
                     foreach (var results in ocrResult.results)
                     {

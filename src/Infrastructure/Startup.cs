@@ -26,11 +26,11 @@ using ZANECO.API.Infrastructure.Middleware;
 using ZANECO.API.Infrastructure.Multitenancy;
 using ZANECO.API.Infrastructure.Notifications;
 using ZANECO.API.Infrastructure.OpenApi;
+using ZANECO.API.Infrastructure.PaddleOCR;
 using ZANECO.API.Infrastructure.Persistence;
 using ZANECO.API.Infrastructure.Persistence.Initialization;
 using ZANECO.API.Infrastructure.RateLimiting;
 using ZANECO.API.Infrastructure.SecurityHeaders;
-using ZANECO.API.Infrastructure.Services.PaddleOCR;
 using ZANECO.API.Infrastructure.SMS;
 
 [assembly: InternalsVisibleTo("Infrastructure.Test")]
