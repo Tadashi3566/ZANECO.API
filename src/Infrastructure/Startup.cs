@@ -1,8 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +8,6 @@ using Polly;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Threading.RateLimiting;
 using ZANECO.API.Application.Common.Interfaces;
 using ZANECO.API.Application.SMS;
 using ZANECO.API.Infrastructure.Auth;

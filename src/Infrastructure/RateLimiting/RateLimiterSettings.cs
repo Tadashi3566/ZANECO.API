@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ZANECO.API.Infrastructure.RateLimiting;
+﻿namespace ZANECO.API.Infrastructure.RateLimiting;
 
 public class RateLimiterSettings //: IValidatableObject
 {
