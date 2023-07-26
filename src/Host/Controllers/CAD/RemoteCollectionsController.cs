@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.CAD.RemoteCollections;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.CAD.RemoteCollections;
 
 namespace ZANECO.API.Host.Controllers.CAD;
 
+[EnableRateLimiting("fixed")]
 public class RemoteCollectionsController : VersionedApiController
 {
     [HttpPost("search")]

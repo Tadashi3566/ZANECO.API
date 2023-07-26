@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
 namespace ZANECO.API.Host.Controllers.ISD.HR.EmployeeManager;
 
+[EnableRateLimiting("fixed")]
 public class EmployeesController : VersionedApiController
 {
     [HttpPost("search")]

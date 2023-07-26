@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.AGMA.Winners;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.AGMA.Winners;
 
 namespace ZANECO.API.Host.Controllers.AGMA;
 
+[EnableRateLimiting("fixed")]
 public class WinnersController : VersionedApiController
 {
     [HttpPost("search")]

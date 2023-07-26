@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.ISD.HR.EmployeeManager.TimeLogs;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.ISD.HR.EmployeeManager.TimeLogs;
 
 namespace ZANECO.API.Host.Controllers.ISD.HR.EmployeeManager;
 
+[EnableRateLimiting("fixed")]
 public class TimeLogsController : VersionedApiController
 {
     // To be transferred to mobile controller

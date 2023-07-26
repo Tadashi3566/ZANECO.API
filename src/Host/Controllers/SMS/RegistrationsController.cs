@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.SMS.Registrations;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.SMS.Registrations;
 
 namespace ZANECO.API.Host.Controllers.SMS;
 
+[EnableRateLimiting("fixed")]
 public class RegistrationsController : VersionedApiController
 {
     [HttpPost("search")]

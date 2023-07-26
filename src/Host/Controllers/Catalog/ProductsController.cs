@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.Catalog.Products;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.Catalog.Products;
 
 namespace ZANECO.API.Host.Controllers.Catalog;
 
+[EnableRateLimiting("fixed")]
 public class ProductsController : VersionedApiController
 {
     [HttpPost("search")]

@@ -1,9 +1,12 @@
-﻿using ZANECO.API.Application.ISD.HR.PayrollManager.Calendars;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.ISD.HR.PayrollManager.Calendars;
 
 namespace ZANECO.API.Host.Controllers.ISD.HR.PayrollManager;
 
+[EnableRateLimiting("fixed")]
 public class CalendarsController : VersionedApiController
 {
+    //[DisableRateLimiting]
     [HttpPost("search")]
     [MustHavePermission(FSHAction.Search, FSHResource.Calendar)]
     [OpenApiOperation("Search Calendar using available filters.", "")]

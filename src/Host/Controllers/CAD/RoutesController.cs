@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.CAD.Routes;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.CAD.Routes;
 
 namespace ZANECO.API.Host.Controllers.CAD;
 
+[EnableRateLimiting("fixed")]
 public class RoutesController : VersionedApiController
 {
     [HttpPost("search")]

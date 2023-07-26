@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.ISD.HR.PayrollManager.Adjustments;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.ISD.HR.PayrollManager.Adjustments;
 
 namespace ZANECO.API.Host.Controllers.ISD.HR.PayrollManager;
 
+[EnableRateLimiting("fixed")]
 public class AdjustmentsController : VersionedApiController
 {
     [HttpPost("search")]

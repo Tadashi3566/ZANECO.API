@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.App.Tickets;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.App.Tickets;
 
 namespace ZANECO.API.Host.Controllers.App;
 
+[EnableRateLimiting("fixed")]
 public class TicketsController : VersionedApiController
 {
     [HttpPost("search")]

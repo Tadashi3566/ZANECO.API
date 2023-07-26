@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.SMS.MessageOuts;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.SMS.MessageOuts;
 
 namespace ZANECO.API.Host.Controllers.SMS;
 
+[EnableRateLimiting("fixed")]
 public class MessageOutsController : VersionedApiController
 {
     [HttpPost("search")]

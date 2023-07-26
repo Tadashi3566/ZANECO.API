@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.App.Groups;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.App.Groups;
 
 namespace ZANECO.API.Host.Controllers.App;
 
+[EnableRateLimiting("fixed")]
 public class GroupsController : VersionedApiController
 {
     [HttpPost("search")]

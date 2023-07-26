@@ -1,0 +1,12 @@
+﻿{
+  "RateLimiterSettings": {
+    "AutoReplenishment": false,
+    "PermitLimit": 10,
+    "QueueLimit": 10,
+    "WindowInSecond": 10,
+    "SegmentsPerWindow": 10,
+    "TokenLimit": 100,
+    "ReplenishmentPeriodInSecond": 10,
+    "TokensPerPeriod": 10
+  }
+}

@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.ISD.Members;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.ISD.Members;
 
 namespace ZANECO.API.Host.Controllers.ISD;
 
+[EnableRateLimiting("fixed")]
 public class MembersController : VersionedApiController
 {
     [HttpPost("search")]

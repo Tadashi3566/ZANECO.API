@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.Catalog.Barcodes;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.Catalog.Barcodes;
 
 namespace ZANECO.API.Host.Controllers.Catalog;
 
+[EnableRateLimiting("fixed")]
 public class BarcodesController : VersionedApiController
 {
     [HttpPost("search")]

@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.ISD.HR.EmployeeManager.Teams;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.ISD.HR.EmployeeManager.Teams;
 
 namespace ZANECO.API.Host.Controllers.ISD.HR.EmployeeManager;
 
+[EnableRateLimiting("fixed")]
 public class TeamsController : VersionedApiController
 {
     [HttpPost("search")]

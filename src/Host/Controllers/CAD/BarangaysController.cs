@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.CAD.Barangays;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.CAD.Barangays;
 
 namespace ZANECO.API.Host.Controllers.CAD;
 
+[EnableRateLimiting("fixed")]
 public class BarangaysController : VersionedApiController
 {
     [HttpPost("search")]

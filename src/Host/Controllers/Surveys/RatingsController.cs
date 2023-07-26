@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.Surveys.Ratings;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.Surveys.Ratings;
 
 namespace ZANECO.API.Host.Controllers.Surveys;
 
+[EnableRateLimiting("fixed")]
 public class RatingsController : VersionedApiController
 {
     [HttpPost("search")]

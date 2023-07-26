@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.SMS.Contacts;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.SMS.Contacts;
 
 namespace ZANECO.API.Host.Controllers.SMS;
 
+[EnableRateLimiting("fixed")]
 public class ContactsController : VersionedApiController
 {
     [HttpPost("search")]

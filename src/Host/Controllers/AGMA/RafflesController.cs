@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.AGMA.Raffles;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.AGMA.Raffles;
 
 namespace ZANECO.API.Host.Controllers.AGMA;
 
+[EnableRateLimiting("fixed")]
 public class RafflesController : VersionedApiController
 {
     [HttpPost("search")]

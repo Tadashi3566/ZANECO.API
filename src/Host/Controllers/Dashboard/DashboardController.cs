@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.RateLimiting;
 using ZANECO.API.Application.Dashboard;
 
 namespace ZANECO.API.Host.Controllers.Dashboard;
 
+[EnableRateLimiting("fixed")]
 public class DashboardController : VersionedApiController
 {
     [HttpGet]

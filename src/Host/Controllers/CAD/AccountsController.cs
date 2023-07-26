@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.CAD.Accounts;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.CAD.Accounts;
 
 namespace ZANECO.API.Host.Controllers.CAD;
 
+[EnableRateLimiting("fixed")]
 public class AccountsController : VersionedApiController
 {
     [HttpPost("search")]

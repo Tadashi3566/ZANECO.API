@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.CAD.PowerRates;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.CAD.PowerRates;
 
 namespace ZANECO.API.Host.Controllers.CAD;
 
+[EnableRateLimiting("fixed")]
 public class PowerRatesController : VersionedApiController
 {
     [HttpPost("search")]

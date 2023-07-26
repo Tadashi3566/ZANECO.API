@@ -1,6 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +10,7 @@ using Polly;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading.RateLimiting;
 using ZANECO.API.Application.Common.Interfaces;
 using ZANECO.API.Application.SMS;
 using ZANECO.API.Infrastructure.Auth;
@@ -25,6 +28,7 @@ using ZANECO.API.Infrastructure.Notifications;
 using ZANECO.API.Infrastructure.OpenApi;
 using ZANECO.API.Infrastructure.Persistence;
 using ZANECO.API.Infrastructure.Persistence.Initialization;
+using ZANECO.API.Infrastructure.RateLimiting;
 using ZANECO.API.Infrastructure.SecurityHeaders;
 using ZANECO.API.Infrastructure.Services.PaddleOCR;
 using ZANECO.API.Infrastructure.SMS;
@@ -55,6 +59,7 @@ public static class Startup
             .AddOpenApiDocumentation(config)
             .AddPersistence()
             .AddRequestLogging(config)
+            .AddRateLimiterService(config)
             .AddRouting(options => options.LowercaseUrls = true)
             .AddHttpClientService()
             .AddAppServices()
@@ -113,6 +118,7 @@ public static class Startup
             .UseCurrentUser()
             .UseMultiTenancy()
             .UseAuthorization()
+            .UseRateLimiter()
             .UseRequestLogging(config)
             .UseHangfireDashboard(config)
             .UseOpenApiDocumentation(config);

@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.CAD.Ledgers;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.CAD.Ledgers;
 
 namespace ZANECO.API.Host.Controllers.CAD;
 
+[EnableRateLimiting("fixed")]
 public class LedgersController : VersionedApiController
 {
     [HttpPost("search")]

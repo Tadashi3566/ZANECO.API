@@ -1,7 +1,9 @@
-﻿using ZANECO.API.Application.App.TicketProgresss;
+﻿using Microsoft.AspNetCore.RateLimiting;
+using ZANECO.API.Application.App.TicketProgresss;
 
 namespace ZANECO.API.Host.Controllers.App;
 
+[EnableRateLimiting("fixed")]
 public class TicketProgressController : VersionedApiController
 {
     [HttpPost("search")]
