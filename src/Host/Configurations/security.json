@@ -3,7 +3,7 @@
     "Provider": "Jwt",
     "RequireConfirmedAccount": true,
     "JwtSettings": {
-      "key": "S0M3RAN0MS3CR3T!2!MAG1C!3!",
+      "key": "S0M3RAN0MS3CR3T!2!MAG1C!3!ZaNeCo1974",
       "tokenExpirationInMinutes": 600,
       "refreshTokenExpirationInDays": 7
     },
