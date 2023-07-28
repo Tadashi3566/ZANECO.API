@@ -29,7 +29,7 @@ namespace Migrators.MySQL.Migrations.Application
                 type: "varchar(64)",
                 maxLength: 64,
                 nullable: false,
-                defaultValue: "")
+                defaultValue: string.Empty)
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.AlterColumn<string>(
@@ -63,7 +63,7 @@ namespace Migrators.MySQL.Migrations.Application
                 type: "varchar(64)",
                 maxLength: 64,
                 nullable: false,
-                defaultValue: "")
+                defaultValue: string.Empty)
                 .Annotation("MySql:CharSet", "utf8mb4");
         }
 

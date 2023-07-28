@@ -16,7 +16,7 @@ internal static class Startup
     internal static IServiceCollection AddOpenApiDocumentation(this IServiceCollection services, IConfiguration config)
     {
         var settings = config.GetSection(nameof(SwaggerSettings)).Get<SwaggerSettings>();
-        if (settings == null) return services;
+        if (settings is null) return services;
         if (settings.Enable)
         {
             services.AddVersionedApiExplorer(o => o.SubstituteApiVersionInUrl = true);

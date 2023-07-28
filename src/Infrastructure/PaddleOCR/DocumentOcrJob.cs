@@ -52,7 +52,7 @@ public class DocumentOcrJob : IDocumentOcrJob
         {
             _timer.Start();
             var document = await _repository.GetByIdAsync(id, cancellationToken);
-            if (document == null) return;
+            if (document is null) return;
 
             if (string.IsNullOrEmpty(document.ImagePath)) return;
 

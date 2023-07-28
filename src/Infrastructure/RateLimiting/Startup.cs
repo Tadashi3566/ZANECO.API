@@ -10,7 +10,7 @@ internal static class Startup
     internal static IServiceCollection AddRateLimiterService(this IServiceCollection services, IConfiguration config)
     {
         var setting = config.GetSection(nameof(RateLimiterSettings)).Get<RateLimiterSettings>();
-        if (setting == null) return services;
+        if (setting is null) return services;
 
         services.AddOptions<RateLimiterSettings>()
             .BindConfiguration($"RateLimiterSettings:{nameof(RateLimiterSettings)}")

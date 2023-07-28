@@ -20,8 +20,7 @@ internal static class Startup
         }
         else
         {
-            var backplaneSettings = config.GetSection("SignalRSettings:Backplane").Get<SignalRSettings.Backplane>();
-            if (backplaneSettings is null) throw new InvalidOperationException("Backplane enabled, but no backplane settings in config.");
+            var backplaneSettings = config.GetSection("SignalRSettings:Backplane").Get<SignalRSettings.Backplane>() ?? throw new InvalidOperationException("Backplane enabled, but no backplane settings in config.");
             switch (backplaneSettings.Provider)
             {
                 case "redis":

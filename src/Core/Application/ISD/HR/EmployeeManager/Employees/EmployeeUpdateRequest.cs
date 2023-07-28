@@ -170,7 +170,7 @@ public class EmployeeUpdateRequestHandler : IRequestHandler<EmployeeUpdateReques
             }
 
             var contact = await _repoContact.FirstOrDefaultAsync(new ContactByNumberSpec(ClassSms.FormatContactNumber(request.PhoneNumber)), cancellationToken);
-            if (contact == null)
+            if (contact is null)
             {
                 var newContact = new Contact("EMPLOYEE", request.Number.ToString(), ClassSms.FormatContactNumber(request.PhoneNumber), employee.FullInitialName(), request.Address!, string.Empty, string.Empty, imagePath);
                 await _repoContact.AddAsync(newContact, cancellationToken);

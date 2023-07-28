@@ -122,7 +122,7 @@ public class EmployeeCreateRequestHandler : IRequestHandler<EmployeeCreateReques
             }
 
             var contact = await _repoContact.FirstOrDefaultAsync(new ContactByNumberSpec(ClassSms.FormatContactNumber(request.PhoneNumber)), cancellationToken);
-            if (contact == null)
+            if (contact is null)
             {
                 var newContact = new Contact("EMPLOYEE", request.Number.ToString(), ClassSms.FormatContactNumber(request.PhoneNumber), employee.FullInitialName(), request.Address, string.Empty, string.Empty, imagePath);
                 await _repoContact.AddAsync(newContact, cancellationToken);
@@ -138,7 +138,7 @@ public class EmployeeCreateRequestHandler : IRequestHandler<EmployeeCreateReques
         if (request.EmergencyNumber.Length > 0)
         {
             var contact = await _repoContact.FirstOrDefaultAsync(new ContactByNumberSpec(ClassSms.FormatContactNumber(request.EmergencyNumber)), cancellationToken);
-            if (contact == null)
+            if (contact is null)
             {
                 var newContact = new Contact("EMERGENCY", request.Number.ToString(), ClassSms.FormatContactNumber(request.EmergencyNumber), request.EmergencyPerson, request.EmergencyAddress, string.Empty, string.Empty, string.Empty);
                 await _repoContact.AddAsync(newContact, cancellationToken);

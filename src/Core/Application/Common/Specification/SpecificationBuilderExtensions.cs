@@ -97,7 +97,7 @@ public static class SpecificationBuilderExtensions
         };
 
         // Generate lambda [ x => x.Property ] for string properties
-        // or [ x => ((object)x.Property) == null ? null : x.Property.ToString() ] for other properties
+        // or [ x => ((object)x.Property) is null ? null : x.Property.ToString() ] for other properties
         Expression selectorExpr =
             property.PropertyType == typeof(string)
                 ? propertyExpr
@@ -240,7 +240,7 @@ public static class SpecificationBuilderExtensions
         object? value,
         Type propertyType)
     {
-        if (value == null) return Expression.Constant(null, propertyType);
+        if (value is null) return Expression.Constant(null, propertyType);
 
         if (propertyType.IsEnum)
         {
@@ -282,7 +282,7 @@ public static class SpecificationBuilderExtensions
 
         if (t.IsGenericType && t.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
         {
-            if (value == null)
+            if (value is null)
             {
                 return null;
             }

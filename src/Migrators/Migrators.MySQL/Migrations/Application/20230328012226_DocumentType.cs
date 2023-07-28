@@ -15,7 +15,7 @@ namespace Migrators.MySQL.Migrations.Application
                 type: "varchar(32)",
                 maxLength: 32,
                 nullable: false,
-                defaultValue: "")
+                defaultValue: string.Empty)
                 .Annotation("MySql:CharSet", "utf8mb4");
         }
 

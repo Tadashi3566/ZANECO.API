@@ -11,7 +11,7 @@ public class LocalFileStorageService : IFileStorageService
     public async Task<string> UploadAsync<T>(ImageUploadRequest? request, FileType supportedFileType, CancellationToken cancellationToken = default)
     where T : class
     {
-        if (request == null || request.Data == null)
+        if (request is null || request.Data is null)
         {
             return string.Empty;
         }
