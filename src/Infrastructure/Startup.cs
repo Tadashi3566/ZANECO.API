@@ -57,6 +57,7 @@ public static class Startup
             .AddPersistence()
             .AddRequestLogging(config)
             .AddRateLimiterService(config)
+            .AddSmsService(config)
             .AddRouting(options => options.LowercaseUrls = true)
             .AddHttpClientService()
             .AddAppServices()
@@ -80,6 +81,7 @@ public static class Startup
             //.AddScoped<IAttendanceService, AttendanceService>()
             .AddScoped<IDateTimeFunctions, DateTimeFunctions>()
             .AddScoped<IDocumentOcrJob, DocumentOcrJob>()
+            .AddScoped<SmsSettings>()
             .AddScoped<ISmsService, SmsService>();
 
     private static IServiceCollection AddApiVersioning(this IServiceCollection services) =>

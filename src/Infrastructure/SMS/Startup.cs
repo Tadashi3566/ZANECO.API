@@ -15,7 +15,9 @@ internal static class Startup
             .ValidateDataAnnotations()
             .ValidateOnStart();
 
-        services.AddScoped<ISmsService, SmsService>();
+        //services
+        //    .AddScoped<SmsSettings>()
+        //    .AddScoped<ISmsService, SmsService>();
 
         return services;
     }
