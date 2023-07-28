@@ -1,0 +1,8 @@
+{
+  "SmsSettings": {
+    "app_key": "ZvjB7jCBQPvUBYFp",
+    "app_secret": "cKbyWdcnRDXDsPqzKF29fzLo0Bpj1HKd",
+    "shortcode_mask": "ZANECO",
+    "url": "https://api.m360.com.ph/v3/api/broadcast"
+  }
+}

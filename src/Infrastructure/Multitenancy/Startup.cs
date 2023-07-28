@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Primitives;
 using ZANECO.API.Application.Multitenancy;
 using ZANECO.API.Infrastructure.Persistence;
 using ZANECO.API.Shared.Authorization;
