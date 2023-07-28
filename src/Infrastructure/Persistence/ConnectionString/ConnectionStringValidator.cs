@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MySqlConnector;
@@ -38,9 +39,9 @@ internal class ConnectionStringValidator : IConnectionStringValidator
                     var mysqlcs = new MySqlConnectionStringBuilder(connectionString);
                     break;
 
-                //case DbProviderKeys.SqlServer:
-                //    var mssqlcs = new SqlConnectionStringBuilder(connectionString);
-                //    break;
+                case DbProviderKeys.SqlServer:
+                    var mssqlcs = new SqlConnectionStringBuilder(connectionString);
+                    break;
 
                 case DbProviderKeys.SqLite:
                     var sqlite = new SqliteConnection(connectionString);

@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Options;
 using MySqlConnector;
@@ -31,7 +32,7 @@ public class ConnectionStringSecurer : IConnectionStringSecurer
         return dbProvider?.ToLower() switch
         {
             DbProviderKeys.Npgsql => MakeSecureNpgsqlConnectionString(connectionString),
-            //DbProviderKeys.SqlServer => MakeSecureSqlConnectionString(connectionString),
+            DbProviderKeys.SqlServer => MakeSecureSqlConnectionString(connectionString),
             DbProviderKeys.MySql => MakeSecureMySqlConnectionString(connectionString),
             DbProviderKeys.SqLite => MakeSecureSqLiteConnectionString(connectionString),
             DbProviderKeys.Oracle => MakeSecureOracleConnectionString(connectionString),
@@ -73,22 +74,22 @@ public class ConnectionStringSecurer : IConnectionStringSecurer
         return builder.ToString();
     }
 
-    //private static string MakeSecureSqlConnectionString(string connectionString)
-    //{
-    //    var builder = new SqlConnectionStringBuilder(connectionString);
+    private static string MakeSecureSqlConnectionString(string connectionString)
+    {
+        var builder = new SqlConnectionStringBuilder(connectionString);
 
-    //    if (!string.IsNullOrEmpty(builder.Password) || !builder.IntegratedSecurity)
-    //    {
-    //        builder.Password = HiddenValueDefault;
-    //    }
+        if (!string.IsNullOrEmpty(builder.Password) || !builder.IntegratedSecurity)
+        {
+            builder.Password = HiddenValueDefault;
+        }
 
-    //    if (!string.IsNullOrEmpty(builder.UserID) || !builder.IntegratedSecurity)
-    //    {
-    //        builder.UserID = HiddenValueDefault;
-    //    }
+        if (!string.IsNullOrEmpty(builder.UserID) || !builder.IntegratedSecurity)
+        {
+            builder.UserID = HiddenValueDefault;
+        }
 
-    //    return builder.ToString();
-    //}
+        return builder.ToString();
+    }
 
     private static string MakeSecureSqLiteConnectionString(string connectionString)
     {
