@@ -31,7 +31,7 @@ internal static class Startup
                         PermitLimit = setting.PermitLimit,
                         QueueLimit = setting.QueueLimit,
                         QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-                        Window = TimeSpan.FromSeconds(setting.WindowInSecond),
+                        Window = TimeSpan.FromSeconds(setting.WindowInSecond)
                     }));
 
             options.AddPolicy("sliding", httpContext =>
@@ -43,8 +43,8 @@ internal static class Startup
                         PermitLimit = setting.PermitLimit,
                         QueueLimit = setting.QueueLimit,
                         QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-                        Window = TimeSpan.FromSeconds(setting.WindowInSecond),
-                        SegmentsPerWindow = setting.SegmentsPerWindow
+                        SegmentsPerWindow = setting.SegmentsPerWindow,
+                        Window = TimeSpan.FromSeconds(setting.WindowInSecond)
                     }));
 
             options.AddPolicy("concurrency", httpContext =>
@@ -54,7 +54,7 @@ internal static class Startup
                     {
                         PermitLimit = setting.PermitLimit,
                         QueueLimit = setting.QueueLimit,
-                        QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                        QueueProcessingOrder = QueueProcessingOrder.OldestFirst
                     }));
 
             options.AddPolicy("token", httpContext =>

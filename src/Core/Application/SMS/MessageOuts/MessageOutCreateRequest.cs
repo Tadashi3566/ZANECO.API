@@ -79,6 +79,6 @@ public class MessageOutCreateRequestHandler : IRequestHandler<MessageOutCreateRe
             }
         }
 
-        return 1;
+        return recipientArray.Length;
     }
 }

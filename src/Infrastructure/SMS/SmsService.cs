@@ -22,10 +22,10 @@ internal class SmsService : ISmsService
 
     public async Task<int> SmsSend(string messageTo, string messageText, bool isCheckExisting = true, bool isAPI = true, string messageType = "sms.automatic")
     {
+        int smsLength = messageText.Length / 160;
         byte[] sentenceBytes = Encoding.UTF8.GetBytes(messageText);
-        string messageHash;
         byte[] hashBytes = SHA256.HashData(sentenceBytes);
-        messageHash = Convert.ToBase64String(hashBytes);
+        string messageHash = Convert.ToBase64String(hashBytes);
 
         if (isCheckExisting)
         {
@@ -39,14 +39,13 @@ internal class SmsService : ISmsService
             ClassSms sms = new();
             string response = await sms.SendToAPI(messageTo, messageText);
             string[] responseArray = response.Split("\r\n");
-            DateTime receiveDateTime = DateTime.Now;
             int statusCode = Convert.ToInt16(responseArray[0][14..]);
             string statusText = responseArray[1][5..];
             string messageGuid = string.Empty;
             int messageParts = Convert.ToInt16(responseArray[4][9..]);
             string errorCode = string.Empty;
             string errorText = string.Empty;
-            if (statusCode.Equals("201"))
+            if (statusCode.Equals(201))
             {
                 messageGuid = responseArray[2][6..];
                 messageParts = Convert.ToInt16(responseArray[4][9..]);
