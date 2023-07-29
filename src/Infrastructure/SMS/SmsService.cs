@@ -10,27 +10,22 @@ namespace ZANECO.API.Infrastructure.SMS;
 
 internal class SmsService : ISmsService
 {
-    private readonly IDapperRepository _repositoryDapper;
     private readonly IRepositoryWithEvents<MessageLog> _repoMessageLog;
     private readonly IRepositoryWithEvents<MessageOut> _repoMessageOut;
+    private readonly IDapperRepository _repositoryDapper;
     private readonly SmsSettings _smsSettings;
 
     public SmsService(
-        IDapperRepository repositoryDapper,
         IRepositoryWithEvents<MessageLog> repoMessageLog,
         IRepositoryWithEvents<MessageOut> repoMessageOut,
+        IDapperRepository repositoryDapper,
         IOptions<SmsSettings> smsSettings) =>
-        (_repositoryDapper, _repoMessageLog, _repoMessageOut, _smsSettings) =
-        (repositoryDapper, repoMessageLog, repoMessageOut, smsSettings.Value);
-
-    public async Task SmsRead(int id)
-    {
-        _ = await _repositoryDapper.ExecuteScalarAsync<MessageIn>($"UPDATE datazaneco.MessageIn SET IsRead = 1, ReadOn = CURRENT_TIMESTAMP() WHERE Id LIKE '{id}'");
-    }
+        (_repoMessageLog, _repoMessageOut, _repositoryDapper, _smsSettings) =
+        (repoMessageLog, repoMessageOut, repositoryDapper, smsSettings.Value);
 
     public async Task<string> SendToAPI(string phoneNumber, string message)
     {
-        if (phoneNumber.Trim().Length < 9) return string.Empty;
+        if (phoneNumber.Trim().Length < 9) return default!;
 
         phoneNumber = $"+639{phoneNumber[^9..]}";
 
@@ -60,6 +55,11 @@ internal class SmsService : ISmsService
                $"Timestamp:{response.timestamp}\r\n" +
                $"MsgCount:{response.msgcount}\r\n" +
                $"MsgId:{response.messageId}\r\n";
+    }
+
+    public async Task SmsRead(int id)
+    {
+        _ = await _repositoryDapper.ExecuteScalarAsync<MessageIn>($"UPDATE datazaneco.MessageIn SET IsRead = 1, ReadOn = CURRENT_TIMESTAMP() WHERE Id LIKE '{id}'");
     }
 
     public async Task<int> SmsSend(string messageTo, string messageText, bool isCheckExisting = true, bool isAPI = true, string messageType = "sms.automatic")

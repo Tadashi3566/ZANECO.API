@@ -13,7 +13,7 @@ public class LocalFileStorageService : IFileStorageService
     {
         if (request is null || request.Data is null)
         {
-            return string.Empty;
+            return default!;
         }
 
         var a = supportedFileType.GetDescriptionList();
@@ -71,7 +71,7 @@ public class LocalFileStorageService : IFileStorageService
         }
         else
         {
-            return string.Empty;
+            return default!;
         }
     }
 

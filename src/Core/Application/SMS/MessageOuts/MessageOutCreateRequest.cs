@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Options;
+
 namespace ZANECO.API.Application.SMS.MessageOuts;
 
 public class MessageOutCreateRequest : IRequest<int>

@@ -89,7 +89,7 @@ internal static class Startup
         if (setting.Enable)
             app.UseRateLimiter();
 
-        _logger.Information($"API Rate Limiter endpoint policies enabled: {setting.Enable}");
+        _logger.Information($"API Rate Limiter endpoint policies Enabled: {setting.Enable}");
 
         return app;
     }

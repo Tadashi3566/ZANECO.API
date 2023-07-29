@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Polly;
-using Serilog;
 using System.Net.Http.Headers;
 
 namespace ZANECO.API.Infrastructure.PaddleOCR;
 internal static class Startup
 {
-    private static readonly ILogger _logger = Log.ForContext(typeof(Startup));
 
     public static IServiceCollection AddPaddleOcrService(this IServiceCollection services)
     {
