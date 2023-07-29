@@ -2,20 +2,26 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using System.Threading.RateLimiting;
 
 namespace ZANECO.API.Infrastructure.RateLimiting;
 internal static class Startup
 {
+    private static readonly ILogger _logger = Log.ForContext(typeof(Startup));
+
     internal static IServiceCollection AddRateLimiterService(this IServiceCollection services, IConfiguration config)
     {
         var setting = config.GetSection(nameof(RateLimiterSettings)).Get<RateLimiterSettings>();
-        if (setting is null) return services;
+        if (setting?.Enable != true)
+            return services;
 
         services.AddOptions<RateLimiterSettings>()
             .BindConfiguration($"RateLimiterSettings:{nameof(RateLimiterSettings)}")
             .ValidateDataAnnotations()
             .ValidateOnStart();
+
+        services.AddScoped<RateLimiterSettings>();
 
         services.AddRateLimiter(options =>
         {
@@ -72,5 +78,19 @@ internal static class Startup
         });
 
         return services;
+    }
+
+    internal static IApplicationBuilder UseRateLimiterService(this IApplicationBuilder app, IConfiguration config)
+    {
+        var setting = config.GetSection(nameof(RateLimiterSettings)).Get<RateLimiterSettings>();
+        if (setting is null)
+            return app;
+
+        if (setting.Enable)
+            app.UseRateLimiter();
+
+        _logger.Information($"API Rate Limiter endpoint policies enabled: {setting.Enable}");
+
+        return app;
     }
 }

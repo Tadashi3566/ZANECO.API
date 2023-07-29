@@ -9,7 +9,6 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using ZANECO.API.Application.Common.Interfaces;
-using ZANECO.API.Application.SMS;
 using ZANECO.API.Infrastructure.Auth;
 using ZANECO.API.Infrastructure.BackgroundJobs;
 using ZANECO.API.Infrastructure.Caching;
@@ -80,9 +79,7 @@ public static class Startup
         services
             //.AddScoped<IAttendanceService, AttendanceService>()
             .AddScoped<IDateTimeFunctions, DateTimeFunctions>()
-            .AddScoped<IDocumentOcrJob, DocumentOcrJob>()
-            .AddScoped<SmsSettings>()
-            .AddScoped<ISmsService, SmsService>();
+            .AddScoped<IDocumentOcrJob, DocumentOcrJob>();
 
     private static IServiceCollection AddApiVersioning(this IServiceCollection services) =>
         services.AddApiVersioning(config =>
@@ -117,7 +114,8 @@ public static class Startup
             .UseCurrentUser()
             .UseMultiTenancy()
             .UseAuthorization()
-            .UseRateLimiter()
+            //.UseRateLimiter()
+            .UseRateLimiterService(config)
             .UseRequestLogging(config)
             .UseHangfireDashboard(config)
             .UseOpenApiDocumentation(config);

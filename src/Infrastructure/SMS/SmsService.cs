@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
 using ZANECO.API.Application.Common.Persistence;
@@ -14,8 +15,13 @@ internal class SmsService : ISmsService
     private readonly IRepositoryWithEvents<MessageOut> _repoMessageOut;
     private readonly SmsSettings _smsSettings;
 
-    public SmsService(IDapperRepository repositoryDapper, IRepositoryWithEvents<MessageLog> repoMessageLog, IRepositoryWithEvents<MessageOut> repoMessageOut, SmsSettings smsSettings) =>
-        (_repositoryDapper, _repoMessageLog, _repoMessageOut, _smsSettings) = (repositoryDapper, repoMessageLog, repoMessageOut, smsSettings);
+    public SmsService(
+        IDapperRepository repositoryDapper,
+        IRepositoryWithEvents<MessageLog> repoMessageLog,
+        IRepositoryWithEvents<MessageOut> repoMessageOut,
+        IOptions<SmsSettings> smsSettings) =>
+        (_repositoryDapper, _repoMessageLog, _repoMessageOut, _smsSettings) =
+        (repositoryDapper, repoMessageLog, repoMessageOut, smsSettings.Value);
 
     public async Task SmsRead(int id)
     {
@@ -24,8 +30,6 @@ internal class SmsService : ISmsService
 
     public async Task<string> SendToAPI(string phoneNumber, string message)
     {
-        //if (phoneNumber.Length.Equals(0)) return string.Empty;
-
         if (phoneNumber.Trim().Length < 9) return string.Empty;
 
         phoneNumber = $"+639{phoneNumber[^9..]}";
