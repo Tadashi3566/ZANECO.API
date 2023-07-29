@@ -6,7 +6,7 @@ namespace ZANECO.API.Application.ISD.HR.PayrollManager.Adjustments;
 
 public class AdjustmentCreateRequest : IRequest<Guid>
 {
-    public string AdjustmentType { get; set; } = string.Empty;
+    public string AdjustmentType { get; set; } = default!;
     public string EmployeeType { get; set; } = default!;
     public int Number { get; set; } = default!;
     public string Name { get; set; } = default!;

@@ -4,7 +4,7 @@ namespace ZANECO.API.Infrastructure.Auth.Jwt;
 
 public class JwtSettings : IValidatableObject
 {
-    public string Key { get; set; } = string.Empty;
+    public string Key { get; set; } = default!;
 
     public int TokenExpirationInMinutes { get; set; }
 

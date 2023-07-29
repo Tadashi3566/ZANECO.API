@@ -6,18 +6,18 @@ namespace ZANECO.API.Application.SMS.MessageLogs;
 
 public class MessageLogCreateRequest : IRequest<int>
 {
-    public string Connector { get; set; } = string.Empty;
-    public string Gateway { get; set; } = string.Empty;
+    public string Connector { get; set; } = default!;
+    public string Gateway { get; set; } = default!;
     public string MessageType { get; set; } = default!;
-    public string MessageFrom { get; set; } = string.Empty;
+    public string MessageFrom { get; set; } = default!;
     public string MessageTo { get; set; } = default!;
     public string MessageText { get; set; } = default!;
-    public string MessageGuid { get; set; } = string.Empty;
+    public string MessageGuid { get; set; } = default!;
     public int MessageParts { get; set; }
     public int StatusCode { get; set; }
-    public string StatusText { get; set; } = string.Empty;
-    public string ErrorCode { get; set; } = string.Empty;
-    public string ErrorText { get; set; } = string.Empty;
+    public string StatusText { get; set; } = default!;
+    public string ErrorCode { get; set; } = default!;
+    public string ErrorText { get; set; } = default!;
     public string? Description { get; set; }
     public string? Notes { get; set; }
 }

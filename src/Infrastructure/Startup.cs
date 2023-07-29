@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Polly;
-using System.Net.Http.Headers;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using ZANECO.API.Application.Common.Interfaces;
@@ -58,21 +56,9 @@ public static class Startup
             .AddRateLimiterService(config)
             .AddSmsService(config)
             .AddRouting(options => options.LowercaseUrls = true)
-            .AddHttpClientService()
+            .AddPaddleOcrService()
             .AddAppServices()
             .AddServices();
-    }
-
-    public static IServiceCollection AddHttpClientService(this IServiceCollection services)
-    {
-        services.AddHttpClient("ocr", c =>
-        {
-            c.BaseAddress = new Uri("https://paddleocr.i247365.net/predict/ocr_system");
-            c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        })
-        .AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(3, _ => TimeSpan.FromSeconds(30)));
-
-        return services;
     }
 
     private static IServiceCollection AddAppServices(this IServiceCollection services) =>
@@ -114,7 +100,6 @@ public static class Startup
             .UseCurrentUser()
             .UseMultiTenancy()
             .UseAuthorization()
-            //.UseRateLimiter()
             .UseRateLimiterService(config)
             .UseRequestLogging(config)
             .UseHangfireDashboard(config)

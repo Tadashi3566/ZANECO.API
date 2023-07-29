@@ -2,9 +2,9 @@
 
 public class SmsSettings //: IValidatableObject
 {
-    public string app_key { get; set; } // = default!; // "ZvjB7jCBQPvUBYFp";
-    public string app_secret { get; set; } // = default!; // "cKbyWdcnRDXDsPqzKF29fzLo0Bpj1HKd";
-    public string shortcode_mask { get; set; } // = default!; // "ZANECO";
+    public string app_key { get; set; } = default!; // "ZvjB7jCBQPvUBYFp";
+    public string app_secret { get; set; } = default!; // "cKbyWdcnRDXDsPqzKF29fzLo0Bpj1HKd";
+    public string shortcode_mask { get; set; } = default!; // "ZANECO";
     public string url { get; set; } = default!; // "https://api.m360.com.ph/v3/api/broadcast";
     public string? msisdn { get; set; }
     public string? content { get; set; }

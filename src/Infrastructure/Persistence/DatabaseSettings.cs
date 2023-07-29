@@ -4,8 +4,8 @@ namespace ZANECO.API.Infrastructure.Persistence;
 
 public class DatabaseSettings : IValidatableObject
 {
-    public string DBProvider { get; set; } = string.Empty;
-    public string ConnectionString { get; set; } = string.Empty;
+    public string DBProvider { get; set; } = default!;
+    public string ConnectionString { get; set; } = default!;
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {

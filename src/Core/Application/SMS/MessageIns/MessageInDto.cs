@@ -6,8 +6,8 @@ public class MessageInDto : IDto
     public DateTime? SendTime { get; set; }
     public DateTime? ReceiveTime { get; set; }
     public string MessageFrom { get; set; } = default!;
-    public string MessageTo { get; set; } = string.Empty;
-    public string MessageText { get; set; } = string.Empty;
+    public string MessageTo { get; set; } = default!;
+    public string MessageText { get; set; } = default!;
     public string? MessageType { get; set; }
     public string? SMSC { get; set; }
     public string? MessagePDU { get; set; }

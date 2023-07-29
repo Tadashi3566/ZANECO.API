@@ -28,7 +28,7 @@ public class AttendanceUpdateRequest : IRequest<DefaultIdType>
     public double TotalHours { get; set; }
     public double PaidHours { get; set; }
 
-    public string Status { get; set; } = string.Empty;
+    public string Status { get; set; } = default!;
     public string? Description { get; set; }
     public string? Notes { get; set; }
 }

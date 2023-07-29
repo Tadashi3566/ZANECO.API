@@ -14,7 +14,7 @@ public class RemoteCollectionCreateRequest : IRequest<Guid>
     public string AccountNumber { get; set; } = default!;
     public string Name { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
-    public string OrNumber { get; set; } = string.Empty;
+    public string OrNumber { get; set; } = default!;
     public string? Description { get; set; }
     public string? Notes { get; set; }
     public ImageUploadRequest? Image { get; set; }

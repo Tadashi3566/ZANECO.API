@@ -5,28 +5,28 @@ namespace ZANECO.API.Application.CAD.Accounts;
 public class AccountCreateRequest : IRequest<Guid>
 {
     public int IdCode { get; set; } = default!;
-    public string AccountNumber { get; set; } = string.Empty;
-    public string Area { get; set; } = string.Empty;
-    public string Route { get; set; } = string.Empty;
-    public string Cipher { get; set; } = string.Empty;
-    public string Tag { get; set; } = string.Empty;
-    public string Name { get; set; } = string.Empty;
-    public string Address { get; set; } = string.Empty;
+    public string AccountNumber { get; set; } = default!;
+    public string Area { get; set; } = default!;
+    public string Route { get; set; } = default!;
+    public string Cipher { get; set; } = default!;
+    public string Tag { get; set; } = default!;
+    public string Name { get; set; } = default!;
+    public string Address { get; set; } = default!;
 
-    public string AccountType { get; set; } = string.Empty; // Residential, High and Low Voltage
-    public string Feeder { get; set; } = string.Empty;
-    public string Pole { get; set; } = string.Empty;
-    public string Transformer { get; set; } = string.Empty;
-    public string MeterBrand { get; set; } = string.Empty;
-    public string MeterSerial { get; set; } = string.Empty;
+    public string AccountType { get; set; } = default!; // Residential, High and Low Voltage
+    public string Feeder { get; set; } = default!;
+    public string Pole { get; set; } = default!;
+    public string Transformer { get; set; } = default!;
+    public string MeterBrand { get; set; } = default!;
+    public string MeterSerial { get; set; } = default!;
 
-    public string ConnectionStatus { get; set; } = string.Empty; // Active, Disconnected etc.
+    public string ConnectionStatus { get; set; } = default!; // Active, Disconnected etc.
 
     public DateTime ConnectionDate { get; set; } = default!;
     public DateTime DisconnectionDate { get; set; } = default!;
     public DateTime ReconnectionDate { get; set; } = default!;
 
-    public string BillMonth { get; set; } = string.Empty;
+    public string BillMonth { get; set; } = default!;
     public DateTime PreviousReadingDate { get; set; } = default!;
     public double PreviousReadingKWH { get; set; } = default!;
     public DateTime PresentReadingDate { get; set; } = default!;
@@ -34,7 +34,7 @@ public class AccountCreateRequest : IRequest<Guid>
     public double UsedKWH { get; set; } = default!;
     public int Multiplier { get; set; }
     public decimal BillAmount { get; set; } = default!;
-    public string BillNumber { get; set; } = string.Empty;
+    public string BillNumber { get; set; } = default!;
 
     public bool ChangedMeter { get; set; }
     public double PreviousReadingKWHCM { get; set; }

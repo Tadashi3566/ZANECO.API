@@ -9,13 +9,13 @@ public class DesignationDto : IDto
     public bool IsActive { get; set; } = default!;
     public DefaultIdType DesignationId { get; set; } = default!;
     public DefaultIdType ScheduleId { get; set; } = default!;
-    public string ScheduleName { get; set; } = string.Empty;
+    public string ScheduleName { get; set; } = default!;
     public DateTime StartDate { get; set; } = default!;
     public DateTime EndDate { get; set; } = default!;
     public string Area { get; set; } = default!;
     public string Department { get; set; } = default!;
-    public string Division { get; set; } = string.Empty;
-    public string Section { get; set; } = string.Empty;
+    public string Division { get; set; } = default!;
+    public string Section { get; set; } = default!;
     public string Position { get; set; } = default!;
 
     public string EmploymentType { get; set; } = default!;
@@ -28,7 +28,7 @@ public class DesignationDto : IDto
     public int HoursPerDay { get; set; } = 8;
     public decimal RatePerDay { get; set; } = default!;
     public decimal RatePerHour { get; set; } = default!;
-    public string TaxType { get; set; } = string.Empty;
+    public string TaxType { get; set; } = default!;
 
     public string? Description { get; set; }
     public string? Notes { get; set; }

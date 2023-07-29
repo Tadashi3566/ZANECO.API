@@ -17,42 +17,42 @@ public class EmployeeCreateRequest : IRequest<Guid>
 
     public string Gender { get; set; } = default!;
     public DateTime BirthDate { get; set; } = default!;
-    public string PhoneNumber { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
-    public string CivilStatus { get; set; } = string.Empty;
-    public string Address { get; set; } = string.Empty;
-    public string BirthPlace { get; set; } = string.Empty;
+    public string PhoneNumber { get; set; } = default!;
+    public string Email { get; set; } = default!;
+    public string CivilStatus { get; set; } = default!;
+    public string Address { get; set; } = default!;
+    public string BirthPlace { get; set; } = default!;
 
     // Benefits
-    public string Sss { get; set; } = string.Empty;
+    public string Sss { get; set; } = default!;
 
-    public string Phic { get; set; } = string.Empty;
-    public string Hdmf { get; set; } = string.Empty;
-    public string Tin { get; set; } = string.Empty;
+    public string Phic { get; set; } = default!;
+    public string Hdmf { get; set; } = default!;
+    public string Tin { get; set; } = default!;
 
     // Payroll
     public DateTime HireDate { get; set; } = default!;
 
     public DateTime RegularDate { get; set; } = default!;
-    public string PayThrough { get; set; } = string.Empty;
+    public string PayThrough { get; set; } = default!;
 
     // Emergency
-    public string EmergencyPerson { get; set; } = string.Empty;
+    public string EmergencyPerson { get; set; } = default!;
 
-    public string EmergencyNumber { get; set; } = string.Empty;
-    public string EmergencyAddress { get; set; } = string.Empty;
-    public string EmergencyRelation { get; set; } = string.Empty;
-    public string FatherName { get; set; } = string.Empty;
-    public string MotherName { get; set; } = string.Empty;
+    public string EmergencyNumber { get; set; } = default!;
+    public string EmergencyAddress { get; set; } = default!;
+    public string EmergencyRelation { get; set; } = default!;
+    public string FatherName { get; set; } = default!;
+    public string MotherName { get; set; } = default!;
 
     // Education
-    public string Education { get; set; } = string.Empty;
+    public string Education { get; set; } = default!;
 
-    public string Course { get; set; } = string.Empty;
-    public string Award { get; set; } = string.Empty;
+    public string Course { get; set; } = default!;
+    public string Award { get; set; } = default!;
 
     // Others
-    public string BloodType { get; set; } = string.Empty;
+    public string BloodType { get; set; } = default!;
 
     public string? Description { get; set; }
     public string? Notes { get; set; }

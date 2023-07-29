@@ -13,7 +13,7 @@ public class AttendanceDto : IDto
     public bool IsOvertime { get; set; } = default!;
 
     public DefaultIdType ScheduleDetailId { get; set; } = DefaultIdType.Empty;
-    public string ScheduleDetailDay { get; set; } = string.Empty;
+    public string ScheduleDetailDay { get; set; } = default!;
     public int ScheduleHours { get; set; } = default!;
 
     public DateTime ScheduleTimeIn1 { get; set; } = default!;

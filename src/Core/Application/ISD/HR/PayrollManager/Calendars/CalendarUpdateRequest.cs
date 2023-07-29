@@ -11,7 +11,7 @@ public class CalendarUpdateRequest : IRequest<DefaultIdType>
     public string Name { get; set; } = default!;
     public bool IsNationalHoliday { get; set; } = default!;
 
-    public string Status { get; set; } = string.Empty;
+    public string Status { get; set; } = default!;
     public string? Description { get; set; }
     public string? Notes { get; set; }
 }

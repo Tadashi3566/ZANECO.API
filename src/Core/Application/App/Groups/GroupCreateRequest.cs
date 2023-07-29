@@ -11,7 +11,7 @@ public class GroupCreateRequest : IRequest<Guid>
     public string Code { get; set; } = default!;
     public string Name { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
-    public string Tag { get; set; } = string.Empty;
+    public string Tag { get; set; } = default!;
     public Guid EmployeeId { get; set; } = default!;
     public string? Description { get; set; }
     public string? Notes { get; set; }

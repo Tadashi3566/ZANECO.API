@@ -30,7 +30,7 @@ public class LedgerDto : IDto
     public decimal Credit { get; set; } = default!;
     public decimal Balance { get; set; } = default!;
 
-    public string? Collector { get; set; } = string.Empty;
+    public string? Collector { get; set; } = default!;
     public DateTime PostingDate { get; set; } = default!;
 
     public string? Description { get; set; }

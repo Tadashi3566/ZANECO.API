@@ -5,7 +5,7 @@ namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
 public class EmployeeExportRequest : BaseFilter, IRequest<Stream>
 {
-    public string Position { get; set; } = string.Empty;
+    public string Position { get; set; } = default!;
 }
 
 public class EmployeeExportRequestHandler : IRequestHandler<EmployeeExportRequest, Stream>

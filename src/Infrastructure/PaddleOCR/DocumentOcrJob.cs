@@ -106,13 +106,13 @@ public class DocumentOcrJob : IDocumentOcrJob
 internal class Result
 {
     public decimal confidence { get; set; }
-    public string text { get; set; } = string.Empty;
+    public string text { get; set; } = default!;
     public List<int[]> text_region { get; set; } = new();
 }
 
 internal class Ocr_result
 {
-    public string msg { get; set; } = string.Empty;
+    public string msg { get; set; } = default!;
     public List<Result[]> results { get; set; } = new();
-    public string status { get; set; } = string.Empty;
+    public string status { get; set; } = default!;
 }

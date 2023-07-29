@@ -9,9 +9,9 @@ public class PowerbillCreateRequest : IRequest<Guid>
     public Guid EmployeeId { get; set; }
 
     public string Account { get; set; } = default!;
-    public string Meter { get; set; } = string.Empty;
-    public string Name { get; set; } = string.Empty;
-    public string Address { get; set; } = string.Empty;
+    public string Meter { get; set; } = default!;
+    public string Name { get; set; } = default!;
+    public string Address { get; set; } = default!;
     public string? Description { get; set; }
     public string? Notes { get; set; }
     public ImageUploadRequest? Image { get; set; }

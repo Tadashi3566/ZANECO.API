@@ -8,7 +8,7 @@ public class RatingUpdateRequest : IRequest<Guid>
     public DefaultIdType Id { get; set; }
     public int RateNumber { get; set; } = default!;
     public string Comment { get; set; } = default!;
-    public string Reference { get; set; } = string.Empty;
+    public string Reference { get; set; } = default!;
     public string? Description { get; set; }
     public string? Notes { get; set; }
 }

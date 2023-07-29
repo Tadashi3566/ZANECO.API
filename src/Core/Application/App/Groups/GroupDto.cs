@@ -5,7 +5,7 @@ public class GroupDto : IDto
     public DefaultIdType Id { get; set; }
     public string Application { get; set; } = default!;
     public string Parent { get; set; } = default!;
-    public string Tag { get; set; } = string.Empty;
+    public string Tag { get; set; } = default!;
     public int Number { get; set; } = default!;
     public string Code { get; set; } = default!;
     public string Name { get; set; } = default!;

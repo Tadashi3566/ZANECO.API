@@ -6,8 +6,8 @@ namespace ZANECO.API.Application.Surveys.Ratings;
 public class RatingCreateRequest : IRequest<DefaultIdType>
 {
     public int RateNumber { get; set; } = default!;
-    public string Comment { get; set; } = string.Empty;
-    public string Reference { get; set; } = string.Empty;
+    public string Comment { get; set; } = default!;
+    public string Reference { get; set; } = default!;
 
     public string? Description { get; set; }
     public string? Notes { get; set; }

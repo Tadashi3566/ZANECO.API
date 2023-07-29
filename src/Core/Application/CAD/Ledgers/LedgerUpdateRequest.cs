@@ -7,7 +7,7 @@ public class LedgerUpdateRequest : IRequest<Guid>
     public DefaultIdType Id { get; set; }
     public Guid AccountId { get; set; }
     public double IdCode { get; set; } = default!;
-    public string AccountNumber { get; set; } = string.Empty;
+    public string AccountNumber { get; set; } = default!;
     public string? BillMonth { get; set; }
     public string? BillNumber { get; set; }
 
