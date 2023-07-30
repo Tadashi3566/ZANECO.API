@@ -12,7 +12,8 @@ internal static class Startup
         if (setting is null) return services;
 
         services.AddOptions<SmsSettings>()
-            .BindConfiguration($"SmsSettings:{nameof(SmsSettings)}")
+            //.BindConfiguration($"SmsSettings:{nameof(SmsSettings)}")
+            .BindConfiguration(nameof(SmsSettings))
             .ValidateDataAnnotations()
             .ValidateOnStart();
 

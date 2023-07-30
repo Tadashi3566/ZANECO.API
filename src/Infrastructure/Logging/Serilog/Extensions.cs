@@ -33,16 +33,27 @@ public static class Extensions
         });
     }
 
+    //public static void RegisterZanecoConfigurations(this WebApplicationBuilder builder)
+    //{
+    //    builder.Services.AddOptions<SmsSettings>()
+    //        .BindConfiguration($"SmsSettings:{nameof(SmsSettings)}")
+    //        .ValidateDataAnnotations()
+    //        .ValidateOnStart();
+
+    //    builder.Services.AddOptions<SmsSettings>().BindConfiguration(nameof(SmsSettings));
+    //    builder.Services.Configure<SmsSettings>(builder.Configuration.GetSection(nameof(SmsSettings)));
+    //}
+
     private static void ConfigureEnrichers(LoggerConfiguration serilogConfig, string appName)
     {
         serilogConfig
-                        .Enrich.FromLogContext()
-                        .Enrich.WithProperty("Application", appName)
-                        .Enrich.WithExceptionDetails()
-                        .Enrich.WithMachineName()
-                        .Enrich.WithProcessId()
-                        .Enrich.WithThreadId()
-                        .Enrich.FromLogContext();
+            .Enrich.FromLogContext()
+            .Enrich.WithProperty("Application", appName)
+            .Enrich.WithExceptionDetails()
+            .Enrich.WithMachineName()
+            .Enrich.WithProcessId()
+            .Enrich.WithThreadId()
+            .Enrich.FromLogContext();
     }
 
     private static void ConfigureConsoleLogging(LoggerConfiguration serilogConfig, bool structuredConsoleLogging)

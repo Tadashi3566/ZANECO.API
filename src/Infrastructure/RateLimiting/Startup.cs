@@ -17,7 +17,8 @@ internal static class Startup
             return services;
 
         services.AddOptions<RateLimiterSettings>()
-            .BindConfiguration($"RateLimiterSettings:{nameof(RateLimiterSettings)}")
+            //.BindConfiguration($"RateLimiterSettings:{nameof(RateLimiterSettings)}")
+            .BindConfiguration(nameof(RateLimiterSettings))
             .ValidateDataAnnotations()
             .ValidateOnStart();
 

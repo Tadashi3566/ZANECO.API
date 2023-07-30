@@ -1,4 +1,3 @@
-using System;
 using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.SMS.MessageTemplates;
@@ -7,7 +6,7 @@ public class MessageTemplateCreateRequest : IRequest<Guid>
 {
     public string TemplateType { get; set; } = default!;
     public string MessageType { get; set; } = default!;
-    public bool IsAPI { get; set; } = default!;
+    public bool IsAPI { get; set; } = true;
     public string Subject { get; set; } = default!;
     public string Message { get; set; } = default!;
     public string Recipients { get; set; } = default!;

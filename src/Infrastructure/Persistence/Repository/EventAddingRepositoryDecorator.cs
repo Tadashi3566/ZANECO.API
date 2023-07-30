@@ -89,11 +89,11 @@ public class EventAddingRepositoryDecorator<T> : IRepositoryWithEvents<T>
     public Task UpdateRangeAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default) =>
         _decorated.UpdateRangeAsync(entities, cancellationToken);
 
-    public Task<T?> GetBySpecAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
-    => _decorated.FirstOrDefaultAsync(specification, cancellationToken);
+    public Task<T?> GetBySpecAsync(ISpecification<T> specification, CancellationToken cancellationToken = default) =>
+        _decorated.FirstOrDefaultAsync(specification, cancellationToken);
 
-    public Task<T?> FirstOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
-    => _decorated.FirstOrDefaultAsync(specification, cancellationToken);
+    public Task<T?> FirstOrDefaultAsync(ISpecification<T> specification, CancellationToken cancellationToken = default) =>
+        _decorated.FirstOrDefaultAsync(specification, cancellationToken);
 
     public Task<TResult?> FirstOrDefaultAsync<TResult>(ISpecification<T, TResult> specification, CancellationToken cancellationToken = default) =>
         _decorated.FirstOrDefaultAsync(specification, cancellationToken);
