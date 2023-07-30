@@ -33,17 +33,6 @@ public static class Extensions
         });
     }
 
-    //public static void RegisterZanecoConfigurations(this WebApplicationBuilder builder)
-    //{
-    //    builder.Services.AddOptions<SmsSettings>()
-    //        .BindConfiguration($"SmsSettings:{nameof(SmsSettings)}")
-    //        .ValidateDataAnnotations()
-    //        .ValidateOnStart();
-
-    //    builder.Services.AddOptions<SmsSettings>().BindConfiguration(nameof(SmsSettings));
-    //    builder.Services.Configure<SmsSettings>(builder.Configuration.GetSection(nameof(SmsSettings)));
-    //}
-
     private static void ConfigureEnrichers(LoggerConfiguration serilogConfig, string appName)
     {
         serilogConfig

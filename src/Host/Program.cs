@@ -14,7 +14,6 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     builder.AddConfigurations().RegisterSerilog();
-    //builder.RegisterZanecoConfigurations();
     builder.Services.AddControllers();
     builder.Services.AddInfrastructure(builder.Configuration);
     builder.Services.AddApplication();
