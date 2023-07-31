@@ -459,3 +459,7 @@ $RECYCLE.BIN/
 /src/Host/Configurations/hangfire.json
 /src/Host/Configurations/database.json
 /src/Host/Configurations/security.json
+/src/Host/Configurations/sms.json
+/src/Host/Configurations/security.json
+/src/Host/Configurations/mail.json
+/src/Host/Configurations/hangfire.json
