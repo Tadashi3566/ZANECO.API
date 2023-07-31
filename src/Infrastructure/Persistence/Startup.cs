@@ -21,9 +21,12 @@ internal static class Startup
     {
         services.AddOptions<DatabaseSettings>()
             .BindConfiguration(nameof(DatabaseSettings))
-            .PostConfigure(databaseSettings =>
+            .PostConfigure(dbSettings =>
             {
-                _logger.Information("Current DB Provider: {dbProvider}", databaseSettings.DBProvider);
+                _logger.Information("Current DB Provider: {dbProvider}", dbSettings.DBProvider);
+                //_logger.Information("Enable Detailed Errors: {0}", dbSettings.EnableDetailedErrors);
+                //_logger.Information("Enable Sensitive Data Logging: {0}", dbSettings.EnableSensitiveDataLogging);
+                //_logger.Information("Enable Console Log: {0}", dbSettings.EnableConsoleLog);
             })
             .ValidateDataAnnotations()
             .ValidateOnStart();
@@ -31,8 +34,8 @@ internal static class Startup
         return services
             .AddDbContext<ApplicationDbContext>((p, m) =>
             {
-                var databaseSettings = p.GetRequiredService<IOptions<DatabaseSettings>>().Value;
-                m.UseDatabase(databaseSettings.DBProvider, databaseSettings.ConnectionString);
+                var dbSettings = p.GetRequiredService<IOptions<DatabaseSettings>>().Value;
+                m.UseDatabase(dbSettings.DBProvider, dbSettings.ConnectionString, dbSettings);
             })
 
             .AddTransient<IDatabaseInitializer, DatabaseInitializer>()
@@ -47,21 +50,46 @@ internal static class Startup
             .AddRepositories();
     }
 
-    internal static DbContextOptionsBuilder UseDatabase(this DbContextOptionsBuilder builder, string dbProvider, string connectionString)
+    internal static DbContextOptionsBuilder UseDatabase(this DbContextOptionsBuilder builder, string dbProvider, string connectionString, DatabaseSettings dbSettings)
     {
         return dbProvider.ToLowerInvariant() switch
         {
-            DbProviderKeys.Npgsql => builder.UseNpgsql(connectionString, e =>
-                                 e.MigrationsAssembly("Migrators.PostgreSQL")),
-            DbProviderKeys.SqlServer => builder.UseSqlServer(connectionString, e =>
-                                 e.MigrationsAssembly("Migrators.MSSQL")),
-            DbProviderKeys.MySql => builder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), e =>
-                                 e.MigrationsAssembly("Migrators.MySQL")
-                                  .SchemaBehavior(MySqlSchemaBehavior.Ignore)),
-            DbProviderKeys.Oracle => builder.UseOracle(connectionString, e =>
-                                 e.MigrationsAssembly("Migrators.Oracle")),
-            DbProviderKeys.SqLite => builder.UseSqlite(connectionString, e =>
-                                 e.MigrationsAssembly("Migrators.SqLite")),
+            DbProviderKeys.MySql => builder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), dbContextOptions =>
+                                                dbContextOptions.MigrationsAssembly("Migrators.MySQL")
+                                                                .SchemaBehavior(MySqlSchemaBehavior.Ignore)
+                                                                .EnableRetryOnFailure(dbSettings.MaxRetryCount)
+                                                                .CommandTimeout(dbSettings.CommandTimeout))
+                                            .EnableDetailedErrors(dbSettings.EnableDetailedErrors)
+                                            .EnableSensitiveDataLogging(dbSettings.EnableSensitiveDataLogging),
+
+            DbProviderKeys.Npgsql => builder.UseNpgsql(connectionString, dbContextOptions =>
+                                                dbContextOptions.MigrationsAssembly("Migrators.PostgreSQL")
+                                                                .EnableRetryOnFailure(dbSettings.MaxRetryCount)
+                                                                .CommandTimeout(dbSettings.CommandTimeout))
+                                            .EnableDetailedErrors(dbSettings.EnableDetailedErrors)
+                                            .EnableSensitiveDataLogging(dbSettings.EnableSensitiveDataLogging),
+
+            DbProviderKeys.Oracle => builder.UseOracle(connectionString, dbContextOptions =>
+                                                dbContextOptions.MigrationsAssembly("Migrators.Oracle")
+                                                                .CommandTimeout(dbSettings.CommandTimeout))
+                                            .EnableDetailedErrors(dbSettings.EnableDetailedErrors)
+                                            .EnableSensitiveDataLogging(dbSettings.EnableSensitiveDataLogging),
+
+            DbProviderKeys.SqlServer => builder.UseSqlServer(connectionString, dbContextOptions =>
+                                                dbContextOptions.MigrationsAssembly("Migrators.MSSQL")
+                                                                .CommandTimeout(dbSettings.CommandTimeout)
+                                                                .EnableRetryOnFailure(dbSettings.MaxRetryCount)
+                                                                .CommandTimeout(dbSettings.CommandTimeout))
+                                            .EnableDetailedErrors(dbSettings.EnableDetailedErrors)
+                                            .EnableSensitiveDataLogging(dbSettings.EnableSensitiveDataLogging),
+
+            DbProviderKeys.SqLite => builder.UseSqlite(connectionString, dbContextOptions =>
+                                                dbContextOptions.MigrationsAssembly("Migrators.SqLite")
+                                                                .CommandTimeout(dbSettings.CommandTimeout)
+                                                                .CommandTimeout(dbSettings.CommandTimeout))
+                                            .EnableDetailedErrors(dbSettings.EnableDetailedErrors)
+                                            .EnableSensitiveDataLogging(dbSettings.EnableSensitiveDataLogging),
+
             _ => throw new InvalidOperationException($"DB Provider {dbProvider} is not supported."),
         };
     }

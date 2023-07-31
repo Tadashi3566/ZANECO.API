@@ -29,7 +29,7 @@ internal class DatabaseInitializer : IDatabaseInitializer
             await InitializeApplicationDbForTenantAsync(tenant, cancellationToken);
         }
 
-        _logger.LogInformation("Developed by: Lowell Carl B. Sumile");
+        _logger.LogInformation("Developed by: Lowell Carl Bagsican Sumile");
     }
 
     public async Task InitializeApplicationDbForTenantAsync(FSHTenantInfo tenant, CancellationToken cancellationToken)

@@ -1,4 +1,3 @@
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -110,6 +109,7 @@ public static class Startup
         builder.MapControllers().RequireAuthorization();
         builder.MapHealthCheck();
         builder.MapNotifications();
+
         return builder;
     }
 

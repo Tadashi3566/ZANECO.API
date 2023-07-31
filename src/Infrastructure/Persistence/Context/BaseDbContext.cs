@@ -45,21 +45,24 @@ public abstract class BaseDbContext : MultiTenantIdentityDbContext<ApplicationUs
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        if (!string.IsNullOrWhiteSpace(TenantInfo?.ConnectionString))
+        {
+            optionsBuilder.UseDatabase(_dbSettings.DBProvider, TenantInfo.ConnectionString, _dbSettings);
+        }
+
         // TODO: We want this only for development probably... maybe better make it configurable in logger.json config?
-        optionsBuilder.EnableSensitiveDataLogging();
+        if (_dbSettings.EnableSensitiveDataLogging)
+            optionsBuilder.EnableSensitiveDataLogging();
 
         // If you want to see the sql queries that efcore executes:
 
         // Uncomment the next line to see them in the output window of visual studio
-        //optionsBuilder.LogTo(m => System.Diagnostics.Debug.WriteLine(m), Microsoft.Extensions.Logging.LogLevel.Information);
+        if (_dbSettings.EnableDiagnosticsLog)
+            optionsBuilder.LogTo(m => System.Diagnostics.Debug.WriteLine(m), Microsoft.Extensions.Logging.LogLevel.Information);
 
         // Or uncomment the next line if you want to see them in the console
-        //optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
-
-        if (!string.IsNullOrWhiteSpace(TenantInfo?.ConnectionString))
-        {
-            optionsBuilder.UseDatabase(_dbSettings.DBProvider, TenantInfo.ConnectionString);
-        }
+        if (_dbSettings.EnableConsoleLog)
+            optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
     }
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

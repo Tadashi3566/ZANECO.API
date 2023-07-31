@@ -6,6 +6,12 @@ public class DatabaseSettings : IValidatableObject
 {
     public string DBProvider { get; set; } = default!;
     public string ConnectionString { get; set; } = default!;
+    public int MaxRetryCount { get; set; } = default!;
+    public int CommandTimeout { get; set; } = default!;
+    public bool EnableDetailedErrors { get; set; } = default!;
+    public bool EnableSensitiveDataLogging { get; set; } = default!;
+    public bool EnableDiagnosticsLog { get; set; } = default!;
+    public bool EnableConsoleLog { get; set; } = default!;
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
