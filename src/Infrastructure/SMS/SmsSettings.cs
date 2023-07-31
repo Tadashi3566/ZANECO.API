@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ZANECO.API.Infrastructure.SMS;
+namespace ZANECO.API.Infrastructure.Sms;
 
 public class SmsSettings : IValidatableObject
 {

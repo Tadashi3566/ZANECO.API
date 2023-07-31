@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using ZANECO.API.Application.SMS;
 
-namespace ZANECO.API.Infrastructure.SMS;
+namespace ZANECO.API.Infrastructure.Sms;
 internal static class Startup
 {
 

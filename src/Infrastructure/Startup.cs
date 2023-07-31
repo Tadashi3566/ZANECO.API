@@ -24,7 +24,7 @@ using ZANECO.API.Infrastructure.Persistence;
 using ZANECO.API.Infrastructure.Persistence.Initialization;
 using ZANECO.API.Infrastructure.RateLimiting;
 using ZANECO.API.Infrastructure.SecurityHeaders;
-using ZANECO.API.Infrastructure.SMS;
+using ZANECO.API.Infrastructure.Sms;
 
 [assembly: InternalsVisibleTo("Infrastructure.Test")]
 

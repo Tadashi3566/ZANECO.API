@@ -6,7 +6,7 @@ using ZANECO.API.Application.Common.Persistence;
 using ZANECO.API.Application.SMS;
 using ZANECO.API.Domain.SMS;
 
-namespace ZANECO.API.Infrastructure.SMS;
+namespace ZANECO.API.Infrastructure.Sms;
 
 internal class SmsService : ISmsService
 {
