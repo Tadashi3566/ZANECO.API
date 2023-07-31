@@ -48,9 +48,9 @@ public class DocumentUpdateRequestHandler : IRequestHandler<DocumentUpdateReques
     public async Task<Guid> Handle(DocumentUpdateRequest request, CancellationToken cancellationToken)
     {
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
 
         var document = await _repository.GetByIdAsync(request.Id, cancellationToken);
-
         _ = document ?? throw new NotFoundException($"document {request.Id} not found.");
 
         // Remove old file if flag is set

@@ -8,7 +8,7 @@ public class ScheduleDetail : AuditableEntity, IAggregateRoot
 
     public virtual Schedule Schedule { get; private set; } = default!;
     public DefaultIdType ScheduleId { get; private set; }
-    public string ScheduleName { get; private set; } = string.Empty;
+    public string ScheduleName { get; private set; } = default!;
     public string ScheduleType { get; private set; } = default!; // DAYOFF, WORK
     public string Day { get; private set; } = default!; // MONDAY, TUESDAY, WEDNESDAY ...
     public string TimeIn1 { get; private set; } = default!;

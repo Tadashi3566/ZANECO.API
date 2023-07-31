@@ -6,13 +6,13 @@ public class Document : AuditableEntity, IAggregateRoot
     public DefaultIdType EmployeeId { get; private set; }
     public string EmployeeName { get; private set; } = default!;
     public DateTime DocumentDate { get; private set; }
-    public string DocumentType { get; private set; } = string.Empty;
-    public string Reference { get; private set; } = string.Empty;
-    public bool IsPublic { get; private set; }
-    public string Name { get; private set; } = string.Empty;
-    public string Content { get; private set; } = string.Empty;
-    public string Raw { get; private set; } = string.Empty;
-    public string ImagePath { get; private set; } = default!;
+    public string DocumentType { get; private set; } = default!;
+    public string Reference { get; private set; } = default!;
+    public bool IsPublic { get; private set; } = default!;
+    public string Name { get; private set; } = default!;
+    public string Content { get; private set; } = default!;
+    public string Raw { get; private set; } = default!;
+    public string? ImagePath { get; private set; }
 
     public Document(DefaultIdType employeeId, string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description, string? notes, string? imagePath)
     {

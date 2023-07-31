@@ -9,8 +9,8 @@ public class MessageIn : AuditableEntity<int>, IAggregateRoot
     public DateTime? SendTime { get; private set; }
     public DateTime? ReceiveTime { get; private set; }
     public string MessageFrom { get; private set; } = default!;
-    public string MessageTo { get; private set; } = string.Empty;
-    public string MessageText { get; private set; } = string.Empty;
+    public string MessageTo { get; private set; } = default!;
+    public string MessageText { get; private set; } = default!;
     public string? MessageType { get; private set; }
     public string? SMSC { get; private set; }
     public string? MessagePDU { get; private set; }

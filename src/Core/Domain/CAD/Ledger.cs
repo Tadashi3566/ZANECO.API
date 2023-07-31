@@ -35,7 +35,7 @@ public class Ledger : AuditableEntity, IAggregateRoot
     public decimal Credit { get; private set; }
     public decimal Balance { get; private set; }
 
-    public string? Collector { get; private set; } = string.Empty;
+    public string? Collector { get; private set; } = default!;
     public DateTime PostingDate { get; private set; }
 
     public Ledger(string accountNumber, string? description = "", string? notes = "")

@@ -7,28 +7,28 @@ public class Account : AuditableEntity, IAggregateRoot
     }
 
     public int IdCode { get; private set; }
-    public string AccountNumber { get; private set; } = string.Empty;
-    public string Name { get; private set; } = string.Empty;
-    public string Address { get; private set; } = string.Empty;
-    public string Area { get; private set; } = string.Empty;
-    public string Route { get; private set; } = string.Empty;
-    public string Cipher { get; private set; } = string.Empty;
-    public string Tag { get; private set; } = string.Empty;
+    public string AccountNumber { get; private set; } = default!;
+    public string Name { get; private set; } = default!;
+    public string Address { get; private set; } = default!;
+    public string Area { get; private set; } = default!;
+    public string Route { get; private set; } = default!;
+    public string Cipher { get; private set; } = default!;
+    public string Tag { get; private set; } = default!;
 
-    public string AccountType { get; private set; } = string.Empty; // Residential, High and Low Voltage
-    public string Feeder { get; private set; } = string.Empty;
-    public string Pole { get; private set; } = string.Empty;
-    public string Transformer { get; private set; } = string.Empty;
-    public string MeterBrand { get; private set; } = string.Empty;
-    public string MeterSerial { get; private set; } = string.Empty;
+    public string AccountType { get; private set; } = default!; // Residential, High and Low Voltage
+    public string Feeder { get; private set; } = default!;
+    public string Pole { get; private set; } = default!;
+    public string Transformer { get; private set; } = default!;
+    public string MeterBrand { get; private set; } = default!;
+    public string MeterSerial { get; private set; } = default!;
 
-    public string ConnectionStatus { get; private set; } = string.Empty; // Active, Disconnected etc.
+    public string ConnectionStatus { get; private set; } = default!; // Active, Disconnected etc.
 
     public DateTime? ConnectionDate { get; private set; } = DateTime.MinValue;
     public DateTime? DisconnectionDate { get; private set; } = DateTime.MinValue;
     public DateTime? ReconnectionDate { get; private set; } = DateTime.MinValue;
 
-    public string BillMonth { get; private set; } = string.Empty;
+    public string BillMonth { get; private set; } = default!;
     public DateTime? PreviousReadingDate { get; private set; } = DateTime.MinValue;
     public double PreviousReadingKWH { get; private set; }
     public DateTime? PresentReadingDate { get; private set; } = DateTime.MinValue;
@@ -36,7 +36,7 @@ public class Account : AuditableEntity, IAggregateRoot
     public double UsedKWH { get; private set; }
     public int Multiplier { get; private set; }
     public decimal BillAmount { get; private set; }
-    public string BillNumber { get; private set; } = string.Empty;
+    public string BillNumber { get; private set; } = default!;
 
     public bool ChangedMeter { get; private set; }
     public double PreviousReadingKWHCM { get; private set; }

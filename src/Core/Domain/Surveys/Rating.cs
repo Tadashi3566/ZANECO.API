@@ -10,8 +10,8 @@ public class Rating : AuditableEntity, IAggregateRoot
     public DefaultIdType RateId { get; private set; }
     public int RateNumber { get; private set; }
     public string RateName { get; private set; } = default!;
-    public string Comment { get; private set; } = string.Empty;
-    public string Reference { get; private set; } = string.Empty;
+    public string Comment { get; private set; } = default!;
+    public string Reference { get; private set; } = default!;
 
     public Rating(DefaultIdType rateId, int rateNumber, string rateName, string comment, string reference, string? description = "", string? notes = "")
     {

@@ -25,8 +25,8 @@ public class Designation : AuditableEntity, IAggregateRoot
     public DateTime EndDate { get; private set; }
     public string Area { get; private set; } = default!;
     public string Department { get; private set; } = default!;
-    public string Division { get; private set; } = string.Empty;
-    public string Section { get; private set; } = string.Empty;
+    public string Division { get; private set; } = default!;
+    public string Section { get; private set; } = default!;
     public string Position { get; private set; } = default!;
 
     public string EmploymentType { get; private set; } = default!;
@@ -37,7 +37,7 @@ public class Designation : AuditableEntity, IAggregateRoot
     public decimal RatePerDay { get; private set; }
     public int HoursPerDay { get; private set; } = 8;
     public decimal RatePerHour { get; private set; }
-    public string TaxType { get; private set; } = string.Empty;
+    public string TaxType { get; private set; } = default!;
     public string PayType { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
