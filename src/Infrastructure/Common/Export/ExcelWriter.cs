@@ -28,4 +28,36 @@ public class ExcelWriter : IExcelWriter
         stream.Seek(0, SeekOrigin.Begin);
         return stream;
     }
+
+    public IList<T> ReadFromStream<T>(Stream stream)
+        where T : new()
+    {
+        using var wb = new XLWorkbook(stream);
+        var dataTable = wb.Worksheets.Worksheet(1).Table("table");
+        var properties = TypeDescriptor.GetProperties(typeof(T));
+
+        IList<T> resultList = new List<T>();
+
+        foreach (DataRow row in dataTable.DataRange.Rows().Skip(1).Cast<DataRow>())
+        {
+            T item = new T();
+            foreach (PropertyDescriptor prop in properties)
+            {
+                string propertyName = prop.Name;
+                object value = row.Field<object>(propertyName)!;
+                Type propertyType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+
+                if (value != null && propertyType != typeof(string))
+                {
+                    value = Convert.ChangeType(value, propertyType);
+                }
+
+                prop.SetValue(item, value);
+            }
+
+            resultList.Add(item);
+        }
+
+        return resultList;
+    }
 }
