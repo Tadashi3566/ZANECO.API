@@ -55,9 +55,10 @@ public class EventAddingRepositoryDecorator<T> : IRepositoryWithEvents<T>
         where TId : notnull =>
         _decorated.GetByIdAsync(id, cancellationToken);
 
-    public Task<T?> GetBySpecAsync<TSpec>(TSpec specification, CancellationToken cancellationToken = default)
-        where TSpec : ISingleResultSpecification, ISpecification<T> =>
-        _decorated.FirstOrDefaultAsync(specification, cancellationToken);
+    //[Obsolete]
+    //public Task<T?> GetBySpecAsync<TSpec>(TSpec specification, CancellationToken cancellationToken = default)
+    //    where TSpec : ISingleResultSpecification, ISpecification<T> =>
+    //    _decorated.FirstOrDefaultAsync(specification, cancellationToken);
 
     public Task<TResult?> GetBySpecAsync<TResult>(ISpecification<T, TResult> specification, CancellationToken cancellationToken = default) =>
         _decorated.FirstOrDefaultAsync(specification, cancellationToken);
@@ -103,4 +104,9 @@ public class EventAddingRepositoryDecorator<T> : IRepositoryWithEvents<T>
 
     public Task<TResult?> SingleOrDefaultAsync<TResult>(ISingleResultSpecification<T, TResult> specification, CancellationToken cancellationToken = default) =>
         _decorated.SingleOrDefaultAsync(specification, cancellationToken);
+
+    public IAsyncEnumerable<T> AsAsyncEnumerable(ISpecification<T> specification)
+    {
+        throw new NotImplementedException();
+    }
 }
