@@ -19,7 +19,7 @@ public class Product : AuditableEntity, IAggregateRoot
         // If you're not using dapper it's better to remove this constructor.
     }
 
-    public Product(DefaultIdType brandId, string sku, string barcode, string name, string specification, string unitOfMeasurement, bool isVatable, decimal rate, string? description, string? notes, string? imagePath)
+    public Product(DefaultIdType brandId, string sku, string barcode, string name, string specification, string unitOfMeasurement, bool isVatable, decimal rate, string? description = null, string? notes = null, string? imagePath = null)
     {
         BrandId = brandId;
 
@@ -36,10 +36,10 @@ public class Product : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public Product Update(DefaultIdType? brandId, string sku, string barcode, string name, string specification, string unitOfMeasurement, bool? isVatable, decimal rate, string? description, string? notes, string? imagePath)
+    public Product Update(DefaultIdType? brandId, string sku, string barcode, string name, string specification, string unitOfMeasurement, bool? isVatable, decimal rate, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (brandId.HasValue && brandId.Value != DefaultIdType.Empty && !BrandId.Equals(brandId.Value)) BrandId = brandId.Value;
 
@@ -56,7 +56,7 @@ public class Product : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
 
         return this;
     }

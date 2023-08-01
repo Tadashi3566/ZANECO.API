@@ -71,7 +71,7 @@ public class TicketUpdateRequestHandler : IRequestHandler<TicketUpdateRequest, G
             ? await _file.UploadAsync<Ticket>(request.Image, FileType.Image, cancellationToken)
             : null;
 
-        var updatedTicket = ticket.Update(request.GroupId, request.Name, request.Description, request.Notes, request.Impact, request.Urgency, request.Priority, request.RequestedBy, request.RequestThrough, request.Reference, request.AssignedTo, imagePath);
+        var updatedTicket = ticket.Update(request.GroupId, request.Name, request.Impact, request.Urgency, request.Priority, request.RequestedBy, request.RequestThrough, request.Reference, request.AssignedTo, request.Description, request.Notes, imagePath);
 
         await _repository.UpdateAsync(updatedTicket, cancellationToken);
 

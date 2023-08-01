@@ -27,7 +27,7 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
 
     public string? ImagePath { get; private set; }
 
-    public Appointment(DefaultIdType employeeId, string employeeName, string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description, string? notes, string? imagePath) //, bool isReadOnly, bool isBlock, int? recurrenceId, string? recurrenceRule, string? recurrenceException, string? cssClass
+    public Appointment(DefaultIdType employeeId, string employeeName, string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description = null, string? notes = null, string? imagePath = null) //, bool isReadOnly, bool isBlock, int? recurrenceId, string? recurrenceRule, string? recurrenceException, string? cssClass
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -56,11 +56,11 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
 
         Status = "PENDING";
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    //public Appointment Update(string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, bool isReadOnly, bool isBlock, int? recurrenceId, string? recurrenceRule, string? recurrenceException, string? cssClass, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description, string? notes, string? imagePath)
-    public Appointment Update(string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description, string? notes, string? imagePath)
+    //public Appointment Update(string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, bool isReadOnly, bool isBlock, int? recurrenceId, string? recurrenceRule, string? recurrenceException, string? cssClass, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description = null, string? notes = null, string? imagePath = null)
+    public Appointment Update(string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (appointmentType is not null && !AppointmentType.Equals(appointmentType)) AppointmentType = appointmentType.Trim().ToUpper();
         if (subject is not null && !Subject.Equals(subject)) Subject = subject;
@@ -83,7 +83,7 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (!(imagePath is null || ImagePath?.Equals(imagePath) is true)) if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
 
         return this;
     }

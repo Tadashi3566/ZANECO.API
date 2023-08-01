@@ -16,7 +16,7 @@ public class Route : AuditableEntity, IAggregateRoot
     public int Number { get; private set; }
     public string Code { get; private set; } = default!;
 
-    public Route(DefaultIdType areaId, string areaName, int number, string code, string name, string? description = "", string? notes = "")
+    public Route(DefaultIdType areaId, string areaName, int number, string code, string name, string? description = null, string? notes = null)
     {
         AreaId = areaId;
         AreaName = areaName;
@@ -27,7 +27,7 @@ public class Route : AuditableEntity, IAggregateRoot
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
-    public Route Update(string areaName, int number, string code, string name, string? description = "", string? notes = "")
+    public Route Update(string areaName, int number, string code, string name, string? description = null, string? notes = null)
     {
         if (areaName is not null && AreaName != areaName) AreaName = areaName;
 

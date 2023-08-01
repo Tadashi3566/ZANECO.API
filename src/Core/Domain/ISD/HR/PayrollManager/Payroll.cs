@@ -20,7 +20,7 @@ public class Payroll : AuditableEntity, IAggregateRoot
     public int WorkingDays { get; private set; }
     public bool IsClosed { get; private set; }
 
-    public Payroll(string payrollType, string employmentType, string name, decimal totalSalary, decimal totalAdditional, decimal totalGross, decimal totalDeduction, decimal totalNet, DateTime startDate, DateTime endDate, int workingDays, DateTime payrollDate, string? description = "", string? notes = "")
+    public Payroll(string payrollType, string employmentType, string name, decimal totalSalary, decimal totalAdditional, decimal totalGross, decimal totalDeduction, decimal totalNet, DateTime startDate, DateTime endDate, int workingDays, DateTime payrollDate, string? description = null, string? notes = null)
     {
         PayrollType = payrollType;
         EmploymentType = employmentType;
@@ -41,7 +41,7 @@ public class Payroll : AuditableEntity, IAggregateRoot
         if (notes is not null) Notes = notes!.Trim();
     }
 
-    public Payroll Update(string payrollType, string employmentType, string name, decimal totalSalary, decimal totalAdditional, decimal totalGross, decimal totalDeduction, decimal totalNet, DateTime startDate, DateTime endDate, int workingDays, DateTime payrollDate, bool isClosed, string? description = "", string? notes = "")
+    public Payroll Update(string payrollType, string employmentType, string name, decimal totalSalary, decimal totalAdditional, decimal totalGross, decimal totalDeduction, decimal totalNet, DateTime startDate, DateTime endDate, int workingDays, DateTime payrollDate, bool isClosed, string? description = null, string? notes = null)
     {
         if (payrollType is not null && !PayrollType.Equals(payrollType)) PayrollType = payrollType;
         if (employmentType is not null && !EmploymentType.Equals(employmentType)) EmploymentType = employmentType;

@@ -20,7 +20,7 @@ public class Sale : AuditableEntity, IAggregateRoot
     public decimal Change { get; private set; }
     public string? ImagePath { get; private set; }
 
-    public Sale(DefaultIdType customerId, double orNumber, int items, decimal grossSales, decimal totalVat, decimal totalDiscount, decimal netSales, decimal received, decimal change, string? description, string? notes, string? imagePath)
+    public Sale(DefaultIdType customerId, double orNumber, int items, decimal grossSales, decimal totalVat, decimal totalDiscount, decimal netSales, decimal received, decimal change, string? description = null, string? notes = null, string? imagePath = null)
     {
         var dt = DateTime.Now;
 
@@ -41,10 +41,10 @@ public class Sale : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public Sale Update(DefaultIdType customerId, double orNumber, int items, decimal grossSales, decimal totalVat, decimal totalDiscount, decimal netSales, decimal received, decimal change, string? description, string? notes, string? imagePath)
+    public Sale Update(DefaultIdType customerId, double orNumber, int items, decimal grossSales, decimal totalVat, decimal totalDiscount, decimal netSales, decimal received, decimal change, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (!customerId.Equals(DefaultIdType.Empty) && !CustomerId.Equals(customerId)) CustomerId = customerId;
 
@@ -61,7 +61,7 @@ public class Sale : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
 
         return this;
     }

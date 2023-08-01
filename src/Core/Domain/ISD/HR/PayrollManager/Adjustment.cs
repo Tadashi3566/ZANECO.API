@@ -14,7 +14,7 @@ public class Adjustment : AuditableEntity, IAggregateRoot
     public bool IsLoan { get; private set; }
     public bool IsActive { get; private set; }
 
-    public Adjustment(DefaultIdType groupId, string adjustmentType, string employeeType, int number, string name, decimal amount, string paymentSchedule, bool isOptional, bool isLoan, bool isActive, string? description = "", string? notes = "")
+    public Adjustment(DefaultIdType groupId, string adjustmentType, string employeeType, int number, string name, decimal amount, string paymentSchedule, bool isOptional, bool isLoan, bool isActive, string? description = null, string? notes = null)
     {
         GroupId = groupId;
 
@@ -34,7 +34,7 @@ public class Adjustment : AuditableEntity, IAggregateRoot
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
-    public Adjustment Update(DefaultIdType? groupId, string adjustmentType, string employeeType, int number, string name, decimal amount, string paymentSchedule, bool isOptional, bool isLoan, bool isActive, string? description = "", string? notes = "")
+    public Adjustment Update(DefaultIdType? groupId, string adjustmentType, string employeeType, int number, string name, decimal amount, string paymentSchedule, bool isOptional, bool isLoan, bool isActive, string? description = null, string? notes = null)
     {
         if (groupId.HasValue && groupId.Value != DefaultIdType.Empty && !GroupId.Equals(groupId.Value)) GroupId = groupId.Value;
 

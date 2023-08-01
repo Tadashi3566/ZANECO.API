@@ -10,7 +10,7 @@ public class Prize : AuditableEntity, IAggregateRoot
 
     public string? ImagePath { get; private set; }
 
-    public Prize(DefaultIdType raffleId, string raffleName, string prizeType, int winners, string name, string? description, string? notes, string? imagePath)
+    public Prize(DefaultIdType raffleId, string raffleName, string prizeType, int winners, string name, string? description = null, string? notes = null, string? imagePath = null)
     {
         RaffleId = raffleId;
         RaffleName = raffleName;
@@ -22,10 +22,10 @@ public class Prize : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public Prize Update(string raffleName, string prizeType, int winners, string name, string? description, string? notes, string? imagePath)
+    public Prize Update(string raffleName, string prizeType, int winners, string name, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (!RaffleName.Equals(raffleName)) RaffleName = raffleName.Trim();
 
@@ -36,7 +36,7 @@ public class Prize : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
 
         return this;
     }

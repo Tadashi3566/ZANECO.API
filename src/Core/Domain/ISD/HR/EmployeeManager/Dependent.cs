@@ -11,7 +11,7 @@ public class Dependent : AuditableEntity, IAggregateRoot
     public string Relation { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public Dependent(DefaultIdType employeeId, string employeeName, string name, string gender, DateTime? birthDate, string relation, string? description, string? notes, string? imagePath)
+    public Dependent(DefaultIdType employeeId, string employeeName, string name, string gender, DateTime? birthDate, string relation, string? description = null, string? notes = null, string? imagePath = null)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -22,10 +22,10 @@ public class Dependent : AuditableEntity, IAggregateRoot
         Relation = relation;
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public Dependent Update(DefaultIdType? employeeId, string employeeName, string name, string gender, DateTime? birthDate, string relation, string? description, string? notes, string? imagePath)
+    public Dependent Update(DefaultIdType? employeeId, string employeeName, string name, string gender, DateTime? birthDate, string relation, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (employeeId.HasValue && employeeId.Value != DefaultIdType.Empty && !EmployeeId.Equals(employeeId.Value)) EmployeeId = employeeId.Value;
         if (employeeName is not null && !EmployeeName.Equals(employeeName)) EmployeeName = employeeName.Trim().ToUpper();
@@ -39,7 +39,7 @@ public class Dependent : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
         return this;
     }
 

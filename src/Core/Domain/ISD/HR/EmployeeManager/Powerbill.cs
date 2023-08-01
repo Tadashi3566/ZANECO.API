@@ -12,7 +12,7 @@ public class Powerbill : AuditableEntity, IAggregateRoot
     public string Address { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public Powerbill(DefaultIdType employeeId, string employeeName, string account, string meter, string name, string address, string? description, string? notes, string? imagePath)
+    public Powerbill(DefaultIdType employeeId, string employeeName, string account, string meter, string name, string address, string? description = null, string? notes = null, string? imagePath = null)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -24,10 +24,10 @@ public class Powerbill : AuditableEntity, IAggregateRoot
 
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public Powerbill Update(DefaultIdType? employeeId, string employeeName, string account, string meter, string name, string address, string? description, string? notes, string? imagePath)
+    public Powerbill Update(DefaultIdType? employeeId, string employeeName, string account, string meter, string name, string address, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (employeeId.HasValue && employeeId.Value != DefaultIdType.Empty && !EmployeeId.Equals(employeeId.Value)) EmployeeId = employeeId.Value;
         if (employeeName is not null && !EmployeeName.Equals(employeeName)) EmployeeName = employeeName;
@@ -40,7 +40,7 @@ public class Powerbill : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
         return this;
     }
 

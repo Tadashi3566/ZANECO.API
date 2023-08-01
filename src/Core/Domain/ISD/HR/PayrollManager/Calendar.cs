@@ -12,7 +12,7 @@ public class Calendar : AuditableEntity, IAggregateRoot
 
     public bool IsNationalHoliday { get; private set; } = default!;
 
-    public Calendar(string calendarType, DateTime calendarDate, string name, bool isNationalHoliday, string? description = "", string? notes = "")
+    public Calendar(string calendarType, DateTime calendarDate, string name, bool isNationalHoliday, string? description = null, string? notes = null)
     {
         CalendarType = calendarType;
         CalendarDate = calendarDate;
@@ -24,7 +24,7 @@ public class Calendar : AuditableEntity, IAggregateRoot
         if (notes is not null && Notes?.Equals(notes) != true) Notes = notes.Trim();
     }
 
-    public Calendar Update(string calendarType, DateTime calendarDate, string name, bool isNationalHoliday, string? description = "", string? notes = "")
+    public Calendar Update(string calendarType, DateTime calendarDate, string name, bool isNationalHoliday, string? description = null, string? notes = null)
     {
         if (calendarType is not null && !CalendarType.Equals(calendarType)) CalendarType = calendarType;
 

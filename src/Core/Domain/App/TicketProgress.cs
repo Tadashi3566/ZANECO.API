@@ -12,7 +12,7 @@ public class TicketProgress : AuditableEntity, IAggregateRoot
 
     public string? ImagePath { get; private set; }
 
-    public TicketProgress(DefaultIdType ticketID, string progressType, string name, string? description, string? notes, string? imagePath)
+    public TicketProgress(DefaultIdType ticketID, string progressType, string name, string? description = null, string? notes = null, string? imagePath = null)
     {
         TicketId = ticketID;
         ProgressType = progressType;
@@ -20,17 +20,17 @@ public class TicketProgress : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public TicketProgress Update(string progressType, string name, string? description, string? notes, string? imagePath)
+    public TicketProgress Update(string progressType, string name, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (!(progressType is null || ProgressType?.Equals(progressType) is true)) ProgressType = progressType;
         if (!(name is null || Name?.Equals(name) is true)) Name = name.Trim().ToUpper();
         if (!(description is null || Description?.Equals(description) is true)) Description = description.Trim();
         if (!(notes is null || Notes?.Equals(notes) is true)) Notes = notes.Trim();
 
-        if (!(imagePath is null || ImagePath?.Equals(imagePath) is true)) if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
 
         return this;
     }

@@ -23,17 +23,17 @@ public class Ticket : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
     public DateTime? ClosedOn { get; private set; }
     public string? ImagePath { get; private set; }
 
-    public Ticket(DefaultIdType groupID, string name, string? description, string? notes, string? imagePath)
+    public Ticket(DefaultIdType groupID, string name, string? description = null, string? notes = null, string? imagePath = null)
     {
         GroupId = groupID;
         Name = name.Trim().ToUpper();
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public Ticket Update(DefaultIdType? groupID, string name, string? description, string? notes, string? impact, string? urgency, string? priority, string? requestedBy, string? requestThrough, string? reference, string? assignedTo, string? imagePath)
+    public Ticket Update(DefaultIdType? groupID, string name, string? impact, string? urgency, string? priority, string? requestedBy, string? requestThrough, string? reference, string? assignedTo, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (groupID.HasValue && groupID.Value != DefaultIdType.Empty && !GroupId.Equals(groupID.Value)) GroupId = groupID.Value;
         if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
@@ -49,7 +49,7 @@ public class Ticket : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
         if (assignedTo is not null && !AssignedTo!.Equals(assignedTo)) AssignedTo = assignedTo;
         if (reference is not null && !Reference!.Equals(reference)) Reference = reference;
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
 
         return this;
     }

@@ -10,7 +10,7 @@ public class Team : AuditableEntity, IAggregateRoot
     public string? Department { get; private set; }
     public string? Position { get; private set; }
 
-    public Team(DefaultIdType leaderId, string leaderName, DefaultIdType employeeId, string employeeName, string? department, string? position, string? description, string? notes)
+    public Team(DefaultIdType leaderId, string leaderName, DefaultIdType employeeId, string employeeName, string? department, string? position, string? description = null, string? notes = null)
     {
         LeaderId = leaderId;
         LeaderName = leaderName;
@@ -24,7 +24,7 @@ public class Team : AuditableEntity, IAggregateRoot
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
-    public Team Update(string leaderName, string employeeName, string? department, string? position, string? description, string? notes)
+    public Team Update(string leaderName, string employeeName, string? department, string? position, string? description = null, string? notes = null)
     {
         if (!LeaderName.Equals(leaderName)) LeaderName = leaderName;
         if (!EmployeeName.Equals(employeeName)) EmployeeName = employeeName;

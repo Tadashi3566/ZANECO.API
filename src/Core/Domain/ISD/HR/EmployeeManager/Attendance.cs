@@ -54,7 +54,7 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
     public string? ImagePathIn2 { get; private set; }
     public string? ImagePathOut2 { get; private set; }
 
-    public Attendance(DefaultIdType employeeId, string employeeName, DefaultIdType scheduleId, string scheduleName, string dayType, DateTime attendanceDate, DefaultIdType scheduleDetailId, string scheduleDetailDay, int scheduleHours, DateTime scheduleTimeIn1, DateTime scheduleTimeOut1, DateTime scheduleTimeIn2, DateTime scheduleTimeOut2, string status, string? description = "", string? notes = "")
+    public Attendance(DefaultIdType employeeId, string employeeName, DefaultIdType scheduleId, string scheduleName, string dayType, DateTime attendanceDate, DefaultIdType scheduleDetailId, string scheduleDetailDay, int scheduleHours, DateTime scheduleTimeIn1, DateTime scheduleTimeOut1, DateTime scheduleTimeIn2, DateTime scheduleTimeOut2, string status, string? description = null, string? notes = null)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -103,7 +103,7 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
         return this;
     }
 
-    public Attendance Update(string dayType, DateTime scheduleTimeIn1, DateTime scheduleTimeOut1, DateTime scheduleTimeIn2, DateTime scheduleTimeOut2, DateTime? actualTimeIn1, DateTime? actualTimeOut1, DateTime? actualTimeIn2, DateTime? actualTimeOut2, bool isOvertime, double paidHours, string status, string? description = "", string? notes = "") //, DateTime? timeOutDate
+    public Attendance Update(string dayType, DateTime scheduleTimeIn1, DateTime scheduleTimeOut1, DateTime scheduleTimeIn2, DateTime scheduleTimeOut2, DateTime? actualTimeIn1, DateTime? actualTimeOut1, DateTime? actualTimeIn2, DateTime? actualTimeOut2, bool isOvertime, double paidHours, string status, string? description = null, string? notes = null) //, DateTime? timeOutDate
     {
         if (!DayType.Equals(dayType)) DayType = dayType;
 
@@ -129,7 +129,7 @@ public class Attendance : AuditableEntityWithApproval<DefaultIdType>, IAggregate
         return this;
     }
 
-    public Attendance Reschedule(DateTime scheduleTimeIn1, DateTime scheduleTimeOut1, DateTime scheduleTimeIn2, DateTime scheduleTimeOut2, string? description = "", string? notes = "")
+    public Attendance Reschedule(DateTime scheduleTimeIn1, DateTime scheduleTimeOut1, DateTime scheduleTimeIn2, DateTime scheduleTimeOut2, string? description = null, string? notes = null)
     {
         if (!ScheduleTimeIn1.Equals(scheduleTimeIn1)) ScheduleTimeIn1 = scheduleTimeIn1;
         if (!ScheduleTimeOut1.Equals(scheduleTimeOut1)) ScheduleTimeOut1 = scheduleTimeOut1;

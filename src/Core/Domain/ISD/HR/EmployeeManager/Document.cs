@@ -14,7 +14,7 @@ public class Document : AuditableEntity, IAggregateRoot
     public string Raw { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public Document(DefaultIdType employeeId, string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description, string? notes, string? imagePath)
+    public Document(DefaultIdType employeeId, string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description = null, string? notes = null, string? imagePath = null)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -28,10 +28,10 @@ public class Document : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public Document Update(string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description, string? notes, string? imagePath)
+    public Document Update(string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (employeeName is not null && !EmployeeName.Equals(employeeName)) EmployeeName = employeeName;
 
@@ -45,7 +45,7 @@ public class Document : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
 
         return this;
     }

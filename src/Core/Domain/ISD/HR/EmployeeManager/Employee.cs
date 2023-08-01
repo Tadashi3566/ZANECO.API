@@ -108,7 +108,7 @@ public class Employee : AuditableEntity, IAggregateRoot
         return MiddleName?.Length > 0 ? $"{LastName}, {FirstName} {MiddleName[..1]}.".Trim() : $"{LastName}, {FirstName}".Trim();
     }
 
-    public Employee(int number, string title, string firstName, string middleName, string lastName, string? extension, string gender, string phoneNumber, string email, string civilStatus, string address, DateTime birthDate, string birthPlace, DateTime hireDate, DateTime regularDate, string sss, string phic, string hdmf, string tin, string emergencyPerson, string emergencyNumber, string emergencyAddress, string emergencyRelation, string fatherName, string motherName, string education, string course, string award, string bloodType, string? description, string? notes, string? imagePath)
+    public Employee(int number, string title, string firstName, string middleName, string lastName, string? extension, string gender, string phoneNumber, string email, string civilStatus, string address, DateTime birthDate, string birthPlace, DateTime hireDate, DateTime regularDate, string sss, string phic, string hdmf, string tin, string emergencyPerson, string emergencyNumber, string emergencyAddress, string emergencyRelation, string fatherName, string motherName, string education, string course, string award, string bloodType, string? description = null, string? notes = null, string? imagePath = null)
     {
         Number = number;
         Title = title;
@@ -152,10 +152,10 @@ public class Employee : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public Employee Update(int number, string title, string firstName, string middleName, string lastName, string? extension, string gender, string phoneNumber, string email, string civilStatus, string address, DateTime birthDate, string birthPlace, DateTime hireDate, DateTime regularDate, string sss, string phic, string hdmf, string tin, string emergencyPerson, string emergencyNumber, string emergencyAddress, string emergencyRelation, string fatherName, string motherName, string education, string course, string award, string bloodType, string? description, string? notes, string? imagePath)
+    public Employee Update(int number, string title, string firstName, string middleName, string lastName, string? extension, string gender, string phoneNumber, string email, string civilStatus, string address, DateTime birthDate, string birthPlace, DateTime hireDate, DateTime regularDate, string sss, string phic, string hdmf, string tin, string emergencyPerson, string emergencyNumber, string emergencyAddress, string emergencyRelation, string fatherName, string motherName, string education, string course, string award, string bloodType, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (!Number.Equals(number)) Number = number;
         if (title is not null && (Title is null || !Title.Equals(title))) Title = title;
@@ -196,7 +196,7 @@ public class Employee : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
         return this;
     }
 

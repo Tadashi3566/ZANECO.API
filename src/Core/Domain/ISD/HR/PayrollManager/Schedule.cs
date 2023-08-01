@@ -2,7 +2,7 @@
 
 public class Schedule : AuditableEntity, IAggregateRoot
 {
-    public Schedule(string name, string? description = "", string? notes = "")
+    public Schedule(string name, string? description = null, string? notes = null)
     {
         Name = name.Trim();
 
@@ -10,7 +10,7 @@ public class Schedule : AuditableEntity, IAggregateRoot
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
-    public Schedule Update(string name, string? description = "", string? notes = "")
+    public Schedule Update(string name, string? description = null, string? notes = null)
     {
         if (name is not null && !Name.Equals(name)) Name = name.Trim();
 

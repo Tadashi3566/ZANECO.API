@@ -14,7 +14,7 @@ public class Barcode : AuditableEntity, IAggregateRoot
     public string UnitOfMeasurement { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public Barcode(DefaultIdType productId, string code, string name, string specification, string unitOfMeasurement, string? description, string? notes, string? imagePath)
+    public Barcode(DefaultIdType productId, string code, string name, string specification, string unitOfMeasurement, string? description = null, string? notes = null, string? imagePath = null)
     {
         ProductId = productId;
         Code = code.Trim();
@@ -26,10 +26,10 @@ public class Barcode : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public Barcode Update(string code, string name, string specification, string unitOfMeasurement, string? description, string? notes, string? imagePath)
+    public Barcode Update(string code, string name, string specification, string unitOfMeasurement, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (code is not null && !Code.Equals(code)) Code = code;
         if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
@@ -39,7 +39,7 @@ public class Barcode : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
 
         return this;
     }

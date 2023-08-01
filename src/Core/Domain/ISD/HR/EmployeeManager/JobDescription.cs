@@ -2,7 +2,7 @@
 
 public class JobDescription : AuditableEntity, IAggregateRoot
 {
-    public JobDescription(string name, string? description, string? notes)
+    public JobDescription(string name, string? description = null, string? notes = null)
     {
         Name = name.Trim();
 
@@ -10,7 +10,7 @@ public class JobDescription : AuditableEntity, IAggregateRoot
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
-    public JobDescription Update(string name, string? description, string? notes)
+    public JobDescription Update(string name, string? description = null, string? notes = null)
     {
         if (!Name.Equals(name)) Name = name.Trim();
 

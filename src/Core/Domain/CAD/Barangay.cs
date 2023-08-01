@@ -14,7 +14,7 @@ public class Barangay : AuditableEntity, IAggregateRoot
     public DefaultIdType AreaId { get; private set; }
     public string AreaName { get; private set; } = default!;
 
-    public Barangay(DefaultIdType areaId, string areaName, string name, string? description = "", string? notes = "")
+    public Barangay(DefaultIdType areaId, string areaName, string name, string? description = null, string? notes = null)
     {
         AreaId = areaId;
         AreaName = areaName;
@@ -23,7 +23,7 @@ public class Barangay : AuditableEntity, IAggregateRoot
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
-    public Barangay Update(string areaName, string name, string? description = "", string? notes = "")
+    public Barangay Update(string areaName, string name, string? description = null, string? notes = null)
     {
         if (areaName is not null && AreaName != areaName) AreaName = areaName;
         if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();

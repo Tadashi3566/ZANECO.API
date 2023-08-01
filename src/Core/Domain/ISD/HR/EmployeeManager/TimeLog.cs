@@ -18,7 +18,7 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
     public string? Coordinates { get; private set; }
     public string? ImagePath { get; private set; }
 
-    public TimeLog(DefaultIdType employeeId, string employeeName, string device, string logType, DateTime logDate, DateTime logDateTime, int syncId, string? coordinates, string? description, string? notes, string? imagePath)
+    public TimeLog(DefaultIdType employeeId, string employeeName, string device, string logType, DateTime logDate, DateTime logDateTime, int syncId, string? coordinates, string? description = null, string? notes = null, string? imagePath = null)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
@@ -37,10 +37,10 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public TimeLog Update(string logType, DateTime logDate, DateTime logDateTime, string? description, string? notes, string? imagePath)
+    public TimeLog Update(string logType, DateTime logDate, DateTime logDateTime, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (logType is not null && !LogType.Equals(logType)) LogType = logType;
         if (!LogDate.Equals(logDate)) LogDate = logDate;
@@ -49,7 +49,7 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
         if (description is not null && Description?.Equals(description) is false) Description = description.Trim();
         if (notes is not null && Notes?.Equals(notes) is false) Notes = notes.Trim();
 
-        if (!string.IsNullOrEmpty(imagePath) && ImagePath?.Equals(imagePath) is false) if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (!string.IsNullOrEmpty(imagePath) && ImagePath?.Equals(imagePath) is false) if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
 
         return this;
     }

@@ -41,7 +41,7 @@ public class Designation : AuditableEntity, IAggregateRoot
     public string PayType { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 
-    public Designation(DefaultIdType employeeId, int idNumber, string employeeName, DateTime startDate, DateTime endDate, DateTime? regularDate, string area, string department, string division, string section, string position, string employmentType, int salaryNumber, string salaryName, decimal salaryBase, decimal salaryStep, decimal ratePerDay, string rateType, string taxType, string payType, DefaultIdType scheduleId, string scheduleName, string? description, string? notes, string? imagePath)
+    public Designation(DefaultIdType employeeId, int idNumber, string employeeName, DateTime startDate, DateTime endDate, DateTime? regularDate, string area, string department, string division, string section, string position, string employmentType, int salaryNumber, string salaryName, decimal salaryBase, decimal salaryStep, decimal ratePerDay, string rateType, string taxType, string payType, DefaultIdType scheduleId, string scheduleName, string? description = null, string? notes = null, string? imagePath = null)
     {
         EmployeeId = employeeId;
         IdNumber = idNumber;
@@ -121,10 +121,10 @@ public class Designation : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public Designation Update(string employeeName, DateTime startDate, DateTime endDate, DateTime regularDate, string area, string department, string division, string section, string position, string employmentType, int salaryNumber, string salaryName, decimal salaryBase, decimal salaryStep, decimal ratePerDay, string rateType, string taxType, string payType, DefaultIdType? scheduleId, string scheduleName, string? description, string? notes, string? imagePath)
+    public Designation Update(string employeeName, DateTime startDate, DateTime endDate, DateTime regularDate, string area, string department, string division, string section, string position, string employmentType, int salaryNumber, string salaryName, decimal salaryBase, decimal salaryStep, decimal ratePerDay, string rateType, string taxType, string payType, DefaultIdType? scheduleId, string scheduleName, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (!EmployeeName.Equals(employeeName)) EmployeeName = employeeName;
 
@@ -204,7 +204,7 @@ public class Designation : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
         return this;
     }
 

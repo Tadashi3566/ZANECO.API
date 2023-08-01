@@ -13,7 +13,7 @@ public class RemoteCollection : AuditableEntity, IAggregateRoot
     public string? OrNumber { get; private set; }
     public string? ImagePath { get; private set; }
 
-    public RemoteCollection(double collectorId, string collector, string reference, DateTime transactionDate, DateTime reportDate, string accountNumber, decimal amount, string name, string orNumber, string? description, string? notes, string? imagePath)
+    public RemoteCollection(double collectorId, string collector, string reference, DateTime transactionDate, DateTime reportDate, string accountNumber, decimal amount, string name, string orNumber, string? description = null, string? notes = null, string? imagePath = null)
     {
         CollectorId = collectorId;
         Collector = collector;
@@ -30,17 +30,17 @@ public class RemoteCollection : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public RemoteCollection Update(string orNumber, string? description, string? notes, string? imagePath)
+    public RemoteCollection Update(string orNumber, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (orNumber is not null && !OrNumber!.Equals(orNumber)) OrNumber = orNumber;
 
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
-        if (imagePath is not null && (ImagePath is null || !ImagePath!.Equals(imagePath))) ImagePath = imagePath;
+        if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
 
         return this;
     }
