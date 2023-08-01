@@ -9,7 +9,7 @@ public class RemoteCollection : AuditableEntity, IAggregateRoot
     public DateTime ReportDate { get; private set; }
     public string AccountNumber { get; private set; } = default!;
     public decimal Amount { get; private set; }
-    public string Name { get; private set; } = default!;
+
     public string? OrNumber { get; private set; }
     public string? ImagePath { get; private set; }
 

@@ -8,7 +8,7 @@ public class Account : AuditableEntity, IAggregateRoot
 
     public int IdCode { get; private set; }
     public string AccountNumber { get; private set; } = default!;
-    public string Name { get; private set; } = default!;
+
     public string Address { get; private set; } = default!;
     public string Area { get; private set; } = default!;
     public string Route { get; private set; } = default!;

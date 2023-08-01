@@ -10,7 +10,6 @@ public class Winner : AuditableEntity, IAggregateRoot
     public DefaultIdType PrizeId { get; private set; }
     public string PrizeName { get; private set; }
 
-    public string Name { get; private set; }
     public string Address { get; private set; }
     public string? ImagePath { get; private set; }
 

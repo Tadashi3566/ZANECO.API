@@ -4,7 +4,6 @@ public class Master : AuditableEntity<int>, IAggregateRoot
 {
     public int Code { get; set; }
     public string? AccountNumber { get; set; }
-    public string? Name { get; set; }
     public string? Address { get; set; }
     public string? Area { get; set; }
     public string? Book { get; set; }

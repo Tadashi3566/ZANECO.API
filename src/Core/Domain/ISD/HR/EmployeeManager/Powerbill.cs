@@ -8,7 +8,7 @@ public class Powerbill : AuditableEntity, IAggregateRoot
 
     public string Account { get; private set; } = default!;
     public string Meter { get; private set; } = default!;
-    public string Name { get; private set; } = default!;
+
     public string Address { get; private set; } = default!;
     public string? ImagePath { get; private set; }
 

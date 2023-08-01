@@ -5,7 +5,7 @@ public class Dependent : AuditableEntity, IAggregateRoot
     public virtual Employee Employee { get; private set; } = default!;
     public DefaultIdType EmployeeId { get; private set; }
     public string EmployeeName { get; private set; } = default!;
-    public string Name { get; private set; } = default!;
+
     public string Gender { get; private set; } = default!;
     public DateTime? BirthDate { get; private set; }
     public string Relation { get; private set; } = default!;

@@ -9,7 +9,7 @@ public class Document : AuditableEntity, IAggregateRoot
     public string DocumentType { get; private set; } = default!;
     public string Reference { get; private set; } = default!;
     public bool IsPublic { get; private set; } = default!;
-    public string Name { get; private set; } = default!;
+
     public string Content { get; private set; } = default!;
     public string Raw { get; private set; } = default!;
     public string? ImagePath { get; private set; }

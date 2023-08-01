@@ -9,7 +9,7 @@ public class Calendar : AuditableEntity, IAggregateRoot
     public string CalendarType { get; private set; } = default!; // WORKING HOLIDAY, NON-WORKING HOLIDAY, VACATION LEAVE ETC.
     public DateTime CalendarDate { get; private set; }
     public string Day { get; private set; } = default!;
-    public string Name { get; private set; } = default!;
+
     public bool IsNationalHoliday { get; private set; } = default!;
 
     public Calendar(string calendarType, DateTime calendarDate, string name, bool isNationalHoliday, string? description = "", string? notes = "")

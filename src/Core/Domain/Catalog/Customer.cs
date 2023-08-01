@@ -7,7 +7,7 @@ public class Customer : AuditableEntity, IAggregateRoot
     }
 
     public string Code { get; private set; } = default!;
-    public string Name { get; private set; } = default!;
+
     public string Address { get; private set; } = default!;
     public string PhoneNumber { get; private set; } = default!;
     public decimal Investment { get; private set; }

@@ -3,7 +3,6 @@ namespace ZANECO.API.Domain.Surveys;
 public class Rate : AuditableEntity, IAggregateRoot
 {
     public int Number { get; private set; }
-    public string Name { get; private set; } = default!;
 
     public Rate(int number, string name, string? description = "", string? notes = "")
     {

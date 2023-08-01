@@ -9,7 +9,7 @@ public class TicketProgress : AuditableEntity, IAggregateRoot
     public DefaultIdType TicketId { get; private set; }
     public virtual Ticket Ticket { get; private set; } = default!;
     public string ProgressType { get; private set; } = default!;
-    public string Name { get; private set; } = default!;
+
     public string? ImagePath { get; private set; }
 
     public TicketProgress(DefaultIdType ticketID, string progressType, string name, string? description, string? notes, string? imagePath)

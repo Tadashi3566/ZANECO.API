@@ -8,7 +8,7 @@ public class Payroll : AuditableEntity, IAggregateRoot
 
     public string PayrollType { get; private set; } = default!; // FULL MONTH, MONTH-MID & MONTH-END
     public string EmploymentType { get; private set; } = default!; // REGULAR, JO etc.
-    public string Name { get; private set; } = default!;
+
     public decimal TotalSalary { get; private set; }
     public decimal TotalAdditional { get; private set; }
     public decimal TotalGross { get; private set; }

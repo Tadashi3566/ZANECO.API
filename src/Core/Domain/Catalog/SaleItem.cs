@@ -18,7 +18,7 @@ public class SaleItem : AuditableEntity, IAggregateRoot
     public DateTime Date { get; private set; }
     public string Transaction { get; private set; } = default!;
     public int Items { get; private set; }
-    public string Name { get; private set; } = default!;
+
     public decimal Gross { get; private set; }
     public decimal Vat { get; private set; }
     public decimal DiscountAmount { get; private set; }

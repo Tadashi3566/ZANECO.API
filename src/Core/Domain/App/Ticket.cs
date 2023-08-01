@@ -8,7 +8,6 @@ public class Ticket : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
 
     public DefaultIdType GroupId { get; private set; }
     public virtual Group Group { get; private set; } = default!;
-    public string Name { get; private set; } = default!;
     public string? Impact { get; private set; }
     public string? Urgency { get; private set; }
     public string? Priority { get; private set; }

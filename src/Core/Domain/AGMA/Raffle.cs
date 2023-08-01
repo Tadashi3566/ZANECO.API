@@ -6,7 +6,6 @@ public class Raffle : AuditableEntity, IAggregateRoot
     {
     }
 
-    public string Name { get; private set; } = default!;
     public DateTime RaffleDate { get; private set; }
 
     public string? ImagePath { get; private set; }

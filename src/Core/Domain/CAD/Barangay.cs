@@ -13,7 +13,6 @@ public class Barangay : AuditableEntity, IAggregateRoot
 
     public DefaultIdType AreaId { get; private set; }
     public string AreaName { get; private set; } = default!;
-    public string Name { get; private set; } = default!;
 
     public Barangay(DefaultIdType areaId, string areaName, string name, string? description = "", string? notes = "")
     {

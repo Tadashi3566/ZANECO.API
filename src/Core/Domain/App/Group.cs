@@ -9,7 +9,7 @@ public class Group : AuditableEntity, IAggregateRoot
     public string Tag { get; private set; }
     public int Number { get; private set; }
     public string Code { get; private set; }
-    public string Name { get; private set; }
+
     public decimal Amount { get; private set; }
     public virtual Employee? Employee { get; set; }
     public Guid? EmployeeId { get; private set; }

@@ -8,7 +8,6 @@ public class Area : AuditableEntity, IAggregateRoot
 
     public int Number { get; private set; }
     public string Code { get; private set; } = default!;
-    public string Name { get; private set; } = default!;
 
     public Area(int number, string code, string name, string? description = "", string? notes = "")
     {

@@ -4,7 +4,7 @@ public class Member : AuditableEntity, IAggregateRoot
 {
     public double IncrementId { get; private set; }
     public double ApplicationId { get; private set; }
-    public string Name { get; private set; } = default!;
+
     public string Address { get; private set; } = default!;
     public string District { get; private set; } = default!;
     public string Municipality { get; private set; } = default!;

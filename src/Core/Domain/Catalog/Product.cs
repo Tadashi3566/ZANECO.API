@@ -6,7 +6,7 @@ public class Product : AuditableEntity, IAggregateRoot
     public DefaultIdType BrandId { get; private set; }
     public string SKU { get; private set; } = default!;
     public string Barcode { get; private set; } = default!;
-    public string Name { get; private set; } = default!;
+
     public string Specification { get; private set; } = default!;
     public string UnitOfMeasurement { get; private set; } = default!;
     public bool? IsVatable { get; private set; }

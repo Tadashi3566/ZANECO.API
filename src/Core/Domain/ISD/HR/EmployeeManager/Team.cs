@@ -2,11 +2,7 @@
 
 public class Team : AuditableEntity, IAggregateRoot
 {
-    public Team()
-    {
-    }
-
-    public Employee Employee { get; private set; }
+    public Employee Employee { get; private set; } = default!;
     public DefaultIdType LeaderId { get; private set; }
     public string LeaderName { get; private set; }
     public DefaultIdType EmployeeId { get; private set; }

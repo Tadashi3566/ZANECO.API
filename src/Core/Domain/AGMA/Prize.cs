@@ -7,7 +7,6 @@ public class Prize : AuditableEntity, IAggregateRoot
     public string RaffleName { get; private set; }
     public string PrizeType { get; private set; }
     public int Winners { get; private set; }
-    public string Name { get; private set; }
 
     public string? ImagePath { get; private set; }
 

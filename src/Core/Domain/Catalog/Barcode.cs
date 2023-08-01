@@ -9,7 +9,7 @@ public class Barcode : AuditableEntity, IAggregateRoot
     public virtual Product Product { get; private set; } = default!;
     public DefaultIdType ProductId { get; private set; }
     public string Code { get; private set; } = default!;
-    public string Name { get; private set; } = default!;
+
     public string Specification { get; private set; } = default!;
     public string UnitOfMeasurement { get; private set; } = default!;
     public string? ImagePath { get; private set; }
