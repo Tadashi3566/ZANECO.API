@@ -21,8 +21,5 @@ internal class CalendarConfig : IEntityTypeConfiguration<Calendar>
         _ = builder.Property(b => b.Day)
             .IsRequired()
             .HasMaxLength(16);
-        _ = builder.Property(b => b.Name)
-            .IsRequired()
-            .HasMaxLength(1024);
     }
 }

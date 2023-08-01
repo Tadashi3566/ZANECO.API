@@ -26,8 +26,6 @@ public class RemoteCollectionConfig : IEntityTypeConfiguration<RemoteCollection>
         _ = builder.Property(b => b.AccountNumber)
             .IsRequired()
             .HasMaxLength(10);
-        _ = builder.Property(b => b.Name)
-            .HasMaxLength(1024);
         _ = builder.Property(b => b.Amount)
             .IsRequired()
             .HasColumnType("Decimal(12,2)");

@@ -12,9 +12,6 @@ public class RaffleConfig : IEntityTypeConfiguration<Raffle>
         //_ = builder.ToTable("Raffles", SchemaNames.ZANECO)
         _ = builder.IsMultiTenant();
 
-        _ = builder.Property(b => b.Name)
-            .HasMaxLength(128);
-
         _ = builder.Property(b => b.RaffleDate)
             .HasColumnType("datetime(6)");
     }

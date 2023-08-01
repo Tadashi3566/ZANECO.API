@@ -28,10 +28,6 @@ public class GroupConfig : IEntityTypeConfiguration<Group>
             .IsRequired()
             .HasMaxLength(64);
 
-        _ = builder.Property(b => b.Name)
-            .IsRequired()
-            .HasMaxLength(64);
-
         _ = builder.Property(b => b.Amount)
             .HasColumnType("Decimal(12,2)")
             .HasDefaultValue(0);

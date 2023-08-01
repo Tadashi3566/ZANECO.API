@@ -20,7 +20,5 @@ public class RouteConfig : IEntityTypeConfiguration<Route>
             .HasColumnType("int");
         _ = builder.Property(b => b.Code)
             .HasMaxLength(16);
-        _ = builder.Property(b => b.Name)
-            .HasMaxLength(1024);
     }
 }

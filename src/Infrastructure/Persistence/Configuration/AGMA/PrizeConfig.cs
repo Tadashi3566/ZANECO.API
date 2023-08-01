@@ -25,9 +25,5 @@ public class PrizeConfig : IEntityTypeConfiguration<Prize>
 
         _ = builder.Property(b => b.Winners)
             .HasDefaultValue(0);
-
-        _ = builder.Property(b => b.Name)
-            .IsRequired()
-            .HasMaxLength(128);
     }
 }

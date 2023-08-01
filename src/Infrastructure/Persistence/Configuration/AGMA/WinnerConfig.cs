@@ -26,10 +26,6 @@ public class WinnerConfig : IEntityTypeConfiguration<Winner>
             .IsRequired()
             .HasMaxLength(1024);
 
-        _ = builder.Property(b => b.Name)
-            .IsRequired()
-            .HasMaxLength(1024);
-
         _ = builder.Property(b => b.Address)
             .IsRequired()
             .HasMaxLength(1024);

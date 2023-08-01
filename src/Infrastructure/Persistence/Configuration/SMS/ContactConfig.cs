@@ -18,8 +18,6 @@ public class ContactConfig : IEntityTypeConfiguration<Contact>
             .HasMaxLength(16);
         _ = builder.Property(b => b.PhoneNumber)
             .HasMaxLength(16);
-        _ = builder.Property(b => b.Name)
-            .HasMaxLength(1024);
         _ = builder.Property(b => b.Address)
             .HasMaxLength(1024);
     }

@@ -18,9 +18,6 @@ internal class SalaryConfig : IEntityTypeConfiguration<Salary>
         _ = builder.Property(b => b.EndDate)
             .IsRequired()
             .HasColumnType("Date");
-        _ = builder.Property(b => b.Name)
-            .IsRequired()
-            .HasMaxLength(16);
         _ = builder.Property(b => b.Amount)
             .IsRequired()
             .HasColumnType("Decimal(12,2)");

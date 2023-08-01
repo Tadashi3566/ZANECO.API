@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ZANECO.API.Domain.Common.Contracts;
@@ -8,6 +9,8 @@ public abstract class AuditableEntity : AuditableEntity<DefaultIdType>
 
 public abstract class AuditableEntity<T> : BaseEntity<T>, IAuditableEntity, ISoftDelete
 {
+    [Required]
+    [Column(TypeName = "VARCHAR(1024)")]
     public string Name { get; set; } = default!;
     public string? Remarks { get; set; }
     public string? Description { get; set; }

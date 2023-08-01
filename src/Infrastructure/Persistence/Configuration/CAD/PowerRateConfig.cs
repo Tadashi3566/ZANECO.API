@@ -14,8 +14,6 @@ public class PowerRateConfig : IEntityTypeConfiguration<PowerRate>
 
         _ = builder.Property(b => b.Code)
             .HasMaxLength(16);
-        _ = builder.Property(b => b.Name)
-            .HasMaxLength(1024);
         _ = builder.Property(b => b.BillMonth)
             .HasMaxLength(4);
         _ = builder.Property(b => b.GenerationCharge)

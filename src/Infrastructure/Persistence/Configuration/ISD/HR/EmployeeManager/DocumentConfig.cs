@@ -18,7 +18,5 @@ internal class DocumentConfig : IEntityTypeConfiguration<Document>
             .HasMaxLength(32);
         _ = builder.Property(b => b.Reference)
             .HasMaxLength(32);
-        _ = builder.Property(b => b.Name)
-            .HasMaxLength(1024);
     }
 }

@@ -72,7 +72,7 @@ internal class SmsService : ISmsService
         {
             // Check existing SMS to send only once
             var existingMessage = await _repositoryDapper.QueryAsync<MessageLog>($"SELECT MessageTo, MessageHash FROM datazaneco.MessageLog WHERE MessageTo = '{messageTo}' AND MessageHash = '{messageHash}'");
-            if (existingMessage.Count > 0) return 0;
+            if (existingMessage.Any()) return 0;
         }
 
         if (isAPI)

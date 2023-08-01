@@ -14,7 +14,5 @@ public class TicketProgressConfig : IEntityTypeConfiguration<TicketProgress>
 
         _ = builder.Property(b => b.ProgressType)
             .HasMaxLength(16);
-        _ = builder.Property(b => b.Name)
-            .HasMaxLength(1024);
     }
 }

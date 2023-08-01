@@ -12,8 +12,6 @@ public class MemberConfig : IEntityTypeConfiguration<Member>
         _ = builder
             .IsMultiTenant();
 
-        _ = builder.Property(b => b.Name)
-            .HasMaxLength(2024);
         _ = builder.Property(b => b.Address)
             .HasMaxLength(1024);
         _ = builder.Property(b => b.District)
