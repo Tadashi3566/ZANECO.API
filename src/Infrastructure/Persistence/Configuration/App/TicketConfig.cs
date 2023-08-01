@@ -12,6 +12,9 @@ public class TicketConfig : IEntityTypeConfiguration<Ticket>
         _ = builder
             .IsMultiTenant();
 
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
+
         _ = builder.Property(b => b.Impact)
             .HasDefaultValue("LOW")
             .HasMaxLength(16);

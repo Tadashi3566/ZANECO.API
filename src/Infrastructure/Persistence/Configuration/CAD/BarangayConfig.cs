@@ -14,5 +14,7 @@ public class BarangayConfig : IEntityTypeConfiguration<Barangay>
 
         _ = builder.Property(b => b.AreaName)
             .HasMaxLength(64);
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
     }
 }

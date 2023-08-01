@@ -9,7 +9,7 @@ public abstract class AuditableEntity : AuditableEntity<DefaultIdType>
 
 public abstract class AuditableEntity<T> : BaseEntity<T>, IAuditableEntity, ISoftDelete
 {
-    [Required]
+    //[Required]
     [Column(TypeName = "VARCHAR(1024)")]
     public string Name { get; set; } = default!;
     public string? Remarks { get; set; }

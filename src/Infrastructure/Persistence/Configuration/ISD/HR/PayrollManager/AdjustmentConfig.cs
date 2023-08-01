@@ -18,6 +18,8 @@ internal class AdjustmentConfig : IEntityTypeConfiguration<Adjustment>
         _ = builder.Property(b => b.EmployeeType)
             .IsRequired()
             .HasMaxLength(16);
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
         _ = builder.Property(b => b.Amount)
             .IsRequired()
             .HasDefaultValue(0)

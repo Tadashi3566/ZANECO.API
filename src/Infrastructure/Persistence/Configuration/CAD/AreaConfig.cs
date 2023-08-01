@@ -16,5 +16,7 @@ public class AreaConfig : IEntityTypeConfiguration<Area>
             .HasColumnType("int");
         _ = builder.Property(b => b.Code)
             .HasMaxLength(32);
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
     }
 }

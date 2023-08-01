@@ -14,5 +14,7 @@ public class RateConfig : IEntityTypeConfiguration<Rate>
 
         _ = builder.Property(b => b.Number)
             .HasColumnType("int");
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
     }
 }

@@ -13,6 +13,9 @@ public class PrizeConfig : IEntityTypeConfiguration<Prize>
         _ = builder
             .IsMultiTenant();
 
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
+
         _ = builder.Property(b => b.RaffleName)
             .IsRequired()
             .HasDefaultValue(default)

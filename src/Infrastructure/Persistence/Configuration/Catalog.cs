@@ -11,10 +11,6 @@ public class BrandConfig : IEntityTypeConfiguration<Brand>
     {
         _ = builder.ToTable("Brands", SchemaNames.Catalog)
             .IsMultiTenant();
-
-        builder
-            .Property(b => b.Name)
-                .HasMaxLength(256);
     }
 }
 
@@ -24,10 +20,6 @@ public class ProductConfig : IEntityTypeConfiguration<Product>
     {
         _ = builder.ToTable("Products", SchemaNames.Catalog)
             .IsMultiTenant();
-
-        builder
-            .Property(b => b.Name)
-                .HasMaxLength(1024);
 
         builder
             .Property(p => p.ImagePath)

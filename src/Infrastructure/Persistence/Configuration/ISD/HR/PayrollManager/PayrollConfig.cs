@@ -12,6 +12,8 @@ internal class PayrollConfig : IEntityTypeConfiguration<Payroll>
         _ = builder
             .IsMultiTenant();
 
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
         _ = builder.Property(b => b.StartDate)
             .IsRequired()
             .HasColumnType("date");

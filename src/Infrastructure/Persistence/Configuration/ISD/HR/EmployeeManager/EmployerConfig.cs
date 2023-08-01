@@ -15,6 +15,8 @@ internal class EmployerConfig : IEntityTypeConfiguration<Employer>
         _ = builder.Property(b => b.Designation)
             .IsRequired()
             .HasMaxLength(64);
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
         _ = builder.Property(b => b.Address)
             .IsRequired()
             .HasMaxLength(1024);

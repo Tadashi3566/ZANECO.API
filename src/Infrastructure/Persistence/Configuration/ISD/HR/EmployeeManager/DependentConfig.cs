@@ -12,6 +12,8 @@ internal class DependentConfig : IEntityTypeConfiguration<Dependent>
         _ = builder
             .IsMultiTenant();
 
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
         _ = builder.Property(b => b.Gender)
             .IsRequired()
             .HasMaxLength(8);

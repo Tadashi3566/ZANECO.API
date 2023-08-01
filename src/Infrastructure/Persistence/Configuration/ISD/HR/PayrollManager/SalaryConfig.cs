@@ -12,6 +12,8 @@ internal class SalaryConfig : IEntityTypeConfiguration<Salary>
         _ = builder
             .IsMultiTenant();
 
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
         _ = builder.Property(b => b.StartDate)
             .IsRequired()
             .HasColumnType("Date");

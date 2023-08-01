@@ -11,5 +11,8 @@ internal class ScheduleConfig : IEntityTypeConfiguration<Schedule>
     {
         _ = builder
             .IsMultiTenant();
+
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
     }
 }

@@ -25,6 +25,8 @@ public class AccountConfig : IEntityTypeConfiguration<Account>
             .HasMaxLength(8);
         _ = builder.Property(b => b.Tag)
             .HasMaxLength(32);
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
         _ = builder.Property(b => b.Address)
             .HasMaxLength(1024);
 

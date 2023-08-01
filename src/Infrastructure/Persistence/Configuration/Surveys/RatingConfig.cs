@@ -14,6 +14,8 @@ public class RatingConfig : IEntityTypeConfiguration<Rating>
 
         _ = builder.Property(b => b.RateNumber)
             .HasColumnType("int");
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
         _ = builder.Property(b => b.Comment)
             .HasMaxLength(1024);
     }

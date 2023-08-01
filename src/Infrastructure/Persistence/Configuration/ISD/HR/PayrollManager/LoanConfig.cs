@@ -12,6 +12,8 @@ internal class LoanConfig : IEntityTypeConfiguration<Loan>
         _ = builder
             .IsMultiTenant();
 
+        _ = builder.Property(b => b.Name)
+            .IsRequired();
         _ = builder.Property(b => b.Amount)
             .HasColumnType("Decimal(12,2)")
             .HasDefaultValue(0);
