@@ -8,6 +8,7 @@ public abstract class AuditableEntity : AuditableEntity<DefaultIdType>
 
 public abstract class AuditableEntity<T> : BaseEntity<T>, IAuditableEntity, ISoftDelete
 {
+    public string Name { get; set; } = default!;
     public string? Remarks { get; set; }
     public string? Description { get; set; }
     public string? Notes { get; set; }
@@ -25,18 +26,18 @@ public abstract class AuditableEntity<T> : BaseEntity<T>, IAuditableEntity, ISof
     }
 }
 
-public abstract class AuditableEntityWithApproval<T> : BaseEntity<T>, IAuditableEntity, ISoftDelete
+public abstract class AuditableEntityWithApproval<T> : AuditableEntity<T>, IAuditableEntity, ISoftDelete
 {
-    public string? Remarks { get; set; }
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public DefaultIdType CreatedBy { get; set; }
-    public DateTime CreatedOn { get; private set; }
-    public DefaultIdType LastModifiedBy { get; set; }
-    public DateTime? LastModifiedOn { get; set; }
+    //public string? Remarks { get; set; }
+    //public string? Description { get; set; }
+    //public string? Notes { get; set; }
+    //public DefaultIdType CreatedBy { get; set; }
+    //public DateTime CreatedOn { get; private set; }
+    //public DefaultIdType LastModifiedBy { get; set; }
+    //public DateTime? LastModifiedOn { get; set; }
 
     [Column(TypeName = "VARCHAR(16)")]
-    public string Status { get; set; } = "PENDING";
+    public string Status { get; set; } = default!;
 
     public DefaultIdType? RecommendedBy { get; set; }
     public string? RecommenderName { get; set; }
@@ -46,12 +47,12 @@ public abstract class AuditableEntityWithApproval<T> : BaseEntity<T>, IAuditable
     public string? ApproverName { get; set; }
     public DateTime? ApprovedOn { get; set; }
 
-    public DefaultIdType? DeletedBy { get; set; }
-    public DateTime? DeletedOn { get; set; }
+    //public DefaultIdType? DeletedBy { get; set; }
+    //public DateTime? DeletedOn { get; set; }
 
-    protected AuditableEntityWithApproval()
-    {
-        CreatedOn = DateTime.Now;
-        LastModifiedOn = DateTime.Now;
-    }
+    //protected AuditableEntityWithApproval()
+    //{
+    //    CreatedOn = DateTime.Now;
+    //    LastModifiedOn = DateTime.Now;
+    //}
 }

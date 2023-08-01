@@ -60,22 +60,26 @@ public class MessageOutCreateRequestHandler : IRequestHandler<MessageOutCreateRe
             {
                 if (request.IsScheduled)
                 {
-                    _jobService.Schedule(() => _smsService.SmsSend(ClassSms.FormatContactNumber(recipient), request.MessageText.Trim(), true, request.IsAPI, request.MessageType), TimeSpan.FromMinutes(1));
+                    _jobService.Schedule(
+                        () => _smsService.SmsSend(ClassSms.FormatContactNumber(recipient), request.MessageText.Trim(), true, request.IsAPI, request.MessageType), TimeSpan.FromMinutes(1));
 
                     if (request.IsFollowUp)
                     {
                         // Only send the SMS Subject in order to decrease the cost of SMS Service
-                        _jobService.Schedule(() => _smsService.SmsSend(ClassSms.FormatContactNumber(recipient), request.Subject.Trim(), true, request.IsAPI, request.MessageType), request.Schedule.AddHours(-5));
+                        _jobService.Schedule(
+                            () => _smsService.SmsSend(ClassSms.FormatContactNumber(recipient), request.Subject.Trim(), true, request.IsAPI, request.MessageType), request.Schedule.AddHours(-5));
                     }
                 }
                 else
                 {
-                    _jobService.Enqueue(() => _smsService.SmsSend(ClassSms.FormatContactNumber(recipient), request.MessageText, true, request.IsAPI, request.MessageType));
+                    _jobService.Enqueue(
+                        () => _smsService.SmsSend(ClassSms.FormatContactNumber(recipient), request.MessageText, true, request.IsAPI, request.MessageType));
                 }
             }
             else
             {
-                await _smsService.SmsSend(recipient, request.MessageText, true, request.IsAPI, request.MessageType).ConfigureAwait(false);
+                await _smsService.SmsSend(recipient, request.MessageText, true, request.IsAPI, request.MessageType)
+                    .ConfigureAwait(false);
             }
         }
 
