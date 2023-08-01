@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employers;
 
-public class EmployerByIdWithEmployeeSpec : Specification<Employer, EmployerDetailsDto>, ISingleResultSpecification
+public class EmployerByIdWithEmployeeSpec : Specification<Employer, EmployerDetailsDto>, ISingleResultSpecification<Employer>
 {
     public EmployerByIdWithEmployeeSpec(Guid id) =>
         Query

@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Designations;
 
-public class DesignationByIdWithEmployeeSpec : Specification<Designation, DesignationDetailsDto>, ISingleResultSpecification
+public class DesignationByIdWithEmployeeSpec : Specification<Designation, DesignationDetailsDto>, ISingleResultSpecification<Designation>
 {
     public DesignationByIdWithEmployeeSpec(Guid id) =>
         Query

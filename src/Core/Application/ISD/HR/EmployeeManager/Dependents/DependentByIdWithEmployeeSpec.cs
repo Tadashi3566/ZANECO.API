@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Dependents;
 
-public class DependentByIdWithEmployeeSpec : Specification<Dependent, DependentDetailsDto>, ISingleResultSpecification
+public class DependentByIdWithEmployeeSpec : Specification<Dependent, DependentDetailsDto>, ISingleResultSpecification<Dependent>
 {
     public DependentByIdWithEmployeeSpec(Guid id) =>
         Query

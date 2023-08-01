@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.AGMA.Prizes;
 
-public class PrizeByIdSpec : Specification<Prize, PrizeDto>, ISingleResultSpecification
+public class PrizeByIdSpec : Specification<Prize, PrizeDto>, ISingleResultSpecification<Prize>
 {
-    public PrizeByIdSpec(Guid id) => Query.Where(p => p.Id == id);
+    public PrizeByIdSpec(Guid id) =>
+        Query.Where(p => p.Id == id);
 }

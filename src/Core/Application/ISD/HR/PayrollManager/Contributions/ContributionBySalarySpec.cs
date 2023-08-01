@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Contributions;
 
-public class ContributionBySalariespec : Specification<Contribution, ContributionDto>, ISingleResultSpecification
+public class ContributionBySalariespec : Specification<Contribution, ContributionDto>, ISingleResultSpecification<Contribution>
 {
     public ContributionBySalariespec(string contributionType, DateTime? payrollDate, decimal salary) =>
         Query.Where(p => p.ContributionType.Equals(contributionType)

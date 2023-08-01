@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Salaries;
 
-public class SalaryByIdSpec : Specification<Salary, SalaryDto>, ISingleResultSpecification
+public class SalaryByIdSpec : Specification<Salary, SalaryDto>, ISingleResultSpecification<Salary>
 {
-    public SalaryByIdSpec(DefaultIdType id) => Query.Where(p => p.Id == id);
+    public SalaryByIdSpec(DefaultIdType id) =>
+        Query.Where(p => p.Id == id);
 }

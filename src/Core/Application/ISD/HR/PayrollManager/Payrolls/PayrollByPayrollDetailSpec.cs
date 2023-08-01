@@ -2,8 +2,9 @@
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Payrolls;
 
-public class PayrollByPayrollDetailSpec : Specification<EmployeePayrollDetail>, ISingleResultSpecification
+public class PayrollByPayrollDetailSpec : Specification<EmployeePayrollDetail>, ISingleResultSpecification<EmployeePayrollDetail>
 {
     public PayrollByPayrollDetailSpec(Guid id) =>
-        Query.Where(p => p.PayrollId.Equals(id) && p.Contributor.Equals("EMPLOYEE"));
+        Query.Where(p => p.PayrollId.Equals(id)
+                                    && p.Contributor.Equals("EMPLOYEE"));
 }

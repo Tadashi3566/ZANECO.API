@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.SMS.MessageIns;
 
-public class MessageInByIdSpec : Specification<MessageIn, MessageInDto>, ISingleResultSpecification
+public class MessageInByIdSpec : Specification<MessageIn, MessageInDto>, ISingleResultSpecification<MessageIn>
 {
-    public MessageInByIdSpec(int id) => Query.Where(p => p.Id == id);
+    public MessageInByIdSpec(int id) =>
+        Query.Where(p => p.Id == id);
 }

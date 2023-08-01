@@ -2,8 +2,9 @@
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Loans;
 
-public class LoanByEmployeeAdjustmentSpec : Specification<Loan, LoanDto>, ISingleResultSpecification
+public class LoanByEmployeeAdjustmentSpec : Specification<Loan, LoanDto>, ISingleResultSpecification<Loan>
 {
     public LoanByEmployeeAdjustmentSpec(Guid employeeId, Guid adjustmentId) =>
-        Query.Where(p => p.EmployeeId == employeeId && p.AdjustmentId == adjustmentId);
+        Query.Where(p => p.EmployeeId == employeeId
+                        && p.AdjustmentId == adjustmentId);
 }

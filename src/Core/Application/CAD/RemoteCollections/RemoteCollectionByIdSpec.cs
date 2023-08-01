@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.CAD.RemoteCollections;
 
-public class RemoteCollectionByIdSpec : Specification<RemoteCollection, RemoteCollectionDto>, ISingleResultSpecification
+public class RemoteCollectionByIdSpec : Specification<RemoteCollection, RemoteCollectionDto>, ISingleResultSpecification<RemoteCollection>
 {
-    public RemoteCollectionByIdSpec(Guid id) => Query.Where(p => p.Id == id);
+    public RemoteCollectionByIdSpec(Guid id) =>
+        Query.Where(p => p.Id == id);
 }

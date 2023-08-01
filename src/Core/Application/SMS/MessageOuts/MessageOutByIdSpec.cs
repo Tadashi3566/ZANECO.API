@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.SMS.MessageOuts;
 
-public class MessageOutByIdSpec : Specification<MessageOut, MessageOutDto>, ISingleResultSpecification
+public class MessageOutByIdSpec : Specification<MessageOut, MessageOutDto>, ISingleResultSpecification<MessageOut>
 {
-    public MessageOutByIdSpec(int id) => Query.Where(p => p.Id == id);
+    public MessageOutByIdSpec(int id) =>
+        Query.Where(p => p.Id == id);
 }

@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Powerbills;
 
-public class PowerbillByIdWithEmployeeSpec : Specification<Powerbill, PowerbillDetailsDto>, ISingleResultSpecification
+public class PowerbillByIdWithEmployeeSpec : Specification<Powerbill, PowerbillDetailsDto>, ISingleResultSpecification<Powerbill>
 {
     public PowerbillByIdWithEmployeeSpec(Guid id) =>
         Query

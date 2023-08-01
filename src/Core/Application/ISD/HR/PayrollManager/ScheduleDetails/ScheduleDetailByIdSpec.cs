@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.ScheduleDetails;
 
-public class ScheduleDetailByIdSpec : Specification<ScheduleDetail, ScheduleDetailDto>, ISingleResultSpecification
+public class ScheduleDetailByIdSpec : Specification<ScheduleDetail, ScheduleDetailDto>, ISingleResultSpecification<ScheduleDetail>
 {
-    public ScheduleDetailByIdSpec(Guid id) => Query.Where(p => p.Id == id);
+    public ScheduleDetailByIdSpec(Guid id) =>
+        Query.Where(p => p.Id == id);
 }

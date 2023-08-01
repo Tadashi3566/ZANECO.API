@@ -1,6 +1,6 @@
 ﻿namespace ZANECO.API.Application.Catalog.Products;
 
-public class ProductByIdWithBrandSpec : Specification<Product, ProductDetailsDto>, ISingleResultSpecification
+public class ProductByIdWithBrandSpec : Specification<Product, ProductDetailsDto>, ISingleResultSpecification<Product>
 {
     public ProductByIdWithBrandSpec(DefaultIdType id) =>
         Query

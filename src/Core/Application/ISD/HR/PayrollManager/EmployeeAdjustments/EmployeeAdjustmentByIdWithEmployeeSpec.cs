@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.EmployeeAdjustments;
 
-public class EmployeeAdjustmentByIdWithEmployeeSpec : Specification<EmployeeAdjustment, EmployeeAdjustmentDto>, ISingleResultSpecification
+public class EmployeeAdjustmentByIdWithEmployeeSpec : Specification<EmployeeAdjustment, EmployeeAdjustmentDto>, ISingleResultSpecification<EmployeeAdjustment>
 {
     public EmployeeAdjustmentByIdWithEmployeeSpec(Guid id) =>
         Query

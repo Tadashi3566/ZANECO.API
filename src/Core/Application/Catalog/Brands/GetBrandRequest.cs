@@ -7,7 +7,7 @@ public class GetBrandRequest : IRequest<BrandDto>
     public GetBrandRequest(DefaultIdType id) => Id = id;
 }
 
-public class BrandByIdSpec : Specification<Brand, BrandDto>, ISingleResultSpecification
+public class BrandByIdSpec : Specification<Brand, BrandDto>, ISingleResultSpecification<Brand>
 {
     public BrandByIdSpec(DefaultIdType id) =>
         Query.Where(p => p.Id == id);

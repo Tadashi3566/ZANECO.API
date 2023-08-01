@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.ISD.Members;
 
-public class MemberByNameSpec : Specification<Member>, ISingleResultSpecification
+public class MemberByNameSpec : Specification<Member>, ISingleResultSpecification<Member>
 {
-    public MemberByNameSpec(string name) => Query.Where(p => p.Name == name);
+    public MemberByNameSpec(string name) =>
+        Query.Where(p => p.Name == name);
 }

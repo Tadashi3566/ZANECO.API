@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.CAD.Ledgers;
 
-public class LedgerByIdSpec : Specification<Ledger, LedgerDto>, ISingleResultSpecification
+public class LedgerByIdSpec : Specification<Ledger, LedgerDto>, ISingleResultSpecification<Ledger>
 {
     public LedgerByIdSpec(Guid id) => Query.Where(p => p.Id == id);
 }

@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.SMS.Contacts;
 
-public class ContactByNumberSpec : Specification<Contact>, ISingleResultSpecification
+public class ContactByNumberSpec : Specification<Contact>, ISingleResultSpecification<Contact>
 {
-    public ContactByNumberSpec(string number) => Query.Where(p => p.PhoneNumber == number);
+    public ContactByNumberSpec(string number) =>
+        Query.Where(p => p.PhoneNumber == number);
 }

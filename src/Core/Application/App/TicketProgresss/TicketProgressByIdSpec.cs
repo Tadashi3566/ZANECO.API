@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.App.TicketProgresss;
 
-public class TicketProgressByIdSpec : Specification<TicketProgress, TicketProgressDto>, ISingleResultSpecification
+public class TicketProgressByIdSpec : Specification<TicketProgress, TicketProgressDto>, ISingleResultSpecification<TicketProgress>
 {
     public TicketProgressByIdSpec(DefaultIdType id) =>
         Query

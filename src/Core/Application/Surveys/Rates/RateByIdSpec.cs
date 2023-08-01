@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.Surveys.Rates;
 
-public class RateByIdSpec : Specification<Rate, RateDto>, ISingleResultSpecification
+public class RateByIdSpec : Specification<Rate, RateDto>, ISingleResultSpecification<Rate>
 {
-    public RateByIdSpec(Guid id) => Query.Where(p => p.Id == id);
+    public RateByIdSpec(Guid id) =>
+        Query.Where(p => p.Id == id);
 }

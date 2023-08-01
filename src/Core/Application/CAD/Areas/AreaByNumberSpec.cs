@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.CAD.Areas;
 
-public class AreaByNumberSpec : Specification<Area>, ISingleResultSpecification
+public class AreaByNumberSpec : Specification<Area>, ISingleResultSpecification<Area>
 {
-    public AreaByNumberSpec(int number) => Query.Where(p => p.Number == number);
+    public AreaByNumberSpec(int number) =>
+        Query.Where(p => p.Number == number);
 }

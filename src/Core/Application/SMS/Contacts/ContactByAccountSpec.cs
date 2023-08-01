@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.SMS.Contacts;
 
-public class ContactByAccountSpec : Specification<Contact>, ISingleResultSpecification
+public class ContactByAccountSpec : Specification<Contact>, ISingleResultSpecification<Contact>
 {
-    public ContactByAccountSpec(string account) => Query.Where(p => p.Reference == account);
+    public ContactByAccountSpec(string account) =>
+        Query.Where(p => p.Reference == account);
 }

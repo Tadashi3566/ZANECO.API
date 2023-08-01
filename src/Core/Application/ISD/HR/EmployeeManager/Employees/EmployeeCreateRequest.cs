@@ -60,12 +60,6 @@ public class EmployeeCreateRequest : IRequest<Guid>
     public ImageUploadRequest? Image { get; set; }
 }
 
-public class EmployeeByNumberSpec : Specification<Employee>, ISingleResultSpecification
-{
-    public EmployeeByNumberSpec(int number) =>
-        Query.Where(p => p.Number.Equals(number));
-}
-
 public class EmployeeCreateRequestValidator : CustomValidator<EmployeeCreateRequest>
 {
     public EmployeeCreateRequestValidator(IReadRepository<Employee> repository, IStringLocalizer<EmployeeCreateRequestValidator> localizer)

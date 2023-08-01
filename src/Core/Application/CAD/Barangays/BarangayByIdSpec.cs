@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.CAD.Barangays;
 
-public class BarangayByIdSpec : Specification<Barangay, BarangayDto>, ISingleResultSpecification
+public class BarangayByIdSpec : Specification<Barangay, BarangayDto>, ISingleResultSpecification<Barangay>
 {
-    public BarangayByIdSpec(Guid id) => Query.Where(p => p.Id == id);
+    public BarangayByIdSpec(Guid id) =>
+        Query.Where(p => p.Id == id);
 }

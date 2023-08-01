@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.AGMA.Prizes;
 
-public class PrizeByNameSpec : Specification<Prize>, ISingleResultSpecification
+public class PrizeByNameSpec : Specification<Prize>, ISingleResultSpecification<Prize>
 {
     public PrizeByNameSpec(string name) => Query.Where(q => q.Name == name);
 }

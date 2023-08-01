@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.Surveys.RatingTemplates;
 
-public class RatingTemplateByIdWithRateSpec : Specification<RatingTemplate, RatingTemplateDetailsDto>, ISingleResultSpecification
+public class RatingTemplateByIdWithRateSpec : Specification<RatingTemplate, RatingTemplateDetailsDto>, ISingleResultSpecification<RatingTemplate>
 {
     public RatingTemplateByIdWithRateSpec(Guid id) =>
         Query

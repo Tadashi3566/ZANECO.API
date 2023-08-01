@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.CAD.Routes;
 
-public class RouteByNameSpec : Specification<Route>, ISingleResultSpecification
+public class RouteByNameSpec : Specification<Route>, ISingleResultSpecification<Route>
 {
     public RouteByNameSpec(string name) => Query.Where(p => p.Name == name);
 }

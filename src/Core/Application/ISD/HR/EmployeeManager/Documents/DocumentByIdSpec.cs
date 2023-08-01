@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Documents;
 
-public class DocumentByIdSpec : Specification<Document, DocumentDto>, ISingleResultSpecification
+public class DocumentByIdSpec : Specification<Document, DocumentDto>, ISingleResultSpecification<Document>
 {
     public DocumentByIdSpec(Guid id) => Query.Where(p => p.Id == id);
 }

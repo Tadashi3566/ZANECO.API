@@ -18,7 +18,6 @@ public class DependentGetRequestHandler : IRequestHandler<DependentGetRequest, D
         (_repository, _localizer) = (repository, localizer);
 
     public async Task<DependentDetailsDto> Handle(DependentGetRequest request, CancellationToken cancellationToken) =>
-        await _repository.FirstOrDefaultAsync(
-            new DependentByIdWithEmployeeSpec(request.Id), cancellationToken)
-        ?? throw new NotFoundException($"dependent {request.Id} not found.");
+        await _repository.FirstOrDefaultAsync(new DependentByIdWithEmployeeSpec(request.Id), cancellationToken)
+            ?? throw new NotFoundException($"dependent {request.Id} not found.");
 }

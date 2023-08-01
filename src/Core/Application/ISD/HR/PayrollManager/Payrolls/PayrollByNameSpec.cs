@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Payrolls;
 
-public class PayrollByNameSpec : Specification<Payroll>, ISingleResultSpecification
+public class PayrollByNameSpec : Specification<Payroll>, ISingleResultSpecification<Payroll>
 {
     public PayrollByNameSpec(string name) =>
         Query.Where(p => p.Name == name);

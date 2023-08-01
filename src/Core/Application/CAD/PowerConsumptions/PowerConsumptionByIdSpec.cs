@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.CAD.PowerConsumptions;
 
-public class PowerConsumptionByIdSpec : Specification<PowerConsumption, PowerConsumptionDto>, ISingleResultSpecification
+public class PowerConsumptionByIdSpec : Specification<PowerConsumption, PowerConsumptionDto>, ISingleResultSpecification<PowerConsumption>
 {
-    public PowerConsumptionByIdSpec(Guid id) => Query.Where(p => p.Id == id);
+    public PowerConsumptionByIdSpec(Guid id) =>
+        Query.Where(p => p.Id == id);
 }

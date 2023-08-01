@@ -2,7 +2,7 @@
 
 namespace ZANECO.API.Application.CAD.PowerRates;
 
-public class PowerRateByIdSpec : Specification<PowerRate, PowerRateDto>, ISingleResultSpecification
+public class PowerRateByIdSpec : Specification<PowerRate, PowerRateDto>, ISingleResultSpecification<PowerRate>
 {
     public PowerRateByIdSpec(Guid id) => Query.Where(p => p.Id == id);
 }

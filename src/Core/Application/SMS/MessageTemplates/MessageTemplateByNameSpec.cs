@@ -2,7 +2,8 @@
 
 namespace ZANECO.API.Application.SMS.MessageTemplates;
 
-public class MessageTemplateByNameSpec : Specification<MessageTemplate>, ISingleResultSpecification
+public class MessageTemplateByNameSpec : Specification<MessageTemplate>, ISingleResultSpecification<MessageTemplate>
 {
-    public MessageTemplateByNameSpec(string message) => Query.Where(p => p.Message == message);
+    public MessageTemplateByNameSpec(string message) =>
+        Query.Where(p => p.Message == message);
 }
