@@ -27,7 +27,7 @@ public class MessageLog : AuditableEntity<int>, IAggregateRoot
     public int MessageParts { get; private set; }
     public string? MessagePDU { get; private set; }
 
-    public MessageLog(string connector, string gateway, string messageType, string messageFrom, string messageTo, string messageText, string messageGuid, int messageParts, int statusCode, string statusText, string errorCode, string errorText, string messageHash, string? description = "", string? notes = "")
+    public MessageLog(string connector, string gateway, string messageType, string messageFrom, string messageTo, string messageText, string messageGuid, int messageParts, int statusCode, string statusText, string errorCode, string errorText, string messageHash, string? description = null, string? notes = null)
     {
         Connector = connector;
         Gateway = gateway;
@@ -47,6 +47,8 @@ public class MessageLog : AuditableEntity<int>, IAggregateRoot
 
         ErrorCode = errorCode;
         ErrorText = errorText;
+
+        Name = string.Empty;
 
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
