@@ -10,6 +10,9 @@ public class RatingTemplate : AuditableEntity, IAggregateRoot
     {
         RateId = rateId;
         Comment = comment;
+
+        Name = string.Empty;
+
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
@@ -18,6 +21,7 @@ public class RatingTemplate : AuditableEntity, IAggregateRoot
     {
         if (rateID.HasValue && rateID.Value != DefaultIdType.Empty && !RateId.Equals(rateID.Value)) RateId = rateID.Value;
         if (comment is not null && !Comment.Equals(comment)) Comment = comment;
+
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
         return this;

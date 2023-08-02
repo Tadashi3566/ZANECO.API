@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ZANECO.API.Domain.Common.Contracts;
@@ -40,7 +39,7 @@ public abstract class AuditableEntityWithApproval<T> : AuditableEntity<T>, IAudi
     //public DateTime? LastModifiedOn { get; set; }
 
     [Column(TypeName = "VARCHAR(16)")]
-    public string Status { get; set; } = default!;
+    public string Status { get; set; } = "PENDING";
 
     public DefaultIdType? RecommendedBy { get; set; }
     public string? RecommenderName { get; set; }

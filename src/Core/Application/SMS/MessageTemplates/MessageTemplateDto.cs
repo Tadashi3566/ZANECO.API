@@ -7,7 +7,7 @@ public class MessageTemplateDto : IDto
     public string MessageType { get; set; } = default!;
     public bool IsAPI { get; set; } = default!;
     public bool IsSent { get; set; } = default!;
-    public string Subject { get; set; } = default!;
+    public string Name { get; set; } = default!;
     public string Message { get; set; } = default!;
     public string Recipients { get; set; } = default!;
     public DateTime Schedule { get; set; } = default!;

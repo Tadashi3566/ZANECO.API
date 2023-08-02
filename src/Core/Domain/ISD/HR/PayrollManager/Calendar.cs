@@ -17,7 +17,7 @@ public class Calendar : AuditableEntity, IAggregateRoot
         CalendarType = calendarType;
         CalendarDate = calendarDate;
         Day = calendarDate.DayOfWeek.ToString().ToUpper();
-        Name = name.Trim();
+        Name = name.Trim().ToUpper();
         IsNationalHoliday = isNationalHoliday;
 
         if (description is not null && Description?.Equals(description) != true) Description = description.Trim();
@@ -34,7 +34,7 @@ public class Calendar : AuditableEntity, IAggregateRoot
             Day = calendarDate!.DayOfWeek.ToString().ToUpper();
         }
 
-        if (name is not null && !Name.Equals(name)) Name = name.Trim();
+        if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
         if (!IsNationalHoliday.Equals(isNationalHoliday)) IsNationalHoliday = isNationalHoliday;
 
         if (description is not null && Description?.Equals(description) != true) Description = description.Trim();

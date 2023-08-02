@@ -8,7 +8,7 @@ public class MessageTemplateUpdateRequest : IRequest<Guid>
     public string TemplateType { get; set; } = default!;
     public string MessageType { get; set; } = "sms.automatic";
     public bool IsAPI { get; set; } = true;
-    public string Subject { get; set; } = default!;
+    public string Name { get; set; } = default!;
     public string Message { get; set; } = default!;
     public string Recipients { get; set; } = default!;
     public DateTime Schedule { get; set; } = DateTime.Today;
@@ -30,7 +30,7 @@ public class MessageTemplateUpdateRequestValidator : CustomValidator<MessageTemp
              .NotEmpty()
              .MaximumLength(32);
 
-        RuleFor(p => p.Subject)
+        RuleFor(p => p.Name)
              .NotEmpty()
              .MaximumLength(1024);
 
@@ -79,7 +79,7 @@ public class MessageTemplateUpdateRequestHandler : IRequestHandler<MessageTempla
             ? await _file.UploadAsync<MessageTemplate>(request.Image, FileType.Image, cancellationToken)
             : null;
 
-        var updatedMessageTemplate = messageTemplate.Update(request.TemplateType, request.MessageType, request.IsAPI, request.Schedule, request.Subject, request.Message, request.Recipients, request.Description, request.Notes, imagePath);
+        var updatedMessageTemplate = messageTemplate.Update(request.TemplateType, request.MessageType, request.IsAPI, request.Schedule, request.Name, request.Message, request.Recipients, request.Description, request.Notes, imagePath);
 
         await _repository.UpdateAsync(updatedMessageTemplate, cancellationToken);
 

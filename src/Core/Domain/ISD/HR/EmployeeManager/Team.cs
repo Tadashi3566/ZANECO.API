@@ -1,4 +1,6 @@
-﻿namespace ZANECO.API.Domain.ISD.HR.EmployeeManager;
+﻿using System.Xml.Linq;
+
+namespace ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 public class Team : AuditableEntity, IAggregateRoot
 {
@@ -19,6 +21,8 @@ public class Team : AuditableEntity, IAggregateRoot
 
         if (department is not null && (Department?.Equals(department) != true)) Department = department.Trim();
         if (position is not null && (Position?.Equals(position) != true)) Position = position.Trim();
+
+        Name = string.Empty;
 
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();

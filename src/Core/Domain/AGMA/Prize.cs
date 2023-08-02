@@ -17,7 +17,8 @@ public class Prize : AuditableEntity, IAggregateRoot
 
         PrizeType = prizeType;
         Winners = winners;
-        Name = name.Trim();
+
+        Name = name.Trim().ToUpper();
 
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
@@ -31,7 +32,8 @@ public class Prize : AuditableEntity, IAggregateRoot
 
         if (!PrizeType.Equals(prizeType)) PrizeType = prizeType.Trim();
         if (!Winners.Equals(winners)) Winners = winners;
-        if (!Name.Equals(name)) Name = name.Trim();
+
+        if (!Name.Equals(name)) Name = name.Trim().ToUpper();
 
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();

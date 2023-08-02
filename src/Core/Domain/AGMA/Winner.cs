@@ -21,7 +21,7 @@ public class Winner : AuditableEntity, IAggregateRoot
         PrizeId = prizeId;
         PrizeName = prizeName;
 
-        Name = name.Trim();
+        Name = name.Trim().ToUpper();
         Address = address.Trim();
 
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
@@ -35,7 +35,7 @@ public class Winner : AuditableEntity, IAggregateRoot
         if (!RaffleName.Equals(raffleName)) RaffleName = raffleName.Trim();
         if (!PrizeName.Equals(prizeName)) PrizeName = prizeName.Trim();
 
-        if (!Name.Equals(name)) Name = name.Trim();
+        if (!Name.Equals(name)) Name = name.Trim().ToUpper();
         if (!Address.Equals(address)) Address = address.Trim();
 
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();

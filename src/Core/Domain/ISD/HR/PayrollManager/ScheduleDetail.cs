@@ -31,6 +31,8 @@ public class ScheduleDetail : AuditableEntity, IAggregateRoot
 
         TotalHours = totalHours;
 
+        Name = string.Empty;
+
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }

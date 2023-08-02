@@ -34,6 +34,8 @@ public class EmployeeAdjustment : AuditableEntity, IAggregateRoot
         StartDate = startDate;
         EndDate = endDate;
 
+        Name = string.Empty;
+
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 

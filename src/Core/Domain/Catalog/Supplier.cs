@@ -14,7 +14,7 @@ public class Supplier : AuditableEntity, IAggregateRoot
 
     public Supplier(string name, string address, string tin, string agent, string phoneNumber, string? description = null, string? notes = null, string? imagePath = null)
     {
-        Name = name.Trim();
+        Name = name.Trim().ToUpper();
         Address = address;
         Tin = tin;
         Agent = agent;
@@ -28,7 +28,7 @@ public class Supplier : AuditableEntity, IAggregateRoot
 
     public Supplier Update(string name, string address, string tin, string agent, string phoneNumber, string? description = null, string? notes = null, string? imagePath = null)
     {
-        if (name is not null && !Name.Equals(name)) Name = name.Trim();
+        if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
         if (address is not null && !Address.Equals(address)) Address = address;
         if (tin is not null && !Tin.Equals(Tin)) Tin = tin;
         if (agent is not null && !Agent.Equals(agent)) Agent = agent;

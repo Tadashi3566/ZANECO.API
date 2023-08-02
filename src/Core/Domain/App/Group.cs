@@ -24,7 +24,7 @@ public class Group : AuditableEntity, IAggregateRoot
 
         Number = number;
         Code = code.Trim().ToUpper();
-        Name = name.Trim();
+        Name = name.Trim().ToUpper();
         Amount = amount;
 
         if (employeeId is not null && (EmployeeId is null || !EmployeeId!.Equals(employeeId))) EmployeeId = employeeId;
@@ -43,7 +43,7 @@ public class Group : AuditableEntity, IAggregateRoot
 
         if (!Number.Equals(number)) Number = number;
         if (!Code.Equals(code)) Code = code.Trim().ToUpper();
-        if (!Name.Equals(name)) Name = name.Trim();
+        if (!Name.Equals(name)) Name = name.Trim().ToUpper();
         if (!Amount.Equals(amount)) Amount = amount;
 
         if (!EmployeeId!.Equals(employeeId)) EmployeeId = employeeId;

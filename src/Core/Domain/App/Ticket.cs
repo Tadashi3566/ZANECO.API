@@ -27,6 +27,7 @@ public class Ticket : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
     {
         GroupId = groupID;
         Name = name.Trim().ToUpper();
+
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
 
@@ -36,6 +37,7 @@ public class Ticket : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
     public Ticket Update(DefaultIdType? groupID, string name, string? impact, string? urgency, string? priority, string? requestedBy, string? requestThrough, string? reference, string? assignedTo, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (groupID.HasValue && groupID.Value != DefaultIdType.Empty && !GroupId.Equals(groupID.Value)) GroupId = groupID.Value;
+
         if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();

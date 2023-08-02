@@ -64,8 +64,8 @@ internal class SmsService : ISmsService
 
     public async Task<int> SmsSend(string messageTo, string messageText, bool isCheckExisting = true, bool isAPI = true, string messageType = "sms.automatic")
     {
-        byte[] sentenceBytes = Encoding.UTF8.GetBytes(messageText);
-        byte[] hashBytes = SHA256.HashData(sentenceBytes);
+        byte[] messageBytes = Encoding.UTF8.GetBytes(messageText);
+        byte[] hashBytes = SHA256.HashData(messageBytes);
         string messageHash = Convert.ToBase64String(hashBytes);
 
         if (isCheckExisting)
@@ -78,6 +78,9 @@ internal class SmsService : ISmsService
         if (isAPI)
         {
             string response = await SendToAPI(messageTo, messageText);
+            if (response is null)
+                return 0;
+
             string[] responseArray = response.Split("\r\n");
             int statusCode = Convert.ToInt16(responseArray[0][14..]);
             string statusText = responseArray[1][5..];

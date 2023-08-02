@@ -27,6 +27,8 @@ public class MessageOut : AuditableEntity<int>, IAggregateRoot
         MessageType = messageType;
         MessageTo = messageTo;
         MessageText = messageText;
+
+        Name = string.Empty;
     }
 
     // public MessageOut Update(string messageTo, string messageText, string messageType)

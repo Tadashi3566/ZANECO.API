@@ -16,10 +16,6 @@ public class MessageTemplateConfig : IEntityTypeConfiguration<MessageTemplate>
             .HasMaxLength(32);
         _ = builder.Property(b => b.MessageType)
             .HasMaxLength(32);
-        _ = builder.Property(b => b.Subject)
-            .HasMaxLength(160);
-        _ = builder.Property(b => b.Name)
-            .IsRequired();
         _ = builder.Property(b => b.Message)
             .HasMaxLength(1500);
         _ = builder.Property(b => b.Schedule)

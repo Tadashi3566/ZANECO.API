@@ -26,7 +26,7 @@ public class Product : AuditableEntity, IAggregateRoot
         SKU = sku.Trim();
         Barcode = barcode.Trim();
 
-        Name = name.Trim();
+        Name = name.Trim().ToUpper();
         Specification = specification.Trim();
         UnitOfMeasurement = unitOfMeasurement.Trim();
 

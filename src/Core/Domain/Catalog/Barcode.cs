@@ -19,7 +19,7 @@ public class Barcode : AuditableEntity, IAggregateRoot
         ProductId = productId;
         Code = code.Trim();
 
-        Name = name.Trim();
+        Name = name.Trim().ToUpper();
         Specification = specification.Trim();
         UnitOfMeasurement = unitOfMeasurement.Trim();
 
