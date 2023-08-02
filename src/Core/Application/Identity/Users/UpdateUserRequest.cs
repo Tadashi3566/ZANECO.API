@@ -10,5 +10,5 @@ public class UpdateUserRequest
     public string? Description { get; set; }
     public string? Notes { get; set; }
     public ImageUploadRequest? Image { get; set; }
-    public bool DeleteCurrentImage { get; set; } = false;
+    public bool DeleteCurrentImage { get; set; } = default!;
 }
