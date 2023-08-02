@@ -41,11 +41,11 @@ public abstract class AuditableEntityWithApproval<T> : AuditableEntity<T>, IAudi
     [Column(TypeName = "VARCHAR(16)")]
     public string Status { get; set; } = "PENDING";
 
-    public DefaultIdType? RecommendedBy { get; set; }
+    public DefaultIdType RecommendedBy { get; set; } = default!;
     public string? RecommenderName { get; set; }
     public DateTime? RecommendedOn { get; set; }
 
-    public DefaultIdType? ApprovedBy { get; set; }
+    public DefaultIdType ApprovedBy { get; set; } = default!;
     public string? ApproverName { get; set; }
     public DateTime? ApprovedOn { get; set; }
 
