@@ -13,7 +13,7 @@ internal class DocumentConfig : IEntityTypeConfiguration<Document>
             .IsMultiTenant();
 
         _ = builder.Property(b => b.DocumentDate)
-            .HasColumnType("datetime(6)");
+            .HasColumnType("date");
         _ = builder.Property(b => b.DocumentType)
             .HasMaxLength(32);
         _ = builder.Property(b => b.Reference)
