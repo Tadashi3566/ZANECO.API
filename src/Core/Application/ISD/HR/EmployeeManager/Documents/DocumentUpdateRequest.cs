@@ -11,8 +11,8 @@ public class DocumentUpdateRequest : IRequest<Guid>
     public string Reference { get; set; } = default!;
     public bool IsPublic { get; set; } = default!;
     public string Name { get; set; } = default!;
-    public string Content { get; set; } = default!;
-    public string Raw { get; set; } = default!;
+    public string? Content { get; set; }
+    public string? Raw { get; set; }
     public string? Description { get; set; }
     public string? Notes { get; set; }
     public bool DeleteCurrentImage { get; set; }
@@ -81,11 +81,12 @@ public class DocumentUpdateRequestHandler : IRequestHandler<DocumentUpdateReques
             ? await _file.UploadAsync<Document>(request.Image, FileType.Image, cancellationToken)
             : null;
 
-        var updatedDocument = document.Update(employee!.FullName(), (DateTime)request.DocumentDate!, request.DocumentType, request.Reference, request.IsPublic, request.Name, request.Description, request.Notes, imagePath!);
+        var updatedDocument = document.Update(employee!.FullName(), (DateTime)request.DocumentDate!, request.DocumentType, request.Reference, request.IsPublic, request.Name, request.Description, request.Notes, imagePath);
 
         await _repository.UpdateAsync(updatedDocument, cancellationToken);
 
         _jobService.Enqueue(() => _ocrJob.Recognition(document.Id, cancellationToken));
+        //await _ocrJob.Recognition(document.Id, cancellationToken);
 
         return request.Id;
     }

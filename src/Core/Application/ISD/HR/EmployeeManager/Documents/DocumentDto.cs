@@ -10,8 +10,8 @@ public class DocumentDto : IDto
     public string Reference { get; set; } = default!;
     public bool IsPublic { get; set; } = default!;
     public string Name { get; set; } = default!;
-    public string Content { get; set; } = default!;
-    public string Raw { get; set; } = default!;
+    public string? Content { get; set; }
+    public string? Raw { get; set; }
     public string? Description { get; set; }
     public string? Notes { get; set; }
     public string? ImagePath { get; set; }

@@ -51,6 +51,7 @@ public class DocumentOcrJob : IDocumentOcrJob
         try
         {
             _timer.Start();
+
             var document = await _repository.GetByIdAsync(id, cancellationToken);
             if (document is null) return;
 
@@ -91,6 +92,7 @@ public class DocumentOcrJob : IDocumentOcrJob
                 }
 
                 _timer.Stop();
+
                 long elapsedMilliseconds = _timer.ElapsedMilliseconds;
 
                 _logger.LogInformation("Id: {id}, elapsed: {elapsedMilliseconds}, recognize the result: {@result},{@content}", id, elapsedMilliseconds, ocrResult, document.Content);

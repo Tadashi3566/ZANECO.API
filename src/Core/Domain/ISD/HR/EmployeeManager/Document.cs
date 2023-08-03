@@ -33,14 +33,14 @@ public class Document : AuditableEntity, IAggregateRoot
 
     public Document Update(string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description = null, string? notes = null, string? imagePath = null)
     {
-        if (employeeName is not null && !EmployeeName.Equals(employeeName)) EmployeeName = employeeName;
+        if (!EmployeeName.Equals(employeeName)) EmployeeName = employeeName;
 
         if (!DocumentDate.Equals(documentDate)) DocumentDate = documentDate;
-        if (reference is not null && !Reference.Equals(reference)) Reference = reference.Trim().ToUpper();
-        if (documentType is not null && !DocumentType.Equals(documentType)) DocumentType = documentType.Trim().ToUpper();
+        if (!Reference.Equals(reference)) Reference = reference.Trim().ToUpper();
+        if (!DocumentType.Equals(documentType)) DocumentType = documentType.Trim().ToUpper();
         if (!IsPublic.Equals(isPublic)) IsPublic = isPublic;
 
-        if (name is not null && !Name.Equals(name)) Name = name.Trim().ToUpper();
+        if (!Name.Equals(name)) Name = name.Trim().ToUpper();
 
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
@@ -50,10 +50,10 @@ public class Document : AuditableEntity, IAggregateRoot
         return this;
     }
 
-    public Document UpdateContent(string? content, string? raw)
+    public Document UpdateContent(string content, string raw)
     {
-        if (content is not null && !Content.Equals(content)) Content = content;
-        if (raw is not null && !Raw.Equals(raw)) Raw = raw;
+        if (content is not null && (Content?.Equals(content) != true)) Content = content;
+        if (raw is not null && (Raw?.Equals(raw) != true)) Raw = raw;
 
         return this;
     }
