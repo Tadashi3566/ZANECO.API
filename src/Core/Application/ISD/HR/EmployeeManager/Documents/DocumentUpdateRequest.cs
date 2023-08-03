@@ -28,6 +28,17 @@ public class DocumentUpdateRequestValidator : CustomValidator<DocumentUpdateRequ
             .MustAsync(async (id, ct) => await repoEmployee.GetByIdAsync(id, ct) is not null)
                 .WithMessage((_, id) => string.Format(localizer["employee not found."], id));
 
+        RuleFor(p => p.DocumentType)
+            .NotEmpty()
+            .MaximumLength(64);
+
+        RuleFor(p => p.Reference)
+            .NotEmpty();
+
+        RuleFor(p => p.Name)
+            .NotEmpty()
+            .MaximumLength(1024);
+
         RuleFor(p => p.Image)
             .SetNonNullableValidator(new ImageUploadRequestValidator());
     }

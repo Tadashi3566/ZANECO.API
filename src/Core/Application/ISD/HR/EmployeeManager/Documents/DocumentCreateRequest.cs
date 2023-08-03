@@ -19,6 +19,17 @@ public class CreateDocumentRequestValidator : CustomValidator<DocumentCreateRequ
 {
     public CreateDocumentRequestValidator()
     {
+        RuleFor(p => p.DocumentType)
+            .NotEmpty()
+            .MaximumLength(64);
+
+        RuleFor(p => p.Reference)
+            .NotEmpty();
+
+        RuleFor(p => p.Name)
+            .NotEmpty()
+            .MaximumLength(1024);
+
         RuleFor(p => p.Image)
             .SetNonNullableValidator(new ImageUploadRequestValidator());
     }

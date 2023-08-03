@@ -10,8 +10,8 @@ public class Document : AuditableEntity, IAggregateRoot
     public string Reference { get; private set; } = default!;
     public bool IsPublic { get; private set; } = default!;
 
-    public string Content { get; private set; } = default!;
-    public string Raw { get; private set; } = default!;
+    public string? Content { get; private set; }
+    public string? Raw { get; private set; }
     public string? ImagePath { get; private set; }
 
     public Document(DefaultIdType employeeId, string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description = null, string? notes = null, string? imagePath = null)
@@ -50,7 +50,7 @@ public class Document : AuditableEntity, IAggregateRoot
         return this;
     }
 
-    public Document UpdateContent(string content, string raw)
+    public Document UpdateContent(string? content, string? raw)
     {
         if (content is not null && !Content.Equals(content)) Content = content;
         if (raw is not null && !Raw.Equals(raw)) Raw = raw;

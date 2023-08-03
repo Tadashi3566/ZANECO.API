@@ -14,5 +14,5 @@ public class DocumentDto : IDto
     public string Raw { get; set; } = default!;
     public string? Description { get; set; }
     public string? Notes { get; set; }
-    public string ImagePath { get; set; } = default!;
+    public string? ImagePath { get; set; }
 }
