@@ -57,6 +57,7 @@ public class DocumentCreateRequestHandler : IRequestHandler<DocumentCreateReques
         await _repository.AddAsync(document, cancellationToken);
 
         _jobService.Enqueue(() => _ocrJob.Recognition(document.Id, cancellationToken));
+        //_jobService.Schedule(() => _ocrJob.Recognition(document.Id, cancellationToken), TimeSpan.FromSeconds(5));
 
         return document.Id;
     }

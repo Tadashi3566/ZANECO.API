@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using System.Net.Http.Headers;
+using ZANECO.API.Application.Common.Interfaces;
 
 namespace ZANECO.API.Infrastructure.PaddleOCR;
 internal static class Startup
@@ -14,6 +15,8 @@ internal static class Startup
             c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         })
         .AddTransientHttpErrorPolicy(policy => policy.WaitAndRetryAsync(3, _ => TimeSpan.FromSeconds(30)));
+
+        services.AddScoped<IDocumentOcrJob, DocumentOcrJob>();
 
         return services;
     }
