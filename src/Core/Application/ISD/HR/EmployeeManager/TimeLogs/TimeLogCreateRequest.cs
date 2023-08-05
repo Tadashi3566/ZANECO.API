@@ -53,6 +53,13 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
 
     public async Task<DefaultIdType> Handle(TimeLogCreateRequest request, CancellationToken cancellationToken)
     {
+        // Timelog cannot be created when duplicate.
+        if (request.SyncId > 0)
+        {
+            var existingTimeLog = await _repoTimeLog.FirstOrDefaultAsync(new TimeLogBySyncIdSpec(request.LogDate, request.SyncId), cancellationToken);
+            if (existingTimeLog is not null) return existingTimeLog.Id;
+        }
+
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
         _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
@@ -63,13 +70,6 @@ public class TimeLogCreateRequestHandler : IRequestHandler<TimeLogCreateRequest,
         // Timelog cannot be created when Attendance is not yet generated.
         var generatedAttendance = await _repoAttendance.FirstOrDefaultAsync(new AttendanceByDateSpec(employee.Id, request.LogDate), cancellationToken);
         _ = generatedAttendance ?? throw new NotFoundException($"Attendance {request.LogDate:D} not yet generated.");
-
-        // Timelog cannot be created when duplicate.
-        if (request.SyncId > 0)
-        {
-            var existingTimeLog = await _repoTimeLog.FirstOrDefaultAsync(new TimeLogBySyncIdSpec(request.LogDate, request.SyncId), cancellationToken);
-            if (existingTimeLog is not null) return existingTimeLog.Id;
-        }
 
         string imagePath = await _file.UploadAsync<TimeLog>(request.Image, FileType.Image, cancellationToken);
 
