@@ -10,7 +10,8 @@ public abstract class AuditableEntity<T> : BaseEntity<T>, IAuditableEntity, ISof
 {
     //[Required]
     [Column(TypeName = "VARCHAR(1024)")]
-    public string Name { get; set; } = default!;
+    public string Name { get; set; } = string.Empty;
+    [Column(TypeName = "VARCHAR(32)")]
     public string? Remarks { get; set; }
     public string? Description { get; set; }
     public string? Notes { get; set; }
