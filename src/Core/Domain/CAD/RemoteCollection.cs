@@ -11,7 +11,6 @@ public class RemoteCollection : AuditableEntity, IAggregateRoot
     public decimal Amount { get; private set; }
 
     public string? OrNumber { get; private set; }
-    public string? ImagePath { get; private set; }
 
     public RemoteCollection(double collectorId, string collector, string reference, DateTime transactionDate, DateTime reportDate, string accountNumber, decimal amount, string name, string orNumber, string? description = null, string? notes = null, string? imagePath = null)
     {

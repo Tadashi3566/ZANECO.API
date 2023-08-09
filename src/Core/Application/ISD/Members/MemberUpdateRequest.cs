@@ -3,12 +3,10 @@ using ZANECO.API.Domain.ISD;
 
 namespace ZANECO.API.Application.ISD.Members;
 
-public class MemberUpdateRequest : IRequest<Guid>
+public class MemberUpdateRequest : RequestWithImageExtension<MemberUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public int IncrementId { get; set; } = default!;
     public int ApplicationId { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public string Address { get; set; } = default!;
     public string District { get; set; } = default!;
     public string Municipality { get; set; } = default!;
@@ -18,10 +16,6 @@ public class MemberUpdateRequest : IRequest<Guid>
     public DateTime? BirthDate { get; set; } = default!;
     public DateTime? ApplicationDate { get; set; } = default!;
     public DateTime? MembershipDate { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class MemberUpdateRequestValidator : CustomValidator<MemberUpdateRequest>

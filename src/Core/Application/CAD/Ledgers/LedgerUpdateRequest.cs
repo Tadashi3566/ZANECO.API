@@ -2,9 +2,8 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Ledgers;
 
-public class LedgerUpdateRequest : IRequest<Guid>
+public class LedgerUpdateRequest : RequestExtension<LedgerUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public Guid AccountId { get; set; }
     public double IdCode { get; set; } = default!;
     public string AccountNumber { get; set; } = default!;
@@ -41,10 +40,6 @@ public class LedgerUpdateRequest : IRequest<Guid>
 
     public string? Collector { get; set; }
     public DateTime PostingDate { get; set; }
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
 }
 
 public class LedgerUpdateRequestValidator : CustomValidator<LedgerUpdateRequest>

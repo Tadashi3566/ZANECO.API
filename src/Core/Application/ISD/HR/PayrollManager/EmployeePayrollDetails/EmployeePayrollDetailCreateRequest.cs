@@ -3,15 +3,13 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.EmployeePayrollDetails;
 
-public class EmployeePayrollDetailCreateRequest : IRequest<Guid>
+public class EmployeePayrollDetailCreateRequest : RequestExtension<EmployeePayrollDetailCreateRequest>, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; } = default!;
     public Guid PayrollId { get; set; } = default!;
     public Guid AdjustmentId { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
     public string Contributor { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class EmployeePayrollDetailCreateRequestValidator : CustomValidator<EmployeePayrollDetailCreateRequest>

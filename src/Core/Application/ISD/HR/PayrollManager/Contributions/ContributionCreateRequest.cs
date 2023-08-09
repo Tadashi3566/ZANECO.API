@@ -2,7 +2,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Contributions;
 
-public class ContributionCreateRequest : IRequest<Guid>
+public class ContributionCreateRequest : RequestExtension<ContributionCreateRequest>, IRequest<Guid>
 {
     public string ContributionType { get; set; } = default!;
     public DateTime StartDate { get; set; } = default!;
@@ -14,8 +14,6 @@ public class ContributionCreateRequest : IRequest<Guid>
     public decimal TotalContribution { get; set; } = default!;
     public decimal Percentage { get; set; } = default!;
     public bool IsFixed { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class CreateContributionRequestValidator : CustomValidator<ContributionCreateRequest>

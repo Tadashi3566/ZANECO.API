@@ -1,9 +1,7 @@
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Attendances;
 
-public class AttendanceDto : IDto
+public class AttendanceDto : DtoExtension<AttendanceDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
-
     public DefaultIdType EmployeeId { get; set; } = default!;
     public string? EmployeeName { get; set; }
 
@@ -12,7 +10,7 @@ public class AttendanceDto : IDto
     public DateTime? TimeOutDate { get; set; }
     public bool IsOvertime { get; set; } = default!;
 
-    public DefaultIdType ScheduleDetailId { get; set; } = DefaultIdType.Empty;
+    public DefaultIdType ScheduleDetailId { get; set; } = default!;
     public string ScheduleDetailDay { get; set; } = default!;
     public int ScheduleHours { get; set; } = default!;
 
@@ -30,10 +28,6 @@ public class AttendanceDto : IDto
     public int UnderTimeMinutes { get; set; } = default!;
     public double TotalHours { get; set; } = default!;
     public double PaidHours { get; set; } = default!;
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? Status { get; set; }
 
     public string? ImagePathIn1 { get; set; }
     public string? ImagePathOut1 { get; set; }

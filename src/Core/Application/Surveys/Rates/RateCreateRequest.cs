@@ -2,12 +2,9 @@ using ZANECO.API.Domain.Surveys;
 
 namespace ZANECO.API.Application.Surveys.Rates;
 
-public class RateCreateRequest : IRequest<Guid>
+public class RateCreateRequest : RequestExtension<RateCreateRequest>, IRequest<Guid>
 {
     public int Number { get; set; } = default!;
-    public string Name { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class CreateRateRequestValidator : CustomValidator<RateCreateRequest>

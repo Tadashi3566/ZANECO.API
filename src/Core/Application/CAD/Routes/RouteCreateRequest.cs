@@ -1,17 +1,12 @@
-using ZANECO.API.Application.CAD.Barangays;
 using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Routes;
 
-public class RouteCreateRequest : IRequest<Guid>
+public class RouteCreateRequest : RequestExtension<RouteCreateRequest>, IRequest<Guid>
 {
     public DefaultIdType AreaId { get; set; } = default!;
     public int Number { get; set; } = default!;
     public string Code { get; set; } = default!;
-    public string Name { get; set; } = default!;
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class CreateRouteRequestValidator : CustomValidator<RouteCreateRequest>
@@ -39,20 +34,19 @@ public class CreateRouteRequestValidator : CustomValidator<RouteCreateRequest>
 public class RouteCreateRequestHandler : IRequestHandler<RouteCreateRequest, Guid>
 {
     private readonly IReadRepository<Area> _repoArea;
-    private readonly IRepositoryWithEvents<Route> _repository;
-    private readonly IStringLocalizer<BarangayUpdateRequestHandler> _localizer;
+    private readonly IRepositoryWithEvents<Route> _repoRoute;
 
-    public RouteCreateRequestHandler(IReadRepository<Area> repoArea, IRepositoryWithEvents<Route> repository, IStringLocalizer<BarangayUpdateRequestHandler> localizer) =>
-        (_repoArea, _repository, _localizer) = (repoArea, repository, localizer);
+    public RouteCreateRequestHandler(IReadRepository<Area> repoArea, IRepositoryWithEvents<Route> repoRoute) =>
+        (_repoArea, _repoRoute) = (repoArea, repoRoute);
 
     public async Task<Guid> Handle(RouteCreateRequest request, CancellationToken cancellationToken)
     {
         var area = await _repoArea.GetByIdAsync(request.AreaId, cancellationToken);
-        _ = area ?? throw new NotFoundException($"Area {request.AreaId} not found.");
+        _ = area ?? throw new NotFoundException($"Route {request.AreaId} not found.");
 
         var route = new Route(request.AreaId, area.Name, request.Number, request.Code, request.Name, request.Description, request.Notes);
 
-        await _repository.AddAsync(route, cancellationToken);
+        await _repoRoute.AddAsync(route, cancellationToken);
 
         return route.Id;
     }

@@ -9,7 +9,6 @@ public class Dependent : AuditableEntity, IAggregateRoot
     public string Gender { get; private set; } = default!;
     public DateTime? BirthDate { get; private set; }
     public string Relation { get; private set; } = default!;
-    public string? ImagePath { get; private set; }
 
     public Dependent(DefaultIdType employeeId, string employeeName, string name, string gender, DateTime? birthDate, string relation, string? description = null, string? notes = null, string? imagePath = null)
     {

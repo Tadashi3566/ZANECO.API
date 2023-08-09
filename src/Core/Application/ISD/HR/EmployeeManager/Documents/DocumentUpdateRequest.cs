@@ -2,21 +2,15 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Documents;
 
-public class DocumentUpdateRequest : IRequest<Guid>
+public class DocumentUpdateRequest : RequestWithImageExtension<DocumentUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public Guid EmployeeId { get; set; }
     public DateTime? DocumentDate { get; set; }
     public string DocumentType { get; set; } = default!;
     public string Reference { get; set; } = default!;
     public bool IsPublic { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public string? Content { get; set; }
     public string? Raw { get; set; }
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class DocumentUpdateRequestValidator : CustomValidator<DocumentUpdateRequest>
@@ -48,13 +42,12 @@ public class DocumentUpdateRequestHandler : IRequestHandler<DocumentUpdateReques
 {
     private readonly IReadRepository<Employee> _repoEmployee;
     private readonly IRepositoryWithEvents<Document> _repository;
-    private readonly IStringLocalizer<DocumentUpdateRequestHandler> _localizer;
     private readonly IFileStorageService _file;
     private readonly IDocumentOcrJob _ocrJob;
     private readonly IJobService _jobService;
 
-    public DocumentUpdateRequestHandler(IReadRepository<Employee> repoEmployee, IRepositoryWithEvents<Document> repository, IStringLocalizer<DocumentUpdateRequestHandler> localizer, IFileStorageService file, IDocumentOcrJob ocrJob, IJobService jobService) =>
-        (_repoEmployee, _repository, _localizer, _file, _ocrJob, _jobService) = (repoEmployee, repository, localizer, file, ocrJob, jobService);
+    public DocumentUpdateRequestHandler(IReadRepository<Employee> repoEmployee, IRepositoryWithEvents<Document> repository, IFileStorageService file, IDocumentOcrJob ocrJob, IJobService jobService) =>
+        (_repoEmployee, _repository, _file, _ocrJob, _jobService) = (repoEmployee, repository, file, ocrJob, jobService);
 
     public async Task<Guid> Handle(DocumentUpdateRequest request, CancellationToken cancellationToken)
     {

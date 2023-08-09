@@ -2,12 +2,10 @@ using ZANECO.API.Domain.Surveys;
 
 namespace ZANECO.API.Application.Surveys.RatingTemplates;
 
-public class RatingTemplateCreateRequest : IRequest<Guid>
+public class RatingTemplateCreateRequest : RequestExtension<RatingTemplateCreateRequest>, IRequest<Guid>
 {
     public Guid RateId { get; set; }
     public string Comment { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class RatingTemplateCreateRequestValidator : CustomValidator<RatingTemplateCreateRequest>

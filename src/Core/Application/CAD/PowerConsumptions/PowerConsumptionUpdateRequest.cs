@@ -4,15 +4,11 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.PowerConsumptions;
 
-public class PowerConsumptionUpdateRequest : IRequest<Guid>
+public class PowerConsumptionUpdateRequest : RequestExtension<PowerConsumptionUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public string GroupName { get; set; } = default!;
     public string BillMonth { get; set; } = default!;
     public decimal KWHPurchased { get; set; } = default!;
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class PowerConsumptionUpdateRequestValidator : CustomValidator<PowerConsumptionUpdateRequest>

@@ -2,17 +2,11 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Routes;
 
-public class RouteUpdateRequest : IRequest<Guid>
+public class RouteUpdateRequest : RequestExtension<RouteUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public DefaultIdType AreaId { get; set; } = default!;
     public int Number { get; set; } = default!;
     public string Code { get; set; } = default!;
-    public string Name { get; set; } = default!;
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
 }
 
 public class RouteUpdateRequestValidator : CustomValidator<RouteUpdateRequest>
@@ -30,7 +24,7 @@ public class RouteUpdateRequestValidator : CustomValidator<RouteUpdateRequest>
             .MustAsync(async (route, code, ct) =>
                     await repository.FirstOrDefaultAsync(new RouteByCodeSpec(code), ct)
                         is not { } existingRoute || existingRoute.Id == route.Id)
-                .WithMessage((_, code) => string.Format(localizer["Route already exists."], code));
+                .WithMessage((_, code) => string.Format(localizer["Route {0} already exists."], code));
 
         RuleFor(p => p.Name)
             .NotEmpty()
@@ -44,23 +38,22 @@ public class RouteUpdateRequestValidator : CustomValidator<RouteUpdateRequest>
 public class RouteUpdateRequestHandler : IRequestHandler<RouteUpdateRequest, Guid>
 {
     private readonly IReadRepository<Area> _repoArea;
-    private readonly IRepositoryWithEvents<Route> _repository;
-    private readonly IStringLocalizer<RouteUpdateRequestHandler> _localizer;
+    private readonly IRepositoryWithEvents<Route> _repoRoute;
 
-    public RouteUpdateRequestHandler(IReadRepository<Area> repoArea, IRepositoryWithEvents<Route> repository, IStringLocalizer<RouteUpdateRequestHandler> localizer) =>
-        (_repoArea, _repository, _localizer) = (repoArea, repository, localizer);
+    public RouteUpdateRequestHandler(IReadRepository<Area> repoArea, IRepositoryWithEvents<Route> repoRoute, IStringLocalizer<RouteUpdateRequestHandler> localizer) =>
+        (_repoArea, _repoRoute) = (repoArea, repoRoute);
 
     public async Task<Guid> Handle(RouteUpdateRequest request, CancellationToken cancellationToken)
     {
         var area = await _repoArea.GetByIdAsync(request.AreaId, cancellationToken);
         _ = area ?? throw new NotFoundException($"Area {request.AreaId} not found.");
 
-        var route = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        var route = await _repoRoute.GetByIdAsync(request.Id, cancellationToken);
         _ = route ?? throw new NotFoundException($"Route {request.Id} not found.");
 
         var updatedRoute = route.Update(area.Name, request.Number, request.Code, request.Name, request.Description, request.Notes);
 
-        await _repository.UpdateAsync(updatedRoute, cancellationToken);
+        await _repoRoute.UpdateAsync(updatedRoute, cancellationToken);
 
         return request.Id;
     }

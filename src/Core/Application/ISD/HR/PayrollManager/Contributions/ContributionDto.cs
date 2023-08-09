@@ -1,8 +1,7 @@
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Contributions;
 
-public class ContributionDto : IDto
+public class ContributionDto : DtoExtension<ContributionDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
     public string ContributionType { get; set; } = default!;
     public DateTime StartDate { get; set; } = default!;
     public DateTime EndDate { get; set; } = default!;
@@ -13,7 +12,4 @@ public class ContributionDto : IDto
     public decimal TotalContribution { get; set; } = default!;
     public decimal Percentage { get; set; } = default!;
     public bool IsFixed { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? Status { get; set; }
 }

@@ -8,8 +8,6 @@ public class Prize : AuditableEntity, IAggregateRoot
     public string PrizeType { get; private set; }
     public int Winners { get; private set; }
 
-    public string? ImagePath { get; private set; }
-
     public Prize(DefaultIdType raffleId, string raffleName, string prizeType, int winners, string name, string? description = null, string? notes = null, string? imagePath = null)
     {
         RaffleId = raffleId;

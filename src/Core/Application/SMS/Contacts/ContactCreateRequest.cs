@@ -2,16 +2,12 @@ using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.SMS.Contacts;
 
-public class ContactCreateRequest : IRequest<Guid>
+public class ContactCreateRequest : RequestWithImageExtension<ContactCreateRequest>, IRequest<Guid>
 {
     public string ContactType { get; set; } = default!;
     public string Reference { get; set; } = default!;
     public string PhoneNumber { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public string Address { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class ContactCreateRequestValidator : CustomValidator<ContactCreateRequest>
@@ -33,7 +29,7 @@ public class ContactCreateRequestValidator : CustomValidator<ContactCreateReques
             .MinimumLength(10)
             .MaximumLength(13)
             .MustAsync(async (code, ct) => await repoContact.FirstOrDefaultAsync(new ContactByNumberSpec(code), ct) is null)
-            .WithMessage((_, code) => string.Format(localizer["Contact already exists."], code));
+            .WithMessage((_, code) => string.Format(localizer["Contact {0} already exists."], code));
 
         RuleFor(p => p.Image)
             .SetNonNullableValidator(new ImageUploadRequestValidator());

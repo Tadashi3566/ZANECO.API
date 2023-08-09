@@ -13,7 +13,6 @@ public class Customer : AuditableEntity, IAggregateRoot
     public decimal Investment { get; private set; }
     public decimal Sales { get; private set; }
     public int Points { get; private set; }
-    public string? ImagePath { get; private set; }
 
     public Customer(string code, string name, string address, string phoneNumber, decimal investment, decimal sales, int points, string? description = null, string? notes = null, string? imagePath = null)
     {

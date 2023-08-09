@@ -2,17 +2,13 @@ using ZANECO.API.Domain.AGMA;
 
 namespace ZANECO.API.Application.AGMA.Winners;
 
-public class WinnerCreateRequest : IRequest<Guid>
+public class WinnerCreateRequest : RequestWithImageExtension<WinnerCreateRequest>, IRequest<Guid>
 {
     public DefaultIdType RaffleId { get; set; } = default!;
     public string RaffleName { get; set; } = default!;
     public DefaultIdType PrizeId { get; set; } = default!;
     public string PrizeName { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public string Address { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class WinnerCreateRequestValidator : CustomValidator<WinnerCreateRequest>
@@ -38,15 +34,15 @@ public class WinnerCreateRequestHandler : IRequestHandler<WinnerCreateRequest, G
 {
     private readonly IReadRepository<Raffle> _repoRaffle;
     private readonly IReadRepository<Prize> _repoPrize;
-    private readonly IRepositoryWithEvents<Winner> _repository;
+    private readonly IRepositoryWithEvents<Winner> _repoWinner;
     private readonly IFileStorageService _file;
 
     public WinnerCreateRequestHandler(
         IReadRepository<Raffle> repoRaffle,
         IReadRepository<Prize> repoPrize,
-        IRepositoryWithEvents<Winner> repository,
+        IRepositoryWithEvents<Winner> repoWinner,
         IFileStorageService file) =>
-        (_repoRaffle, _repoPrize, _repository, _file) = (repoRaffle, repoPrize, repository, file);
+        (_repoRaffle, _repoPrize, _repoWinner, _file) = (repoRaffle, repoPrize, repoWinner, file);
 
     public async Task<Guid> Handle(WinnerCreateRequest request, CancellationToken cancellationToken)
     {
@@ -60,7 +56,7 @@ public class WinnerCreateRequestHandler : IRequestHandler<WinnerCreateRequest, G
 
         var winner = new Winner(request.RaffleId, raffle.Name, request.PrizeId, prize.Name, request.Name, request.Address, request.Description, request.Notes, imagePath);
 
-        await _repository.AddAsync(winner, cancellationToken);
+        await _repoWinner.AddAsync(winner, cancellationToken);
 
         return winner.Id;
     }

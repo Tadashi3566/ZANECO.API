@@ -2,18 +2,14 @@ using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.SMS.MessageTemplates;
 
-public class MessageTemplateCreateRequest : IRequest<Guid>
+public class MessageTemplateCreateRequest : RequestWithImageExtension<MessageTemplateCreateRequest>, IRequest<Guid>
 {
     public string TemplateType { get; set; } = default!;
     public string MessageType { get; set; } = default!;
     public bool IsAPI { get; set; } = true;
-    public string Name { get; set; } = default!;
     public string Message { get; set; } = default!;
     public string Recipients { get; set; } = default!;
     public DateTime Schedule { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class MessageTemplateCreateRequestValidator : CustomValidator<MessageTemplateCreateRequest>

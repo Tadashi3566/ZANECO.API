@@ -2,22 +2,16 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.RemoteCollections;
 
-public class RemoteCollectionUpdateRequest : IRequest<Guid>
+public class RemoteCollectionUpdateRequest : RequestWithImageExtension<RemoteCollectionUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public double CollectorId { get; set; } = default!;
     public string Collector { get; set; } = default!;
     public string Reference { get; set; } = default!;
     public DateTime TransactionDate { get; set; }
     public DateTime ReportDate { get; set; }
     public string AccountNumber { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
     public string OrNumber { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class RemoteCollectionUpdateRequestValidator : CustomValidator<RemoteCollectionUpdateRequest>
@@ -47,11 +41,10 @@ public class RemoteCollectionUpdateRequestValidator : CustomValidator<RemoteColl
 public class RemoteCollectionUpdateRequestHandler : IRequestHandler<RemoteCollectionUpdateRequest, Guid>
 {
     private readonly IRepositoryWithEvents<RemoteCollection> _repository;
-    private readonly IStringLocalizer<RemoteCollectionUpdateRequestHandler> _localizer;
     private readonly IFileStorageService _file;
 
-    public RemoteCollectionUpdateRequestHandler(IRepositoryWithEvents<RemoteCollection> repository, IStringLocalizer<RemoteCollectionUpdateRequestHandler> localizer, IFileStorageService file) =>
-        (_repository, _localizer, _file) = (repository, localizer, file);
+    public RemoteCollectionUpdateRequestHandler(IRepositoryWithEvents<RemoteCollection> repository, IFileStorageService file) =>
+        (_repository, _file) = (repository, file);
 
     public async Task<Guid> Handle(RemoteCollectionUpdateRequest request, CancellationToken cancellationToken)
     {

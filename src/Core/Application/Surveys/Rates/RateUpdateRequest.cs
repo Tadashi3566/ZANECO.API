@@ -2,13 +2,9 @@ using ZANECO.API.Domain.Surveys;
 
 namespace ZANECO.API.Application.Surveys.Rates;
 
-public class RateUpdateRequest : IRequest<Guid>
+public class RateUpdateRequest : RequestExtension<RateUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public int Number { get; set; } = default!;
-    public string Name { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class RateUpdateRequestValidator : CustomValidator<RateUpdateRequest>
@@ -43,7 +39,6 @@ public class RateUpdateRequestHandler : IRequestHandler<RateUpdateRequest, Guid>
     public async Task<Guid> Handle(RateUpdateRequest request, CancellationToken cancellationToken)
     {
         var rate = await _repository.GetByIdAsync(request.Id, cancellationToken);
-
         _ = rate ?? throw new NotFoundException($"rate {request.Id} not found.");
 
         var updatedRate = rate.Update(request.Number, request.Name, request.Description, request.Notes);

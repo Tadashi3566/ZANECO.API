@@ -11,8 +11,6 @@ public class Employer : AuditableEntity, IAggregateRoot
     public DateTime StartDate { get; private set; }
     public DateTime EndDate { get; private set; }
 
-    public string? ImagePath { get; private set; }
-
     public Employer(DefaultIdType employeeId, string employeeName, string name, string address, string designation, DateTime startDate, DateTime endDate, string? description = null, string? notes = null, string? imagePath = null)
     {
         EmployeeId = employeeId;

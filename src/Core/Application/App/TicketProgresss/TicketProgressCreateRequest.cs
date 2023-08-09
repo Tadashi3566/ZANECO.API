@@ -2,14 +2,10 @@ using ZANECO.API.Domain.App;
 
 namespace ZANECO.API.Application.App.TicketProgresss;
 
-public class TicketProgressCreateRequest : IRequest<Guid>
+public class TicketProgressCreateRequest : RequestWithImageExtension<TicketProgressCreateRequest>, IRequest<Guid>
 {
     public Guid TicketId { get; set; }
     public string ProgressType { get; set; } = default!;
-    public string Name { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class TicketProgressCreateRequestValidator : CustomValidator<TicketProgressCreateRequest>

@@ -2,15 +2,10 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Areas;
 
-public class AreaUpdateRequest : IRequest<Guid>
+public class AreaUpdateRequest : RequestExtension<AreaUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public int Number { get; set; } = default!;
     public string Code { get; set; } = default!;
-    public string Name { get; set; } = default!;
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class AreaUpdateRequestValidator : CustomValidator<AreaUpdateRequest>

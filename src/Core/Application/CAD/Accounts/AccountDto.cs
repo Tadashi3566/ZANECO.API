@@ -1,15 +1,13 @@
 namespace ZANECO.API.Application.CAD.Accounts;
 
-public class AccountDto : IDto
+public class AccountDto : DtoExtension<AccountDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
     public int IdCode { get; set; } = default!;
     public string AccountNumber { get; set; } = default!;
     public string Area { get; set; } = default!;
     public string Route { get; set; } = default!;
     public string Cipher { get; set; } = default!;
     public string Tag { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public string Address { get; set; } = default!;
 
     public string AccountType { get; set; } = default!; // Residential, High and Low Voltage
@@ -40,8 +38,5 @@ public class AccountDto : IDto
     public decimal PresentReadingKWHCM { get; set; }
     public decimal UsedKWHCM { get; set; } = default!;
 
-    public string? Remarks { get; set; }
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? Status { get; set; }
+
 }

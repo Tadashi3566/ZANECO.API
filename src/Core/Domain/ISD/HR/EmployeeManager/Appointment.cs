@@ -25,8 +25,6 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
     public string? RecurrenceException { get; private set; }
     public string? CssClass { get; private set; }
 
-    public string? ImagePath { get; private set; }
-
     public Appointment(DefaultIdType employeeId, string employeeName, string appointmentType, string subject, DateTime startDateTime, DateTime endDateTime, string? location, int hours, bool isAllDay, DefaultIdType? recommendedBy, DefaultIdType? approvedBy, string? description = null, string? notes = null, string? imagePath = null) //, bool isReadOnly, bool isBlock, int? recurrenceId, string? recurrenceRule, string? recurrenceException, string? cssClass
     {
         EmployeeId = employeeId;

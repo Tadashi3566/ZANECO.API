@@ -3,21 +3,15 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.App.Groups;
 
-public class GroupUpdateRequest : IRequest<Guid>
+public class GroupUpdateRequest : RequestWithImageExtension<GroupUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public string Application { get; set; } = default!;
     public string Parent { get; set; } = default!;
     public int Number { get; set; } = default!;
     public string Code { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
     public string Tag { get; set; } = default!;
     public Guid EmployeeId { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class GroupUpdateRequestValidator : CustomValidator<GroupUpdateRequest>
@@ -41,7 +35,7 @@ public class GroupUpdateRequestValidator : CustomValidator<GroupUpdateRequest>
             .MustAsync(async (group, code, ct) =>
                     await repoGroupRepo.FirstOrDefaultAsync(new GroupByCodeSpec(code), ct)
                         is not { } existingGroup || existingGroup.Id == group.Id)
-                .WithMessage((_, code) => string.Format(localizer["group already exists."], code));
+                .WithMessage((_, code) => string.Format(localizer["group {0} already exists."], code));
 
         RuleFor(p => p.Name)
             .NotEmpty()

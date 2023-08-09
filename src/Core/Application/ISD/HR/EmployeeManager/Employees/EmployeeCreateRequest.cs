@@ -5,7 +5,7 @@ using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
-public class EmployeeCreateRequest : IRequest<Guid>
+public class EmployeeCreateRequest : RequestWithImageExtension<EmployeeCreateRequest>, IRequest<Guid>
 {
     public bool IsActive { get; set; } = default!;
     public int Number { get; set; } = default!;
@@ -52,11 +52,6 @@ public class EmployeeCreateRequest : IRequest<Guid>
 
     // Others
     public string? BloodType { get; set; }
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class EmployeeCreateRequestValidator : CustomValidator<EmployeeCreateRequest>

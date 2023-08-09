@@ -2,20 +2,14 @@ using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.SMS.MessageTemplates;
 
-public class MessageTemplateUpdateRequest : IRequest<Guid>
+public class MessageTemplateUpdateRequest : RequestWithImageExtension<MessageTemplateUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public string TemplateType { get; set; } = default!;
     public string MessageType { get; set; } = "sms.automatic";
     public bool IsAPI { get; set; } = true;
-    public string Name { get; set; } = default!;
     public string Message { get; set; } = default!;
     public string Recipients { get; set; } = default!;
     public DateTime Schedule { get; set; } = DateTime.Today;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class MessageTemplateUpdateRequestValidator : CustomValidator<MessageTemplateUpdateRequest>
@@ -59,8 +53,7 @@ public class MessageTemplateUpdateRequestHandler : IRequestHandler<MessageTempla
     public async Task<Guid> Handle(MessageTemplateUpdateRequest request, CancellationToken cancellationToken)
     {
         var messageTemplate = await _repository.GetByIdAsync(request.Id, cancellationToken);
-
-        _ = messageTemplate ?? throw new NotFoundException($"MessageTemplate {request.Id} not found.");
+        _ = messageTemplate ?? throw new NotFoundException($"Message Template {request.Id} not found.");
 
         // Remove old file if flag is set
         if (request.DeleteCurrentImage)

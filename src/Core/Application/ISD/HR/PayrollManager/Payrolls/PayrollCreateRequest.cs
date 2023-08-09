@@ -2,11 +2,10 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Payrolls;
 
-public class PayrollCreateRequest : IRequest<Guid>
+public class PayrollCreateRequest : RequestExtension<PayrollCreateRequest>, IRequest<Guid>
 {
     public string PayrollType { get; set; } = default!;
     public string EmploymentType { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public decimal TotalSalary { get; set; } = default!;
     public decimal TotalAdditional { get; set; } = default!;
     public decimal TotalGross { get; set; } = default!;
@@ -15,8 +14,6 @@ public class PayrollCreateRequest : IRequest<Guid>
     public DateTime StartDate { get; set; } = default!;
     public DateTime EndDate { get; set; } = default!;
     public DateTime PayrollDate { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class CreatePayrollRequestValidator : CustomValidator<PayrollCreateRequest>

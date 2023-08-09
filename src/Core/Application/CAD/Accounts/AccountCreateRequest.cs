@@ -2,7 +2,7 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Accounts;
 
-public class AccountCreateRequest : IRequest<Guid>
+public class AccountCreateRequest : RequestWithImageExtension<AccountCreateRequest>, IRequest<Guid>
 {
     public int IdCode { get; set; } = default!;
     public string AccountNumber { get; set; } = default!;
@@ -10,7 +10,6 @@ public class AccountCreateRequest : IRequest<Guid>
     public string Route { get; set; } = default!;
     public string Cipher { get; set; } = default!;
     public string Tag { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public string Address { get; set; } = default!;
 
     public string AccountType { get; set; } = default!; // Residential, High and Low Voltage
@@ -40,10 +39,6 @@ public class AccountCreateRequest : IRequest<Guid>
     public double PreviousReadingKWHCM { get; set; }
     public double PresentReadingKWHCM { get; set; }
     public double UsedKWHCM { get; set; } = default!;
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class CreateAccountRequestValidator : CustomValidator<AccountCreateRequest>

@@ -2,11 +2,10 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.PowerRates;
 
-public class PowerRateCreateRequest : IRequest<Guid>
+public class PowerRateCreateRequest : RequestExtension<PowerRateCreateRequest>, IRequest<Guid>
 {
     public DefaultIdType GroupId { get; private set; } = default!;
     public string Code { get; set; } = default!;
-    public string Name { get; set; } = default!;
 
     public string BillMonth { get; set; } = default!;
     public decimal GenerationCharge { get; set; }
@@ -60,9 +59,6 @@ public class PowerRateCreateRequest : IRequest<Guid>
     public decimal FinalVAT { get; set; }
     public decimal WithholdingTaxServices { get; set; }
     public decimal WithholdingTaxRental { get; set; }
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class CreatePowerRateRequestValidator : CustomValidator<PowerRateCreateRequest>

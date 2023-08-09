@@ -189,6 +189,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -250,6 +253,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -323,6 +329,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -409,6 +418,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("Tag")
                         .IsRequired()
@@ -530,7 +542,6 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(16)
                         .HasColumnType("VARCHAR(16)")
@@ -607,6 +618,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -783,6 +797,9 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasMaxLength(8)
                         .HasColumnType("varchar(8)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("Tag")
                         .IsRequired()
                         .HasMaxLength(32)
@@ -841,6 +858,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -859,6 +879,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -901,6 +924,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -916,6 +942,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -994,6 +1023,9 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<double>("KWH")
                         .HasColumnType("double");
 
@@ -1018,6 +1050,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -1143,6 +1178,9 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasMaxLength(32)
                         .HasColumnType("varchar(32)");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<decimal>("KWHPurchased")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("Decimal(12,2)")
@@ -1163,6 +1201,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -1276,6 +1317,9 @@ namespace Migrators.MySQL.Migrations.Application
                         .ValueGeneratedOnAdd()
                         .HasColumnType("Decimal(12,2)")
                         .HasDefaultValue(0m);
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
 
                     b.Property<decimal>("InterclassCrossSubsidyCharge")
                         .ValueGeneratedOnAdd()
@@ -1392,6 +1436,9 @@ namespace Migrators.MySQL.Migrations.Application
                         .ValueGeneratedOnAdd()
                         .HasColumnType("Decimal(12,2)")
                         .HasDefaultValue(0m);
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<decimal>("SupplyRetailCharge")
                         .ValueGeneratedOnAdd()
@@ -1565,6 +1612,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime>("ReportDate")
                         .HasColumnType("date");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -1615,6 +1665,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -1633,6 +1686,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -1699,6 +1755,9 @@ namespace Migrators.MySQL.Migrations.Application
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("UnitOfMeasurement")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -1731,6 +1790,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -1746,6 +1808,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -1820,6 +1885,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<decimal>("Sales")
                         .HasColumnType("decimal(65,30)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Customers", "ZANECO");
@@ -1846,6 +1914,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -1864,6 +1935,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.HasKey("Id");
 
@@ -1931,6 +2005,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Specification")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -2013,6 +2090,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<decimal>("TotalDiscount")
                         .HasColumnType("decimal(65,30)");
@@ -2098,6 +2178,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<Guid>("SaleId")
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("Transaction")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -2169,6 +2252,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("Tin")
                         .IsRequired()
@@ -2286,7 +2372,6 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("Subject")
@@ -2365,6 +2450,9 @@ namespace Migrators.MySQL.Migrations.Application
                         .IsRequired()
                         .HasMaxLength(1024)
                         .HasColumnType("varchar(1024)");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ImagePathIn1")
                         .HasColumnType("longtext");
@@ -2452,7 +2540,6 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
@@ -2540,6 +2627,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -2691,6 +2781,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("TaxType")
                         .IsRequired()
                         .HasMaxLength(8)
@@ -2778,6 +2871,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -3017,6 +3113,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("TaxType")
                         .HasMaxLength(8)
                         .HasColumnType("varchar(8)");
@@ -3105,6 +3204,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -3115,6 +3217,77 @@ namespace Migrators.MySQL.Migrations.Application
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Employers", "ZANECO");
+
+                    b.HasAnnotation("Finbuckle:MultiTenant", true);
+                });
+
+            modelBuilder.Entity("ZANECO.API.Domain.ISD.HR.EmployeeManager.JobDescription", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<Guid?>("DeletedBy")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Department")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
+                    b.Property<Guid>("LastModifiedBy")
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(1024)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("ReportsTo")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
+                    b.Property<string>("TenantId")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("JobDescriptions", "ZANECO");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
@@ -3178,6 +3351,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
@@ -3218,6 +3394,9 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasMaxLength(1024)
                         .HasColumnType("varchar(1024)");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -3245,6 +3424,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -3345,7 +3527,6 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(16)");
 
                     b.Property<DateTime?>("SyncDateTime")
@@ -3407,6 +3588,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<Guid>("GroupId")
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("tinyint(1)");
 
@@ -3438,6 +3622,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -3485,6 +3672,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<bool>("IsNationalHoliday")
                         .HasColumnType("tinyint(1)");
 
@@ -3503,6 +3693,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -3554,6 +3747,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("date");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<bool>("IsFixed")
                         .HasColumnType("tinyint(1)");
 
@@ -3590,6 +3786,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -3685,6 +3884,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -3745,6 +3947,9 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("Decimal(12,2)")
                         .HasDefaultValue(0m);
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -3783,6 +3988,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -3851,6 +4059,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("date");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -3879,6 +4090,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -3995,7 +4209,6 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("date");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
@@ -4042,6 +4255,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("date");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<bool>("IsClosed")
                         .HasColumnType("tinyint(1)");
 
@@ -4070,6 +4286,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -4143,6 +4362,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -4166,6 +4388,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -4210,6 +4435,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("Date");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<decimal>("IncrementAmount")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("Decimal(12,2)")
@@ -4247,6 +4475,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("Date");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -4280,6 +4511,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -4295,6 +4529,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -4334,6 +4571,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -4360,6 +4600,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("ScheduleType")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -4483,6 +4726,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -4555,6 +4801,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("TenantId")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -4589,6 +4838,9 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Gateway")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ImagePath")
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsRead")
@@ -4643,6 +4895,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime?>("SendTime")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("longtext");
 
@@ -4682,6 +4937,9 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Gateway")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ImagePath")
                         .HasColumnType("longtext");
 
                     b.Property<Guid>("LastModifiedBy")
@@ -4742,6 +5000,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime?>("SendTime")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<int>("StatusCode")
                         .HasColumnType("int");
 
@@ -4781,6 +5042,9 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Gateway")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ImagePath")
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsRead")
@@ -4831,6 +5095,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<DateTime?>("Scheduled")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TLVList")
                         .HasColumnType("longtext");
@@ -4912,6 +5179,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<DateTime>("Schedule")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
+
                     b.Property<string>("TemplateType")
                         .IsRequired()
                         .HasMaxLength(32)
@@ -4950,6 +5220,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -4968,6 +5241,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -5007,6 +5283,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -5036,6 +5315,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()
@@ -5077,6 +5359,9 @@ namespace Migrators.MySQL.Migrations.Application
                     b.Property<string>("Description")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("longtext");
+
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("char(36)");
 
@@ -5095,6 +5380,9 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.Property<string>("Remarks")
                         .HasColumnType("VARCHAR(32)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("VARCHAR(16)");
 
                     b.Property<string>("TenantId")
                         .IsRequired()

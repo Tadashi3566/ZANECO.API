@@ -2,18 +2,12 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Dependents;
 
-public class DependentUpdateRequest : IRequest<Guid>
+public class DependentUpdateRequest : RequestWithImageExtension<DependentUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public Guid EmployeeId { get; set; }
-    public string Name { get; set; } = default!;
     public string Gender { get; set; } = default!;
     public DateTime? BirthDate { get; set; }
     public string Relation { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class DependentUpdateRequestValidator : CustomValidator<DependentUpdateRequest>
@@ -46,11 +40,10 @@ public class DependentUpdateRequestHandler : IRequestHandler<DependentUpdateRequ
 {
     private readonly IReadRepository<Employee> _repoEmployee;
     private readonly IRepositoryWithEvents<Dependent> _repoDependent;
-    private readonly IStringLocalizer<DependentUpdateRequestHandler> _localizer;
     private readonly IFileStorageService _file;
 
-    public DependentUpdateRequestHandler(IReadRepository<Employee> repoEmployee, IRepositoryWithEvents<Dependent> repoDependent, IStringLocalizer<DependentUpdateRequestHandler> localizer, IFileStorageService file) =>
-        (_repoEmployee, _repoDependent, _localizer, _file) = (repoEmployee, repoDependent, localizer, file);
+    public DependentUpdateRequestHandler(IReadRepository<Employee> repoEmployee, IRepositoryWithEvents<Dependent> repoDependent, IFileStorageService file) =>
+        (_repoEmployee, _repoDependent, _file) = (repoEmployee, repoDependent, file);
 
     public async Task<Guid> Handle(DependentUpdateRequest request, CancellationToken cancellationToken)
     {

@@ -81,8 +81,6 @@ public class Employee : AuditableEntity, IAggregateRoot
     // Others
     public string? BloodType { get; private set; }
 
-    public string? ImagePath { get; private set; }
-
     public string FullName()
     {
         return Extension?.Length > 0 ? $"{FirstName} {MiddleName} {LastName} {Extension}".Trim() : $"{FirstName} {MiddleName} {LastName}".Trim();

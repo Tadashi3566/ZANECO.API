@@ -1,8 +1,7 @@
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Designations;
 
-public class DesignationDto : IDto
+public class DesignationDto : DtoExtension<DesignationDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
     public DefaultIdType EmployeeId { get; set; }
     public string IdNumber { get; set; } = default!;
     public string EmployeeName { get; set; } = default!;
@@ -29,9 +28,4 @@ public class DesignationDto : IDto
     public decimal RatePerDay { get; set; } = default!;
     public decimal RatePerHour { get; set; } = default!;
     public string TaxType { get; set; } = default!;
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? Status { get; set; }
-    public string? ImagePath { get; set; }
 }

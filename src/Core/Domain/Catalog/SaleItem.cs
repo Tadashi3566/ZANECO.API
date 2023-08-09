@@ -23,7 +23,6 @@ public class SaleItem : AuditableEntity, IAggregateRoot
     public decimal Vat { get; private set; }
     public decimal DiscountAmount { get; private set; }
     public decimal Net { get; private set; }
-    public string? ImagePath { get; private set; }
 
     public SaleItem(DefaultIdType saleId, DefaultIdType productId, DefaultIdType barcodeId, DefaultIdType discountId, int items, string name, decimal gross, decimal vat, decimal discountAmount, decimal net, string? description = null, string? notes = null, string? imagePath = null)
     {

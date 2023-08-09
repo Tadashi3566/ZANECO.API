@@ -2,13 +2,9 @@ using ZANECO.API.Domain.AGMA;
 
 namespace ZANECO.API.Application.AGMA.Raffles;
 
-public class RaffleCreateRequest : IRequest<Guid>
+public class RaffleCreateRequest : RequestWithImageExtension<RaffleCreateRequest>, IRequest<Guid>
 {
-    public string Name { get; set; } = default!;
     public DateTime RaffleDate { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class RaffleCreateRequestValidator : CustomValidator<RaffleCreateRequest>

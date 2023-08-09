@@ -14,7 +14,6 @@ public class Group : AuditableEntity, IAggregateRoot
     public virtual Employee? Employee { get; set; }
     public Guid? EmployeeId { get; private set; }
     public string? EmployeeName { get; private set; }
-    public string? ImagePath { get; private set; }
 
     public Group(string application, string parent, string tag, int number, string code, string name, decimal amount, Guid? employeeId, string? employeeName, string? description = null, string? notes = null, string? imagePath = null)
     {

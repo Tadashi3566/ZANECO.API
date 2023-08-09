@@ -12,7 +12,6 @@ public class Document : AuditableEntity, IAggregateRoot
 
     public string? Content { get; private set; }
     public string? Raw { get; private set; }
-    public string? ImagePath { get; private set; }
 
     public Document(DefaultIdType employeeId, string employeeName, DateTime documentDate, string documentType, string reference, bool isPublic, string name, string? description = null, string? notes = null, string? imagePath = null)
     {

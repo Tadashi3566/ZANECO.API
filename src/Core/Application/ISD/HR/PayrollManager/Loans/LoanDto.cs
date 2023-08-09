@@ -1,8 +1,7 @@
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Loans;
 
-public class LoanDto : IDto
+public class LoanDto : DtoExtension<LoanDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
     public DefaultIdType EmployeeId { get; set; }
     public string? EmployeeName { get; set; }
     public DefaultIdType AdjustmentId { get; set; }
@@ -14,8 +13,4 @@ public class LoanDto : IDto
     public decimal Ammortization { get; set; } = default!;
     public DateTime StartDate { get; set; } = default!;
     public DateTime EndDate { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? Status { get; set; }
-    public string? ImagePath { get; set; }
 }

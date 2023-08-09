@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace ZANECO.API.Domain.ISD.HR.EmployeeManager;
+﻿namespace ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 public class Team : AuditableEntity, IAggregateRoot
 {

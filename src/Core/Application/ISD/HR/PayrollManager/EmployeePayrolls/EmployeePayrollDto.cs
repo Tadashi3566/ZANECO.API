@@ -1,8 +1,7 @@
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.EmployeePayrolls;
 
-public class EmployeePayrollDto : IDto
+public class EmployeePayrollDto : DtoExtension<EmployeePayrollDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
     public DefaultIdType EmployeeId { get; set; } = default!;
     public string EmployeeName { get; set; } = default!;
     public DefaultIdType PayrollId { get; set; } = default!;
@@ -15,7 +14,4 @@ public class EmployeePayrollDto : IDto
     public decimal Gross { get; set; } = default!;
     public decimal Deduction { get; set; } = default!;
     public decimal Net { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? Status { get; set; }
 }

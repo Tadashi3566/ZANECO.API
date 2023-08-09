@@ -5,7 +5,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Designations;
 
-public class DesignationCreateRequest : IRequest<Guid>
+public class DesignationCreateRequest : RequestWithImageExtension<DesignationCreateRequest>, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; }
     public Guid DesignationId { get; set; } = default!;
@@ -23,11 +23,6 @@ public class DesignationCreateRequest : IRequest<Guid>
     public decimal RatePerDay { get; set; } = default!;
     public decimal RatePerHour { get; set; } = default!;
     public string TaxType { get; set; } = default!;
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class DesignationCreateRequestValidator : CustomValidator<DesignationCreateRequest>

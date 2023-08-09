@@ -2,18 +2,12 @@ using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.SMS.Contacts;
 
-public class ContactUpdateRequest : IRequest<Guid>
+public class ContactUpdateRequest : RequestWithImageExtension<ContactUpdateRequest>, IRequest<Guid>
 {
-    public Guid Id { get; set; } = default!;
     public string ContactType { get; set; } = default!;
     public string Reference { get; set; } = default!;
     public string PhoneNumber { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public string Address { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class ContactUpdateRequestValidator : CustomValidator<ContactUpdateRequest>
@@ -37,7 +31,7 @@ public class ContactUpdateRequestValidator : CustomValidator<ContactUpdateReques
             .MustAsync(async (Contact, number, ct) =>
                     await repoContactRepo.FirstOrDefaultAsync(new ContactByNumberSpec(number), ct)
                         is not { } existingContact || existingContact.Id == Contact.Id)
-                .WithMessage((_, code) => string.Format(localizer["Contact already exists."], code));
+                .WithMessage((_, code) => string.Format(localizer["Contact {0} already exists."], code));
 
         RuleFor(p => p.Image)
             .SetNonNullableValidator(new ImageUploadRequestValidator());

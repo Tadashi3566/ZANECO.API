@@ -24,7 +24,6 @@ public class Loan : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
 
     public DateTime StartDate { get; private set; }
     public DateTime EndDate { get; private set; }
-    public string? ImagePath { get; private set; }
 
     public Loan(DefaultIdType employeeId, string employeeName, DefaultIdType adjustmentId, string adjustmentName, decimal amount, DateTime dateReleased, string paymentSchedule, int months, decimal ammortization, DateTime startDate, DateTime endDate, string? description = null, string? notes = null, string? imagePath = null)
     {

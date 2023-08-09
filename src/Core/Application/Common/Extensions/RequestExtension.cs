@@ -1,4 +1,4 @@
-﻿namespace ZANECO.API.Application.Common.Request;
+﻿namespace ZANECO.API.Application.Common.Extensions;
 public class RequestExtension<T>
 {
     public DefaultIdType Id { get; set; }

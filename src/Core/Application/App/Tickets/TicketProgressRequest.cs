@@ -23,10 +23,9 @@ public class TicketOpenRequestValidator : CustomValidator<TicketProgressRequest>
 public class TicketOpenRequestHandler : IRequestHandler<TicketProgressRequest, Guid>
 {
     private readonly IRepositoryWithEvents<Ticket> _repository;
-    private readonly IStringLocalizer<TicketOpenRequestHandler> _localizer;
 
-    public TicketOpenRequestHandler(IRepositoryWithEvents<Ticket> repository, IStringLocalizer<TicketOpenRequestHandler> localizer) =>
-        (_repository, _localizer) = (repository, localizer);
+    public TicketOpenRequestHandler(IRepositoryWithEvents<Ticket> repository) =>
+        (_repository) = (repository);
 
     public async Task<Guid> Handle(TicketProgressRequest request, CancellationToken cancellationToken)
     {

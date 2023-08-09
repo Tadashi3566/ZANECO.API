@@ -1,8 +1,7 @@
 namespace ZANECO.API.Application.CAD.Ledgers;
 
-public class LedgerDto : IDto
+public class LedgerDto : DtoExtension<LedgerDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
     public DefaultIdType AccountId { get; set; } = default!;
     public double IdCode { get; set; } = default!;
     public string AccountNumber { get; set; } = default!;
@@ -33,7 +32,5 @@ public class LedgerDto : IDto
     public string? Collector { get; set; } = default!;
     public DateTime PostingDate { get; set; } = default!;
 
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? Status { get; set; }
+
 }

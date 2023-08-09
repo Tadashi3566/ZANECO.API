@@ -10,7 +10,6 @@ public class Supplier : AuditableEntity, IAggregateRoot
     public string Tin { get; private set; } = default!;
     public string Agent { get; private set; } = default!;
     public string PhoneNumber { get; private set; } = default!;
-    public string? ImagePath { get; private set; }
 
     public Supplier(string name, string address, string tin, string agent, string phoneNumber, string? description = null, string? notes = null, string? imagePath = null)
     {

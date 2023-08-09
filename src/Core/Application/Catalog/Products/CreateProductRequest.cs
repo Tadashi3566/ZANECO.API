@@ -2,19 +2,15 @@ using ZANECO.API.Domain.Common.Events;
 
 namespace ZANECO.API.Application.Catalog.Products;
 
-public class CreateProductRequest : IRequest<Guid>
+public class CreateProductRequest : RequestWithImageExtension<CreateProductRequest>, IRequest<Guid>
 {
     public DefaultIdType BrandId { get; set; }
     public string SKU { get; set; } = default!;
     public string Barcode { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public string Specification { get; set; } = default!;
     public string UnitOfMeasurement { get; set; } = default!;
     public bool IsVatable { get; set; } = default!;
     public decimal Rate { get; private set; } = default!;
-    public string Description { get; private set; } = default!;
-    public string Notes { get; private set; } = default!;
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class CreateProductRequestHandler : IRequestHandler<CreateProductRequest, DefaultIdType>

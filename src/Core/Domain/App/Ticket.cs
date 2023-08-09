@@ -21,7 +21,6 @@ public class Ticket : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
     public DateTime? SuspendedOn { get; private set; }
     public DefaultIdType? ClosedBy { get; private set; }
     public DateTime? ClosedOn { get; private set; }
-    public string? ImagePath { get; private set; }
 
     public Ticket(DefaultIdType groupID, string name, string? description = null, string? notes = null, string? imagePath = null)
     {

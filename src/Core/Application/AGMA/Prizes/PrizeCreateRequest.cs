@@ -2,15 +2,11 @@ using ZANECO.API.Domain.AGMA;
 
 namespace ZANECO.API.Application.AGMA.Prizes;
 
-public class PrizeCreateRequest : IRequest<Guid>
+public class PrizeCreateRequest : RequestWithImageExtension<PrizeCreateRequest>, IRequest<Guid>
 {
     public DefaultIdType RaffleId { get; set; } = default!;
     public string PrizeType { get; set; } = default!;
     public int Winners { get; set; } = default!;
-    public string Name { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class PrizeCreateRequestValidator : CustomValidator<PrizeCreateRequest>
@@ -39,11 +35,11 @@ public class PrizeCreateRequestValidator : CustomValidator<PrizeCreateRequest>
 public class PrizeCreateRequestHandler : IRequestHandler<PrizeCreateRequest, Guid>
 {
     private readonly IReadRepository<Raffle> _repoRaffle;
-    private readonly IRepositoryWithEvents<Prize> _repository;
+    private readonly IRepositoryWithEvents<Prize> _repoPrize;
     private readonly IFileStorageService _file;
 
-    public PrizeCreateRequestHandler(IReadRepository<Raffle> repoRaffle, IRepositoryWithEvents<Prize> repository, IFileStorageService file) =>
-        (_repoRaffle, _repository, _file) = (repoRaffle, repository, file);
+    public PrizeCreateRequestHandler(IReadRepository<Raffle> repoRaffle, IRepositoryWithEvents<Prize> repoPrize, IFileStorageService file) =>
+        (_repoRaffle, _repoPrize, _file) = (repoRaffle, repoPrize, file);
 
     public async Task<Guid> Handle(PrizeCreateRequest request, CancellationToken cancellationToken)
     {
@@ -54,7 +50,7 @@ public class PrizeCreateRequestHandler : IRequestHandler<PrizeCreateRequest, Gui
 
         var prize = new Prize(request.RaffleId, raffle.Name, request.PrizeType, request.Winners, request.Name, request.Description, request.Notes, imagePath);
 
-        await _repository.AddAsync(prize, cancellationToken);
+        await _repoPrize.AddAsync(prize, cancellationToken);
 
         return prize.Id;
     }

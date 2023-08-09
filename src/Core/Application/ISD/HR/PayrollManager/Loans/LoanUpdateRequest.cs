@@ -3,9 +3,8 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Loans;
 
-public class LoanUpdateRequest : IRequest<Guid>
+public class LoanUpdateRequest : RequestWithImageExtension<LoanUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public Guid EmployeeId { get; set; }
     public Guid AdjustmentId { get; set; }
     public DateTime DateReleased { get; set; }
@@ -15,10 +14,6 @@ public class LoanUpdateRequest : IRequest<Guid>
     public decimal Ammortization { get; set; } = default!;
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class LoanUpdateRequestValidator : CustomValidator<LoanUpdateRequest>
@@ -64,6 +59,7 @@ public class LoanUpdateRequestHandler : IRequestHandler<LoanUpdateRequest, Guid>
         // Get Employee Information
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
         _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
+
         if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         // Get Adjustment Information

@@ -12,7 +12,6 @@ public class Barcode : AuditableEntity, IAggregateRoot
 
     public string Specification { get; private set; } = default!;
     public string UnitOfMeasurement { get; private set; } = default!;
-    public string? ImagePath { get; private set; }
 
     public Barcode(DefaultIdType productId, string code, string name, string specification, string unitOfMeasurement, string? description = null, string? notes = null, string? imagePath = null)
     {

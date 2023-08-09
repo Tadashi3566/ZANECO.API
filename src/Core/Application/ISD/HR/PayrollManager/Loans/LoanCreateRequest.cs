@@ -3,7 +3,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Loans;
 
-public class LoanCreateRequest : IRequest<Guid>
+public class LoanCreateRequest : RequestWithImageExtension<LoanCreateRequest>, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; } = default!;
     public Guid AdjustmentId { get; set; } = default!;
@@ -14,9 +14,6 @@ public class LoanCreateRequest : IRequest<Guid>
     public decimal Ammortization { get; set; } = default!;
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class LoanCreateRequestValidator : CustomValidator<LoanCreateRequest>

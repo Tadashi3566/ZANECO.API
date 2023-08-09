@@ -2,13 +2,9 @@ using ZANECO.API.Domain.App;
 
 namespace ZANECO.API.Application.App.Tickets;
 
-public class TicketUpdateRequest : IRequest<Guid>
+public class TicketUpdateRequest : RequestWithImageExtension<TicketUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public Guid GroupId { get; set; }
-    public string Name { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
     public string? Impact { get; set; }
     public string? Urgency { get; set; }
     public string? Priority { get; set; }
@@ -16,9 +12,7 @@ public class TicketUpdateRequest : IRequest<Guid>
     public string? RequestThrough { get; set; }
     public string? Reference { get; set; }
     public string? AssignedTo { get; set; }
-    public string? Status { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
+
 }
 
 public class TicketUpdateRequestValidator : CustomValidator<TicketUpdateRequest>
@@ -42,11 +36,10 @@ public class TicketUpdateRequestValidator : CustomValidator<TicketUpdateRequest>
 public class TicketUpdateRequestHandler : IRequestHandler<TicketUpdateRequest, Guid>
 {
     private readonly IRepositoryWithEvents<Ticket> _repository;
-    private readonly IStringLocalizer<TicketUpdateRequestHandler> _localizer;
     private readonly IFileStorageService _file;
 
-    public TicketUpdateRequestHandler(IRepositoryWithEvents<Ticket> repository, IStringLocalizer<TicketUpdateRequestHandler> localizer, IFileStorageService file) =>
-        (_repository, _localizer, _file) = (repository, localizer, file);
+    public TicketUpdateRequestHandler(IRepositoryWithEvents<Ticket> repository, IFileStorageService file) =>
+        (_repository, _file) = (repository, file);
 
     public async Task<Guid> Handle(TicketUpdateRequest request, CancellationToken cancellationToken)
     {

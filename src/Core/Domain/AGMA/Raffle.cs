@@ -8,8 +8,6 @@ public class Raffle : AuditableEntity, IAggregateRoot
 
     public DateTime RaffleDate { get; private set; }
 
-    public string? ImagePath { get; private set; }
-
     public Raffle(string name, DateTime raffleDate, string? description = null, string? notes = null, string? imagePath = null)
     {
         RaffleDate = raffleDate;

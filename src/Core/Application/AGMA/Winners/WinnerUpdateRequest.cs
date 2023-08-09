@@ -2,19 +2,13 @@ using ZANECO.API.Domain.AGMA;
 
 namespace ZANECO.API.Application.AGMA.Winners;
 
-public class WinnerUpdateRequest : IRequest<Guid>
+public class WinnerUpdateRequest : RequestWithImageExtension<WinnerUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public DefaultIdType RaffleId { get; set; } = default!;
     public string RaffleName { get; set; } = default!;
     public DefaultIdType PrizeId { get; set; } = default!;
     public string PrizeName { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public string Address { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class WinnerUpdateRequestValidator : CustomValidator<WinnerUpdateRequest>
@@ -34,19 +28,19 @@ public class WinnerUpdateRequestHandler : IRequestHandler<WinnerUpdateRequest, G
 {
     private readonly IReadRepository<Raffle> _repoRaffle;
     private readonly IReadRepository<Prize> _repoPrize;
-    private readonly IRepositoryWithEvents<Winner> _repository;
+    private readonly IRepositoryWithEvents<Winner> _repoWinner;
     private readonly IFileStorageService _file;
 
     public WinnerUpdateRequestHandler(
         IReadRepository<Raffle> repoRaffle,
         IReadRepository<Prize> repoPrize,
-        IRepositoryWithEvents<Winner> repository,
+        IRepositoryWithEvents<Winner> repoWinner,
         IFileStorageService file) =>
-        (_repoRaffle, _repoPrize, _repository, _file) = (repoRaffle, repoPrize, repository, file);
+        (_repoRaffle, _repoPrize, _repoWinner, _file) = (repoRaffle, repoPrize, repoWinner, file);
 
     public async Task<Guid> Handle(WinnerUpdateRequest request, CancellationToken cancellationToken)
     {
-        var winner = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        var winner = await _repoWinner.GetByIdAsync(request.Id, cancellationToken);
 
         _ = winner ?? throw new NotFoundException($"Winner {request.Id} not found.");
 
@@ -75,7 +69,7 @@ public class WinnerUpdateRequestHandler : IRequestHandler<WinnerUpdateRequest, G
 
         var updatedWinner = winner.Update(raffle.Name, prize.Name, request.Name, request.Address, request.Description, request.Notes, imagePath);
 
-        await _repository.UpdateAsync(updatedWinner, cancellationToken);
+        await _repoWinner.UpdateAsync(updatedWinner, cancellationToken);
 
         return request.Id;
     }

@@ -11,7 +11,6 @@ public class Winner : AuditableEntity, IAggregateRoot
     public string PrizeName { get; private set; }
 
     public string Address { get; private set; }
-    public string? ImagePath { get; private set; }
 
     public Winner(DefaultIdType raffleId, string raffleName, DefaultIdType prizeId, string prizeName, string name, string address, string? description = null, string? notes = null, string? imagePath = null)
     {

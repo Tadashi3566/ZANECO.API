@@ -5,6 +5,7 @@ global using Microsoft.Extensions.Localization;
 global using Microsoft.Extensions.Logging;
 global using ZANECO.API.Application.Common.Events;
 global using ZANECO.API.Application.Common.Exceptions;
+global using ZANECO.API.Application.Common.Extensions;
 global using ZANECO.API.Application.Common.FileStorage;
 global using ZANECO.API.Application.Common.Interfaces;
 global using ZANECO.API.Application.Common.Models;

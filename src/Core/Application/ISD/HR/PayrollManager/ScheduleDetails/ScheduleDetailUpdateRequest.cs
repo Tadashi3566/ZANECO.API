@@ -2,9 +2,8 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.ScheduleDetails;
 
-public class ScheduleDetailUpdateRequest : IRequest<Guid>
+public class ScheduleDetailUpdateRequest : RequestExtension<ScheduleDetailUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public Guid ScheduleId { get; set; }
     public string ScheduleType { get; set; } = default!; // DAYOFF, WORK
     public string Day { get; set; } = default!; // MONDAY, TUESDAY, WEDNESDAY ...
@@ -12,9 +11,6 @@ public class ScheduleDetailUpdateRequest : IRequest<Guid>
     public string TimeOut1 { get; set; } = default!;
     public string TimeIn2 { get; set; } = default!;
     public string TimeOut2 { get; set; } = default!;
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class ScheduleDetailUpdateRequestValidator : CustomValidator<ScheduleDetailUpdateRequest>

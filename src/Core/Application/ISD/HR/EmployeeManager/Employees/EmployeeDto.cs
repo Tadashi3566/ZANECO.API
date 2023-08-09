@@ -1,9 +1,7 @@
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
-public class EmployeeDto : IDto
+public class EmployeeDto : DtoExtension<EmployeeDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
-
     // Basic
     public bool IsActive { get; set; } = default!;
 
@@ -76,10 +74,6 @@ public class EmployeeDto : IDto
 
     // Others
     public string? BloodType { get; set; }
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? ImagePath { get; set; }
 
     public string FullName
     {

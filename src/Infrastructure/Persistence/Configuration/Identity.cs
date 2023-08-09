@@ -14,6 +14,12 @@ public class ApplicationUserConfig : IEntityTypeConfiguration<ApplicationUser>
             .ToTable("Users", SchemaNames.Identity)
             .IsMultiTenant();
 
+        builder.Property(x => x.SandurotId)
+            .HasMaxLength(8);
+
+        builder.Property(x => x.AccountNumber)
+            .HasMaxLength(10);
+
         builder
             .Property(u => u.ObjectId)
                 .HasMaxLength(256);

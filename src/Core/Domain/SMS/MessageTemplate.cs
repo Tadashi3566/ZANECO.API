@@ -13,7 +13,6 @@ public class MessageTemplate : AuditableEntity, IAggregateRoot
     public DateTime Schedule { get; private set; }
     public string Message { get; private set; } = default!;
     public string Recipients { get; private set; } = default!;
-    public string? ImagePath { get; private set; }
 
     public MessageTemplate(string templateType, string messageType, bool isAPI, DateTime schedule, string name, string message, string recipients, string? description = null, string? notes = null, string? imagePath = null)
     {

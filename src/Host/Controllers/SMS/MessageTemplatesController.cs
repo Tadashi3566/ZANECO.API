@@ -62,6 +62,6 @@ public class MessageTemplatesController : VersionedApiController
     [OpenApiOperation("Delete a MessageTemplate.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {
-        return Mediator.Send(new DeleteMessageTemplateRequest(id));
+        return Mediator.Send(new MessageTemplateDeleteRequest(id));
     }
 }

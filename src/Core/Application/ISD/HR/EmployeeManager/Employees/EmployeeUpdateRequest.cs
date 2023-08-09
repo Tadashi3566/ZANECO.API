@@ -5,10 +5,8 @@ using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
-public class EmployeeUpdateRequest : IRequest<Guid>
+public class EmployeeUpdateRequest : RequestWithImageExtension<EmployeeUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
-
     // Basic
     public bool IsActive { get; set; } = default!;
 
@@ -80,12 +78,6 @@ public class EmployeeUpdateRequest : IRequest<Guid>
 
     // Others
     public string? BloodType { get; set; }
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class EmployeeUpdateRequestValidator : CustomValidator<EmployeeUpdateRequest>
@@ -156,7 +148,7 @@ public class EmployeeUpdateRequestHandler : IRequestHandler<EmployeeUpdateReques
             ? await _file.UploadAsync<Employee>(request.Image, FileType.Image, cancellationToken)
             : null;
 
-        var updatedEmployee = employee.Update(request.Number, request.Title, request.FirstName, request.MiddleName, request.LastName, request.Extension, request.Gender, ClassSms.FormatContactNumber(request.PhoneNumber!), request.Email!, request.CivilStatus!, request.Address!, (DateTime)request.BirthDate!, request.BirthPlace!, request.HireDate!, request.RegularDate!, request.Sss!, request.Phic!, request.Hdmf!, request.Tin!, request.EmergencyPerson!, request.EmergencyNumber!, request.EmergencyAddress!, request.EmergencyRelation!, request.FatherName!, request.MotherName!, request.Education!, request.Course!, request.Award!, request.BloodType!, request.Description, request.Notes, imagePath);
+        var updatedEmployee = employee.Update(request.Number, request.Title, request.FirstName, request.MiddleName, request.LastName, request.Extension, request.Gender, ClassSms.FormatContactNumber(request.PhoneNumber!), request.Email!, request.CivilStatus!, request.Address!, request.BirthDate!, request.BirthPlace!, request.HireDate!, request.RegularDate!, request.Sss!, request.Phic!, request.Hdmf!, request.Tin!, request.EmergencyPerson!, request.EmergencyNumber!, request.EmergencyAddress!, request.EmergencyRelation!, request.FatherName!, request.MotherName!, request.Education!, request.Course!, request.Award!, request.BloodType!, request.Description, request.Notes, imagePath);
 
         await _repoEmployee.UpdateAsync(updatedEmployee, cancellationToken);
 

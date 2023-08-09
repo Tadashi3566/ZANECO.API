@@ -20,7 +20,6 @@ public class DeleteProductRequestHandler : IRequestHandler<DeleteProductRequest,
     public async Task<Guid> Handle(DeleteProductRequest request, CancellationToken cancellationToken)
     {
         var product = await _repository.GetByIdAsync(request.Id, cancellationToken);
-
         _ = product ?? throw new NotFoundException($"Product {request.Id} not found.");
 
         // Add Domain Events to be raised after the commit

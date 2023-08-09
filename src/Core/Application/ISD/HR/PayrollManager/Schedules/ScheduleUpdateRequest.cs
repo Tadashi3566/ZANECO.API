@@ -2,12 +2,8 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Schedules;
 
-public class ScheduleUpdateRequest : IRequest<Guid>
+public class ScheduleUpdateRequest : RequestExtension<ScheduleUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
-    public string Name { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class ScheduleUpdateRequestValidator : CustomValidator<ScheduleUpdateRequest>

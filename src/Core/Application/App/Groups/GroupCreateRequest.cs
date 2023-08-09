@@ -3,19 +3,15 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.App.Groups;
 
-public class GroupCreateRequest : IRequest<Guid>
+public class GroupCreateRequest : RequestWithImageExtension<GroupCreateRequest>, IRequest<Guid>
 {
     public string Application { get; set; } = default!;
     public string Parent { get; set; } = default!;
     public int Number { get; set; } = default!;
     public string Code { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
     public string Tag { get; set; } = default!;
     public Guid EmployeeId { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class GroupCreateRequestValidator : CustomValidator<GroupCreateRequest>
@@ -37,13 +33,13 @@ public class GroupCreateRequestValidator : CustomValidator<GroupCreateRequest>
             .NotEmpty()
             .MaximumLength(32)
             .MustAsync(async (code, ct) => await repoGroup.FirstOrDefaultAsync(new GroupByCodeSpec(code), ct) is null)
-            .WithMessage((_, code) => string.Format(localizer["group already exists."], code));
+            .WithMessage((_, code) => string.Format(localizer["Group {0} already exists."], code));
 
         RuleFor(p => p.Name)
             .NotEmpty()
             .MaximumLength(128)
             .MustAsync(async (name, ct) => await repoGroup.FirstOrDefaultAsync(new GroupByNameSpec(name), ct) is null)
-            .WithMessage((_, name) => string.Format(localizer["group already exists."], name));
+            .WithMessage((_, name) => string.Format(localizer["Group already exists."], name));
 
         RuleFor(p => p.Image)
             .SetNonNullableValidator(new ImageUploadRequestValidator());

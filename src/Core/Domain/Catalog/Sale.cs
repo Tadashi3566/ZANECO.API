@@ -18,7 +18,6 @@ public class Sale : AuditableEntity, IAggregateRoot
     public decimal NetSales { get; private set; }
     public decimal Received { get; private set; }
     public decimal Change { get; private set; }
-    public string? ImagePath { get; private set; }
 
     public Sale(DefaultIdType customerId, double orNumber, int items, decimal grossSales, decimal totalVat, decimal totalDiscount, decimal netSales, decimal received, decimal change, string? description = null, string? notes = null, string? imagePath = null)
     {

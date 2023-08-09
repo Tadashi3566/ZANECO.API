@@ -2,7 +2,7 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Ledgers;
 
-public class LedgerCreateRequest : IRequest<Guid>
+public class LedgerCreateRequest : RequestExtension<LedgerCreateRequest>, IRequest<Guid>
 {
     public Guid AccountId { get; set; }
     public double IdCode { get; set; }
@@ -40,9 +40,6 @@ public class LedgerCreateRequest : IRequest<Guid>
 
     public string? Collector { get; set; }
     public DateTime PostingDate { get; set; }
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class CreateLedgerRequestValidator : CustomValidator<LedgerCreateRequest>

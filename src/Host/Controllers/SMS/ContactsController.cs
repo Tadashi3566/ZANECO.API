@@ -53,6 +53,6 @@ public class ContactsController : VersionedApiController
     [OpenApiOperation("Delete a Contact.", "")]
     public Task<Guid> DeleteAsync(Guid id)
     {
-        return Mediator.Send(new DeleteContactRequest(id));
+        return Mediator.Send(new ContactDeleteRequest(id));
     }
 }

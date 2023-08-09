@@ -2,13 +2,9 @@ using ZANECO.API.Application.App.Groups;
 
 namespace ZANECO.API.Application.App.Tickets;
 
-public class TicketDetailsDto : IDto
+public class TicketDetailsDto : DtoExtension<TicketDetailsDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
     public GroupDto Group { get; set; } = default!;
-    public string Name { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
     public string? Impact { get; set; }
     public string? Urgency { get; set; }
     public string? Priority { get; set; }
@@ -22,5 +18,5 @@ public class TicketDetailsDto : IDto
     public DateTime? ClosedOn { get; set; }
     public string? ApprovedBy { get; set; }
     public DateTime? ApprovedOn { get; set; }
-    public string? Status { get; set; }
+
 }

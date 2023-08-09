@@ -2,17 +2,13 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Documents;
 
-public class DocumentCreateRequest : IRequest<Guid>
+public class DocumentCreateRequest : RequestWithImageExtension<DocumentCreateRequest>, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; }
     public DateTime DocumentDate { get; set; } = default!;
     public string DocumentType { get; set; } = default!;
     public string Reference { get; set; } = default!;
     public bool IsPublic { get; set; } = default!;
-    public string Name { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class CreateDocumentRequestValidator : CustomValidator<DocumentCreateRequest>

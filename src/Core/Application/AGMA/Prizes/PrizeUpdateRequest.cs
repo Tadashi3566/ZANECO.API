@@ -2,18 +2,12 @@ using ZANECO.API.Domain.AGMA;
 
 namespace ZANECO.API.Application.AGMA.Prizes;
 
-public class PrizeUpdateRequest : IRequest<Guid>
+public class PrizeUpdateRequest : RequestWithImageExtension<PrizeUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public DefaultIdType RaffleId { get; set; } = default!;
     public string RaffleName { get; set; } = default!;
     public string PrizeType { get; set; } = default!;
     public int Winners { get; set; } = default!;
-    public string Name { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class PrizeUpdateRequestValidator : CustomValidator<PrizeUpdateRequest>
@@ -42,16 +36,18 @@ public class PrizeUpdateRequestValidator : CustomValidator<PrizeUpdateRequest>
 public class PrizeUpdateRequestHandler : IRequestHandler<PrizeUpdateRequest, Guid>
 {
     private readonly IReadRepository<Raffle> _repoRaffle;
-    private readonly IRepositoryWithEvents<Prize> _repository;
-    private readonly IStringLocalizer<PrizeUpdateRequestHandler> _localizer;
+    private readonly IRepositoryWithEvents<Prize> _repoPrize;
     private readonly IFileStorageService _file;
 
-    public PrizeUpdateRequestHandler(IReadRepository<Raffle> repoRaffle, IRepositoryWithEvents<Prize> repository, IStringLocalizer<PrizeUpdateRequestHandler> localizer, IFileStorageService file) =>
-        (_repoRaffle, _repository, _localizer, _file) = (repoRaffle, repository, localizer, file);
+    public PrizeUpdateRequestHandler(
+        IReadRepository<Raffle> repoRaffle,
+        IRepositoryWithEvents<Prize> repoPrize,
+        IFileStorageService file) =>
+        (_repoRaffle, _repoPrize, _file) = (repoRaffle, repoPrize, file);
 
     public async Task<Guid> Handle(PrizeUpdateRequest request, CancellationToken cancellationToken)
     {
-        var prize = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        var prize = await _repoPrize.GetByIdAsync(request.Id, cancellationToken);
         _ = prize ?? throw new NotFoundException($"Prize {request.Id} not found.");
 
         // Remove old image if flag is set
@@ -76,7 +72,7 @@ public class PrizeUpdateRequestHandler : IRequestHandler<PrizeUpdateRequest, Gui
 
         var updatedPrize = prize.Update(raffle.Name, request.PrizeType, request.Winners, request.Name, request.Description, request.Notes, imagePath);
 
-        await _repository.UpdateAsync(updatedPrize, cancellationToken);
+        await _repoPrize.UpdateAsync(updatedPrize, cancellationToken);
 
         return request.Id;
     }

@@ -18,7 +18,6 @@ public class EmployeeAdjustment : AuditableEntity, IAggregateRoot
     public string PaymentSchedule { get; private set; } = default!;
     public DateTime StartDate { get; private set; }
     public DateTime? EndDate { get; private set; }
-    public string? ImagePath { get; private set; }
 
     public EmployeeAdjustment(DefaultIdType employeeId, string employeeName, DefaultIdType adjustmentId, string adjustmentType, string paymentSchedule, string adjustmentName, decimal amount, DateTime startDate, DateTime? endDate, string? description = null, string? notes = null, string? imagePath = null)
     {

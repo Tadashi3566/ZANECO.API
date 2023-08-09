@@ -6,7 +6,6 @@ public class JobDescription : AuditableEntity, IAggregateRoot
     public int Number { get; private set; } = default!;
     public string Department { get; private set; } = default!;
     public string ReportsTo { get; private set; } = default!;
-    public string? ImagePath { get; private set; }
 
     public JobDescription(int rank, int number, string department, string reportsTo, string name, string? description = null, string? notes = null, string? imagePath = null)
     {

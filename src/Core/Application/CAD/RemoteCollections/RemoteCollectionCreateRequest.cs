@@ -3,7 +3,7 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.RemoteCollections;
 
-public class RemoteCollectionCreateRequest : IRequest<Guid>
+public class RemoteCollectionCreateRequest : RequestWithImageExtension<RemoteCollectionCreateRequest>, IRequest<Guid>
 {
     public double CollectorId { get; set; } = default!;
     public string Collector { get; set; } = default!;
@@ -12,12 +12,8 @@ public class RemoteCollectionCreateRequest : IRequest<Guid>
     public string Time { get; set; } = default!;
     public DateTime ReportDate { get; set; } = default!;
     public string AccountNumber { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
     public string OrNumber { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class RemoteCollectionCreateRequestValidator : CustomValidator<RemoteCollectionCreateRequest>

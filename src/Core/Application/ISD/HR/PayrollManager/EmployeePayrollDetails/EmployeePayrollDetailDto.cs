@@ -1,8 +1,7 @@
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.EmployeePayrollDetails;
 
-public class EmployeePayrollDetailDto : IDto
+public class EmployeePayrollDetailDto : DtoExtension<EmployeePayrollDetailDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
     public DefaultIdType EmployeeId { get; set; }
     public string? EmployeeName { get; set; }
     public DefaultIdType PayrollId { get; set; }
@@ -15,7 +14,4 @@ public class EmployeePayrollDetailDto : IDto
     public DateTime EndDate { get; set; } = default!;
     public DateTime PayrollDate { get; set; } = default!;
     public string Contributor { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? Status { get; set; }
 }

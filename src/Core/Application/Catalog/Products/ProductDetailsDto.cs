@@ -2,12 +2,8 @@ using ZANECO.API.Application.Catalog.Brands;
 
 namespace ZANECO.API.Application.Catalog.Products;
 
-public class ProductDetailsDto : IDto
+public class ProductDetailsDto : DtoExtension<ProductDetailsDto>, IDto
 {
-    public Guid Id { get; set; }
-    public string Name { get; set; } = default!;
-    public string? Description { get; set; }
-    public decimal Rate { get; set; }
-    public string? ImagePath { get; set; }
     public BrandDto Brand { get; set; } = default!;
+    public decimal Rate { get; set; }
 }

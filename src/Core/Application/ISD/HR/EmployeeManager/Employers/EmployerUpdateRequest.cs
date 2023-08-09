@@ -2,19 +2,13 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employers;
 
-public class EmployerUpdateRequest : IRequest<Guid>
+public class EmployerUpdateRequest : RequestWithImageExtension<EmployerUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public Guid EmployeeId { get; set; }
-    public string Name { get; set; } = default!;
     public string Address { get; set; } = default!;
     public string Designation { get; set; } = default!;
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class EmployerUpdateRequestValidator : CustomValidator<EmployerUpdateRequest>
@@ -47,11 +41,10 @@ public class EmployerUpdateRequestHandler : IRequestHandler<EmployerUpdateReques
 {
     private readonly IReadRepository<Employee> _repoEmployee;
     private readonly IRepositoryWithEvents<Employer> _repoEmployer;
-    private readonly IStringLocalizer<EmployerUpdateRequestHandler> _localizer;
     private readonly IFileStorageService _file;
 
-    public EmployerUpdateRequestHandler(IReadRepository<Employee> repoEmployee, IRepositoryWithEvents<Employer> repoEmployer, IStringLocalizer<EmployerUpdateRequestHandler> localizer, IFileStorageService file) =>
-        (_repoEmployee, _repoEmployer, _localizer, _file) = (repoEmployee, repoEmployer, localizer, file);
+    public EmployerUpdateRequestHandler(IReadRepository<Employee> repoEmployee, IRepositoryWithEvents<Employer> repoEmployer, IFileStorageService file) =>
+        (_repoEmployee, _repoEmployer, _file) = (repoEmployee, repoEmployer, file);
 
     public async Task<Guid> Handle(EmployerUpdateRequest request, CancellationToken cancellationToken)
     {
@@ -62,7 +55,6 @@ public class EmployerUpdateRequestHandler : IRequestHandler<EmployerUpdateReques
         if (!employee.IsActive) throw new Exception($"Employee {request.EmployeeId} is no longer Active");
 
         var employer = await _repoEmployer.GetByIdAsync(request.Id, cancellationToken);
-
         _ = employer ?? throw new NotFoundException($"employer {request.Id} not found.");
 
         // Remove old image if flag is set

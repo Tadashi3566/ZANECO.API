@@ -853,6 +853,10 @@ namespace Migrators.MySQL.Migrations.Application
                     EmployeeId = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
                     ObjectId = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    SandurotId = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    AccountNumber = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Description = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Notes = table.Column<string>(type: "longtext", nullable: true)
@@ -2296,7 +2300,7 @@ namespace Migrators.MySQL.Migrations.Application
                 name: "IX_Products_BrandId",
                 schema: "ZANECO",
                 table: "Products",
-                column: "ProductId");
+                column: "BrandId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ratings_RateId",

@@ -1,10 +1,8 @@
 namespace ZANECO.API.Application.CAD.PowerRates;
 
-public class PowerRateDto : IDto
+public class PowerRateDto : DtoExtension<PowerRateDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
     public string Code { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public string BillMonth { get; set; } = default!;
     public decimal GenerationCharge { get; set; }
     public decimal HostCommCharge { get; set; }
@@ -58,7 +56,5 @@ public class PowerRateDto : IDto
     public decimal WithholdingTaxServices { get; set; }
     public decimal WithholdingTaxRental { get; set; }
 
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? Status { get; set; }
+
 }

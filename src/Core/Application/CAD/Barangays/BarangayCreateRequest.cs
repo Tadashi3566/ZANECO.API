@@ -2,13 +2,9 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Barangays;
 
-public class BarangayCreateRequest : IRequest<Guid>
+public class BarangayCreateRequest : RequestExtension<BarangayCreateRequest>, IRequest<Guid>
 {
     public DefaultIdType AreaId { get; set; } = default!;
-    public string Name { get; set; } = default!;
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class CreateBarangayRequestValidator : CustomValidator<BarangayCreateRequest>

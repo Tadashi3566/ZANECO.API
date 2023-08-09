@@ -4,17 +4,13 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Powerbills;
 
-public class PowerbillCreateRequest : IRequest<Guid>
+public class PowerbillCreateRequest : RequestWithImageExtension<PowerbillCreateRequest>, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; }
 
     public string Account { get; set; } = default!;
     public string Meter { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public string Address { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class PowerbillCreateRequestValidator : CustomValidator<PowerbillCreateRequest>

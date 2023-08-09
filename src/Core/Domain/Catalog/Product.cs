@@ -11,7 +11,6 @@ public class Product : AuditableEntity, IAggregateRoot
     public string UnitOfMeasurement { get; private set; } = default!;
     public bool? IsVatable { get; private set; }
     public decimal Rate { get; private set; }
-    public string? ImagePath { get; private set; }
 
     public Product()
     {

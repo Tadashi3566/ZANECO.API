@@ -4,19 +4,14 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.EmployeeAdjustments;
 
-public class EmployeeAdjustmentUpdateRequest : IRequest<Guid>
+public class EmployeeAdjustmentUpdateRequest : RequestWithImageExtension<EmployeeAdjustmentUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public Guid EmployeeId { get; set; }
     public string PaymentSchedule { get; set; } = default!;
     public Guid AdjustmentId { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class EmployeeAdjustmentUpdateRequestValidator : CustomValidator<EmployeeAdjustmentUpdateRequest>

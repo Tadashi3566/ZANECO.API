@@ -7,7 +7,6 @@ public class Contact : AuditableEntity, IAggregateRoot
     public string PhoneNumber { get; private set; } = default!;
 
     public string Address { get; private set; } = default!;
-    public string? ImagePath { get; private set; }
 
     public Contact(string contactType, string reference, string phoneNumber, string name, string address, string? description = null, string? notes = null, string? imagePath = null)
     {

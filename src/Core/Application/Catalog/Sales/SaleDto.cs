@@ -1,8 +1,7 @@
 namespace ZANECO.API.Application.Catalog.Sales;
 
-public class SaleDto : IDto
+public class SaleDto : DtoExtension<SaleDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
     public DefaultIdType CustomerId { get; set; }
     public DateTime Date { get; set; } = default!;
     public string Transaction { get; set; } = default!;
@@ -14,8 +13,6 @@ public class SaleDto : IDto
     public decimal NetSales { get; set; } = default!;
     public decimal Received { get; set; } = default!;
     public decimal Change { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? Status { get; set; }
-    public string? ImagePath { get; set; }
+
+
 }

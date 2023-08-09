@@ -3,14 +3,11 @@ using ZANECO.API.Domain.Surveys;
 
 namespace ZANECO.API.Application.Surveys.Ratings;
 
-public class RatingUpdateRequest : IRequest<Guid>
+public class RatingUpdateRequest : RequestExtension<RatingUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public int RateNumber { get; set; } = default!;
     public string Comment { get; set; } = default!;
     public string Reference { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class RatingUpdateRequestValidator : CustomValidator<RatingUpdateRequest>
@@ -39,7 +36,6 @@ public class RatingUpdateRequestHandler : IRequestHandler<RatingUpdateRequest, G
     public async Task<Guid> Handle(RatingUpdateRequest request, CancellationToken cancellationToken)
     {
         var rating = await _repoRating.GetByIdAsync(request.Id, cancellationToken);
-
         _ = rating ?? throw new NotFoundException($"Rating {request.Id} not found.");
 
         var rate = await _repoRate.FirstOrDefaultAsync(new RateByNumberSpec(request.RateNumber), cancellationToken);

@@ -1,8 +1,7 @@
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Appointments;
 
-public class AppointmentDto : IDto
+public class AppointmentDto : DtoExtension<AppointmentDto>, IDto
 {
-    public int Id { get; set; }
     public DefaultIdType EmployeeId { get; set; }
     public string EmployeeName { get; set; } = default!;
     public string AppointmentType { get; set; } = default!;
@@ -25,8 +24,4 @@ public class AppointmentDto : IDto
     public DateTime? RecommendedOn { get; set; }
     public DefaultIdType? ApprovedBy { get; set; }
     public DateTime? ApprovedOn { get; set; }
-
-    public string Status { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }

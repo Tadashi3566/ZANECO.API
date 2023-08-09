@@ -2,9 +2,8 @@ using ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Designations;
 
-public class DesignationDetailsDto : IDto
+public class DesignationDetailsDto : DtoExtension<DesignationDetailsDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
     public EmployeeDto Employee { get; set; } = default!;
     public DateTime StartDate { get; set; }
     public string? Area { get; set; }
@@ -23,8 +22,4 @@ public class DesignationDetailsDto : IDto
     public decimal RatePerHour { get; set; }
     public string? TaxType { get; set; }
     public string? PayType { get; set; }
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? Status { get; set; }
 }

@@ -3,7 +3,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.EmployeePayrolls;
 
-public class EmployeePayrollCreateRequest : IRequest<Guid>
+public class EmployeePayrollCreateRequest : RequestExtension<EmployeePayrollCreateRequest>, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; } = default!;
     public string EmployeeName { get; set; } = default!;
@@ -17,8 +17,6 @@ public class EmployeePayrollCreateRequest : IRequest<Guid>
     public decimal Gross { get; set; } = default!;
     public decimal Deduction { get; set; } = default!;
     public decimal Net { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
 
 public class EmployeePayrollCreateRequestValidator : CustomValidator<EmployeePayrollCreateRequest>

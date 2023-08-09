@@ -2,15 +2,9 @@ using ZANECO.API.Domain.AGMA;
 
 namespace ZANECO.API.Application.AGMA.Raffles;
 
-public class RaffleUpdateRequest : IRequest<Guid>
+public class RaffleUpdateRequest : RequestWithImageExtension<RaffleUpdateRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
-    public string Name { get; set; } = default!;
     public DateTime RaffleDate { get; set; }
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class RaffleUpdateRequestValidator : CustomValidator<RaffleUpdateRequest>
@@ -36,11 +30,10 @@ public class RaffleUpdateRequestValidator : CustomValidator<RaffleUpdateRequest>
 public class RaffleUpdateRequestHandler : IRequestHandler<RaffleUpdateRequest, Guid>
 {
     private readonly IRepositoryWithEvents<Raffle> _repository;
-    private readonly IStringLocalizer<RaffleUpdateRequestHandler> _localizer;
     private readonly IFileStorageService _file;
 
-    public RaffleUpdateRequestHandler(IRepositoryWithEvents<Raffle> repository, IStringLocalizer<RaffleUpdateRequestHandler> localizer, IFileStorageService file) =>
-        (_repository, _localizer, _file) = (repository, localizer, file);
+    public RaffleUpdateRequestHandler(IRepositoryWithEvents<Raffle> repository, IFileStorageService file) =>
+        (_repository, _file) = (repository, file);
 
     public async Task<Guid> Handle(RaffleUpdateRequest request, CancellationToken cancellationToken)
     {

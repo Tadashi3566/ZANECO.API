@@ -1,9 +1,7 @@
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
-public class EmployeeMobileDto : IDto
+public class EmployeeMobileDto : DtoExtension<EmployeeMobileDto>, IDto
 {
-    public DefaultIdType Id { get; set; }
-
     // Basic
     public bool IsActive { get; set; } = default!;
 
@@ -27,10 +25,6 @@ public class EmployeeMobileDto : IDto
     public string? Division { get; set; }
     public string? Section { get; set; }
     public string? Position { get; set; }
-
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public string? ImagePath { get; set; }
 
     public string FullName
     {

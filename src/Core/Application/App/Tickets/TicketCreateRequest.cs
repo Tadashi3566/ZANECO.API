@@ -2,13 +2,9 @@ using ZANECO.API.Domain.App;
 
 namespace ZANECO.API.Application.App.Tickets;
 
-public class TicketCreateRequest : IRequest<Guid>
+public class TicketCreateRequest : RequestWithImageExtension<TicketCreateRequest>, IRequest<Guid>
 {
     public Guid GroupId { get; set; }
-    public string Name { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class TicketCreateRequestValidator : CustomValidator<TicketCreateRequest>

@@ -2,36 +2,28 @@ using ZANECO.API.Domain.Common.Events;
 
 namespace ZANECO.API.Application.Catalog.Products;
 
-public class UpdateProductRequest : IRequest<Guid>
+public class UpdateProductRequest : RequestWithImageExtension<UpdateProductRequest>, IRequest<Guid>
 {
-    public DefaultIdType Id { get; set; }
     public DefaultIdType BrandId { get; set; }
     public string SKU { get; set; } = default!;
     public string Barcode { get; set; } = default!;
-    public string Name { get; set; } = default!;
     public string Specification { get; set; } = default!;
     public string UnitOfMeasurement { get; set; } = default!;
     public bool IsVatable { get; set; } = default!;
     public decimal Rate { get; set; } = default!;
-    public string Description { get; private set; } = default!;
-    public string Notes { get; private set; } = default!;
-    public bool DeleteCurrentImage { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class UpdateProductRequestHandler : IRequestHandler<UpdateProductRequest, Guid>
 {
     private readonly IRepository<Product> _repository;
-    private readonly IStringLocalizer _t;
     private readonly IFileStorageService _file;
 
-    public UpdateProductRequestHandler(IRepository<Product> repository, IStringLocalizer<UpdateProductRequestHandler> localizer, IFileStorageService file) =>
-        (_repository, _t, _file) = (repository, localizer, file);
+    public UpdateProductRequestHandler(IRepository<Product> repository, IFileStorageService file) =>
+        (_repository, _file) = (repository, file);
 
     public async Task<Guid> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
     {
         var product = await _repository.GetByIdAsync(request.Id, cancellationToken);
-
         _ = product ?? throw new NotFoundException($"Product {request.Id} not found.");
 
         // Remove old image if flag is set

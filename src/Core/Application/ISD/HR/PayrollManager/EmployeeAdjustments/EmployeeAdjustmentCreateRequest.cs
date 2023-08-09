@@ -3,7 +3,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.EmployeeAdjustments;
 
-public class EmployeeAdjustmentCreateRequest : IRequest<Guid>
+public class EmployeeAdjustmentCreateRequest : RequestWithImageExtension<EmployeeAdjustmentCreateRequest>, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; } = default!;
     public string PaymentSchedule { get; set; } = default!;
@@ -11,9 +11,6 @@ public class EmployeeAdjustmentCreateRequest : IRequest<Guid>
     public decimal Amount { get; set; } = default!;
     public DateTime StartDate { get; set; } = default!;
     public DateTime? EndDate { get; set; } = default!;
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
-    public ImageUploadRequest? Image { get; set; }
 }
 
 public class EmployeeAdjustmentCreateRequestValidator : CustomValidator<EmployeeAdjustmentCreateRequest>
