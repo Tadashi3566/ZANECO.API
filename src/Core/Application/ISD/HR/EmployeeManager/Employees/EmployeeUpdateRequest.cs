@@ -15,7 +15,7 @@ public class EmployeeUpdateRequest : IRequest<Guid>
     public int Number { get; set; } = default!;
     public string Title { get; set; } = "MR";
     public string FirstName { get; set; } = default!;
-    public string MiddleName { get; set; } = default!;
+    public string? MiddleName { get; set; }
     public string LastName { get; set; } = default!;
     public string? Extension { get; set; }
     public string Gender { get; set; } = "MALE";
@@ -28,7 +28,7 @@ public class EmployeeUpdateRequest : IRequest<Guid>
     // Employment
     public DefaultIdType DesignationId { get; set; } = default!;
 
-    public DateTime? BirthDate { get; set; } = default!;
+    public DateTime BirthDate { get; set; } = default!;
     public DateTime HireDate { get; set; } = default!;
     public DateTime StartDate { get; set; } = default!;
     public DateTime RegularDate { get; set; } = default!;
@@ -41,7 +41,6 @@ public class EmployeeUpdateRequest : IRequest<Guid>
 
     // Benefits
     public string? Sss { get; set; }
-
     public string? Phic { get; set; }
     public string? Hdmf { get; set; }
     public string? Tin { get; set; }

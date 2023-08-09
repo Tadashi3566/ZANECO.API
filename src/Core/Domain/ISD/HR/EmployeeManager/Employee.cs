@@ -114,40 +114,40 @@ public class Employee : AuditableEntity, IAggregateRoot
         Title = title;
         FirstName = firstName.Trim().ToUpper();
 
-        MiddleName = string.IsNullOrEmpty(middleName) ? string.Empty : middleName!.Trim().ToUpper();
+        MiddleName = string.IsNullOrEmpty(middleName) ? default! : middleName!.Trim().ToUpper();
 
         LastName = lastName.Trim().ToUpper();
 
         Extension = extension is not null ? extension!.Trim().ToUpper() : null;
 
         Gender = gender;
-        PhoneNumber = phoneNumber.Trim();
+        PhoneNumber = phoneNumber;
         Email = email;
         CivilStatus = civilStatus;
-        Address = address.Trim();
+        Address = string.IsNullOrEmpty(address) ? default! : address!.Trim();
         BirthDate = birthDate;
-        BirthPlace = birthPlace.Trim();
+        BirthPlace = string.IsNullOrEmpty(birthPlace) ? default! : birthPlace!.Trim();
 
         HireDate = hireDate;
         RegularDate = regularDate;
 
-        Sss = sss.Trim().ToUpper();
-        Phic = phic.Trim().ToUpper();
-        Hdmf = hdmf.Trim().ToUpper();
-        Tin = tin.Trim().ToUpper();
+        Sss = string.IsNullOrEmpty(sss) ? default! : sss!.Trim();
+        Phic = string.IsNullOrEmpty(phic) ? default! : phic!.Trim();
+        Hdmf = string.IsNullOrEmpty(hdmf) ? default! : hdmf!.Trim();
+        Tin = string.IsNullOrEmpty(tin) ? default! : tin!.Trim();
 
-        EmergencyPerson = emergencyPerson.Trim().ToUpper();
-        EmergencyNumber = emergencyNumber.Trim().ToUpper();
-        EmergencyAddress = emergencyAddress.Trim().ToUpper();
-        EmergencyRelation = emergencyRelation.Trim().ToUpper();
-        FatherName = fatherName.Trim().ToUpper();
-        MotherName = motherName.Trim().ToUpper();
+        EmergencyPerson = string.IsNullOrEmpty(emergencyPerson) ? default! : emergencyPerson!.Trim();
+        EmergencyNumber = string.IsNullOrEmpty(emergencyNumber) ? default! : emergencyNumber!.Trim();
+        EmergencyAddress = string.IsNullOrEmpty(emergencyAddress) ? default! : emergencyAddress!.Trim();
+        EmergencyRelation = string.IsNullOrEmpty(emergencyRelation) ? default! : emergencyRelation!.Trim();
+        FatherName = string.IsNullOrEmpty(fatherName) ? default! : fatherName!.Trim();
+        MotherName = string.IsNullOrEmpty(motherName) ? default! : motherName!.Trim();
 
-        Education = education.Trim().ToUpper();
-        Course = course.Trim().ToUpper();
-        Award = award.Trim().ToUpper();
+        Education = string.IsNullOrEmpty(education) ? default! : education!.Trim();
+        Course = string.IsNullOrEmpty(course) ? default! : course!.Trim();
+        Award = string.IsNullOrEmpty(award) ? default! : award!.Trim();
 
-        BloodType = bloodType.Trim().ToUpper();
+        BloodType = bloodType;
 
         Name = string.Empty;
 
@@ -160,40 +160,40 @@ public class Employee : AuditableEntity, IAggregateRoot
     public Employee Update(int number, string title, string firstName, string middleName, string lastName, string? extension, string gender, string phoneNumber, string email, string civilStatus, string address, DateTime birthDate, string birthPlace, DateTime hireDate, DateTime regularDate, string sss, string phic, string hdmf, string tin, string emergencyPerson, string emergencyNumber, string emergencyAddress, string emergencyRelation, string fatherName, string motherName, string education, string course, string award, string bloodType, string? description = null, string? notes = null, string? imagePath = null)
     {
         if (!Number.Equals(number)) Number = number;
-        if (title is not null && (Title is null || !Title.Equals(title))) Title = title;
-        if (firstName is not null && (FirstName is null || !FirstName.Equals(firstName))) FirstName = firstName.Trim().ToUpper();
-        if (middleName is not null && (MiddleName is null || !MiddleName.Equals(middleName))) MiddleName = middleName.Trim().ToUpper();
-        if (lastName is not null && (LastName is null || !LastName.Equals(lastName))) LastName = lastName.Trim().ToUpper();
-        if (extension is not null && (Extension is null || !Extension.Equals(extension))) Extension = extension.Trim().ToUpper();
+        if (title is not null && (Title?.Equals(title) != true)) Title = title;
+        if (firstName is not null && (FirstName?.Equals(firstName) != true)) FirstName = firstName.Trim().ToUpper();
+        if (middleName is not null && (MiddleName?.Equals(middleName) != true)) MiddleName = middleName.Trim().ToUpper();
+        if (lastName is not null && (LastName?.Equals(lastName) != true)) LastName = lastName.Trim().ToUpper();
+        if (extension is not null && (Extension?.Equals(extension) != true)) Extension = extension.Trim().ToUpper();
 
-        if (gender is not null && (Gender is null || !Gender.Equals(gender))) Gender = gender;
-        if (phoneNumber is not null && (PhoneNumber is null || !PhoneNumber.Equals(phoneNumber))) PhoneNumber = phoneNumber.Trim();
-        if (email is not null && (Email is null || !Email.Equals(email))) Email = email;
-        if (civilStatus is not null && (CivilStatus is null || !CivilStatus.Equals(civilStatus))) CivilStatus = civilStatus;
-        if (address is not null && (Address is null || !Address.Equals(address))) Address = address.Trim();
+        if (gender is not null && (Gender?.Equals(gender) != true)) Gender = gender;
+        if (phoneNumber is not null && (PhoneNumber?.Equals(phoneNumber) != true)) PhoneNumber = phoneNumber.Trim();
+        if (email is not null && (Email?.Equals(email) != true)) Email = email;
+        if (civilStatus is not null && (CivilStatus?.Equals(civilStatus) != true)) CivilStatus = civilStatus;
+        if (address is not null && (Address?.Equals(address) != true)) Address = address.Trim();
         if (!BirthDate.Equals(birthDate)) BirthDate = birthDate!;
-        if (birthPlace is not null && (BirthPlace is null || !BirthPlace.Equals(birthPlace))) BirthPlace = birthPlace.Trim();
+        if (birthPlace is not null && (BirthPlace?.Equals(birthPlace) != true)) BirthPlace = birthPlace.Trim();
 
         if (!HireDate.Equals(hireDate)) HireDate = hireDate;
         if (!RegularDate.Equals(regularDate)) RegularDate = regularDate;
 
-        if (sss is not null && (Sss is null || !Sss.Equals(sss))) Sss = sss.Trim().ToUpper();
-        if (phic is not null && (Phic is null || !Phic.Equals(phic))) Phic = phic.Trim().ToUpper();
-        if (hdmf is not null && (Hdmf is null || !Hdmf.Equals(hdmf))) Hdmf = hdmf.Trim().ToUpper();
-        if (tin is not null && (Tin is null || !Tin.Equals(tin))) Tin = tin.Trim().ToUpper();
+        if (sss is not null && (Sss?.Equals(sss) != true)) Sss = sss.Trim().ToUpper();
+        if (phic is not null && (Phic?.Equals(phic) != true)) Phic = phic.Trim().ToUpper();
+        if (hdmf is not null && (Hdmf?.Equals(hdmf) != true)) Hdmf = hdmf.Trim().ToUpper();
+        if (tin is not null && (Tin?.Equals(tin) != true)) Tin = tin.Trim().ToUpper();
 
-        if (emergencyPerson is not null && (EmergencyPerson is null || !EmergencyPerson.Equals(emergencyPerson))) EmergencyPerson = emergencyPerson.Trim().ToUpper();
-        if (emergencyNumber is not null && (EmergencyNumber is null || !EmergencyNumber.Equals(emergencyNumber))) EmergencyNumber = emergencyNumber.Trim().ToUpper();
-        if (emergencyAddress is not null && (EmergencyAddress is null || !EmergencyAddress.Equals(emergencyAddress))) EmergencyAddress = emergencyAddress.Trim().ToUpper();
-        if (emergencyRelation is not null && (EmergencyRelation is null || !EmergencyRelation.Equals(emergencyRelation))) EmergencyRelation = emergencyRelation.Trim().ToUpper();
-        if (fatherName is not null && (FatherName is null || !FatherName.Equals(fatherName))) FatherName = fatherName.Trim().ToUpper();
-        if (motherName is not null && (MotherName is null || !MotherName.Equals(motherName))) MotherName = motherName.Trim().ToUpper();
+        if (emergencyPerson is not null && (EmergencyPerson?.Equals(emergencyPerson) != true)) EmergencyPerson = emergencyPerson.Trim().ToUpper();
+        if (emergencyNumber is not null && (EmergencyNumber?.Equals(emergencyNumber) != true)) EmergencyNumber = emergencyNumber.Trim().ToUpper();
+        if (emergencyAddress is not null && (EmergencyAddress?.Equals(emergencyAddress) != true)) EmergencyAddress = emergencyAddress.Trim().ToUpper();
+        if (emergencyRelation is not null && (EmergencyRelation?.Equals(emergencyRelation) != true)) EmergencyRelation = emergencyRelation.Trim().ToUpper();
+        if (fatherName is not null && (FatherName?.Equals(fatherName) != true)) FatherName = fatherName.Trim().ToUpper();
+        if (motherName is not null && (MotherName?.Equals(motherName) != true)) MotherName = motherName.Trim().ToUpper();
 
-        if (education is not null && (Education is null || !Education.Equals(education))) Education = education.Trim().ToUpper();
-        if (course is not null && (Course is null || !Course.Equals(course))) Course = course.Trim().ToUpper();
-        if (award is not null && (Award is null || !Award.Equals(award))) Award = award.Trim().ToUpper();
+        if (education is not null && (Education?.Equals(education) != true)) Education = education.Trim().ToUpper();
+        if (course is not null && (Course?.Equals(course) != true)) Course = course.Trim().ToUpper();
+        if (award is not null && (Award?.Equals(award) != true)) Award = award.Trim().ToUpper();
 
-        if (bloodType is not null && (BloodType is null || !BloodType.Equals(bloodType))) BloodType = bloodType.Trim().ToUpper();
+        if (bloodType is not null && (BloodType?.Equals(bloodType) != true)) BloodType = bloodType.Trim().ToUpper();
 
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
@@ -210,22 +210,22 @@ public class Employee : AuditableEntity, IAggregateRoot
 
         if (!StartDate.Equals(startDate)) StartDate = startDate;
 
-        if (area is not null && (Area is null || !Area.Equals(area))) Area = area;
-        if (department is not null && (Department is null || !Department.Equals(department))) Department = department;
-        if (division != null && (Division is null || !Division.Equals(division))) Division = division;
-        if (section is not null && (Section is null || !Section.Equals(section))) Section = section;
-        if (position is not null && (Position is null || !Position.Equals(position))) Position = position;
+        if (area is not null && (Area?.Equals(area) != true)) Area = area;
+        if (department is not null && (Department?.Equals(department) != true)) Department = department;
+        if (division != null && (Division?.Equals(division) != true)) Division = division;
+        if (section is not null && (Section?.Equals(section) != true)) Section = section;
+        if (position is not null && (Position?.Equals(position) != true)) Position = position;
 
-        if (employmentType is not null && (EmploymentType is null || !EmploymentType.Equals(employmentType))) EmploymentType = employmentType;
+        if (employmentType is not null && (EmploymentType?.Equals(employmentType) != true)) EmploymentType = employmentType;
         if (!SalaryNumber.Equals(salaryNumber)) SalaryNumber = salaryNumber;
-        if (salaryName is not null && (SalaryName is null || !SalaryName.Equals(salaryName))) SalaryName = salaryName;
-        if (payType is not null && (PayType is null || !PayType.Equals(payType))) PayType = payType;
-        if (rateType is not null && (RateType is null || !RateType.Equals(rateType))) RateType = rateType;
+        if (salaryName is not null && (SalaryName?.Equals(salaryName) != true)) SalaryName = salaryName;
+        if (payType is not null && (PayType?.Equals(payType) != true)) PayType = payType;
+        if (rateType is not null && (RateType?.Equals(rateType) != true)) RateType = rateType;
         if (!HoursPerDay.Equals(hoursPerDay)) HoursPerDay = hoursPerDay;
-        if (taxType is not null && (TaxType is null || !TaxType.Equals(taxType))) TaxType = taxType;
+        if (taxType is not null && (TaxType?.Equals(taxType) != true)) TaxType = taxType;
 
         if (scheduleId.HasValue && scheduleId.Value != DefaultIdType.Empty && !ScheduleId.Equals(scheduleId.Value)) ScheduleId = scheduleId.Value;
-        if (scheduleName is not null && (ScheduleName is null || !ScheduleName.Equals(scheduleName))) ScheduleName = scheduleName;
+        if (scheduleName is not null && (ScheduleName?.Equals(scheduleName) != true)) ScheduleName = scheduleName;
 
         decimal ratePerDay = 0;
         decimal ratePerHour = 0;
@@ -286,7 +286,7 @@ public class Employee : AuditableEntity, IAggregateRoot
     public Employee Schedule(DefaultIdType scheduleId, string scheduleName)
     {
         if (!ScheduleId.Equals(scheduleId)) ScheduleId = scheduleId;
-        if (scheduleName is not null && (ScheduleName is null || !ScheduleName.Equals(scheduleName))) ScheduleName = scheduleName;
+        if (scheduleName is not null && (ScheduleName?.Equals(scheduleName) != true)) ScheduleName = scheduleName;
 
         return this;
     }

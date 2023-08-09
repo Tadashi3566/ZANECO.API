@@ -9,50 +9,49 @@ public class EmployeeCreateRequest : IRequest<Guid>
 {
     public bool IsActive { get; set; } = default!;
     public int Number { get; set; } = default!;
-    public string Title { get; set; } = default!;
+    public string Title { get; set; } = "MR";
     public string FirstName { get; set; } = default!;
-    public string MiddleName { get; set; } = default!;
+    public string? MiddleName { get; set; }
     public string LastName { get; set; } = default!;
     public string? Extension { get; set; }
 
-    public string Gender { get; set; } = default!;
+    public string Gender { get; set; } = "MALE";
     public DateTime BirthDate { get; set; } = default!;
-    public string PhoneNumber { get; set; } = default!;
-    public string Email { get; set; } = default!;
-    public string CivilStatus { get; set; } = default!;
-    public string Address { get; set; } = default!;
-    public string BirthPlace { get; set; } = default!;
+    public string? PhoneNumber { get; set; }
+    public string? Email { get; set; }
+    public string? CivilStatus { get; set; }
+    public string? Address { get; set; }
+    public string? BirthPlace { get; set; }
 
     // Benefits
-    public string Sss { get; set; } = default!;
-
-    public string Phic { get; set; } = default!;
-    public string Hdmf { get; set; } = default!;
-    public string Tin { get; set; } = default!;
+    public string? Sss { get; set; }
+    public string? Phic { get; set; }
+    public string? Hdmf { get; set; }
+    public string? Tin { get; set; }
 
     // Payroll
     public DateTime HireDate { get; set; } = default!;
 
     public DateTime RegularDate { get; set; } = default!;
-    public string PayThrough { get; set; } = default!;
+    public string? PayThrough { get; set; }
 
     // Emergency
-    public string EmergencyPerson { get; set; } = default!;
+    public string? EmergencyPerson { get; set; }
 
-    public string EmergencyNumber { get; set; } = default!;
-    public string EmergencyAddress { get; set; } = default!;
-    public string EmergencyRelation { get; set; } = default!;
-    public string FatherName { get; set; } = default!;
-    public string MotherName { get; set; } = default!;
+    public string? EmergencyNumber { get; set; }
+    public string? EmergencyAddress { get; set; }
+    public string? EmergencyRelation { get; set; }
+    public string? FatherName { get; set; }
+    public string? MotherName { get; set; }
 
     // Education
-    public string Education { get; set; } = default!;
+    public string? Education { get; set; }
 
-    public string Course { get; set; } = default!;
-    public string Award { get; set; } = default!;
+    public string? Course { get; set; }
+    public string? Award { get; set; }
 
     // Others
-    public string BloodType { get; set; } = default!;
+    public string? BloodType { get; set; }
 
     public string? Description { get; set; }
     public string? Notes { get; set; }
@@ -108,7 +107,7 @@ public class EmployeeCreateRequestHandler : IRequestHandler<EmployeeCreateReques
         await _repoEmployee.AddAsync(employee, cancellationToken);
 
         //Add Employee Contact Number
-        if (request.PhoneNumber.Length > 0)
+        if (request.PhoneNumber?.Length > 0)
         {
             if (!string.IsNullOrEmpty(imagePath))
             {
@@ -129,7 +128,7 @@ public class EmployeeCreateRequestHandler : IRequestHandler<EmployeeCreateReques
         }
 
         //Emergency Person Contact Number
-        if (request.EmergencyNumber.Length > 0)
+        if (request.EmergencyNumber?.Length > 0)
         {
             var contact = await _repoContact.FirstOrDefaultAsync(new ContactByNumberSpec(ClassSms.FormatContactNumber(request.EmergencyNumber)), cancellationToken);
             if (contact is null)

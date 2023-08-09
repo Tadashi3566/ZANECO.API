@@ -4,6 +4,8 @@ public static class ClassSms
 {
     public static string FormatContactNumber(string contactNumber)
     {
+        if (contactNumber is null) return default!;
+
         if (contactNumber.Length <= 9) return contactNumber;
 
         contactNumber = contactNumber.Trim();
