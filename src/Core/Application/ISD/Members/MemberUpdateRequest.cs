@@ -34,7 +34,7 @@ public class MemberUpdateRequestValidator : CustomValidator<MemberUpdateRequest>
             .MustAsync(async (member, name, ct) =>
                     await MemberRepo.FirstOrDefaultAsync(new MemberByNameSpec(name), ct)
                         is not { } existingMember || existingMember.Id == member.Id)
-                .WithMessage((_, name) => string.Format(localizer["member already exists"], name));
+                .WithMessage((_, name) => string.Format(localizer["member already exists."], name));
 
         RuleFor(p => p.Address)
             .NotEmpty()

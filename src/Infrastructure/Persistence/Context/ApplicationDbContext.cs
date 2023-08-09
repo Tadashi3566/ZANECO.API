@@ -60,6 +60,7 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Attendance> Attendance => Set<Attendance>();
     public DbSet<TimeLog> TimeLogs => Set<TimeLog>();
     public DbSet<Contribution> Contributions => Set<Contribution>();
+    public DbSet<JobDescription> JobDescriptions => Set<JobDescription>();
     public DbSet<Payroll> Payrolls => Set<Payroll>();
     public DbSet<PayrollAdjustment> PayrollAdjustments => Set<PayrollAdjustment>();
     public DbSet<EmployeePayroll> EmployeePayrolls => Set<EmployeePayroll>();

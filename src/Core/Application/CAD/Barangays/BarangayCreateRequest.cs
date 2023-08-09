@@ -22,7 +22,7 @@ public class CreateBarangayRequestValidator : CustomValidator<BarangayCreateRequ
             .NotEmpty()
             .MaximumLength(1024)
             .MustAsync(async (name, ct) => await BarangayRepo.FirstOrDefaultAsync(new BarangayByNameSpec(name), ct) is null)
-            .WithMessage((_, Barangay) => string.Format(localizer["Barangay already exists"], Barangay));
+            .WithMessage((_, Barangay) => string.Format(localizer["Barangay already exists."], Barangay));
     }
 }
 

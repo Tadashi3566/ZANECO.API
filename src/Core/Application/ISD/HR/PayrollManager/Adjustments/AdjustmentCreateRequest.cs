@@ -29,13 +29,13 @@ public class CreateAdjustmentRequestValidator : CustomValidator<AdjustmentCreate
         RuleFor(p => p.Number)
             .GreaterThan(0)
             .MustAsync(async (number, ct) => await repoAdjustment.FirstOrDefaultAsync(new AdjustmentByNumberSpec(number), ct) is null)
-            .WithMessage((_, number) => string.Format(localizer["adjustment already exists"], number));
+            .WithMessage((_, number) => string.Format(localizer["adjustment already exists."], number));
 
         RuleFor(p => p.Name)
             .NotEmpty()
             .MaximumLength(32)
             .MustAsync(async (name, ct) => await repoAdjustment.FirstOrDefaultAsync(new AdjustmentByNameSpec(name), ct) is null)
-            .WithMessage((_, name) => string.Format(localizer["adjustment already exists"], name));
+            .WithMessage((_, name) => string.Format(localizer["adjustment already exists."], name));
 
         RuleFor(p => p.Amount)
             .GreaterThanOrEqualTo(0);

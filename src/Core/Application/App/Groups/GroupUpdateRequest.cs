@@ -41,7 +41,7 @@ public class GroupUpdateRequestValidator : CustomValidator<GroupUpdateRequest>
             .MustAsync(async (group, code, ct) =>
                     await repoGroupRepo.FirstOrDefaultAsync(new GroupByCodeSpec(code), ct)
                         is not { } existingGroup || existingGroup.Id == group.Id)
-                .WithMessage((_, code) => string.Format(localizer["group already exists"], code));
+                .WithMessage((_, code) => string.Format(localizer["group already exists."], code));
 
         RuleFor(p => p.Name)
             .NotEmpty()
@@ -49,7 +49,7 @@ public class GroupUpdateRequestValidator : CustomValidator<GroupUpdateRequest>
             .MustAsync(async (group, name, ct) =>
                     await repoGroupRepo.FirstOrDefaultAsync(new GroupByNameSpec(name), ct)
                         is not { } existingGroup || existingGroup.Id == group.Id)
-                .WithMessage((_, name) => string.Format(localizer["group already exists"], name));
+                .WithMessage((_, name) => string.Format(localizer["group already exists."], name));
 
         RuleFor(p => p.Image)
             .SetNonNullableValidator(new ImageUploadRequestValidator());

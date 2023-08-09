@@ -58,7 +58,7 @@ public class AccountUpdateRequestValidator : CustomValidator<AccountUpdateReques
             .MustAsync(async (account, accountNumber, ct) =>
                     await AccountRepo.FirstOrDefaultAsync(new AccountByNameSpec(accountNumber), ct)
                         is not { } existingAccount || existingAccount.Id == account.Id)
-                .WithMessage((_, name) => string.Format(localizer["account already exists"], name));
+                .WithMessage((_, name) => string.Format(localizer["account already exists."], name));
 
         RuleFor(p => p.Name)
             .NotEmpty()
@@ -67,7 +67,7 @@ public class AccountUpdateRequestValidator : CustomValidator<AccountUpdateReques
         //.MustAsync(async (account, name, ct) =>
         //        await AccountRepo.FirstOrDefaultAsync(new AccountByNameSpec(name), ct)
         //            is not Account existingAccount || existingAccount.Id == account.Id)
-        //    .WithMessage((_, name) => string.Format(localizer["account already exists"], name));
+        //    .WithMessage((_, name) => string.Format(localizer["account already exists."], name));
 
         RuleFor(p => p.Address)
             .NotEmpty()

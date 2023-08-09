@@ -37,7 +37,7 @@ public class ContactUpdateRequestValidator : CustomValidator<ContactUpdateReques
             .MustAsync(async (Contact, number, ct) =>
                     await repoContactRepo.FirstOrDefaultAsync(new ContactByNumberSpec(number), ct)
                         is not { } existingContact || existingContact.Id == Contact.Id)
-                .WithMessage((_, code) => string.Format(localizer["Contact already exists"], code));
+                .WithMessage((_, code) => string.Format(localizer["Contact already exists."], code));
 
         RuleFor(p => p.Image)
             .SetNonNullableValidator(new ImageUploadRequestValidator());

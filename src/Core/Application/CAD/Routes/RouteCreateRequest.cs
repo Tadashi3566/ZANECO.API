@@ -27,12 +27,12 @@ public class CreateRouteRequestValidator : CustomValidator<RouteCreateRequest>
         RuleFor(p => p.Code)
             .NotEmpty()
             .MustAsync(async (code, ct) => await RouteRepo.FirstOrDefaultAsync(new RouteByCodeSpec(code), ct) is null)
-            .WithMessage((_, Route) => string.Format(localizer["Route already exists"], Route));
+            .WithMessage((_, Route) => string.Format(localizer["Route already exists."], Route));
 
         RuleFor(p => p.Name)
             .NotEmpty()
             .MustAsync(async (name, ct) => await RouteRepo.FirstOrDefaultAsync(new RouteByNameSpec(name), ct) is null)
-            .WithMessage((_, Route) => string.Format(localizer["Route already exists"], Route));
+            .WithMessage((_, Route) => string.Format(localizer["Route already exists."], Route));
     }
 }
 

@@ -22,21 +22,21 @@ public class AreaUpdateRequestValidator : CustomValidator<AreaUpdateRequest>
             .MustAsync(async (area, number, ct) =>
                     await repository.FirstOrDefaultAsync(new AreaByNumberSpec(number), ct)
                         is not { } existingArea || existingArea.Id == area.Id)
-                .WithMessage((_, name) => string.Format(localizer["Area already exists"], name));
+                .WithMessage((_, name) => string.Format(localizer["Area already exists."], name));
 
         RuleFor(p => p.Code)
             .NotEmpty()
             .MustAsync(async (area, code, ct) =>
                     await repository.FirstOrDefaultAsync(new AreaByCodeSpec(code), ct)
                         is not { } existingArea || existingArea.Id == area.Id)
-                .WithMessage((_, name) => string.Format(localizer["Area already exists"], name));
+                .WithMessage((_, name) => string.Format(localizer["Area already exists."], name));
 
         RuleFor(p => p.Name)
             .NotEmpty()
             .MustAsync(async (area, name, ct) =>
                     await repository.FirstOrDefaultAsync(new AreaByNameSpec(name), ct)
                         is not { } existingArea || existingArea.Id == area.Id)
-                .WithMessage((_, name) => string.Format(localizer["Area already exists"], name));
+                .WithMessage((_, name) => string.Format(localizer["Area already exists."], name));
     }
 }
 

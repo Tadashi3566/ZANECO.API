@@ -34,7 +34,7 @@ public class RemoteCollectionUpdateRequestValidator : CustomValidator<RemoteColl
             .MustAsync(async (RemoteCollection, reference, ct) =>
                     await repository.FirstOrDefaultAsync(new RemoteCollectionByReferenceSpec(reference), ct)
                         is not { } existingRemoteCollection || existingRemoteCollection.Id == RemoteCollection.Id)
-                .WithMessage((_, reference) => string.Format(localizer["remoteCollection already exists"], reference));
+                .WithMessage((_, reference) => string.Format(localizer["remoteCollection already exists."], reference));
 
         RuleFor(p => p.Amount)
             .GreaterThanOrEqualTo(0);

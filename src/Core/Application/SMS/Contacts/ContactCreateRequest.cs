@@ -33,7 +33,7 @@ public class ContactCreateRequestValidator : CustomValidator<ContactCreateReques
             .MinimumLength(10)
             .MaximumLength(13)
             .MustAsync(async (code, ct) => await repoContact.FirstOrDefaultAsync(new ContactByNumberSpec(code), ct) is null)
-            .WithMessage((_, code) => string.Format(localizer["Contact already exists"], code));
+            .WithMessage((_, code) => string.Format(localizer["Contact already exists."], code));
 
         RuleFor(p => p.Image)
             .SetNonNullableValidator(new ImageUploadRequestValidator());

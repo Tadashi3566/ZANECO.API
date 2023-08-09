@@ -23,7 +23,7 @@ public class RaffleUpdateRequestValidator : CustomValidator<RaffleUpdateRequest>
             .MustAsync(async (raffle, name, ct) =>
                     await repoRaffleRepo.FirstOrDefaultAsync(new RaffleByNameSpec(name), ct)
                         is not { } existingRaffle || existingRaffle.Id == raffle.Id)
-                .WithMessage((_, name) => string.Format(localizer["Raffle already exists"], name));
+                .WithMessage((_, name) => string.Format(localizer["Raffle already exists."], name));
 
         RuleFor(p => p.RaffleDate)
             .NotNull();

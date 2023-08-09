@@ -37,13 +37,13 @@ public class GroupCreateRequestValidator : CustomValidator<GroupCreateRequest>
             .NotEmpty()
             .MaximumLength(32)
             .MustAsync(async (code, ct) => await repoGroup.FirstOrDefaultAsync(new GroupByCodeSpec(code), ct) is null)
-            .WithMessage((_, code) => string.Format(localizer["group already exists"], code));
+            .WithMessage((_, code) => string.Format(localizer["group already exists."], code));
 
         RuleFor(p => p.Name)
             .NotEmpty()
             .MaximumLength(128)
             .MustAsync(async (name, ct) => await repoGroup.FirstOrDefaultAsync(new GroupByNameSpec(name), ct) is null)
-            .WithMessage((_, name) => string.Format(localizer["group already exists"], name));
+            .WithMessage((_, name) => string.Format(localizer["group already exists."], name));
 
         RuleFor(p => p.Image)
             .SetNonNullableValidator(new ImageUploadRequestValidator());

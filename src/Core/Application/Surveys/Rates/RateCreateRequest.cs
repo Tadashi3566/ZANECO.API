@@ -17,13 +17,13 @@ public class CreateRateRequestValidator : CustomValidator<RateCreateRequest>
         RuleFor(p => p.Number)
             .GreaterThan(0)
             .MustAsync(async (number, ct) => await repoRate.FirstOrDefaultAsync(new RateByNumberSpec(number), ct) is null)
-            .WithMessage((_, number) => string.Format(localizer["rate already exists"], number));
+            .WithMessage((_, number) => string.Format(localizer["rate already exists."], number));
 
         RuleFor(p => p.Name)
             .NotEmpty()
             .MaximumLength(16)
             .MustAsync(async (name, ct) => await repoRate.FirstOrDefaultAsync(new RateByNameSpec(name), ct) is null)
-            .WithMessage((_, name) => string.Format(localizer["rate already exists"], name));
+            .WithMessage((_, name) => string.Format(localizer["rate already exists."], name));
     }
 }
 

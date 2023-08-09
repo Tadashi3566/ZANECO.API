@@ -31,14 +31,14 @@ public class AdjustmentUpdateRequestValidator : CustomValidator<AdjustmentUpdate
             .GreaterThan(0)
             .MustAsync(async (adjustment, number, ct) => await repoAdjustment.FirstOrDefaultAsync(new AdjustmentByNumberSpec(number), ct)
                         is not { } existingAdjustment || existingAdjustment.Id == adjustment.Id)
-            .WithMessage((_, number) => string.Format(localizer["adjustment already exists"], number));
+            .WithMessage((_, number) => string.Format(localizer["adjustment already exists."], number));
 
         RuleFor(p => p.Name)
             .NotEmpty()
             .MaximumLength(32)
             .MustAsync(async (adjustment, name, ct) => await repoAdjustment.FirstOrDefaultAsync(new AdjustmentByNameSpec(name), ct)
                         is not { } existingAdjustment || existingAdjustment.Id == adjustment.Id)
-            .WithMessage((_, name) => string.Format(localizer["adjustment already exists"], name));
+            .WithMessage((_, name) => string.Format(localizer["adjustment already exists."], name));
 
         RuleFor(p => p.Amount)
             .GreaterThanOrEqualTo(0);

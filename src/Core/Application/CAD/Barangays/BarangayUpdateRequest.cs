@@ -24,7 +24,7 @@ public class BarangayUpdateRequestValidator : CustomValidator<BarangayUpdateRequ
             .MustAsync(async (Barangay, name, ct) =>
                     await BarangayRepo.FirstOrDefaultAsync(new BarangayByNameSpec(name), ct)
                         is not { } existingBarangay || existingBarangay.Id == Barangay.Id)
-                .WithMessage((_, name) => string.Format(localizer["Barangay already exists"], name));
+                .WithMessage((_, name) => string.Format(localizer["Barangay already exists."], name));
     }
 }
 

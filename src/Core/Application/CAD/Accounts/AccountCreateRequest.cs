@@ -54,13 +54,13 @@ public class CreateAccountRequestValidator : CustomValidator<AccountCreateReques
             .NotEmpty()
             .MaximumLength(16)
             .MustAsync(async (account, ct) => await AccountRepo.FirstOrDefaultAsync(new AccountByAccountNumberSpec(account), ct) is null)
-            .WithMessage((_, account) => string.Format(localizer["account already exists"], account));
+            .WithMessage((_, account) => string.Format(localizer["account already exists."], account));
 
         RuleFor(p => p.Name)
             .NotEmpty()
             .MaximumLength(1024)
             .MustAsync(async (name, ct) => await AccountRepo.FirstOrDefaultAsync(new AccountByNameSpec(name), ct) is null)
-            .WithMessage((_, name) => string.Format(localizer["account already exists"], name));
+            .WithMessage((_, name) => string.Format(localizer["account already exists."], name));
 
         RuleFor(p => p.Address)
             .NotEmpty()

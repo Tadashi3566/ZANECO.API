@@ -67,7 +67,7 @@ public class EmployeeCreateRequestValidator : CustomValidator<EmployeeCreateRequ
             .NotEmpty()
             .GreaterThan(0)
             .MustAsync(async (number, ct) => await repository.FirstOrDefaultAsync(new EmployeeByNumberSpec(number), ct) is null)
-            .WithMessage((_, number) => string.Format(localizer["Employee already exists"], number));
+            .WithMessage((_, number) => string.Format(localizer["Employee already exists."], number));
 
         RuleFor(p => p.FirstName)
             .NotEmpty()

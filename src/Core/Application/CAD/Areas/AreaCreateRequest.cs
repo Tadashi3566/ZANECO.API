@@ -19,18 +19,18 @@ public class CreateAreaRequestValidator : CustomValidator<AreaCreateRequest>
         RuleFor(p => p.Number)
             .GreaterThan(0)
             .MustAsync(async (number, ct) => await AreaRepo.FirstOrDefaultAsync(new AreaByNumberSpec(number), ct) is null)
-            .WithMessage((_, area) => string.Format(localizer["Area already exists"], area));
+            .WithMessage((_, area) => string.Format(localizer["Area already exists."], area));
 
         RuleFor(p => p.Code)
             .NotEmpty()
             .MustAsync(async (code, ct) => await AreaRepo.FirstOrDefaultAsync(new AreaByCodeSpec(code), ct) is null)
-            .WithMessage((_, area) => string.Format(localizer["Area already exists"], area));
+            .WithMessage((_, area) => string.Format(localizer["Area already exists."], area));
 
         RuleFor(p => p.Name)
             .NotEmpty()
             .MaximumLength(1024)
             .MustAsync(async (name, ct) => await AreaRepo.FirstOrDefaultAsync(new AreaByNameSpec(name), ct) is null)
-            .WithMessage((_, area) => string.Format(localizer["Area already exists"], area));
+            .WithMessage((_, area) => string.Format(localizer["Area already exists."], area));
     }
 }
 

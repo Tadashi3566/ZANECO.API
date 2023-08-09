@@ -24,13 +24,13 @@ public class CreateSalaryRequestValidator : CustomValidator<SalaryCreateRequest>
         RuleFor(p => p.Number)
             .GreaterThanOrEqualTo(0)
             .MustAsync(async (number, ct) => await repoSalary.FirstOrDefaultAsync(new SalaryByNumberSpec(number), ct) is null)
-            .WithMessage((_, number) => string.Format(localizer["salary already exists"], number));
+            .WithMessage((_, number) => string.Format(localizer["salary already exists."], number));
 
         // RuleFor(p => p.Name)
         //    .NotEmpty()
         //    .MaximumLength(16)
         //    .MustAsync(async (name, ct) => await repoSalary.FirstOrDefaultAsync(new SalaryByNameSpec(name), ct) is null)
-        //    .WithMessage((_, name) => string.Format(localizer["salary already exists"], name));
+        //    .WithMessage((_, name) => string.Format(localizer["salary already exists."], name));
 
         RuleFor(p => p.Amount)
             .GreaterThan(0);

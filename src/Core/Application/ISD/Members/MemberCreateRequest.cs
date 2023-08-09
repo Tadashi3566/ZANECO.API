@@ -30,7 +30,7 @@ public class CreateMemberRequestValidator : CustomValidator<MemberCreateRequest>
             .NotEmpty()
             .MaximumLength(1024)
             .MustAsync(async (name, ct) => await memberRepo.FirstOrDefaultAsync(new MemberByNameSpec(name), ct) is null)
-            .WithMessage((_, name) => string.Format(localizer["member already exists"], name));
+            .WithMessage((_, name) => string.Format(localizer["member already exists."], name));
 
         RuleFor(p => p.Address)
             .NotEmpty()

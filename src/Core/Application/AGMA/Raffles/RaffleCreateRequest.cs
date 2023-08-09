@@ -19,7 +19,7 @@ public class RaffleCreateRequestValidator : CustomValidator<RaffleCreateRequest>
              .NotEmpty()
              .MaximumLength(128)
              .MustAsync(async (name, ct) => await repoRaffle.FirstOrDefaultAsync(new RaffleByNameSpec(name), ct) is null)
-             .WithMessage((_, name) => string.Format(localizer["Raffle already exists"], name));
+             .WithMessage((_, name) => string.Format(localizer["Raffle already exists."], name));
 
         RuleFor(p => p.RaffleDate)
             .NotNull();

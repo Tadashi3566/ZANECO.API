@@ -73,14 +73,14 @@ public class PowerRateUpdateRequestValidator : CustomValidator<PowerRateUpdateRe
             .MustAsync(async (PowerRate, code, ct) =>
                     await repository.FirstOrDefaultAsync(new PowerRateByCodeSpec(code), ct)
                         is not { } existingPowerRate || existingPowerRate.Id == PowerRate.Id)
-                .WithMessage((_, name) => string.Format(localizer["PowerRate already exists"], name));
+                .WithMessage((_, name) => string.Format(localizer["PowerRate already exists."], name));
 
         RuleFor(p => p.Name)
             .NotEmpty()
             .MustAsync(async (PowerRate, name, ct) =>
                     await repository.FirstOrDefaultAsync(new PowerRateByNameSpec(name), ct)
                         is not { } existingPowerRate || existingPowerRate.Id == PowerRate.Id)
-                .WithMessage((_, name) => string.Format(localizer["PowerRate already exists"], name));
+                .WithMessage((_, name) => string.Format(localizer["PowerRate already exists."], name));
     }
 }
 

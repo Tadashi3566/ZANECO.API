@@ -72,13 +72,13 @@ public class CreatePowerRateRequestValidator : CustomValidator<PowerRateCreateRe
         RuleFor(p => p.Code)
             .NotEmpty()
             .MustAsync(async (code, ct) => await powerRateRepo.FirstOrDefaultAsync(new PowerRateByCodeSpec(code), ct) is null)
-            .WithMessage((_, PowerRate) => string.Format(localizer["PowerRate already exists"], PowerRate));
+            .WithMessage((_, PowerRate) => string.Format(localizer["PowerRate already exists."], PowerRate));
 
         RuleFor(p => p.Name)
             .NotEmpty()
             .MaximumLength(1024)
             .MustAsync(async (name, ct) => await powerRateRepo.FirstOrDefaultAsync(new PowerRateByNameSpec(name), ct) is null)
-            .WithMessage((_, PowerRate) => string.Format(localizer["PowerRate already exists"], PowerRate));
+            .WithMessage((_, PowerRate) => string.Format(localizer["PowerRate already exists."], PowerRate));
     }
 }
 
