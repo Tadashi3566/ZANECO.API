@@ -16,6 +16,7 @@ public class Brand : AuditableEntity, IAggregateRoot
 
         if (description is not null && Description?.Equals(description) is not true) Description = description;
         if (notes is not null && Notes?.Equals(notes) is not true) Notes = notes;
+
         return this;
     }
 }

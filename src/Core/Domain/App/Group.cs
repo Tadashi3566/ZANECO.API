@@ -51,6 +51,7 @@ public class Group : AuditableEntity, IAggregateRoot
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
         if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
+
         return this;
     }
 
