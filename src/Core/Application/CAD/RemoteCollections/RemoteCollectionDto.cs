@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.CAD.RemoteCollections;
 
-public class RemoteCollectionDto : DtoExtension<RemoteCollectionDto>, IDto
+public class RemoteCollectionDto : DtoExtension, IDto
 {
     public int CollectorId { get; set; } = default!;
     public string Collector { get; set; } = default!;

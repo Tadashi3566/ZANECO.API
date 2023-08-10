@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Designations;
 
-public class DesignationDto : DtoExtension<DesignationDto>, IDto
+public class DesignationDto : DtoExtension, IDto
 {
     public DefaultIdType EmployeeId { get; set; }
     public string IdNumber { get; set; } = default!;

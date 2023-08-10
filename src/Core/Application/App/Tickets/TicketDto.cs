@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.App.Tickets;
 
-public class TicketDto : DtoExtension<TicketDto>, IDto
+public class TicketDto : DtoExtension, IDto
 {
     public DefaultIdType GroupId { get; set; }
     public string GroupCode { get; set; } = default!;

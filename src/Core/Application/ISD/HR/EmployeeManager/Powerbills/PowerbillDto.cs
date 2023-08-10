@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Powerbills;
 
-public class PowerbillDto : DtoExtension<PowerbillDto>, IDto
+public class PowerbillDto : DtoExtension, IDto
 {
     public DefaultIdType EmployeeId { get; set; }
     public string? EmployeeName { get; set; }

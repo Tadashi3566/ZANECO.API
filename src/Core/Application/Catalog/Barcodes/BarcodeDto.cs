@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.Catalog.Barcodes;
 
-public class BarcodeDto : DtoExtension<BarcodeDto>, IDto
+public class BarcodeDto : DtoExtension, IDto
 {
     public DefaultIdType ProductId { get; set; }
     public string Code { get; set; } = default!;

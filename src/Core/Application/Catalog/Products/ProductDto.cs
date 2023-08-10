@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.Catalog.Products;
 
-public class ProductDto : DtoExtension<ProductDto>, IDto
+public class ProductDto : DtoExtension, IDto
 {
     public DefaultIdType BrandId { get; set; }
     public string BrandName { get; set; } = default!;

@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.CAD.PowerConsumptions;
 
-public class PowerConsumptionDto : DtoExtension<PowerConsumptionDto>, IDto
+public class PowerConsumptionDto : DtoExtension, IDto
 {
     public DefaultIdType GroupId { get; set; } = default!;
     public string GroupCode { get; set; } = default!;

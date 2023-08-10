@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.AGMA.Prizes;
 
-public class PrizeDto : DtoExtension<PrizeDto>, IDto
+public class PrizeDto : DtoExtension, IDto
 {
     public DefaultIdType RaffleId { get; set; } = default!;
     public string RaffleName { get; set; } = default!;

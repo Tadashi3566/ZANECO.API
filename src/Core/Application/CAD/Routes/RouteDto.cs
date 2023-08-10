@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.CAD.Routes;
 
-public class RouteDto : DtoExtension<RouteDto>, IDto
+public class RouteDto : DtoExtension, IDto
 {
     public DefaultIdType AreaId { get; set; } = default!;
     public string AreaName { get; set; } = default!;

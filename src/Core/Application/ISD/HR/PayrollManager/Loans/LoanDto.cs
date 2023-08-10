@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Loans;
 
-public class LoanDto : DtoExtension<LoanDto>, IDto
+public class LoanDto : DtoExtension, IDto
 {
     public DefaultIdType EmployeeId { get; set; }
     public string? EmployeeName { get; set; }

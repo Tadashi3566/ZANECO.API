@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.CAD.Accounts;
 
-public class AccountDto : DtoExtension<AccountDto>, IDto
+public class AccountDto : DtoExtension, IDto
 {
     public int IdCode { get; set; } = default!;
     public string AccountNumber { get; set; } = default!;

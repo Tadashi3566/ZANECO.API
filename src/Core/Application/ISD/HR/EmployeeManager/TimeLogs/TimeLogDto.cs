@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.TimeLogs;
 
-public class TimeLogDto : DtoExtension<TimeLogDto>, IDto
+public class TimeLogDto : DtoExtension, IDto
 {
     public DefaultIdType EmployeeId { get; set; } = default!;
     public string EmployeeName { get; set; } = default!;

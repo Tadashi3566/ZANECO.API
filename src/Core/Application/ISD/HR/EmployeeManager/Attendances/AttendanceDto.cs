@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Attendances;
 
-public class AttendanceDto : DtoExtension<AttendanceDto>, IDto
+public class AttendanceDto : DtoExtension, IDto
 {
     public DefaultIdType EmployeeId { get; set; } = default!;
     public string? EmployeeName { get; set; }

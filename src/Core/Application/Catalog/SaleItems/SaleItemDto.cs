@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.Catalog.SaleItems;
 
-public class SaleItemDto : DtoExtension<SaleItemDto>, IDto
+public class SaleItemDto : DtoExtension, IDto
 {
     public DefaultIdType SaleId { get; private set; }
     public DefaultIdType ProductId { get; private set; }

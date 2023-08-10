@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.Catalog.Suppliers;
 
-public class SupplierDto : DtoExtension<SupplierDto>, IDto
+public class SupplierDto : DtoExtension, IDto
 {
     public string Address { get; set; } = default!;
     public string Tin { get; set; } = default!;

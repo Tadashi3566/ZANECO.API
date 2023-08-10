@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.Catalog.Sales;
 
-public class SaleDto : DtoExtension<SaleDto>, IDto
+public class SaleDto : DtoExtension, IDto
 {
     public DefaultIdType CustomerId { get; set; }
     public DateTime Date { get; set; } = default!;

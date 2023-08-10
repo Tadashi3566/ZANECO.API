@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Payrolls;
 
-public class PayrollDto : DtoExtension<PayrollDto>, IDto
+public class PayrollDto : DtoExtension, IDto
 {
     public string PayrollType { get; set; } = default!; // FULL MONTH, MONTH-MID & MONTH-END
     public string EmploymentType { get; set; } = default!;

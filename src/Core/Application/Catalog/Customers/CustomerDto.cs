@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.Catalog.Customers;
 
-public class CustomerDto : DtoExtension<CustomerDto>, IDto
+public class CustomerDto : DtoExtension, IDto
 {
     public string Code { get; set; } = default!;
     public string Address { get; set; } = default!;

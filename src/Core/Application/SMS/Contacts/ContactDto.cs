@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.SMS.Contacts;
 
-public class ContactDto : DtoExtension<ContactDto>, IDto
+public class ContactDto : DtoExtension, IDto
 {
     public string ContactType { get; set; } = default!;
     public string Reference { get; set; } = default!;

@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.CAD.Ledgers;
 
-public class LedgerDto : DtoExtension<LedgerDto>, IDto
+public class LedgerDto : DtoExtension, IDto
 {
     public DefaultIdType AccountId { get; set; } = default!;
     public double IdCode { get; set; } = default!;

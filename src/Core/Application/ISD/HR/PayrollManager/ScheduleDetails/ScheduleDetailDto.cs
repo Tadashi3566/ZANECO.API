@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.ScheduleDetails;
 
-public class ScheduleDetailDto : DtoExtension<ScheduleDetailDto>, IDto
+public class ScheduleDetailDto : DtoExtension, IDto
 {
     public DefaultIdType ScheduleId { get; set; }
     public string ScheduleName { get; set; } = default!;

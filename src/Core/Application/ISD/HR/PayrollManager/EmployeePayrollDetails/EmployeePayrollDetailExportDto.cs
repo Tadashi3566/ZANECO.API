@@ -1,6 +1,6 @@
 ﻿namespace ZANECO.API.Application.ISD.HR.PayrollManager.EmployeePayrollDetails;
 
-public class EmployeePayrollDetailExportDto : DtoExtension<EmployeePayrollDetailExportDto>, IDto
+public class EmployeePayrollDetailExportDto : DtoExtension, IDto
 {
     public string EmployeeName { get; set; } = default!;
     public string PayrollName { get; set; } = default!;

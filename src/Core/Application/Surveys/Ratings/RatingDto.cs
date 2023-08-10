@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.Surveys.Ratings;
 
-public class RatingDto : DtoExtension<RatingDto>, IDto
+public class RatingDto : DtoExtension, IDto
 {
     public int RateNumber { get; set; } = default!;
     public string RateName { get; set; } = default!;
