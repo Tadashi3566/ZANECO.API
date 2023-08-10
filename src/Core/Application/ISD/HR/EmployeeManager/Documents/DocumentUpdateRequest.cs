@@ -2,7 +2,7 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Documents;
 
-public class DocumentUpdateRequest : RequestWithImageExtension<DocumentUpdateRequest>, IRequest<Guid>
+public class DocumentUpdateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; }
     public DateTime? DocumentDate { get; set; }

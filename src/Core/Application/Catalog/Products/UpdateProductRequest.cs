@@ -2,7 +2,7 @@ using ZANECO.API.Domain.Common.Events;
 
 namespace ZANECO.API.Application.Catalog.Products;
 
-public class UpdateProductRequest : RequestWithImageExtension<UpdateProductRequest>, IRequest<Guid>
+public class UpdateProductRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public DefaultIdType BrandId { get; set; }
     public string SKU { get; set; } = default!;

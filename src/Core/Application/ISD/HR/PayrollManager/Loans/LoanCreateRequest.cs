@@ -3,7 +3,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Loans;
 
-public class LoanCreateRequest : RequestWithImageExtension<LoanCreateRequest>, IRequest<Guid>
+public class LoanCreateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; } = default!;
     public Guid AdjustmentId { get; set; } = default!;

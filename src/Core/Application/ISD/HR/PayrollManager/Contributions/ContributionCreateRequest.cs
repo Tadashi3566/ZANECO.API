@@ -2,7 +2,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Contributions;
 
-public class ContributionCreateRequest : RequestExtension<ContributionCreateRequest>, IRequest<Guid>
+public class ContributionCreateRequest : RequestExtension ContributionCreateRequest>, IRequest<Guid>
 {
     public string ContributionType { get; set; } = default!;
     public DateTime StartDate { get; set; } = default!;

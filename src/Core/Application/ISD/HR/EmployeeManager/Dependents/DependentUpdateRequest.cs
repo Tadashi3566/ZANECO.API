@@ -2,7 +2,7 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Dependents;
 
-public class DependentUpdateRequest : RequestWithImageExtension<DependentUpdateRequest>, IRequest<Guid>
+public class DependentUpdateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; }
     public string Gender { get; set; } = default!;

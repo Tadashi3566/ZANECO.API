@@ -3,7 +3,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.EmployeePayrolls;
 
-public class EmployeePayrollCreateRequest : RequestExtension<EmployeePayrollCreateRequest>, IRequest<Guid>
+public class EmployeePayrollCreateRequest : RequestExtension EmployeePayrollCreateRequest>, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; } = default!;
     public string EmployeeName { get; set; } = default!;

@@ -4,7 +4,7 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Powerbills;
 
-public class PowerbillCreateRequest : RequestWithImageExtension<PowerbillCreateRequest>, IRequest<Guid>
+public class PowerbillCreateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; }
 

@@ -2,7 +2,7 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.RemoteCollections;
 
-public class RemoteCollectionUpdateRequest : RequestWithImageExtension<RemoteCollectionUpdateRequest>, IRequest<Guid>
+public class RemoteCollectionUpdateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public double CollectorId { get; set; } = default!;
     public string Collector { get; set; } = default!;

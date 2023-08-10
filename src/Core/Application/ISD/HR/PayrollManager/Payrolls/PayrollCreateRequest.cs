@@ -2,7 +2,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Payrolls;
 
-public class PayrollCreateRequest : RequestExtension<PayrollCreateRequest>, IRequest<Guid>
+public class PayrollCreateRequest : RequestExtension PayrollCreateRequest>, IRequest<Guid>
 {
     public string PayrollType { get; set; } = default!;
     public string EmploymentType { get; set; } = default!;

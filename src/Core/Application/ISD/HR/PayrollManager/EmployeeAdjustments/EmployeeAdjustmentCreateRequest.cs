@@ -3,7 +3,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.EmployeeAdjustments;
 
-public class EmployeeAdjustmentCreateRequest : RequestWithImageExtension<EmployeeAdjustmentCreateRequest>, IRequest<Guid>
+public class EmployeeAdjustmentCreateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; } = default!;
     public string PaymentSchedule { get; set; } = default!;

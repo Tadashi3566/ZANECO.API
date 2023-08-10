@@ -5,7 +5,7 @@ using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
-public class EmployeeUpdateRequest : RequestWithImageExtension<EmployeeUpdateRequest>, IRequest<Guid>
+public class EmployeeUpdateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     // Basic
     public bool IsActive { get; set; } = default!;

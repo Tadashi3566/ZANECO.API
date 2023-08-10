@@ -2,7 +2,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Payrolls;
 
-public class PayrollUpdateRequest : RequestExtension<PayrollUpdateRequest>, IRequest<Guid>
+public class PayrollUpdateRequest : RequestExtension PayrollUpdateRequest>, IRequest<Guid>
 {
     public string PayrollType { get; set; } = default!; // FULL MONTH, MONTH-MID & MONTH-END
     public string EmploymentType { get; set; } = default!;

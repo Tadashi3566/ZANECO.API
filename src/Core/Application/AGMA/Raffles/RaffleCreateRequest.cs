@@ -2,7 +2,7 @@ using ZANECO.API.Domain.AGMA;
 
 namespace ZANECO.API.Application.AGMA.Raffles;
 
-public class RaffleCreateRequest : RequestWithImageExtension<RaffleCreateRequest>, IRequest<Guid>
+public class RaffleCreateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public DateTime RaffleDate { get; set; } = default!;
 }

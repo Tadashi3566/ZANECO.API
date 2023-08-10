@@ -4,7 +4,7 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.PowerConsumptions;
 
-public class PowerConsumptionCreateRequest : RequestExtension<PowerConsumptionCreateRequest>, IRequest<Guid>
+public class PowerConsumptionCreateRequest : RequestExtension PowerConsumptionCreateRequest>, IRequest<Guid>
 {
     public string GroupName { get; set; } = default!;
     public string BillMonth { get; set; } = default!;

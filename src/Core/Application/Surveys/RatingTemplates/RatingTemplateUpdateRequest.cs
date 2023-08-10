@@ -2,7 +2,7 @@ using ZANECO.API.Domain.Surveys;
 
 namespace ZANECO.API.Application.Surveys.RatingTemplates;
 
-public class RatingTemplateUpdateRequest : RequestExtension<RatingTemplateUpdateRequest>, IRequest<Guid>
+public class RatingTemplateUpdateRequest : RequestExtension RatingTemplateUpdateRequest>, IRequest<Guid>
 {
     public Guid RateId { get; set; }
     public string Comment { get; set; } = default!;

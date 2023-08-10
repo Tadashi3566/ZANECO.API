@@ -2,7 +2,7 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Accounts;
 
-public class AccountUpdateRequest : RequestWithImageExtension<AccountUpdateRequest>, IRequest<Guid>
+public class AccountUpdateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public int IdCode { get; set; } = default!;
     public string AccountNumber { get; set; } = default!;

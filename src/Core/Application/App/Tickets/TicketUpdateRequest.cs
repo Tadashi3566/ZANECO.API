@@ -2,7 +2,7 @@ using ZANECO.API.Domain.App;
 
 namespace ZANECO.API.Application.App.Tickets;
 
-public class TicketUpdateRequest : RequestWithImageExtension<TicketUpdateRequest>, IRequest<Guid>
+public class TicketUpdateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public Guid GroupId { get; set; }
     public string? Impact { get; set; }
@@ -12,7 +12,7 @@ public class TicketUpdateRequest : RequestWithImageExtension<TicketUpdateRequest
     public string? RequestThrough { get; set; }
     public string? Reference { get; set; }
     public string? AssignedTo { get; set; }
-
+    public string? Status { get; set; }
 }
 
 public class TicketUpdateRequestValidator : CustomValidator<TicketUpdateRequest>

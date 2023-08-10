@@ -2,7 +2,7 @@ using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.SMS.MessageTemplates;
 
-public class MessageTemplateUpdateRequest : RequestWithImageExtension<MessageTemplateUpdateRequest>, IRequest<Guid>
+public class MessageTemplateUpdateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public string TemplateType { get; set; } = default!;
     public string MessageType { get; set; } = "sms.automatic";

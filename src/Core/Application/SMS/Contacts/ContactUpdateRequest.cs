@@ -2,7 +2,7 @@ using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.SMS.Contacts;
 
-public class ContactUpdateRequest : RequestWithImageExtension<ContactUpdateRequest>, IRequest<Guid>
+public class ContactUpdateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public string ContactType { get; set; } = default!;
     public string Reference { get; set; } = default!;

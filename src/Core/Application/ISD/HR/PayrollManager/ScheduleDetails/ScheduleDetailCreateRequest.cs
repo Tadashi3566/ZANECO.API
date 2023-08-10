@@ -2,7 +2,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.ScheduleDetails;
 
-public class ScheduleDetailCreateRequest : RequestExtension<ScheduleDetailCreateRequest>, IRequest<Guid>
+public class ScheduleDetailCreateRequest : RequestExtension ScheduleDetailCreateRequest>, IRequest<Guid>
 {
     public Guid ScheduleId { get; set; }
     public string ScheduleType { get; set; } = default!; // DAYOFF, WORK

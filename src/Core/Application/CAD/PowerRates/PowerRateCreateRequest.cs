@@ -2,7 +2,7 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.PowerRates;
 
-public class PowerRateCreateRequest : RequestExtension<PowerRateCreateRequest>, IRequest<Guid>
+public class PowerRateCreateRequest : RequestExtension PowerRateCreateRequest>, IRequest<Guid>
 {
     public DefaultIdType GroupId { get; private set; } = default!;
     public string Code { get; set; } = default!;

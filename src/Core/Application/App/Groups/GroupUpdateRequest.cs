@@ -3,7 +3,7 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.App.Groups;
 
-public class GroupUpdateRequest : RequestWithImageExtension<GroupUpdateRequest>, IRequest<Guid>
+public class GroupUpdateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public string Application { get; set; } = default!;
     public string Parent { get; set; } = default!;

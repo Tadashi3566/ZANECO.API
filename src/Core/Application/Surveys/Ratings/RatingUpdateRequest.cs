@@ -3,7 +3,7 @@ using ZANECO.API.Domain.Surveys;
 
 namespace ZANECO.API.Application.Surveys.Ratings;
 
-public class RatingUpdateRequest : RequestExtension<RatingUpdateRequest>, IRequest<Guid>
+public class RatingUpdateRequest : RequestExtension RatingUpdateRequest>, IRequest<Guid>
 {
     public int RateNumber { get; set; } = default!;
     public string Comment { get; set; } = default!;

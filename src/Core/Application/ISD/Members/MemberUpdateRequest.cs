@@ -3,7 +3,7 @@ using ZANECO.API.Domain.ISD;
 
 namespace ZANECO.API.Application.ISD.Members;
 
-public class MemberUpdateRequest : RequestWithImageExtension<MemberUpdateRequest>, IRequest<Guid>
+public class MemberUpdateRequest : RequestWithImageExtension, IRequest<Guid>
 {
     public int IncrementId { get; set; } = default!;
     public int ApplicationId { get; set; } = default!;

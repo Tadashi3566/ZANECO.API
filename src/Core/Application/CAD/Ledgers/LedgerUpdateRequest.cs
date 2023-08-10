@@ -2,7 +2,7 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Ledgers;
 
-public class LedgerUpdateRequest : RequestExtension<LedgerUpdateRequest>, IRequest<Guid>
+public class LedgerUpdateRequest : RequestExtension LedgerUpdateRequest>, IRequest<Guid>
 {
     public Guid AccountId { get; set; }
     public double IdCode { get; set; } = default!;
