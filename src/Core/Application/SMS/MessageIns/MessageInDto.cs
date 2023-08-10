@@ -1,8 +1,7 @@
 namespace ZANECO.API.Application.SMS.MessageIns;
 
-public class MessageInDto : IDto
+public class MessageInDto : DtoExtension<int>, IDto
 {
-    public int Id { get; set; }
     public DateTime? SendTime { get; set; }
     public DateTime? ReceiveTime { get; set; }
     public string MessageFrom { get; set; } = default!;
@@ -16,6 +15,4 @@ public class MessageInDto : IDto
     public int MessageParts { get; set; }
     public bool IsRead { get; set; }
     public DateTime? ReadOn { get; set; }
-    public string? Description { get; set; }
-    public string? Notes { get; set; }
 }
