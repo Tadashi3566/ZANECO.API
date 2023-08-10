@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.CAD.RemoteCollections;
 
-public class RemoteCollectionDto : DtoExtension, IDto
+public class RemoteCollectionDto : BaseDto, IDto
 {
     public int CollectorId { get; set; } = default!;
     public string Collector { get; set; } = default!;
@@ -10,6 +10,4 @@ public class RemoteCollectionDto : DtoExtension, IDto
     public string AccountNumber { get; set; } = default!;
     public decimal Amount { get; set; } = default!;
     public string OrNumber { get; set; } = default!;
-
-
 }

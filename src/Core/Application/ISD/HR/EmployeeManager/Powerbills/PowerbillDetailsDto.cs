@@ -2,7 +2,7 @@ using ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Powerbills;
 
-public class PowerbillDetailsDto : DtoExtension, IDto
+public class PowerbillDetailsDto : BaseDto, IDto
 {
     public EmployeeDto Employee { get; set; } = default!;
 

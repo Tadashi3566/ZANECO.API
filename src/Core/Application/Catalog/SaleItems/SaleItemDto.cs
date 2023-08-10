@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.Catalog.SaleItems;
 
-public class SaleItemDto : DtoExtension, IDto
+public class SaleItemDto : BaseDto, IDto
 {
     public DefaultIdType SaleId { get; private set; }
     public DefaultIdType ProductId { get; private set; }
@@ -13,6 +13,4 @@ public class SaleItemDto : DtoExtension, IDto
     public decimal Vat { get; set; } = default!;
     public decimal DiscountAmount { get; set; } = default!;
     public decimal Net { get; set; } = default!;
-
-
 }

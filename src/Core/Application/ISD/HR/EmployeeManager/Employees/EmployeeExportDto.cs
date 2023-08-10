@@ -1,6 +1,6 @@
 ﻿namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
-public class EmployeeExportDto : DtoExtension, IDto
+public class EmployeeExportDto : BaseDto, IDto
 {
     public string Area { get; set; } = default!;
     public string Department { get; set; } = default!;

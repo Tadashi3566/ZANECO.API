@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Teams;
 
-public class TeamDto : DtoExtension, IDto
+public class TeamDto : BaseDto, IDto
 {
     public DefaultIdType LeaderId { get; set; } = default!;
     public string LeaderName { get; set; } = default!;

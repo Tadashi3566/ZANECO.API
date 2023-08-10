@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.CAD.Accounts;
 
-public class AccountDto : DtoExtension, IDto
+public class AccountDto : BaseDto, IDto
 {
     public int IdCode { get; set; } = default!;
     public string AccountNumber { get; set; } = default!;
@@ -37,6 +37,4 @@ public class AccountDto : DtoExtension, IDto
     public decimal PreviousReadingKWHCM { get; set; }
     public decimal PresentReadingKWHCM { get; set; }
     public decimal UsedKWHCM { get; set; } = default!;
-
-
 }

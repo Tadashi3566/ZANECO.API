@@ -2,7 +2,7 @@ using ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Designations;
 
-public class DesignationDetailsDto : DtoExtension, IDto
+public class DesignationDetailsDto : BaseDto, IDto
 {
     public EmployeeDto Employee { get; set; } = default!;
     public DateTime StartDate { get; set; }

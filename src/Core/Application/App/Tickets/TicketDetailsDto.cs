@@ -2,7 +2,7 @@ using ZANECO.API.Application.App.Groups;
 
 namespace ZANECO.API.Application.App.Tickets;
 
-public class TicketDetailsDto : DtoExtension, IDto
+public class TicketDetailsDto : BaseDto, IDto
 {
     public GroupDto Group { get; set; } = default!;
     public string? Impact { get; set; }

@@ -5,7 +5,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Designations;
 
-public class DesignationCreateRequest : RequestWithImageExtension, IRequest<Guid>
+public class DesignationCreateRequest : BaseRequestWithImage, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; }
     public Guid DesignationId { get; set; } = default!;

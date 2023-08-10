@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employers;
 
-public class EmployerDto : DtoExtension, IDto
+public class EmployerDto : BaseDto, IDto
 {
     public DefaultIdType EmployeeId { get; set; }
     public string? EmployeeName { get; set; }

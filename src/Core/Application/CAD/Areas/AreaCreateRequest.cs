@@ -2,7 +2,7 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Areas;
 
-public class AreaCreateRequest : RequestExtension AreaCreateRequest>, IRequest<Guid>
+public class AreaCreateRequest : BaseRequest, IRequest<Guid>
 {
     public int Number { get; set; } = default!;
     public string Code { get; set; } = default!;

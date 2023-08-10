@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.PayrollAdjustments;
 
-public class PayrollAdjustmentDto : DtoExtension, IDto
+public class PayrollAdjustmentDto : BaseDto, IDto
 {
     public DefaultIdType PayrollId { get; set; } = default!;
     public string PayrollName { get; set; } = default!;

@@ -4,7 +4,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Adjustments;
 
-public class AdjustmentUpdateRequest : RequestExtension AdjustmentUpdateRequest>, IRequest<Guid>
+public class AdjustmentUpdateRequest : BaseRequest, IRequest<Guid>
 {
     public string AdjustmentType { get; set; } = default!;
     public string EmployeeType { get; set; } = default!;
@@ -45,10 +45,9 @@ public class AdjustmentUpdateRequestHandler : IRequestHandler<AdjustmentUpdateRe
 {
     private readonly IReadRepository<Group> _repoGroup;
     private readonly IRepositoryWithEvents<Adjustment> _repoAdjustment;
-    private readonly IStringLocalizer<AdjustmentUpdateRequestHandler> _localizer;
 
-    public AdjustmentUpdateRequestHandler(IReadRepository<Group> repoGroup, IRepositoryWithEvents<Adjustment> repoAdjsutment, IStringLocalizer<AdjustmentUpdateRequestHandler> localizer) =>
-        (_repoGroup, _repoAdjustment, _localizer) = (repoGroup, repoAdjsutment, localizer);
+    public AdjustmentUpdateRequestHandler(IReadRepository<Group> repoGroup, IRepositoryWithEvents<Adjustment> repoAdjsutment) =>
+        (_repoGroup, _repoAdjustment) = (repoGroup, repoAdjsutment);
 
     public async Task<Guid> Handle(AdjustmentUpdateRequest request, CancellationToken cancellationToken)
     {

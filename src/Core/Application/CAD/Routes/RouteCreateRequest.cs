@@ -2,7 +2,7 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Routes;
 
-public class RouteCreateRequest : RequestExtension RouteCreateRequest>, IRequest<Guid>
+public class RouteCreateRequest : BaseRequest, IRequest<Guid>
 {
     public DefaultIdType AreaId { get; set; } = default!;
     public int Number { get; set; } = default!;

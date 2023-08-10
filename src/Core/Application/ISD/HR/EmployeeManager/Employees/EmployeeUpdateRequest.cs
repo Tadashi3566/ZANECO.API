@@ -5,7 +5,7 @@ using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
-public class EmployeeUpdateRequest : RequestWithImageExtension, IRequest<Guid>
+public class EmployeeUpdateRequest : BaseRequestWithImage, IRequest<Guid>
 {
     // Basic
     public bool IsActive { get; set; } = default!;
@@ -120,11 +120,10 @@ public class EmployeeUpdateRequestHandler : IRequestHandler<EmployeeUpdateReques
 {
     private readonly IRepositoryWithEvents<Contact> _repoContact;
     private readonly IRepositoryWithEvents<Employee> _repoEmployee;
-    private readonly IStringLocalizer<EmployeeUpdateRequestHandler> _localizer;
     private readonly IFileStorageService _file;
 
-    public EmployeeUpdateRequestHandler(IRepositoryWithEvents<Contact> repoContact, IRepositoryWithEvents<Employee> repository, IStringLocalizer<EmployeeUpdateRequestHandler> localizer, IFileStorageService file) =>
-        (_repoContact, _repoEmployee, _localizer, _file) = (repoContact, repository, localizer, file);
+    public EmployeeUpdateRequestHandler(IRepositoryWithEvents<Contact> repoContact, IRepositoryWithEvents<Employee> repository, IFileStorageService file) =>
+        (_repoContact, _repoEmployee, _file) = (repoContact, repository, file);
 
     public async Task<Guid> Handle(EmployeeUpdateRequest request, CancellationToken cancellationToken)
     {
@@ -148,7 +147,7 @@ public class EmployeeUpdateRequestHandler : IRequestHandler<EmployeeUpdateReques
             ? await _file.UploadAsync<Employee>(request.Image, FileType.Image, cancellationToken)
             : null;
 
-        var updatedEmployee = employee.Update(request.Number, request.Title, request.FirstName, request.MiddleName, request.LastName, request.Extension, request.Gender, ClassSms.FormatContactNumber(request.PhoneNumber!), request.Email!, request.CivilStatus!, request.Address!, request.BirthDate!, request.BirthPlace!, request.HireDate!, request.RegularDate!, request.Sss!, request.Phic!, request.Hdmf!, request.Tin!, request.EmergencyPerson!, request.EmergencyNumber!, request.EmergencyAddress!, request.EmergencyRelation!, request.FatherName!, request.MotherName!, request.Education!, request.Course!, request.Award!, request.BloodType!, request.Description, request.Notes, imagePath);
+        var updatedEmployee = employee.Update(request.Number, request.Title, request.FirstName, request.MiddleName, request.LastName, request.Extension, request.Gender, ClassSms.FormatContactNumber(request.PhoneNumber!), request.Email, request.CivilStatus, request.Address, request.BirthDate!, request.BirthPlace, request.HireDate!, request.RegularDate!, request.Sss, request.Phic, request.Hdmf, request.Tin, request.EmergencyPerson, request.EmergencyNumber, request.EmergencyAddress, request.EmergencyRelation, request.FatherName, request.MotherName, request.Education, request.Course, request.Award, request.BloodType, request.Description, request.Notes, imagePath);
 
         await _repoEmployee.UpdateAsync(updatedEmployee, cancellationToken);
 

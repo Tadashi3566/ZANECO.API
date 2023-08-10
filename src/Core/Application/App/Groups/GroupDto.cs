@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.App.Groups;
 
-public class GroupDto : DtoExtension, IDto
+public class GroupDto : BaseDto, IDto
 {
     public string Application { get; set; } = default!;
     public string Parent { get; set; } = default!;

@@ -2,7 +2,7 @@ using ZANECO.API.Domain.App;
 
 namespace ZANECO.API.Application.App.TicketProgresss;
 
-public class TicketProgressUpdateRequest : RequestWithImageExtension, IRequest<Guid>
+public class TicketProgressUpdateRequest : BaseRequestWithImage, IRequest<Guid>
 {
     public Guid TicketId { get; set; }
     public string ProgressType { get; set; } = default!;

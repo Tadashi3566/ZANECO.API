@@ -27,7 +27,7 @@ public class ContactMigrateRequestHandler : IRequestHandler<ContactMigrateReques
         {
             if (await _repository.FirstOrDefaultAsync(new ContactByAccountSpec(account.AccountNumber!), cancellationToken) is null)
             {
-                var contact = new Contact("ACCOUNT", account.AccountNumber!, ClassSms.FormatContactNumber(account.contact_number!), account.Name!, account.address!, account.District!, string.Empty, string.Empty);
+                var contact = new Contact("ACCOUNT", account.AccountNumber!, ClassSms.FormatContactNumber(account.contact_number!), account.Name!, account.address!, account.District, string.Empty, string.Empty);
 
                 await _repository.AddAsync(contact, cancellationToken);
             }

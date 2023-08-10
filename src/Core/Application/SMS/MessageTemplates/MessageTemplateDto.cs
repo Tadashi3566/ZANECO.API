@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.SMS.MessageTemplates;
 
-public class MessageTemplateDto : DtoExtension, IDto
+public class MessageTemplateDto : BaseDto, IDto
 {
     public string TemplateType { get; set; } = default!;
     public string MessageType { get; set; } = default!;

@@ -4,7 +4,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.PayrollAdjustments;
 
-public class PayrollAdjustmentUpdateRequest : RequestExtension PayrollAdjustmentUpdateRequest>, IRequest<Guid>
+public class PayrollAdjustmentUpdateRequest : BaseRequest, IRequest<Guid>
 {
     public DefaultIdType PayrollId { get; set; } = default!;
     public DefaultIdType AdjustmentId { get; set; } = default!;

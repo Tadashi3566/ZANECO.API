@@ -93,7 +93,7 @@ public class AppointmentUpdateRequestHandler : IRequestHandler<AppointmentUpdate
             request.EndDateTime = new DateTime(request.EndDateTime.Year, request.EndDateTime.Month, request.EndDateTime.Day, 23, 59, 59);
         }
 
-        var updatedAppointment = appointment.Update(request.AppointmentType, request.Subject, request.StartDateTime, request.EndDateTime, request.Location, request.Hours, request.IsAllDay, request.RecommendedBy, request.ApprovedBy, request.Description, request.Notes, imagePath!);
+        var updatedAppointment = appointment.Update(request.AppointmentType, request.Subject, request.StartDateTime, request.EndDateTime, request.Location, request.Hours, request.IsAllDay, request.RecommendedBy, request.ApprovedBy, request.Description, request.Notes, imagePath);
 
         await _repoAppointment.UpdateAsync(updatedAppointment, cancellationToken);
 

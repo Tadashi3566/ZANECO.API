@@ -1,6 +1,6 @@
 ﻿namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employers;
 
-public class EmployerExportDto : DtoExtension, IDto
+public class EmployerExportDto : BaseDto, IDto
 {
     public string Address { get; set; } = default!;
     public string Designation { get; set; } = default!;

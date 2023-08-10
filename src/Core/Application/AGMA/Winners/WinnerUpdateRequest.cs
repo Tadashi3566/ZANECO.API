@@ -2,7 +2,7 @@ using ZANECO.API.Domain.AGMA;
 
 namespace ZANECO.API.Application.AGMA.Winners;
 
-public class WinnerUpdateRequest : RequestWithImageExtension, IRequest<Guid>
+public class WinnerUpdateRequest : BaseRequestWithImage, IRequest<Guid>
 {
     public DefaultIdType RaffleId { get; set; } = default!;
     public string RaffleName { get; set; } = default!;

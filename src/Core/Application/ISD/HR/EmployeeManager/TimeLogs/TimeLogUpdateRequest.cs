@@ -58,7 +58,7 @@ public class TimeLogUpdateRequestHandler : IRequestHandler<TimeLogUpdateRequest,
             ? await _file.UploadAsync<TimeLog>(request.Image, FileType.Image, cancellationToken)
             : null;
 
-        var updatedTimeLog = timeLog.Update(request.LogType, request.LogDate!, request.LogDateTime!, request.Description, request.Notes, imagePath!);
+        var updatedTimeLog = timeLog.Update(request.LogType, request.LogDate!, request.LogDateTime!, request.Description, request.Notes, imagePath);
 
         await _repoLog.UpdateAsync(updatedTimeLog, cancellationToken);
 

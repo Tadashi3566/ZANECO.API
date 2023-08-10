@@ -97,7 +97,7 @@ public class AttendanceCreateRequestHandler : IRequestHandler<AttendanceCreateRe
                     notes = calendar.Description!;
                 }
 
-                var attendance = new Attendance(request.EmployeeId, employee.NameFullInitial(), schedule.Id, schedule.Name, dayType, date, scheduleDetailId, day, scheduleDetail.TotalHours, scheduleTimeIn1, scheduleTimeOut1, scheduleTimeIn2, scheduleTimeOut2, "PENDING", description!, notes!);
+                var attendance = new Attendance(request.EmployeeId, employee.NameFullInitial(), schedule.Id, schedule.Name, dayType, date, scheduleDetailId, day, scheduleDetail.TotalHours, scheduleTimeIn1, scheduleTimeOut1, scheduleTimeIn2, scheduleTimeOut2, "PENDING", description, notes);
                 await _repoAttendance.AddAsync(attendance, cancellationToken);
             }
         }

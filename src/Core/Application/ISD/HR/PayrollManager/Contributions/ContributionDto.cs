@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Contributions;
 
-public class ContributionDto : DtoExtension, IDto
+public class ContributionDto : BaseDto, IDto
 {
     public string ContributionType { get; set; } = default!;
     public DateTime StartDate { get; set; } = default!;

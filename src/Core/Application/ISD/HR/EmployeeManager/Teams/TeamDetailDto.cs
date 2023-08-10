@@ -2,7 +2,7 @@ using ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Teams;
 
-public class TeamDetailDto : DtoExtension, IDto
+public class TeamDetailDto : BaseDto, IDto
 {
     public EmployeeDto Employee { get; set; } = default!;
     public DefaultIdType LeaderId { get; set; } = default!;

@@ -2,7 +2,7 @@ using ZANECO.API.Domain.Surveys;
 
 namespace ZANECO.API.Application.Surveys.RatingTemplates;
 
-public class RatingTemplateUpdateRequest : RequestExtension RatingTemplateUpdateRequest>, IRequest<Guid>
+public class RatingTemplateUpdateRequest : BaseRequest, IRequest<Guid>
 {
     public Guid RateId { get; set; }
     public string Comment { get; set; } = default!;
@@ -26,17 +26,16 @@ public class RatingTemplateUpdateRequestValidator : CustomValidator<RatingTempla
 public class RatingTemplateUpdateRequestHandler : IRequestHandler<RatingTemplateUpdateRequest, Guid>
 {
     private readonly IRepositoryWithEvents<RatingTemplate> _repository;
-    private readonly IStringLocalizer<RatingTemplateUpdateRequestHandler> _localizer;
 
-    public RatingTemplateUpdateRequestHandler(IRepositoryWithEvents<RatingTemplate> repository, IStringLocalizer<RatingTemplateUpdateRequestHandler> localizer) =>
-        (_repository, _localizer) = (repository, localizer);
+    public RatingTemplateUpdateRequestHandler(IRepositoryWithEvents<RatingTemplate> repository) =>
+        _repository = repository;
 
     public async Task<Guid> Handle(RatingTemplateUpdateRequest request, CancellationToken cancellationToken)
     {
         var ratingTemplate = await _repository.GetByIdAsync(request.Id, cancellationToken);
         _ = ratingTemplate ?? throw new NotFoundException($"RatingTemplate {request.Id} not found.");
 
-        var updatedRatingTemplate = ratingTemplate.Update(request.RateId, request.Comment, request.Description!, request.Notes!);
+        var updatedRatingTemplate = ratingTemplate.Update(request.RateId, request.Comment, request.Description, request.Notes);
 
         await _repository.UpdateAsync(updatedRatingTemplate, cancellationToken);
 

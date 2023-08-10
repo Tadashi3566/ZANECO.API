@@ -2,7 +2,7 @@ using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.SMS.MessageTemplates;
 
-public class MessageTemplateUpdateRequest : RequestWithImageExtension, IRequest<Guid>
+public class MessageTemplateUpdateRequest : BaseRequestWithImage, IRequest<Guid>
 {
     public string TemplateType { get; set; } = default!;
     public string MessageType { get; set; } = "sms.automatic";
@@ -44,11 +44,10 @@ public class MessageTemplateUpdateRequestValidator : CustomValidator<MessageTemp
 public class MessageTemplateUpdateRequestHandler : IRequestHandler<MessageTemplateUpdateRequest, Guid>
 {
     private readonly IRepositoryWithEvents<MessageTemplate> _repository;
-    private readonly IStringLocalizer<MessageTemplateUpdateRequestHandler> _localizer;
     private readonly IFileStorageService _file;
 
-    public MessageTemplateUpdateRequestHandler(IRepositoryWithEvents<MessageTemplate> repository, IStringLocalizer<MessageTemplateUpdateRequestHandler> localizer, IFileStorageService file) =>
-        (_repository, _localizer, _file) = (repository, localizer, file);
+    public MessageTemplateUpdateRequestHandler(IRepositoryWithEvents<MessageTemplate> repository, IFileStorageService file) =>
+        (_repository, _file) = (repository, file);
 
     public async Task<Guid> Handle(MessageTemplateUpdateRequest request, CancellationToken cancellationToken)
     {

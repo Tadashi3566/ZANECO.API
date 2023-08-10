@@ -2,7 +2,7 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Barangays;
 
-public class BarangayUpdateRequest : RequestExtension BarangayUpdateRequest>, IRequest<Guid>
+public class BarangayUpdateRequest : BaseRequest, IRequest<Guid>
 {
     public DefaultIdType AreaId { get; set; } = default!;
 }
@@ -27,10 +27,9 @@ public class BarangayUpdateRequestHandler : IRequestHandler<BarangayUpdateReques
 {
     private readonly IReadRepository<Area> _repoArea;
     private readonly IRepositoryWithEvents<Barangay> _repository;
-    private readonly IStringLocalizer<BarangayUpdateRequestHandler> _localizer;
 
-    public BarangayUpdateRequestHandler(IReadRepository<Area> repoArea, IRepositoryWithEvents<Barangay> repository, IStringLocalizer<BarangayUpdateRequestHandler> localizer) =>
-        (_repoArea, _repository, _localizer) = (repoArea, repository, localizer);
+    public BarangayUpdateRequestHandler(IReadRepository<Area> repoArea, IRepositoryWithEvents<Barangay> repository) =>
+        (_repoArea, _repository) = (repoArea, repository);
 
     public async Task<Guid> Handle(BarangayUpdateRequest request, CancellationToken cancellationToken)
     {

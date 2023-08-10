@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Salaries;
 
-public class SalaryDto : DtoExtension, IDto
+public class SalaryDto : BaseDto, IDto
 {
     public DateTime StartDate { get; set; } = default!;
     public DateTime EndDate { get; set; } = default!;

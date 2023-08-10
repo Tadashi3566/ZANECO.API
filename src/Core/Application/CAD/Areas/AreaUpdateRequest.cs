@@ -2,7 +2,7 @@ using ZANECO.API.Domain.CAD;
 
 namespace ZANECO.API.Application.CAD.Areas;
 
-public class AreaUpdateRequest : RequestExtension AreaUpdateRequest>, IRequest<Guid>
+public class AreaUpdateRequest : BaseRequest, IRequest<Guid>
 {
     public int Number { get; set; } = default!;
     public string Code { get; set; } = default!;
@@ -38,11 +38,9 @@ public class AreaUpdateRequestValidator : CustomValidator<AreaUpdateRequest>
 public class AreaUpdateRequestHandler : IRequestHandler<AreaUpdateRequest, Guid>
 {
     private readonly IRepositoryWithEvents<Area> _repository;
-    private readonly IStringLocalizer<AreaUpdateRequestHandler> _localizer;
-    private readonly IFileStorageService _file;
 
-    public AreaUpdateRequestHandler(IRepositoryWithEvents<Area> repository, IStringLocalizer<AreaUpdateRequestHandler> localizer, IFileStorageService file) =>
-        (_repository, _localizer, _file) = (repository, localizer, file);
+    public AreaUpdateRequestHandler(IRepositoryWithEvents<Area> repository) =>
+        _repository = repository;
 
     public async Task<Guid> Handle(AreaUpdateRequest request, CancellationToken cancellationToken)
     {

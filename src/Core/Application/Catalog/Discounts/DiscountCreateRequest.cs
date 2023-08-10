@@ -29,7 +29,7 @@ public class CreateDiscountRequestHandler : IRequestHandler<DiscountCreateReques
 
     public async Task<DefaultIdType> Handle(DiscountCreateRequest request, CancellationToken cancellationToken)
     {
-        var discount = new Discount(request.Name, request.Percentage, request.Description!, request.Notes!);
+        var discount = new Discount(request.Name, request.Percentage, request.Description, request.Notes);
 
         await _repository.AddAsync(discount, cancellationToken);
 

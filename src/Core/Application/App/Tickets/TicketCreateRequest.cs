@@ -2,7 +2,7 @@ using ZANECO.API.Domain.App;
 
 namespace ZANECO.API.Application.App.Tickets;
 
-public class TicketCreateRequest : RequestWithImageExtension, IRequest<Guid>
+public class TicketCreateRequest : BaseRequestWithImage, IRequest<Guid>
 {
     public Guid GroupId { get; set; }
 }

@@ -5,7 +5,7 @@ using ZANECO.API.Domain.SMS;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employees;
 
-public class EmployeeCreateRequest : RequestWithImageExtension, IRequest<Guid>
+public class EmployeeCreateRequest : BaseRequestWithImage, IRequest<Guid>
 {
     public bool IsActive { get; set; } = default!;
     public int Number { get; set; } = default!;
@@ -17,11 +17,11 @@ public class EmployeeCreateRequest : RequestWithImageExtension, IRequest<Guid>
 
     public string Gender { get; set; } = "MALE";
     public DateTime BirthDate { get; set; } = default!;
-    public string? PhoneNumber { get; set; }
-    public string? Email { get; set; }
-    public string? CivilStatus { get; set; }
-    public string? Address { get; set; }
-    public string? BirthPlace { get; set; }
+    public string PhoneNumber { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string CivilStatus { get; set; } = string.Empty;
+    public string Address { get; set; } = string.Empty;
+    public string BirthPlace { get; set; } = string.Empty;
 
     // Benefits
     public string? Sss { get; set; }
@@ -112,12 +112,12 @@ public class EmployeeCreateRequestHandler : IRequestHandler<EmployeeCreateReques
             var contact = await _repoContact.FirstOrDefaultAsync(new ContactByNumberSpec(ClassSms.FormatContactNumber(request.PhoneNumber)), cancellationToken);
             if (contact is null)
             {
-                var newContact = new Contact("EMPLOYEE", request.Number.ToString(), ClassSms.FormatContactNumber(request.PhoneNumber), employee.FullInitialName(), request.Address, string.Empty, string.Empty, imagePath);
+                var newContact = new Contact("EMPLOYEE", request.Number.ToString(), ClassSms.FormatContactNumber(request.PhoneNumber), employee.FullInitialName(), request.Address, imagePath: imagePath);
                 await _repoContact.AddAsync(newContact, cancellationToken);
             }
             else
             {
-                var updatedContact = contact.Update("EMPLOYEE", employee.Number.ToString(), ClassSms.FormatContactNumber(request.PhoneNumber), employee.FullInitialName(), request.Address, string.Empty, string.Empty, imagePath);
+                var updatedContact = contact.Update("EMPLOYEE", employee.Number.ToString(), ClassSms.FormatContactNumber(request.PhoneNumber), employee.FullInitialName(), request.Address, imagePath: imagePath);
                 await _repoContact.UpdateAsync(updatedContact!, cancellationToken);
             }
         }
@@ -128,12 +128,12 @@ public class EmployeeCreateRequestHandler : IRequestHandler<EmployeeCreateReques
             var contact = await _repoContact.FirstOrDefaultAsync(new ContactByNumberSpec(ClassSms.FormatContactNumber(request.EmergencyNumber)), cancellationToken);
             if (contact is null)
             {
-                var newContact = new Contact("EMERGENCY", request.Number.ToString(), ClassSms.FormatContactNumber(request.EmergencyNumber), request.EmergencyPerson, request.EmergencyAddress, string.Empty, string.Empty, string.Empty);
+                var newContact = new Contact("EMERGENCY", request.Number.ToString(), ClassSms.FormatContactNumber(request.EmergencyNumber), request.EmergencyPerson!, request.EmergencyAddress!);
                 await _repoContact.AddAsync(newContact, cancellationToken);
             }
             else
             {
-                var updatedContact = contact.Update("EMERGENCY", employee.Number.ToString(), ClassSms.FormatContactNumber(request.EmergencyNumber), request.EmergencyPerson, request.EmergencyAddress, string.Empty, string.Empty, string.Empty);
+                var updatedContact = contact.Update("EMERGENCY", employee.Number.ToString(), ClassSms.FormatContactNumber(request.EmergencyNumber), request.EmergencyPerson!, request.EmergencyAddress!);
                 await _repoContact.UpdateAsync(updatedContact!, cancellationToken);
             }
         }

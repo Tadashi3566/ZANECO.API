@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.SMS.MessageIns;
 
-public class MessageInDto : DtoExtension<int>, IDto
+public class MessageInDto : BaseDto<int>, IDto
 {
     public DateTime? SendTime { get; set; }
     public DateTime? ReceiveTime { get; set; }

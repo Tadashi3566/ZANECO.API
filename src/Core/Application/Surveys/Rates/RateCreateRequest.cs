@@ -2,7 +2,7 @@ using ZANECO.API.Domain.Surveys;
 
 namespace ZANECO.API.Application.Surveys.Rates;
 
-public class RateCreateRequest : RequestExtension RateCreateRequest>, IRequest<Guid>
+public class RateCreateRequest : BaseRequest, IRequest<Guid>
 {
     public int Number { get; set; } = default!;
 }

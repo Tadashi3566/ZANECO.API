@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.SMS.MessageLogs;
 
-public class MessageLogDto : DtoExtension<int>, IDto
+public class MessageLogDto : BaseDto<int>, IDto
 {
     public DateTime? SendTime { get; set; }
     public string? MessageFrom { get; set; }

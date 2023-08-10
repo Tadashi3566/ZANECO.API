@@ -2,7 +2,7 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.JobDescriptions;
 
-public class JobDescriptionUpdateRequest : RequestWithImageExtension, IRequest<Guid>
+public class JobDescriptionUpdateRequest : BaseRequestWithImage, IRequest<Guid>
 {
     public int Rank { get; set; } = default!;
     public int Number { get; set; } = default!;

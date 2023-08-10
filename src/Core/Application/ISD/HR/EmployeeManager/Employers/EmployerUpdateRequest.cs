@@ -2,7 +2,7 @@ using ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 namespace ZANECO.API.Application.ISD.HR.EmployeeManager.Employers;
 
-public class EmployerUpdateRequest : RequestWithImageExtension, IRequest<Guid>
+public class EmployerUpdateRequest : BaseRequestWithImage, IRequest<Guid>
 {
     public Guid EmployeeId { get; set; }
     public string Address { get; set; } = default!;

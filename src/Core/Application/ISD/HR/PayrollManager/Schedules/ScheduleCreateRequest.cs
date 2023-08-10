@@ -2,7 +2,7 @@ using ZANECO.API.Domain.ISD.HR.PayrollManager;
 
 namespace ZANECO.API.Application.ISD.HR.PayrollManager.Schedules;
 
-public class ScheduleCreateRequest : RequestExtension ScheduleCreateRequest>, IRequest<Guid>
+public class ScheduleCreateRequest : BaseRequest, IRequest<Guid>
 {
 }
 

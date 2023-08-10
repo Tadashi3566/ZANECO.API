@@ -25,7 +25,7 @@ public class TicketOpenRequestHandler : IRequestHandler<TicketProgressRequest, G
     private readonly IRepositoryWithEvents<Ticket> _repository;
 
     public TicketOpenRequestHandler(IRepositoryWithEvents<Ticket> repository) =>
-        (_repository) = (repository);
+        _repository = repository;
 
     public async Task<Guid> Handle(TicketProgressRequest request, CancellationToken cancellationToken)
     {

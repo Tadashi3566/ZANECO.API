@@ -1,6 +1,6 @@
 namespace ZANECO.API.Application.ISD.Members;
 
-public class MemberDto : DtoExtension, IDto
+public class MemberDto : BaseDto, IDto
 {
     public int IncrementId { get; set; } = default!;
     public int ApplicationId { get; set; } = default!;

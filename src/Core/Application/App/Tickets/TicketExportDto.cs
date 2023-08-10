@@ -1,6 +1,6 @@
 ﻿namespace ZANECO.API.Application.App.Tickets;
 
-public class TicketExportDto : DtoExtension, IDto
+public class TicketExportDto : BaseDto, IDto
 {
     public string GroupCode { get; set; } = default!;
     public string GroupName { get; set; } = default!;
