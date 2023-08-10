@@ -4,7 +4,6 @@ public class TimeLogDto : BaseDto, IDto
 {
     public DefaultIdType EmployeeId { get; set; } = default!;
     public string EmployeeName { get; set; } = default!;
-    public string? Device { get; set; }
     public string LogType { get; set; } = default!;
     public DateTime LogDate { get; set; } = default!;
     public DateTime LogDateTime { get; set; } = default!;

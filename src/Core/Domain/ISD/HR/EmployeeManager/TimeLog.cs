@@ -9,7 +9,6 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
     public virtual Employee Employee { get; private set; } = default!;
     public DefaultIdType EmployeeId { get; private set; }
     public string EmployeeName { get; private set; } = default!;
-    public string Device { get; private set; } = default!;
     public string LogType { get; private set; } = default!;
     public DateTime LogDate { get; private set; }
     public DateTime LogDateTime { get; private set; }
@@ -17,12 +16,12 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
     public DateTime? SyncDateTime { get; private set; }
     public string? Coordinates { get; private set; }
 
-    public TimeLog(DefaultIdType employeeId, string employeeName, string device, string logType, DateTime logDate, DateTime logDateTime, int syncId, string? coordinates, string? description = null, string? notes = null, string? imagePath = null)
+    public TimeLog(DefaultIdType employeeId, string employeeName, string name, string logType, DateTime logDate, DateTime logDateTime, int syncId, string? coordinates, string? description = null, string? notes = null, string? imagePath = null)
     {
         EmployeeId = employeeId;
         EmployeeName = employeeName;
 
-        Device = device;
+        Name = name;
         LogType = logType;
         LogDate = logDate;
         LogDateTime = logDateTime;
@@ -32,8 +31,6 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
             SyncDateTime = DateTime.Now;
 
         if (coordinates is not null && (Coordinates?.Equals(coordinates) != true)) Coordinates = coordinates;
-
-        Name = string.Empty;
 
         if (description is not null && (Description?.Equals(description) != true)) Description = description.Trim();
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();

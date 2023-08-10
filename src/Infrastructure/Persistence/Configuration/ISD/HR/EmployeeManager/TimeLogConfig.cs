@@ -12,8 +12,6 @@ internal class TimeLogConfig : IEntityTypeConfiguration<TimeLog>
         _ = builder
             .IsMultiTenant();
 
-        _ = builder.Property(b => b.Device)
-            .HasMaxLength(64);
         _ = builder.Property(b => b.LogType)
             .IsRequired()
             .HasMaxLength(8);
