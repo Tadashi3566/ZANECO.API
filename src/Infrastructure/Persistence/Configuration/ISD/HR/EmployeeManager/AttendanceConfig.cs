@@ -28,8 +28,8 @@ internal class AttendanceConfig : IEntityTypeConfiguration<Attendance>
         _ = builder.Property(b => b.UnderTimeMinutes)
             .HasColumnType("int");
         _ = builder.Property(b => b.TotalHours)
-            .HasColumnType("Double(12,2");
+            .HasColumnType("Double(12,2)");
         _ = builder.Property(b => b.PaidHours)
-            .HasColumnType("Double(12,2");
+            .HasColumnType("Double(12,2)");
     }
 }
