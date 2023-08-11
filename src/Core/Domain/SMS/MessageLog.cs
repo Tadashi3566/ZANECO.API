@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ZANECO.API.Domain.SMS;
 
 public class MessageLog : AuditableEntity<int>, IAggregateRoot
@@ -10,13 +12,13 @@ public class MessageLog : AuditableEntity<int>, IAggregateRoot
     public string? Gateway { get; private set; }
     public DateTime? SendTime { get; private set; }
     public DateTime? ReceiveTime { get; private set; }
-    public int StatusCode { get; private set; }
+    public int StatusCode { get; private set; } = default!;
     public string? StatusText { get; private set; }
     public string? MessageFrom { get; private set; }
     public string MessageTo { get; private set; } = default!;
     public string MessageType { get; private set; } = default!;
     public string MessageText { get; private set; } = default!;
-    public string? MessageHash { get; private set; }
+    public string MessageHash { get; private set; } = default!;
     public string? MessageGuid { get; private set; }
     public string? MessageInfo { get; private set; }
     public string? MessageId { get; private set; }

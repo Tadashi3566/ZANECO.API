@@ -7,7 +7,7 @@ public class JobDescriptionUpdateRequest : BaseRequestWithImage, IRequest<Guid>
     public int Rank { get; set; } = default!;
     public int Number { get; set; } = default!;
     public string Department { get; set; } = default!;
-    public string ReportsTo { get; set; } = default!;
+    public string ReportsTo { get; set; } = string.Empty;
 }
 
 public class JobDescriptionUpdateRequestValidator : CustomValidator<JobDescriptionUpdateRequest>
@@ -28,9 +28,9 @@ public class JobDescriptionUpdateRequestValidator : CustomValidator<JobDescripti
             .NotEmpty()
             .MaximumLength(64);
 
-        RuleFor(p => p.ReportsTo)
-            .NotEmpty()
-            .MaximumLength(128);
+        //RuleFor(p => p.ReportsTo)
+        //    .NotEmpty()
+        //    .MaximumLength(128);
 
         RuleFor(p => p.Name)
             .NotEmpty()

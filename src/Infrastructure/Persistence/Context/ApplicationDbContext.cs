@@ -89,6 +89,8 @@ public class ApplicationDbContext : BaseDbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        
+
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.HasDefaultSchema(SchemaNames.ZANECO);

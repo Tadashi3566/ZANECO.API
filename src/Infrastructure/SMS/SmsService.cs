@@ -71,7 +71,7 @@ internal class SmsService : ISmsService
         if (isCheckExisting)
         {
             // Check existing SMS to send only once
-            var existingMessage = await _repositoryDapper.QueryAsync<MessageLog>($"SELECT MessageTo, MessageHash FROM datazaneco.MessageLog WHERE MessageTo = '{messageTo}' AND MessageHash = '{messageHash}'");
+            var existingMessage = await _repositoryDapper.QueryAsync<MessageLog>($"SELECT MessageTo, MessageHash FROM datazaneco.MessageLog WHERE StatusCode = '201' AND MessageTo = '{messageTo}' AND MessageHash = '{messageHash}'");
             if (existingMessage.Any()) return 0;
         }
 
