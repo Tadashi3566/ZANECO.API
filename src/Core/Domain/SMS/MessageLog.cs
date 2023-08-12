@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace ZANECO.API.Domain.SMS;
 
 public class MessageLog : AuditableEntity<int>, IAggregateRoot

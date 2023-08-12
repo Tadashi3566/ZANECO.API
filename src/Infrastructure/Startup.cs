@@ -64,7 +64,8 @@ public static class Startup
         services
             //.AddScoped<IAttendanceService, AttendanceService>()
             .AddScoped<IDateTimeFunctions, DateTimeFunctions>();
-            //.AddScoped<IDocumentOcrJob, DocumentOcrJob>();
+
+    //.AddScoped<IDocumentOcrJob, DocumentOcrJob>();
 
     private static IServiceCollection AddApiVersioning(this IServiceCollection services) =>
         services.AddApiVersioning(config =>

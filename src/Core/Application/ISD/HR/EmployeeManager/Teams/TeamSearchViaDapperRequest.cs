@@ -20,17 +20,17 @@ public class TeamSearchViaDapperRequestHandler : IRequestHandler<TeamSearchViaDa
         //const string sqlQuery = "SELECT LeaderId, EmployeeId, Department FROM datazaneco.Teams WHERE TenantId = '@tenant' AND LeaderId = @LeaderId";
 
         const string sqlQuery = @"
-            SELECT 
-                team.LeaderId, 
-                team.EmployeeId, 
-                emp.Department, 
-                emp.Department, 
-                emp.Position 
-            FROM 
-                datazaneco.Teams AS team 
-            INNER JOIN 
-                datazaneco.Employees AS emp ON team.LeaderId = emp.Id 
-            WHERE 
+            SELECT
+                team.LeaderId,
+                team.EmployeeId,
+                emp.Department,
+                emp.Department,
+                emp.Position
+            FROM
+                datazaneco.Teams AS team
+            INNER JOIN
+                datazaneco.Employees AS emp ON team.LeaderId = emp.Id
+            WHERE
                 team.TenantId = '@tenant'
                 AND team.LeaderId = @LeaderId";
 

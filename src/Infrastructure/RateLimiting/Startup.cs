@@ -6,6 +6,7 @@ using Serilog;
 using System.Threading.RateLimiting;
 
 namespace ZANECO.API.Infrastructure.RateLimiting;
+
 internal static class Startup
 {
     private static readonly ILogger _logger = Log.ForContext(typeof(Startup));

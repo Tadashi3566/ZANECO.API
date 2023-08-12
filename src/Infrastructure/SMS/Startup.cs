@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 using ZANECO.API.Application.SMS;
 
 namespace ZANECO.API.Infrastructure.Sms;
+
 internal static class Startup
 {
-
     internal static IServiceCollection AddSmsService(this IServiceCollection services, IConfiguration config)
     {
         var setting = config.GetSection(nameof(SmsSettings)).Get<SmsSettings>();

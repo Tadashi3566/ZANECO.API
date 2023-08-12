@@ -18,6 +18,7 @@ public class EmployeeMobileDto : BaseDto, IDto
 
     // Employment
     public DateTime? BirthDate { get; set; } = default!;
+
     public DateTime HireDate { get; set; } = default!;
 
     public string? Area { get; set; }

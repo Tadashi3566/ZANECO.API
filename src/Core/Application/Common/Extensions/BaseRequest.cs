@@ -1,4 +1,5 @@
 ﻿namespace ZANECO.API.Application.Common.Extensions;
+
 public class BaseRequest : BaseRequest<DefaultIdType>
 {
 }

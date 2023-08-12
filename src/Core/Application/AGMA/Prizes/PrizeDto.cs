@@ -6,5 +6,4 @@ public class PrizeDto : BaseDto, IDto
     public string RaffleName { get; set; } = default!;
     public string PrizeType { get; set; } = default!;
     public int Winners { get; set; } = default!;
-
 }

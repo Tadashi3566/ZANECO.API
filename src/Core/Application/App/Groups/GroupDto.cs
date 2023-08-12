@@ -10,5 +10,4 @@ public class GroupDto : BaseDto, IDto
     public decimal Amount { get; set; } = default!;
     public DefaultIdType? EmployeeId { get; set; }
     public string? EmployeeName { get; set; }
-
 }

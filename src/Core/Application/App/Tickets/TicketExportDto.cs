@@ -17,5 +17,4 @@ public class TicketExportDto : BaseDto, IDto
     public DateTime? ClosedOn { get; set; }
     public string? ApprovedBy { get; set; }
     public DateTime? ApprovedOn { get; set; }
-
 }

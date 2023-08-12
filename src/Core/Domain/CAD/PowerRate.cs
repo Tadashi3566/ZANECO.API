@@ -11,8 +11,10 @@ public class PowerRate : AuditableEntity, IAggregateRoot
     public virtual Group Group { get; private set; } = default!;
     public Guid GroupId { get; private set; }
     public string Code { get; private set; } = default!; // rate code
-                                                         // rate name
+
+    // rate name
     public string BillMonth { get; private set; } = default!; // Billing Month
+
     public decimal GenerationCharge { get; private set; } // Adjusted Generation Rate
     public decimal HostCommCharge { get; private set; } // Franchise & Benefits to Host Comm Charge
     public decimal ForexICERADAACharge { get; private set; } // Forex/ICERA ICERA/DAA

@@ -7,5 +7,4 @@ public class WinnerDto : BaseDto, IDto
     public DefaultIdType PrizeId { get; set; } = default!;
     public string PrizeName { get; set; } = default!;
     public string Address { get; set; } = default!;
-
 }

@@ -4,7 +4,6 @@ namespace ZANECO.API.Application.SMS.MessageTemplates;
 
 public class MessageTemplateInterruptionRequest : PaginationFilter, IRequest<List<MessageTemplateDto>>
 {
-
 }
 
 public class MessageTemplateByInterruptionRequestSpec : EntitiesByBaseFilterSpec<MessageTemplate, MessageTemplateDto>

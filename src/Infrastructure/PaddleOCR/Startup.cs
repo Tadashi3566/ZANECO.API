@@ -4,9 +4,9 @@ using System.Net.Http.Headers;
 using ZANECO.API.Application.Common.Interfaces;
 
 namespace ZANECO.API.Infrastructure.PaddleOCR;
+
 internal static class Startup
 {
-
     public static IServiceCollection AddPaddleOcrService(this IServiceCollection services)
     {
         services.AddHttpClient("ocr", c =>

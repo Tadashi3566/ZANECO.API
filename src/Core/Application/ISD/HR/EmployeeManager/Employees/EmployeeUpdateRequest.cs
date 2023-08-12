@@ -39,6 +39,7 @@ public class EmployeeUpdateRequest : BaseRequestWithImage, IRequest<Guid>
 
     // Benefits
     public string? Sss { get; set; }
+
     public string? Phic { get; set; }
     public string? Hdmf { get; set; }
     public string? Tin { get; set; }
