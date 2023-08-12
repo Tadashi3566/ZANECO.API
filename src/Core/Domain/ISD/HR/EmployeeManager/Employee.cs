@@ -1,17 +1,13 @@
-﻿using ZANECO.API.Domain.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using ZANECO.API.Domain.Common;
 
 namespace ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
 public class Employee : AuditableEntity, IAggregateRoot
 {
-    public Employee()
-    {
-    }
-
     // Basic
     public bool IsActive { get; private set; }
-
-    public int Number { get; private set; }
+    public int Number { get; private set; } = default!;
     public string Title { get; private set; } = default!;
     public string FirstName { get; private set; } = default!;
     public string MiddleName { get; private set; } = default!;
@@ -40,7 +36,6 @@ public class Employee : AuditableEntity, IAggregateRoot
 
     // Benefits
     public string? Sss { get; private set; }
-
     public string? Phic { get; private set; }
     public string? Hdmf { get; private set; }
     public string? Tin { get; private set; }

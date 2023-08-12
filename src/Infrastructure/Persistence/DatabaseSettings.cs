@@ -6,6 +6,7 @@ public class DatabaseSettings : IValidatableObject
 {
     public string DBProvider { get; set; } = default!;
     public string ConnectionString { get; set; } = default!;
+    public string ConnectionStringDmo { get; set; } = default!;
     public int MaxRetryCount { get; set; } = default!;
     public int CommandTimeout { get; set; } = default!;
     public bool EnableDetailedErrors { get; set; } = default!;
