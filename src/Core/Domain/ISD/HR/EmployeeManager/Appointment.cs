@@ -151,7 +151,7 @@ public class Appointment : AuditableEntityWithApproval<int>, IAggregateRoot
 
     public Appointment ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
         return this;
     }
 }

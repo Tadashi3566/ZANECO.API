@@ -65,7 +65,7 @@ public class EmployeeAdjustment : AuditableEntity, IAggregateRoot
 
     public EmployeeAdjustment ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

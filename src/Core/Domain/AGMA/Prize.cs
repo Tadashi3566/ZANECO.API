@@ -43,7 +43,7 @@ public class Prize : AuditableEntity, IAggregateRoot
 
     public Prize ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

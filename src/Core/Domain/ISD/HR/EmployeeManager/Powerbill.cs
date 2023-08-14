@@ -45,7 +45,7 @@ public class Powerbill : AuditableEntity, IAggregateRoot
 
     public Powerbill ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
         return this;
     }
 }

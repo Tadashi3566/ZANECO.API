@@ -54,7 +54,7 @@ public class TimeLog : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoo
 
     public TimeLog ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
         return this;
     }
 }

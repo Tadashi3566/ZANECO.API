@@ -45,7 +45,7 @@ public class Dependent : AuditableEntity, IAggregateRoot
 
     public Dependent ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
         return this;
     }
 }

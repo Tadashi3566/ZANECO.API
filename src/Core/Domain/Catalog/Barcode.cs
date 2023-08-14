@@ -45,7 +45,7 @@ public class Barcode : AuditableEntity, IAggregateRoot
 
     public Barcode ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

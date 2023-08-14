@@ -46,7 +46,7 @@ public class RemoteCollection : AuditableEntity, IAggregateRoot
 
     public RemoteCollection ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

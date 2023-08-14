@@ -100,7 +100,7 @@ public class Ticket : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
 
     public Ticket ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
         return this;
     }
 }

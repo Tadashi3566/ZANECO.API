@@ -84,7 +84,7 @@ public class Loan : AuditableEntityWithApproval<DefaultIdType>, IAggregateRoot
 
     public Loan ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

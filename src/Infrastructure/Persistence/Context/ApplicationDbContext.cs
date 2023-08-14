@@ -61,6 +61,7 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Powerbill> PowerBills => Set<Powerbill>();
     public DbSet<Document> Documents => Set<Document>();
     public DbSet<Team> Teams => Set<Team>();
+    public DbSet<Inventory> Inventories => Set<Inventory>();
 
     public DbSet<Schedule> Schedules => Set<Schedule>();
     public DbSet<ScheduleDetail> ScheduleDetails => Set<ScheduleDetail>();

@@ -57,7 +57,7 @@ public class Group : AuditableEntity, IAggregateRoot
 
     public Group ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
         return this;
     }
 }

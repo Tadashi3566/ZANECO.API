@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using ZANECO.API.Domain.Common;
+﻿using ZANECO.API.Domain.Common;
 
 namespace ZANECO.API.Domain.ISD.HR.EmployeeManager;
 
@@ -286,7 +285,8 @@ public class Employee : AuditableEntity, IAggregateRoot
 
     public Employee ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
+
         return this;
     }
 }

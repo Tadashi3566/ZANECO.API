@@ -227,7 +227,7 @@ public class Designation : AuditableEntity, IAggregateRoot
 
     public Designation ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
         return this;
     }
 }

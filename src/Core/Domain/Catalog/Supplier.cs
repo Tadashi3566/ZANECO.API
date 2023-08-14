@@ -43,7 +43,7 @@ public class Supplier : AuditableEntity, IAggregateRoot
 
     public Supplier ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

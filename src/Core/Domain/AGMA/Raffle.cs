@@ -36,7 +36,7 @@ public class Raffle : AuditableEntity, IAggregateRoot
 
     public Raffle ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

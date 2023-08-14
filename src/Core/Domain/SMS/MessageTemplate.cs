@@ -57,7 +57,7 @@ public class MessageTemplate : AuditableEntity, IAggregateRoot
 
     public MessageTemplate ClearFilePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

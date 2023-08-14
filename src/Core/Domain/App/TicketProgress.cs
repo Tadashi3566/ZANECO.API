@@ -39,7 +39,7 @@ public class TicketProgress : AuditableEntity, IAggregateRoot
 
     public TicketProgress ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
         return this;
     }
 }

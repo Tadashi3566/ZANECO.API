@@ -49,7 +49,7 @@ public class Employer : AuditableEntity, IAggregateRoot
 
     public Employer ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
         return this;
     }
 }

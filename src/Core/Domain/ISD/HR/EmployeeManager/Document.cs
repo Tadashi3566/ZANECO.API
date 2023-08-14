@@ -59,7 +59,7 @@ public class Document : AuditableEntity, IAggregateRoot
 
     public Document ClearFilePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

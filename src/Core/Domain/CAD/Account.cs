@@ -120,7 +120,7 @@ public class Account : AuditableEntity, IAggregateRoot
 
     public Account ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
         return this;
     }
 }

@@ -62,7 +62,7 @@ public class Product : AuditableEntity, IAggregateRoot
 
     public Product ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
         return this;
     }
 }

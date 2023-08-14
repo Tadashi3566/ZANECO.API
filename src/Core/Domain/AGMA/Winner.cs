@@ -47,7 +47,7 @@ public class Winner : AuditableEntity, IAggregateRoot
 
     public Winner ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

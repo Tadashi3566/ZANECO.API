@@ -41,7 +41,7 @@ public class JobDescription : AuditableEntity, IAggregateRoot
 
     public JobDescription ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

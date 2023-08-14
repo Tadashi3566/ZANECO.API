@@ -57,7 +57,7 @@ public class Member : AuditableEntity, IAggregateRoot
 
     public Member ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
         return this;
     }
 }

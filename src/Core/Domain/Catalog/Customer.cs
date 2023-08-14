@@ -52,7 +52,7 @@ public class Customer : AuditableEntity, IAggregateRoot
 
     public Customer ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

@@ -38,7 +38,7 @@ public class Contact : AuditableEntity, IAggregateRoot
 
     public Contact ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

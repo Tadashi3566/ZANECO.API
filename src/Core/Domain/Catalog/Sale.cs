@@ -69,7 +69,7 @@ public class Sale : AuditableEntity, IAggregateRoot
 
     public Sale ClearImagePath()
     {
-        ImagePath = string.Empty;
+        ImagePath = null;
 
         return this;
     }

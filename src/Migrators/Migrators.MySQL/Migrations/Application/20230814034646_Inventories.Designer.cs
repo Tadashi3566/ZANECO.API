@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZANECO.API.Infrastructure.Persistence.Context;
 
@@ -10,9 +11,11 @@ using ZANECO.API.Infrastructure.Persistence.Context;
 namespace Migrators.MySQL.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230814034646_Inventories")]
+    partial class Inventories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3292,7 +3295,7 @@ namespace Migrators.MySQL.Migrations.Application
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("Inventories", "ZANECO");
+                    b.ToTable("Inventory", "ZANECO");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
                 });
