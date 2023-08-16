@@ -50,7 +50,6 @@ public class ContactUpdateRequestHandler : IRequestHandler<ContactUpdateRequest,
     public async Task<Guid> Handle(ContactUpdateRequest request, CancellationToken cancellationToken)
     {
         var contact = await _repository.GetByIdAsync(request.Id, cancellationToken);
-
         _ = contact ?? throw new NotFoundException($"Contact {request.Id} not found.");
 
         // Remove old image if flag is set
