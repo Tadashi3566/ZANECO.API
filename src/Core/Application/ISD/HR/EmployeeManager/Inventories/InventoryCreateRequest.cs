@@ -44,11 +44,12 @@ public class InventoryCreateRequestHandler : IRequestHandler<InventoryCreateRequ
 
     public async Task<Guid> Handle(InventoryCreateRequest request, CancellationToken cancellationToken)
     {
+        var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
+
         string imagePath = await _file.UploadAsync<Inventory>(request.Image, FileType.Image, cancellationToken);
 
-        var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
-
-        var inventory = new Inventory(request.EmployeeId, request.MrCode, request.ItemCode, request.DateReceived, request.Name, request.Cost, request.Description, request.Notes, imagePath);
+        var inventory = new Inventory(request.EmployeeId, employee.FullName(), request.MrCode, request.ItemCode, request.DateReceived, request.Name, request.Cost, request.Description, request.Notes, imagePath);
 
         await _repository.AddAsync(inventory, cancellationToken);
 

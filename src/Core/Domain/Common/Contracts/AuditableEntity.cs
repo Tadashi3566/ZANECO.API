@@ -14,7 +14,8 @@ public abstract class AuditableEntity<T> : BaseEntity<T>, IAuditableEntity, ISof
     public string? Description { get; set; }
     public string? Notes { get; set; }
 
-    [Column(TypeName = "VARCHAR(32)")]
+    //[Column(TypeName = "VARCHAR(32)")]
+    //Some remarks are longer and customized
     public string? Remarks { get; set; }
 
     [Column(TypeName = "VARCHAR(16)")]

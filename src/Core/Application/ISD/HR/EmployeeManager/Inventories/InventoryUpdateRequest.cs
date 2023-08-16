@@ -67,7 +67,7 @@ public class InventoryUpdateRequestHandler : IRequestHandler<InventoryUpdateRequ
             ? await _file.UploadAsync<Inventory>(request.Image, FileType.Image, cancellationToken)
             : null;
 
-        var updatedInventory = inventory.Update(request.MrCode, request.ItemCode, request.DateReceived, request.Name, request.Cost, request.Description, request.Notes, imagePath);
+        var updatedInventory = inventory.Update(employee.FullName(), request.MrCode, request.ItemCode, request.DateReceived, request.Name, request.Cost, request.Description, request.Notes, imagePath);
 
         await _repository.UpdateAsync(updatedInventory, cancellationToken);
 

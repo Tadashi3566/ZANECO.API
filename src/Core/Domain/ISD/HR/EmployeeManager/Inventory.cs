@@ -4,14 +4,16 @@ public class Inventory : AuditableEntity, IAggregateRoot
 {
     public virtual Employee Employee { get; private set; } = default!;
     public DefaultIdType EmployeeId { get; private set; } = default!;
+    public string EmployeeName { get; private set; } = default!;
     public string MrCode { get; private set; } = default!;
     public string ItemCode { get; private set; } = default!;
     public DateTime DateReceived { get; private set; } = default!;
     public decimal Cost { get; private set; } = default!;
 
-    public Inventory(DefaultIdType employeeId, string mrCode, string itemCode, DateTime dateReceived, string name, decimal cost, string? description = null, string? notes = null, string? imagePath = null)
+    public Inventory(DefaultIdType employeeId, string employeeName, string mrCode, string itemCode, DateTime dateReceived, string name, decimal cost, string? description = null, string? notes = null, string? imagePath = null)
     {
         EmployeeId = employeeId;
+        EmployeeName = employeeName;
 
         MrCode = mrCode.Trim().ToUpper();
         ItemCode = itemCode.Trim().ToUpper();
@@ -26,8 +28,10 @@ public class Inventory : AuditableEntity, IAggregateRoot
         if (imagePath is not null && (ImagePath?.Equals(imagePath) != true)) ImagePath = imagePath;
     }
 
-    public Inventory Update(string mrCode, string itemCode, DateTime dateReceived, string name, decimal cost, string? description = null, string? notes = null, string? imagePath = null)
+    public Inventory Update(string employeeName, string mrCode, string itemCode, DateTime dateReceived, string name, decimal cost, string? description = null, string? notes = null, string? imagePath = null)
     {
+        if (!EmployeeName.Equals(employeeName)) EmployeeName = employeeName;
+
         if (!MrCode.Equals(mrCode)) MrCode = mrCode.Trim().ToUpper();
         if (!ItemCode.Equals(itemCode)) ItemCode = itemCode.Trim().ToUpper();
 

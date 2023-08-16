@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ZANECO.API.Infrastructure.Persistence.Context;
 
@@ -10,9 +11,11 @@ using ZANECO.API.Infrastructure.Persistence.Context;
 namespace Migrators.MySQL.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230816044906_InventoryEmpName")]
+    partial class InventoryEmpName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,7 +190,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(128)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -252,7 +255,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -328,7 +331,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(1024)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -417,7 +420,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(64)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -533,7 +536,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("RequestThrough")
                         .HasColumnType("longtext");
@@ -617,7 +620,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(16)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -790,7 +793,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("date");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Route")
                         .IsRequired()
@@ -878,7 +881,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("int");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -941,7 +944,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -1049,7 +1052,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -1200,7 +1203,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -1415,7 +1418,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasDefaultValue(0m);
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<decimal>("SeniorCitizenDiscount")
                         .ValueGeneratedOnAdd()
@@ -1607,7 +1610,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(16)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<DateTime>("ReportDate")
                         .HasColumnType("date");
@@ -1685,7 +1688,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("int");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -1749,7 +1752,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Specification")
                         .IsRequired()
@@ -1807,7 +1810,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -1880,7 +1883,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("int");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<decimal>("Sales")
                         .HasColumnType("decimal(65,30)");
@@ -1934,7 +1937,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("float");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -1996,7 +1999,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("SKU")
                         .IsRequired()
@@ -2089,7 +2092,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -2173,7 +2176,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<Guid>("SaleId")
                         .HasColumnType("char(36)");
@@ -2251,7 +2254,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -2366,7 +2369,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<DateTime>("StartDateTime")
                         .HasColumnType("datetime(6)");
@@ -2507,7 +2510,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("ScheduleDetailDay")
                         .IsRequired()
@@ -2626,7 +2629,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -2749,7 +2752,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(8)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<decimal>("SalaryAmount")
                         .ValueGeneratedOnAdd()
@@ -2870,7 +2873,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(32)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -3080,7 +3083,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("date");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<decimal>("SalaryAmount")
                         .ValueGeneratedOnAdd()
@@ -3199,7 +3202,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
@@ -3282,7 +3285,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -3350,7 +3353,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("int");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("ReportsTo")
                         .IsRequired()
@@ -3429,7 +3432,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -3503,7 +3506,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(256)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -3599,7 +3602,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -3696,7 +3699,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -3767,7 +3770,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -3857,7 +3860,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasDefaultValue(0m);
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
@@ -3954,7 +3957,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(16)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
@@ -4054,7 +4057,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<decimal>("Salary")
                         .ValueGeneratedOnAdd()
@@ -4161,7 +4164,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
@@ -4278,7 +4281,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
@@ -4357,7 +4360,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
@@ -4462,7 +4465,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(256)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -4545,7 +4548,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("Date");
@@ -4603,7 +4606,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -4663,7 +4666,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<Guid>("ScheduleId")
                         .HasColumnType("char(36)");
@@ -4799,7 +4802,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(16)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -4874,7 +4877,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("varchar(16)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -4962,7 +4965,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("SMSC")
                         .HasColumnType("longtext");
@@ -5073,7 +5076,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<DateTime?>("SendTime")
                         .HasColumnType("datetime(6)");
@@ -5171,7 +5174,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("int");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<DateTime?>("Scheduled")
                         .HasColumnType("datetime(6)");
@@ -5254,7 +5257,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<DateTime>("Schedule")
                         .HasColumnType("datetime(6)");
@@ -5320,7 +5323,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("int");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -5394,7 +5397,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("longtext");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");
@@ -5459,7 +5462,7 @@ namespace Migrators.MySQL.Migrations.Application
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("longtext");
+                        .HasColumnType("VARCHAR(32)");
 
                     b.Property<string>("Status")
                         .HasColumnType("VARCHAR(16)");

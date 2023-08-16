@@ -47,6 +47,7 @@ public class DocumentCreateRequestHandler : IRequestHandler<DocumentCreateReques
         string imagePath = await _file.UploadAsync<Document>(request.Image, FileType.Image, cancellationToken);
 
         var employee = await _repoEmployee.GetByIdAsync(request.EmployeeId, cancellationToken);
+        _ = employee ?? throw new NotFoundException($"Employee {request.EmployeeId} not found.");
 
         var document = new Document(request.EmployeeId, employee!.FullName(), request.DocumentDate, request.DocumentType, request.Reference, request.IsPublic, request.Name, request.Description, request.Notes, imagePath);
 
