@@ -2,13 +2,9 @@
 
 public class Ledger : AuditableEntity, IAggregateRoot
 {
-    public Ledger()
-    {
-    }
-
     public virtual Account Account { get; private set; } = default!;
     public DefaultIdType AccountId { get; private set; }
-    public int IdCode { get; private set; }
+    public string IdCode { get; private set; } = default!;
     public string AccountNumber { get; private set; } = default!;
     public string BillMonth { get; private set; } = default!;
     public string BillNumber { get; private set; } = default!;
@@ -45,7 +41,7 @@ public class Ledger : AuditableEntity, IAggregateRoot
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
-    public Ledger(DefaultIdType accountId, int idCode, string accountNumber, string billNumber, string billMonth, double lastReading, double kwh, decimal ucnpcsd, decimal ucnpcscc, decimal ucduscc, decimal ucme, decimal ucetr, decimal ucec, decimal uccsr, decimal vatDistribution, decimal vatGeneration, decimal vatTransmission, decimal vatSLGeneration, decimal vatSLTransmission, decimal vat, decimal vatDiscount, decimal debit, decimal credit, decimal balance, string collector, DateTime postingDate)
+    public Ledger(DefaultIdType accountId, string idCode, string accountNumber, string billNumber, string billMonth, double lastReading, double kwh, decimal ucnpcsd, decimal ucnpcscc, decimal ucduscc, decimal ucme, decimal ucetr, decimal ucec, decimal uccsr, decimal vatDistribution, decimal vatGeneration, decimal vatTransmission, decimal vatSLGeneration, decimal vatSLTransmission, decimal vat, decimal vatDiscount, decimal debit, decimal credit, decimal balance, string collector, DateTime postingDate)
     {
         AccountId = accountId;
         IdCode = idCode;

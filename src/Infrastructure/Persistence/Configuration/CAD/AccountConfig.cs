@@ -13,8 +13,7 @@ public class AccountConfig : IEntityTypeConfiguration<Account>
             .IsMultiTenant();
 
         _ = builder.Property(b => b.IdCode)
-            .HasColumnType("int")
-            .HasDefaultValue(0);
+            .HasMaxLength(8);
         _ = builder.Property(b => b.AccountNumber)
             .HasMaxLength(16);
         _ = builder.Property(b => b.Area)

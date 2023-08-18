@@ -6,7 +6,7 @@ public class Account : AuditableEntity, IAggregateRoot
     {
     }
 
-    public int IdCode { get; private set; }
+    public string IdCode { get; private set; } = default!;
     public string AccountNumber { get; private set; } = default!;
 
     public string Address { get; private set; } = default!;
@@ -43,7 +43,7 @@ public class Account : AuditableEntity, IAggregateRoot
     public double PresentReadingKWHCM { get; private set; }
     public double UsedKWHCM { get; private set; } = default!;
 
-    public Account(int idCode, string accountNumber, string area, string route, string cipher, string tag, string name, string address, string accountType, string feeder, string pole, string transformer, string meterBrand, string meterSerial, string billMonth, DateTime previousReadingDate, double previousReadingKWH, DateTime presentReadingDate, double presentReadingKWH, double usedKWH, decimal billAmount, string? description = null, string? notes = null, string? imagePath = null)
+    public Account(string idCode, string accountNumber, string area, string route, string cipher, string tag, string name, string address, string accountType, string feeder, string pole, string transformer, string meterBrand, string meterSerial, string billMonth, DateTime previousReadingDate, double previousReadingKWH, DateTime presentReadingDate, double presentReadingKWH, double usedKWH, decimal billAmount, string? description = null, string? notes = null, string? imagePath = null)
     {
         IdCode = idCode;
         AccountNumber = accountNumber;

@@ -5,5 +5,5 @@ namespace ZANECO.API.Application.CAD.Accounts;
 
 public class AccountCountSpec : Specification<Ledger, LedgerDto>, ISingleResultSpecification<Ledger>
 {
-    public AccountCountSpec(int idCode) => Query.Where(p => p.IdCode == idCode);
+    public AccountCountSpec(string idCode) => Query.Where(p => p.IdCode == idCode);
 }

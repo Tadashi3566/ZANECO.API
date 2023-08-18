@@ -2,7 +2,7 @@ namespace ZANECO.API.Domain.CAD;
 
 public class Master : AuditableEntity<int>, IAggregateRoot
 {
-    public int Code { get; set; }
+    public string Code { get; set; }
     public string? AccountNumber { get; set; }
     public string? Address { get; set; }
     public string? Area { get; set; }

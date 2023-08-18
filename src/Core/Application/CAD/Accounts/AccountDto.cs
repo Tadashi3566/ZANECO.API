@@ -2,7 +2,7 @@ namespace ZANECO.API.Application.CAD.Accounts;
 
 public class AccountDto : BaseDto, IDto
 {
-    public int IdCode { get; set; } = default!;
+    public string IdCode { get;  set; } = default!;
     public string AccountNumber { get; set; } = default!;
     public string Area { get; set; } = default!;
     public string Route { get; set; } = default!;

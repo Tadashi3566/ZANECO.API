@@ -8,7 +8,7 @@ public class Billing : AuditableEntity, IAggregateRoot
 
     public virtual Account Account { get; private set; } = default!;
     public DefaultIdType AccountId { get; private set; }
-    public int IdCode { get; private set; }
+    public string IdCode { get; private set; }
     public string AccountNumber { get; private set; } = default!;
     public string BillMonth { get; private set; } = default!;
     public string BillNumber { get; private set; } = default!;
@@ -74,7 +74,7 @@ public class Billing : AuditableEntity, IAggregateRoot
         if (notes is not null && (Notes?.Equals(notes) != true)) Notes = notes.Trim();
     }
 
-    public Billing(DefaultIdType accountId, int idCode, string accountNumber, string billNumber, string billMonth, decimal ucnpcsd, decimal ucnpcscc, decimal ucduscc, decimal ucme, decimal ucetr, decimal ucec, decimal uccsr, decimal vatDistribution, decimal vatGeneration, decimal vatTransmission, decimal vatSLGeneration, decimal vatSLTransmission, decimal vat)
+    public Billing(DefaultIdType accountId, string idCode, string accountNumber, string billNumber, string billMonth, decimal ucnpcsd, decimal ucnpcscc, decimal ucduscc, decimal ucme, decimal ucetr, decimal ucec, decimal uccsr, decimal vatDistribution, decimal vatGeneration, decimal vatTransmission, decimal vatSLGeneration, decimal vatSLTransmission, decimal vat)
     {
         AccountId = accountId;
         IdCode = idCode;

@@ -13,8 +13,7 @@ public class LedgerConfig : IEntityTypeConfiguration<Ledger>
             .IsMultiTenant();
 
         _ = builder.Property(b => b.IdCode)
-            .HasColumnType("int")
-            .HasDefaultValue(0);
+            .HasMaxLength(8);
         _ = builder.Property(b => b.AccountNumber)
             .HasMaxLength(16);
         _ = builder.Property(b => b.BillMonth)

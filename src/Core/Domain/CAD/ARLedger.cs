@@ -2,7 +2,7 @@
 
 public class ARLedger : AuditableEntity<int>, IAggregateRoot
 {
-    public int IdCode { get; set; }
+    public string IdCode { get; set; }
     public string? BillMonth { get; set; }
     public string? BillNumber { get; set; }
 
