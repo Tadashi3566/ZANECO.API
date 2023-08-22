@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.RateLimiting;
 using ZANECO.API.Application.Identity.Tokens;
 
 namespace ZANECO.API.Host.Controllers.Identity;
 
+[EnableRateLimiting("fixedByIP")]
 public sealed class TokensController : VersionNeutralApiController
 {
     private readonly ITokenService _tokenService;

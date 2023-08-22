@@ -17,5 +17,6 @@
     "Upto",
     "usernotfound",
     "Xunit"
-  ]
+  ],
+  "dotnet.defaultSolution": "ZANECO.API7.sln"
 }

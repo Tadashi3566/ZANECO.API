@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.RateLimiting;
 using ZANECO.API.Application.Identity.Roles;
 
 namespace ZANECO.API.Host.Controllers.Identity;
 
+[EnableRateLimiting("fixed")]
 public class RolesController : VersionNeutralApiController
 {
     private readonly IRoleService _roleService;

@@ -29,10 +29,21 @@ internal static class Startup
         {
             options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
 
+            options.AddPolicy("fixedByIP", httpContext =>
+                RateLimitPartition.GetFixedWindowLimiter(
+                    partitionKey: httpContext.Connection.RemoteIpAddress.ToString(),
+                    factory: _ => new FixedWindowRateLimiterOptions
+                    {
+                        AutoReplenishment = setting.AutoReplenishment,
+                        PermitLimit = setting.PermitLimit,
+                        QueueLimit = setting.QueueLimit,
+                        QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                        Window = TimeSpan.FromSeconds(setting.WindowInSecond)
+                    }));
+
             options.AddPolicy("fixed", httpContext =>
                 RateLimitPartition.GetFixedWindowLimiter(
                     partitionKey: httpContext.User.Identity.Name,
-                    //partitionKey: httpContext.Connection.RemoteIpAddress.ToString(),
                     factory: _ => new FixedWindowRateLimiterOptions
                     {
                         AutoReplenishment = setting.AutoReplenishment,

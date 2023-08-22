@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.RateLimiting;
 using ZANECO.API.Application.Identity.Users;
 using ZANECO.API.Application.Identity.Users.Password;
 
 namespace ZANECO.API.Host.Controllers.Identity;
 
+[EnableRateLimiting("fixedByIP")]
 public class UsersController : VersionNeutralApiController
 {
     private readonly IUserService _userService;
